@@ -1,15 +1,3 @@
-[3.2.2] - 2026-04-08
-
-Neuerungen:
-* Ab sofort gibt es im Spiel die Möglichkeit, sich mit einer kreativen Notfall-Ausrede temporär aus anstrengenden Problemen und Konversationen herauszuziehen.
-
-System & Stabilität:
-* Die Dateistruktur der Spieldaten wurden auf einen modernen Standard (Module) umgestellt. Das verbessert die Ladezeiten, macht das Spiel performanter und bereitet die Architektur auf zukünftige, größere Inhalts-Updates vor.
-
-Fehlerkorrekturen:
-* Ein Anzeigefehler bei den "Löschen & Ignorieren"-Buttons im E-Mail-System wurde behoben, durch den das Papierkorb-Icon doppelt gerendert wurde.
-* Der Wechsel des Musikstils wird nun auch dann korrekt im Hintergrund verarbeitet und beim nächsten Einschalten angewendet, wenn die Musik zum Zeitpunkt des Wechsels pausiert war.
-
 [3.2.1] - 2026-04-04
 
 Neuerungen:

@@ -5,9 +5,7 @@ module.exports = {
     "./engine.js",
     "./data.js", 
     "./tutorial.js", 
-    "./assets/intranet/*.html",
-    "./assets/data/*.js",
-    "./assets/engine/*.js"
+    "./assets/intranet/*.html"
   ],
   theme: {
     extend: {},
