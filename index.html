@@ -26,7 +26,7 @@
 			<div class="flex-1 flex flex-col">
 				
 				<div class="flex justify-center md:justify-start mb-6">
-					<img src="assets/logo/logo.png" alt="Layer8Problem Logo" class="w-64 md:w-80 mx-auto drop-shadow-[0_0_20px_rgba(59,130,246,0.15)] pointer-events-none select-none hover:scale-105 transition-transform duration-700">
+					<img src="assets/img/logo/logo.png" alt="Layer8Problem Logo" class="w-64 md:w-80 mx-auto drop-shadow-[0_0_20px_rgba(59,130,246,0.15)] pointer-events-none select-none hover:scale-105 transition-transform duration-700">
 					<h1 class="sr-only">Layer8Problem</h1>
 				</div>
 				
@@ -473,7 +473,7 @@
     
     <div class="relative w-full h-full md:max-w-6xl md:h-[90vh] bg-[#dcbfa3] md:rounded-lg shadow-2xl border-x-0 md:border-8 border-[#5d4037] flex flex-col">
         
-        <div class="absolute inset-0 opacity-30 pointer-events-none z-0" style="background-image: url('assets/textures/cork-1.png');"></div>
+        <div class="absolute inset-0 opacity-30 pointer-events-none z-0" style="background-image: url('assets/img/textures/cork-1.png');"></div>
 
         <div class="relative z-20 bg-[#5d4037] text-[#fdf6e3] text-center py-3 shadow-md border-b-4 border-[#3e2723] shrink-0">
             <h2 class="text-xl md:text-2xl font-black uppercase tracking-[0.2em] drop-shadow-md">GlobalCorp • Community Board</h2>
@@ -988,6 +988,41 @@
 
 <!-- EXPORT IMPORT MODAL END -->
 
+<!-- EXCUSE MODAL START -->
+<div id="excuse-modal" class="fixed inset-0 bg-black/90 hidden items-center justify-center z-[10000]">
+	<div class="bg-slate-900 border-2 border-slate-600 p-6 rounded-lg w-full max-w-lg shadow-2xl relative">
+		<button onclick="engine.closeExcuseModal()"
+			class="absolute top-2 right-4 text-slate-400 hover:text-white text-2xl">&times;</button>
+
+		<h2 class="text-lg font-bold text-slate-200 mb-2 uppercase tracking-wider">
+			Notfall-Ausrede erfinden
+		</h2>
+		
+		<div class="bg-slate-800 p-4 border border-slate-700 rounded-md mb-6">
+			<p id="excuse-text" class="text-base text-slate-300 italic">
+				"..."
+			</p>
+		</div>
+
+		<p class="text-sm text-slate-400 mb-6">
+			Das aktuelle Problem wird dadurch nur vertagt und wandert ungelöst 
+			zurück in den Pool. Du hast pro Schicht nur begrenzt Ausreden zur Verfügung.
+		</p>
+
+		<div class="flex justify-end gap-3 mt-4 border-t border-slate-700 pt-4">
+			<button onclick="engine.closeExcuseModal()"
+				class="px-4 py-2 bg-slate-800 text-slate-300 hover:text-white border border-slate-700 hover:border-slate-500 text-sm rounded transition-colors">
+				Abbrechen
+			</button>
+			<button onclick="engine.confirmExcuse()"
+				class="px-4 py-2 bg-blue-600/80 hover:bg-blue-500 text-white font-bold text-sm rounded transition-colors border border-blue-500">
+				Bestätigen und fliehen
+			</button>
+		</div>
+	</div>
+</div>
+<!-- EXCUSE MODAL END -
+
 <!-- REPORT MODAL START -->
 <div id="report-modal" class="fixed inset-0 bg-black/90 hidden items-center justify-center z-[10000]">
     <div class="bg-slate-900 border-2 border-slate-600 p-6 rounded-lg w-full max-w-lg shadow-2xl relative">
@@ -1112,8 +1147,7 @@
 </div>
 <!-- KEYBOAD BINDING MODAL END -->
 
-    <script src="data.js"></script>
-    <script src="engine.js"></script>
+    <script type="module" src="engine.js"></script>
     <script src="tutorial.js"></script>
 </body>
 </html>
