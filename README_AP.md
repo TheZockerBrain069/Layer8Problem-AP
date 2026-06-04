@@ -1,4 +1,4 @@
-[README_AP.md](https://github.com/user-attachments/files/28578368/README_AP.md)
+
 # Layer8Problem — Archipelago Edition
 
 > **This is a community fork** of [seluce/Layer8Problem](https://github.com/seluce/Layer8Problem)
