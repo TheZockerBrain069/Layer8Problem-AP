@@ -1,4 +1,4 @@
-W!P
+*(WIP)*
 # Layer8Problem — Archipelago Edition
 
 > **This is a community fork** of [seluce/Layer8Problem](https://github.com/seluce/Layer8Problem)
@@ -77,20 +77,6 @@ Your host / port / slot / DeathLink preference are remembered in
 The `.apworld` for the Archipelago generator lives in `/apworld/` *(coming soon)*.
 Drop it into your Archipelago `custom_worlds/` folder and `Layer8Problem` shows
 up as a selectable game.
-
-## Self-hosting
-
-This is a fully static site (HTML + JS + CSS, no build step).
-Deploy by pushing the repo to any static host:
-
-- **Netlify** (recommended, what we use) — connect repo, publish dir `.`, done.
-- **GitHub Pages** — Settings → Pages → branch `main` → root.
-- **Local** — `python -m http.server` from the repo root.
-
-## Maintainer notes
-
-See [`SETUP.md`](./SETUP.md) for the maintainer workflow (Fork → Netlify →
-patching → deploying updates).
 
 ## License & credits
 
