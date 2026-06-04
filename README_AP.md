@@ -6,8 +6,11 @@
 > Used with the author's permission (modifications allowed with attribution).
 
 🎮 **Play:** <https://layer8problem-ap.netlify.app>
+
 📦 **Original game:** <https://github.com/seluce/Layer8Problem> · [Steam](https://store.steampowered.com/app/4487580/Layer8Problem/)
+
 👤 **Original developer:** [seluce](https://github.com/seluce)
+
 🔌 **AP integration:** [TheZockerBrain069](https://github.com/TheZockerBrain069)
 
 ---
