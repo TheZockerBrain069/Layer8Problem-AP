@@ -17,7 +17,7 @@
 > with an integrated [Archipelago](https://archipelago.gg) multiworld client.
 > Used with the author's permission (modifications allowed with attribution).
 
-🎮 **Play:** <https://layer8problem-ap.netlify.app>
+🎮 **Play:** <https://aplayer8problem.netlify.app>
 
 📦 **Original game:** <https://github.com/seluce/Layer8Problem> · [Steam](https://store.steampowered.com/app/4487580/Layer8Problem/)
 
