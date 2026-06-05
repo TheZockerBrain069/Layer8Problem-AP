@@ -2,8 +2,7 @@
 
 | | |
 |---|---|
-
-| Version,| Content, | Maturity Level |
+| Version,| Content, | Maturity Level ||
 | v0.1.0, | "Current state: DE-only, 24 Achievements, Basic DeathLink", | """early alpha, playable, feedback welcome""" |
 | v0.2.0, | "Complete EN translation, Language switcher in menu", | """alpha, now internationally testable""" |
 | v0.3.0, | Affection-Tiers + Days-Survived as real Locations (→ ~50 Checks), | """feature-complete locations""" |
