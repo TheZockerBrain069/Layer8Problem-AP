@@ -1,6 +1,6 @@
 *(WIP)*
 
-| | |
+| | | |
 |---|---|
 || Version,| Content, | Maturity Level ||
 || v0.1.0, | "Current state: DE-only, 24 Achievements, Basic DeathLink", | """early alpha, playable, feedback welcome""" |
