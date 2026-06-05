@@ -9,7 +9,7 @@
 | v0.4.0, | Progressive Items (Difficulty/Affection) + YAML Goal Options,| """feature-complete items""" |
 | v0.5.0, | "DeathLink-Hardening (all 4 Causes) reliable, no Echo", | """deathlink-stable""" |
 | v0.9.0, | "Fully tested, one complete run played",| """release candidate""" |
-| v1.0.0, | "Public Release, AP-Multiworld-Index Entry","""stable""" |
+| v1.0.0, | "Public Release, AP-Multiworld-Index Entry", | """stable""" |
 
 # Layer8Problem — Archipelago Edition
 
