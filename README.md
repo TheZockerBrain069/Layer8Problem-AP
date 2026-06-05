@@ -2,14 +2,14 @@
 
 | | |
 |---|---|
-| Version,| Content, | Maturity Level ||
-| v0.1.0, | "Current state: DE-only, 24 Achievements, Basic DeathLink", | """early alpha, playable, feedback welcome""" |
-| v0.2.0, | "Complete EN translation, Language switcher in menu", | """alpha, now internationally testable""" |
-| v0.3.0, | Affection-Tiers + Days-Survived as real Locations (→ ~50 Checks), | """feature-complete locations""" |
-| v0.4.0, | Progressive Items (Difficulty/Affection) + YAML Goal Options,| """feature-complete items""" |
-| v0.5.0, | "DeathLink-Hardening (all 4 Causes) reliable, no Echo", | """deathlink-stable""" |
-| v0.9.0, | "Fully tested, one complete run played",| """release candidate""" |
-| v1.0.0, | "Public Release, AP-Multiworld-Index Entry","""stable""" |
+|| Version,| Content, | Maturity Level ||
+|| v0.1.0, | "Current state: DE-only, 24 Achievements, Basic DeathLink", | """early alpha, playable, feedback welcome""" |
+|| v0.2.0, | "Complete EN translation, Language switcher in menu", | """alpha, now internationally testable""" |
+|| v0.3.0, | Affection-Tiers + Days-Survived as real Locations (→ ~50 Checks), | """feature-complete locations""" |
+|| v0.4.0, | Progressive Items (Difficulty/Affection) + YAML Goal Options,| """feature-complete items""" |
+|| v0.5.0, | "DeathLink-Hardening (all 4 Causes) reliable, no Echo", | """deathlink-stable""" |
+|| v0.9.0, | "Fully tested, one complete run played",| """release candidate""" |
+|| v1.0.0, | "Public Release, AP-Multiworld-Index Entry","""stable""" |
 
 # Layer8Problem — Archipelago Edition
 
