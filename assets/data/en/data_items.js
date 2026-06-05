@@ -1,0 +1,39 @@
+export const items = {
+	
+    // CONSUMABLES (Single Use)
+    "wifi_note": { icon: "🏷️", name: "WiFi Note", flavor: '"The password is: 1234abcd. Please don\'t share." - Egon. Probably a copy stuck right on the router in the break room.', img: "assets/img/items/wifi_note.webp" },
+    "donut": { icon: "🍩", name: "Stale Donut", flavor: '"It\'s hard as a rock, but sugar is sugar. A tenacious survivor from the last management meeting three weeks ago."', img: "assets/img/items/donut.webp" },
+    "energy": { icon: "⚡", name: "Energy Drink", flavor: '"Tastes like gummy bears and impending panic attacks. After consumption, you can hear colors and time noticeably slows down."', img: "assets/img/items/energy.webp" },
+    "secret_list": { icon: "📁", name: "Blacklist", flavor: '"Anyone on this list can start packing their boxes. Pure, uncensored gold that HR would kill for."', img: "assets/img/items/secret_list.webp" },
+    "arg_list_1": { icon: "📋", name: "Arguments (Me)", flavor: '"1000 tickets closed. 0 gratitude. That changes today. With these facts, you\'re ready to lay waste to the boss\'s office."', img: "assets/img/items/arg_list_1.webp" }, 
+    "arg_list_2": { icon: "📑", name: "Arguments (Kevin)", flavor: '"Hazard pay for IT trainees? A bad joke! This paper proves in black and white that Kevin is handsomely paid for playing Minecraft."', img: "assets/img/items/arg_list_2.webp" },
+    "bubble_wrap": { icon: "🫧", name: "Bubble Wrap", flavor: '"Every *pop* is a muted user in your imagination. By far the cheapest and most effective therapy for long-suffering administrators."', img: "assets/img/items/bubble_wrap.webp" },
+    "sandwich": { icon: "🥪", name: "Loaded Sandwich", flavor: '"Cheese, remoulade, and the salty tears of the sales department. Ruthlessly stolen from the fridge, it tastes wonderfully of anarchy."', img: "assets/img/items/sandwich.webp" },
+    "chocolate": { icon: "🍫", name: "Chocolate Bar", flavor: '"Pure, square happiness on a cocoa base. Secretly saved from the greedy accounting department, it\'s the only bright spot on a Monday."', img: "assets/img/items/chocolate.webp" },
+        
+    // TOOLS (Permanent -> keep: true)
+    "admin_pw": { icon: "🔑", name: "Root Password", flavor: '"With great power comes... a lot of responsibility (and headaches). One wrong click and the customer database is history."', keep: true, img: "assets/img/items/admin_pw.webp" },
+    "cable": { icon: "〰️", name: "LAN Cable", flavor: '"Cat7. Reliably holds data and wobbly racks together. In an absolute emergency, also excellent as a whip against unruly users."', keep: true, img: "assets/img/items/cable.webp" },
+    "tape": { icon: "🩹", name: "Duct Tape", flavor: '"The strongest known force in the universe is grey tape. Repairs broken servers, leaky pipes, and silences colleagues."', keep: true, img: "assets/img/items/tape.webp" },
+    "screw": { icon: "🪛", name: "Screwdriver", flavor: '"High-quality Phillips head. Also suitable for self-defense. Your most loyal companion in the dark innards of ancient hardware."', keep: true, img: "assets/img/items/screw.webp" },
+    "stressball": { icon: "🔴", name: "Stress Ball", flavor: '"Squeezed so often it quietly whimpers for help. Already bears the permanent imprints of your fingers as a silent therapist."', keep: true, img: "assets/img/items/stressball.webp" },
+    "manual": { icon: "📖", name: "Win95 Manual", flavor: '"The holy book of the forefathers. Also suitable as a monitor stand. The pages are stuck together, but the knowledge within is absolutely timeless."', keep: true, img: "assets/img/items/manual.webp" },
+    "usb_stick": { icon: "💾", name: "Boot Stick", flavor: '"A 64GB stick, full of scripts, viruses, and cat memes. Your digital Swiss Army knife to tame any temperamental system."', keep: true, img: "assets/img/items/usb_stick.webp" },
+    "fire_ext": { icon: "🧯", name: "Fire Extinguisher", flavor: '"CO2. Cold, loud, and extremely effective against smoking hardware. Also perfectly suited to radically cool down burning conflicts in the hallway."', keep: true, img: "assets/img/items/fire_ext.webp" },
+    "hammer": { icon: "🔨", name: "Hammer", flavor: '"A 500g opinion-enhancer. Solves hardware problems instantly. Percussive maintenance is sometimes the only language printers understand."', keep: true, img: "assets/img/items/hammer.webp" },
+    "zip_ties": { icon: "➰", name: "Zip Ties", flavor: '"Black plastic. The indestructible handcuffs of IT. Tame the wildest cable spaghetti and literally hold the infrastructure together."', keep: true, img: "assets/img/items/zip_ties.webp" },
+    "headphones": { icon: "🎧", name: "NC Headphones", flavor: '"When you put them on, the rest of the world ceases to exist. The ultimate shield against the noise of the marketing department and Jürgen\'s monologues."', keep: true, img: "assets/img/items/headphones.webp" },
+    "black_card": { icon: "💳", name: "Black Amex", flavor: '"Property of Prince Abubakar. The limit is a pure illusion. You could buy a small island with it, but today it\'s probably enough for pizza."', keep: true, img: "assets/img/items/black_card.webp" },
+
+    // QUEST ITEMS
+    "kevin_ram": { icon: "📟", name: "Kevin's Lucky RAM", flavor: '"An old DDR3 stick. Kevin swears it makes the PC faster. In reality, it\'s completely fried, just like the trainee\'s synapses."', keep: true, quest: true, img: "assets/img/items/kevin_ram.webp" },
+    "golden_stapler": { icon: "✨", name: "Golden Stapler", flavor: '"Heavy, gaudy, and utterly useless. Like marketing itself. A captured trophy, a reminder of Chantal\'s tears during the last budget war."', keep: true, quest: true, img: "assets/img/items/golden_stapler.webp" },
+    "mixtape": { icon: "🤘", name: "Death Metal Tape", flavor: '"Side A: Burn the Server. Side B: User Error (Die). The perfect, hardcore soundtrack for your daily descent into corporate madness."', keep: true, quest: true, img: "assets/img/items/mixtape.webp" },
+    "cat_pic": { icon: "🐱", name: "Photo of Rüdiger", flavor: '"A fluffy cat with the psychopathic gaze of a killer. Ms. Elster\'s undisputed favorite and your ultimate free pass."', keep: true, quest: true, img: "assets/img/items/cat_pic.webp" },
+    "master_key": { icon: "🗝️", name: "Master Key", flavor: '"Egon\'s masterpiece. You have absolute power over the building. No door remains locked to you, no secret hiding place is safe from you anymore."', keep: true, quest: true, img: "assets/img/items/master_key.webp" },
+    "scotch_bottle": { icon: "🥃", name: "30-Year-Old Scotch", flavor: '"Smells of peat, oak, and an exorbitantly high bonus. This fine drink is the only way to get through the afternoon unscathed."', keep: true, quest: true, img: "assets/img/items/scotch_bottle.webp" },
+    "contract": { icon: "📜", name: "New Employment Contract", flavor: '"20% more salary and the parking spot at the entrance. Black and white. The paper is still damp from the bitter tears shed by the CEO."', keep: true, quest: true, img: "assets/img/items/contract.webp" },
+    "corp_chronicles": { icon: "📕", name: "The Corporate Chronicles", flavor: '"Tradition since 1899. Smiling during working hours forbidden. A relic from a time when IT was steam-powered and exploitation was capitalized."', keep: true, quest: true, img: "assets/img/items/corp_chronicles.webp" },
+    "prince_letter": { icon: "💌", name: "Letter from the Prince", flavor: '"I shall name my firstborn \'Müller\'. With love, the Prince. A royal document proving you\'re more powerful than the board."', keep: true, quest: true, img: "assets/img/items/prince_letter.webp" },
+
+};
