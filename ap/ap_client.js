@@ -1,20 +1,34 @@
-// Layer8Problem — Archipelago Client (v2)
-// - Pre-connect overlay (blocks game until connected or "Play Offline")
-// - Hooks installed on window.engine after engine.init() finishes
-// - Real hook status feedback (engine / inventory / deathlink)
-// - DeathLink: termination · warning · let-off-steam · rage-quit
+// Layer8Problem — Archipelago Client (v3 / Mod v0.3.0)
+// Changes vs v2:
+//  - Day locations: per-run counter sends day_1..day_5 in order (was: single "day_survived")
+//  - Affection locations: polling hook on engine.state.reputation, emits aff_<char>_<tier>
+//    at thresholds friend=25, ally=50, bestie=75 (range -100..+100)
+//  - DeathLink cause key fix: "let_off_steam" (matches DEATHLINK_CAUSES)
+//  - Title-bilingual deathlink detection (DE + EN modal titles)
 //
 // Loaded as ES module from index.html AFTER engine.js.
 
 import {
   GAME_NAME, DEATHLINK_CAUSES,
   ACHIEVEMENT_LOCATIONS, NORMAL_ITEMS, LEGENDARY_ITEMS, PROGRESSIVE_ITEMS,
+  AFFECTION_CHARS, AFFECTION_TIERS,
   locationId, itemId, itemKey,
 } from "./ap_data.js";
 
 const LS_KEY     = "l8p_ap_session";
 const LS_OFFLINE = "l8p_ap_play_offline";
 const PROTO_VERSION = { major: 0, minor: 5, build: 0, class: "Version" };
+
+// Reputation character key → engine reputation map key
+const AFFECTION_NAME_MAP = {
+  kevin:   "Kevin",
+  chantal: "Chantal",
+  egon:    "Egon",
+  elster:  "Frau Elster",
+  markus:  "Markus",
+  gabi:    "Gabi",
+};
+const AFFECTION_THRESHOLDS = { friend: 25, ally: 50, bestie: 75 };
 
 const state = {
   ws: null,
@@ -27,7 +41,10 @@ const state = {
   receivedItems: [],
   goalSent: false,
   lastDeathTime: 0,
-  hooks: { engine: false, inventory: false, deathlink: false },
+  hooks: { engine: false, inventory: false, deathlink: false, days: false, affection: false },
+  // v0.3.0 runtime
+  daysThisRun: 0,
+  affectionPollIv: null,
 };
 
 // ---------- tiny DOM helper -----------------------------------------------
@@ -70,11 +87,11 @@ function injectStyles() {
   #ap-gate button.primary:hover{filter:brightness(1.1)}
   #ap-gate button:disabled{opacity:.5;cursor:wait}
   #ap-gate .status{margin-top:14px;padding:10px 12px;border:1px solid #334155;border-radius:6px;
-    background:#0b1224;font:11px/1.55 ui-monospace,monospace;color:#94a3b8;min-height:62px}
+    background:#0b1224;font:11px/1.55 ui-monospace,monospace;color:#94a3b8;min-height:62px;max-height:140px;overflow-y:auto}
   #ap-gate .status .ok{color:#86efac}
   #ap-gate .status .err{color:#fca5a5}
   #ap-gate .status .warn{color:#fcd34d}
-  #ap-gate .hooks{display:flex;gap:12px;margin-top:8px;font-size:11px}
+  #ap-gate .hooks{display:flex;gap:8px;margin-top:8px;font-size:11px;flex-wrap:wrap}
   #ap-gate .hooks span{padding:2px 6px;border-radius:3px;background:#1e293b;border:1px solid #334155}
   #ap-gate .hooks span.ok{border-color:#22c55e;color:#86efac}
   #ap-gate .hooks span.bad{border-color:#ef4444;color:#fca5a5}
@@ -108,9 +125,11 @@ function buildGate() {
 
   statusEl = el("div", { class: "status" }, "Enter your Archipelago slot to begin, or play offline.");
   hooksEl  = el("div", { class: "hooks" },
-    el("span", { id: "hook-engine" },    "engine ?"),
-    el("span", { id: "hook-inventory" }, "inventory ?"),
-    el("span", { id: "hook-deathlink" }, "deathlink ?"),
+    el("span", { id: "hook-engine" },     "engine ?"),
+    el("span", { id: "hook-inventory" },  "inventory ?"),
+    el("span", { id: "hook-days" },       "days ?"),
+    el("span", { id: "hook-affection" },  "affection ?"),
+    el("span", { id: "hook-deathlink" },  "deathlink ?"),
   );
 
   btnConnect = el("button", { class: "primary", onclick: () => {
@@ -134,7 +153,7 @@ function buildGate() {
 
   const panel = el("div", { class: "panel" },
     el("h1", {}, "Layer8Problem × Archipelago"),
-    el("div", { class: "sub" }, "IT Support Sim · Multiworld Edition"),
+    el("div", { class: "sub" }, "IT Support Sim · Multiworld Edition · v0.3.0"),
     el("div", { class: "row" },
       el("div", {}, el("label", {}, "Host"), inHost),
       el("div", {}, el("label", {}, "Port"), inPort),
@@ -304,6 +323,7 @@ function checkLocation(key) {
   state.checked.add(id);
   if (state.authed) send({ cmd: "LocationChecks", locations: [id] });
   else pendingChecks.push(id);
+  console.log("[AP] ✓ location:", key);
 }
 
 function flushPendingChecks() {
@@ -339,7 +359,7 @@ function handleDeathLinkRecv(data) {
   console.log("[AP] DeathLink in:", data.cause);
   try {
     if (window.engine && window.engine.showModal) {
-      window.engine.showModal("DEATHLINK", "Aus einer anderen Welt: " + (data.cause || "?"), false);
+      window.engine.showModal("DEATHLINK", "From another world: " + (data.cause || "?"), false);
       if (window.engine.state) window.engine.state.al = 100;
     }
   } catch (e) { console.warn(e); }
@@ -379,6 +399,30 @@ function waitForEngine(timeoutMs = 8000) {
   });
 }
 
+// Track which affection thresholds we've fired this slot (in addition to AP-side dedup).
+const affectionFired = new Set();
+
+function pollAffection() {
+  const e = window.engine;
+  if (!e || !e.state || !e.state.reputation) return;
+  const rep = e.state.reputation;
+  for (const charKey of AFFECTION_CHARS) {
+    const name = AFFECTION_NAME_MAP[charKey];
+    if (!name) continue;
+    const val = rep[name];
+    if (typeof val !== "number") continue;
+    for (const tier of AFFECTION_TIERS) {
+      if (val >= AFFECTION_THRESHOLDS[tier]) {
+        const key = `aff_${charKey}_${tier}`;
+        if (!affectionFired.has(key)) {
+          affectionFired.add(key);
+          checkLocation(key);
+        }
+      }
+    }
+  }
+}
+
 async function installHooks() {
   let e;
   try { e = await waitForEngine(); }
@@ -415,7 +459,7 @@ async function installHooks() {
     }
   } catch (x) { console.warn(x); setHook("inventory", false); }
 
-  // 3) DeathLink — wrap incrementStat (fired, rage-quit) and showModal (warning, steam)
+  // 3) Days + DeathLink — wrap incrementStat & showModal
   try {
     if (typeof e.incrementStat === "function") {
       const origInc = e.incrementStat.bind(e);
@@ -423,28 +467,43 @@ async function installHooks() {
         const r = origInc(statKey, ...rest);
         if (statKey === "daysFired")    sendDeathLink("termination");
         if (statKey === "daysRageQuit") sendDeathLink("rage_quit");
-        if (statKey === "daysSurvived") checkLocation("day_survived");
+        if (statKey === "daysSurvived") {
+          state.daysThisRun += 1;
+          const n = Math.min(state.daysThisRun, 5);
+          checkLocation(`day_${n}`);
+        }
         return r;
       };
+      setHook("days", true);
+    } else {
+      setHook("days", false);
     }
     if (typeof e.showModal === "function") {
       const origModal = e.showModal.bind(e);
       e.showModal = function (title, text, ...rest) {
         const r = origModal(title, text, ...rest);
         const t = (title || "").toUpperCase();
-        if (t === "WARNUNG" || t === "WARNING")          sendDeathLink("warning");
-        if (t === "VENTIL GEÖFFNET" || t === "STEAM")    sendDeathLink("let_off_steam");
+        if (t === "WARNUNG" || t === "WARNING")                  sendDeathLink("warning");
+        if (t === "VENTIL GEÖFFNET" || t === "STEAM RELEASED" ||
+            t === "LET OFF STEAM" || t === "STEAM")              sendDeathLink("let_off_steam");
         return r;
       };
     }
     setHook("deathlink", true);
   } catch (x) { console.warn(x); setHook("deathlink", false); }
+
+  // 4) Affection — polling every 2s (no central setter to wrap)
+  try {
+    if (state.affectionPollIv) clearInterval(state.affectionPollIv);
+    state.affectionPollIv = setInterval(pollAffection, 2000);
+    pollAffection();
+    setHook("affection", true);
+  } catch (x) { console.warn(x); setHook("affection", false); }
 }
 
 // ---------- boot ----------------------------------------------------------
 function boot() {
   buildGate();
-  // Auto-skip if user chose offline last time
   if (localStorage.getItem(LS_OFFLINE) === "1") {
     closeGate("offline");
   }
