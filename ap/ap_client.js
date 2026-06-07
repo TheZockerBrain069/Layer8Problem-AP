@@ -1,10 +1,9 @@
-// Layer8Problem — Archipelago Client (v3 / Mod v0.3.0)
-// Changes vs v2:
-//  - Day locations: per-run counter sends day_1..day_5 in order (was: single "day_survived")
-//  - Affection locations: polling hook on engine.state.reputation, emits aff_<char>_<tier>
-//    at thresholds friend=25, ally=50, bestie=75 (range -100..+100)
-//  - DeathLink cause key fix: "let_off_steam" (matches DEATHLINK_CAUSES)
-//  - Title-bilingual deathlink detection (DE + EN modal titles)
+// Layer8Problem — Archipelago Client (Mod v0.3.1)
+// Changes vs v0.3.0:
+//  - Language toggle moved INTO connect screen (DE ⇄ EN switch, replaces floater)
+//  - Removed AP status pill (return-to-client badge) — reload page to reconnect
+//  - waitForEngine timeout 8s → 20s + clearer diagnostic
+//  - Bumps version string
 //
 // Loaded as ES module from index.html AFTER engine.js.
 
@@ -98,19 +97,40 @@ function injectStyles() {
   #ap-gate .credit{margin-top:14px;font-size:10px;color:#64748b;text-align:center;letter-spacing:.5px}
   #ap-gate .credit a{color:#94a3b8;text-decoration:underline}
 
-  #ap-pill{position:fixed;top:8px;right:8px;z-index:99990;background:#0f172a;color:#e2e8f0;
-    border:1px solid #334155;border-radius:999px;padding:4px 12px;font:11px/1.4 ui-monospace,monospace;
-    cursor:pointer;user-select:none;box-shadow:0 4px 12px #0008;display:none}
-  #ap-pill.show{display:block}
-  #ap-pill.connected{border-color:#22c55e;color:#bbf7d0}
-  #ap-pill.offline{border-color:#64748b;color:#94a3b8}
-  #ap-pill.error{border-color:#ef4444;color:#fca5a5}
+  #ap-gate .lang-row{display:flex;align-items:center;justify-content:space-between;
+    gap:10px;margin:4px 0 6px;padding:8px 12px;background:#0b1224;border:1px solid #334155;
+    border-radius:8px}
+  #ap-gate .lang-row .lbl{font-size:12px;color:#94a3b8;letter-spacing:.5px;text-transform:uppercase}
+  #ap-gate .lang-row .toggle{position:relative;display:inline-flex;background:#1e293b;
+    border:1px solid #475569;border-radius:999px;padding:2px;cursor:pointer;user-select:none}
+  #ap-gate .lang-row .toggle button{flex:0 0 auto;padding:4px 14px;border:0;background:transparent;
+    color:#94a3b8;font:600 12px ui-monospace,monospace;border-radius:999px;cursor:pointer;letter-spacing:.5px}
+  #ap-gate .lang-row .toggle button.active{background:linear-gradient(180deg,#0ea5e9,#0369a1);color:#fff}
+  #ap-gate .reload-hint{margin-top:8px;font-size:10px;color:#64748b;text-align:center;font-style:italic}
   `;
   document.head.appendChild(s);
 }
 
 // ---------- gate UI -------------------------------------------------------
-let gateEl, pillEl, statusEl, hooksEl, btnConnect, btnOffline;
+let gateEl, statusEl, hooksEl, btnConnect, btnOffline;
+
+function buildLangRow() {
+  const current = (window.l8GetLang && window.l8GetLang()) ||
+                  (localStorage.getItem("l8_lang") || "de");
+  const setLang = (lang) => {
+    if (window.l8SetLang) return window.l8SetLang(lang);
+    if (localStorage.getItem("l8_lang") === lang) return;
+    localStorage.setItem("l8_lang", lang);
+    location.reload();
+  };
+  const btnDe = el("button", { onclick: () => setLang("de") }, "DE");
+  const btnEn = el("button", { onclick: () => setLang("en") }, "EN");
+  if (current === "en") btnEn.classList.add("active"); else btnDe.classList.add("active");
+  return el("div", { class: "lang-row" },
+    el("span", { class: "lbl" }, "🌐 Language / Sprache"),
+    el("div", { class: "toggle" }, btnDe, btnEn),
+  );
+}
 
 function buildGate() {
   injectStyles();
@@ -153,7 +173,7 @@ function buildGate() {
 
   const panel = el("div", { class: "panel" },
     el("h1", {}, "Layer8Problem × Archipelago"),
-    el("div", { class: "sub" }, "IT Support Sim · Multiworld Edition · v0.3.0"),
+    el("div", { class: "sub" }, "IT Support Sim · Multiworld Edition · v0.3.1"),
     el("div", { class: "row" },
       el("div", {}, el("label", {}, "Host"), inHost),
       el("div", {}, el("label", {}, "Port"), inPort),
@@ -161,9 +181,11 @@ function buildGate() {
     el("label", {}, "Slot Name"), inSlot,
     el("label", {}, "Password (optional)"), inPass,
     el("div", { class: "cb" }, inDL, el("span", {}, "Enable DeathLink")),
+    buildLangRow(),
     el("div", { class: "btns" }, btnConnect, btnOffline),
     statusEl,
     hooksEl,
+    el("div", { class: "reload-hint" }, "Tip: reload the page to reconnect / switch slot."),
     el("div", { class: "credit", html:
       'Original <a href="https://store.steampowered.com/app/4487580/" target="_blank">Layer8Problem</a> ' +
       'by <a href="https://github.com/seluce/Layer8Problem" target="_blank">seluce</a> · ' +
@@ -173,9 +195,6 @@ function buildGate() {
 
   gateEl = el("div", { id: "ap-gate" }, panel);
   document.body.appendChild(gateEl);
-
-  pillEl = el("div", { id: "ap-pill", onclick: openGate }, "AP: offline");
-  document.body.appendChild(pillEl);
 }
 
 function logStatus(msg, kind) {
@@ -194,20 +213,17 @@ function setHook(name, ok) {
 }
 
 function closeGate(mode) {
-  gateEl.style.display = "none";
-  pillEl.classList.add("show");
-  pillEl.classList.remove("connected", "offline", "error");
+  // Hide the gate fully so the game shows underneath. No floating return badge —
+  // reload the page if you want to switch slot or reconnect (see hint in panel).
+  if (gateEl) gateEl.style.display = "none";
   if (mode === "connected") {
-    pillEl.classList.add("connected");
-    pillEl.textContent = `AP: ${state.slot}`;
-  } else {
-    pillEl.classList.add("offline");
-    pillEl.textContent = "AP: offline";
+    logStatus(`Playing as ${state.slot}.`, "ok");
   }
 }
 
 function openGate() {
-  gateEl.style.display = "flex";
+  // Kept for legacy/window.AP debugging only — normal flow never reopens.
+  if (gateEl) gateEl.style.display = "flex";
 }
 
 // ---------- WebSocket -----------------------------------------------------
@@ -235,11 +251,8 @@ function connect() {
   state.ws.addEventListener("close", () => {
     state.connected = false;
     state.authed = false;
-    logStatus("Disconnected.", "warn");
+    logStatus("Disconnected. Reload page to reconnect.", "warn");
     btnConnect.disabled = false;
-    pillEl.classList.remove("connected");
-    pillEl.classList.add("error");
-    pillEl.textContent = "AP: disconnected";
   });
   state.ws.addEventListener("error", () => {
     logStatus("Connection error (wrong host/port? or server offline)", "err");
@@ -386,14 +399,18 @@ function applyItem(serverItemId, idx) {
 }
 
 // ---------- hook installation --------------------------------------------
-function waitForEngine(timeoutMs = 8000) {
+function waitForEngine(timeoutMs = 20000) {
   return new Promise((resolve, reject) => {
     const t0 = Date.now();
     const iv = setInterval(() => {
       if (window.engine && window.engine.state && typeof window.engine.unlockAchievement === "function") {
         clearInterval(iv); resolve(window.engine);
       } else if (Date.now() - t0 > timeoutMs) {
-        clearInterval(iv); reject(new Error("engine not found"));
+        clearInterval(iv);
+        const has = !!window.engine;
+        const hasState = has && !!window.engine.state;
+        const hasFn = has && typeof window.engine.unlockAchievement === "function";
+        reject(new Error(`engine not found (window.engine=${has}, .state=${hasState}, .unlockAchievement=${hasFn}). Try reloading; if it persists, switch language and try again.`));
       }
     }, 100);
   });
