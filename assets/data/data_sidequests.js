@@ -3,25 +3,25 @@ export const sidequests = [
     {
         id: "sq_toilet_1",
         kind: "text",
-        title: "Mission: Porzellan",
-        text: "Deine Blase meldet 'Füllstand: 110%'. Du hast es eilig. Doch zwischen dir und der erlösenden Keramik steht Björn, der Marketing-Leiter. Er scannt den Flur wie ein Raubtier auf der Suche nach einem Opfer für ein 'spontanes Brainstorming'.",
+        title: "Mission: Porcelain",
+        text: "Your bladder is screaming 'Fill Level: 110%'. You're in a hurry. But between you and the relieving ceramic stands Björn, the Head of Marketing. He's scanning the hallway like a predator looking for a victim for a 'spontaneous brainstorming session'.",
         opts: [
             { 
-                t: "Ablenkung: 'HINTER DIR! ELON MUSK!'", 
+                t: "Distraction: 'BEHIND YOU! ELON MUSK!'", 
                 next: "path_toilet_lie", 
                 m: 5, f: 5, a: -5, c: 0, 
-                r: "Du brüllst und zeigst in die andere Richtung. Björn wirbelt herum: 'Wo?! Der Disruptor?!'. Du nutzt die Sekunde und sprintest in die Kabine. Knapp, aber erfolgreich." 
+                r: "You yell and point in the other direction. Björn spins around: 'Where?! The Disruptor?!' You seize the second and sprint into the stall. Close call, but successful." 
             },
             { 
-                t: "Ergeben: Blickkontakt herstellen", 
+                t: "Surrender: Make eye contact", 
                 next: "path_toilet_pastel", 
                 m: 60, f: -20, a: 30, c: -10, 
-                r: "Anfängerfehler! Er hakt dich sofort unter: 'Ah, Müller! Perfekt! Wir brauchen dein Tech-Mindset zu den neuen Pastellfarben für das Logo!' Du sitzt 60 Minuten im Meeting. Deine Blase platzt fast. Hölle auf Erden." 
+                r: "Rookie mistake! He immediately hooks you in: 'Ah, Müller! Perfect! We need your tech-mindset on the new pastel colors for the logo!' You're stuck in a meeting for 60 minutes. Your bladder is about to burst. Hell on Earth." 
             },
             { 
-                t: "Aggressiv durchrennen", 
+                t: "Aggressively push through", 
                 m: 2, f: 0, a: 10, c: 5, 
-                r: "Du rempelst ihn fast um. 'PLATZ DA! BIO-NOTFALL!' Björn starrt dir entsetzt hinterher. 'Kein Flow, der Typ...', murmelt er. Unhöflich, aber effektiv." 
+                r: "You almost knock him over. 'CLEAR THE WAY! BIO-EMERGENCY!' Björn stares after you in horror. 'No flow, that guy...', he mutters. Rude, but effective." 
             }
         ]
     },
@@ -30,17 +30,17 @@ export const sidequests = [
         kind: "text",
         title: "Meeting: 'Color of Success'",
         reqStory: "path_toilet_pastel",
-        text: "Björn hat dich wieder eingeladen. Da du beim letzten Mal nicht weggelaufen bist, hält er dich für interessiert. 'So, IT-Brain! Welche Farbe passt besser zum Serverraum-Feng-Shui? 'Soft Salmon' oder 'Baby Breath Blue'?' Alle starren dich erwartungsvoll an.",
+        text: "Björn has invited you again. Since you didn't run away last time, he thinks you're interested. 'So, IT-Brain! Which color fits the server room's Feng Shui better? 'Soft Salmon' or 'Baby Breath Blue'?' Everyone stares at you expectantly.",
         opts: [
             { 
-                t: "Ironisch: 'Vantablack. Wie meine Seele.'", 
+                t: "Ironic: 'Vantablack. Like my soul.'", 
                 m: 10, f: 5, a: -5, c: 0, 
-                r: "Björn notiert eifrig: 'Oh, Edgy! Dark Mode für Wände! Genial!' Sie lieben es. Du bist jetzt der 'Chief Visionary Officer' wider Willen." 
+                r: "Björn scribbles eagerly: 'Oh, Edgy! Dark Mode for walls! Genius!' They love it. You are now the 'Chief Visionary Officer' against your will." 
             },
             { 
-                t: "Technisch: 'Blau kühlt die Hardware'", 
+                t: "Technical: 'Blue cools the hardware'", 
                 m: 30, f: -10, a: 10, c: 0, 
-                r: "Du hältst einen Vortrag über Thermodynamik. Nach 30 Minuten schlafen alle. Du hast sie zu Tode gelangweilt. Sieg durch Monotonie." 
+                r: "You deliver a lecture on thermodynamics. After 30 minutes, everyone is asleep. You've bored them to death. Victory through monotony." 
             }
         ]
     },
@@ -48,88 +48,88 @@ export const sidequests = [
         id: "sq_toilet_2b",
 		char: "Egon",
         kind: "text",
-        title: "Der Fehlalarm",
+        title: "The False Alarm",
         reqStory: "path_toilet_lie",
-        text: "Hausmeister Egon steht mit einem Werkzeugkasten vor dir. 'Björn sagte, hier war ein Promi? Oder ein Feuer? Er hat was von 'heißer Luft' geredet. Ich soll die Lüftung checken.'",
+        text: "Janitor Egon stands before you with a toolbox. 'Björn said there was a celebrity here? Or a fire? He mentioned something about 'hot air'. I'm supposed to check the ventilation.'",
         opts: [
             { 
-                t: "Lügen: 'War nur ein Test.'", 
+                t: "Lie: 'Just a test.'", 
                 m: 5, f: 5, a: 0, c: 0, 
-                r: "Egon zuckt mit den Schultern. 'Mir egal, ich werde stündlich bezahlt.' Er setzt sich hin und macht Pause. Du hast einen Verbündeten." 
+                r: "Egon shrugs. 'Don't care, I get paid hourly.' He sits down and takes a break. You've gained an ally." 
             },
             { 
-                t: "Wahrheit: 'Ich musste aufs Klo.'", 
+                t: "Truth: 'I had to pee.'", 
                 rep: { "Egon": 5 },
                 m: 10, f: 0, a: 5, c: 0, 
-                r: "Egon lacht dreckig. 'Guter Trick. Muss ich mir merken.' Er erzählt es aber weiter. Dein Ruf als 'Lügner' steigt." 
+                r: "Egon laughs dirtily. 'Good trick. I'll have to remember that.' But he tells everyone. Your reputation as a 'liar' grows." 
             }
         ]
     },
     {
         id: "sq_cake_1",
         kind: "text",
-        title: "Der Kuchen-Krieg",
-        text: "Ein unbekannter Held hat Geburtstagskuchen spendiert. Mächtige Schoko-Sahne-Torte! Doch Chantal (Marketing) blockiert den Zugang und hält einen Monolog über ihre neue 'Low-Carb-High-Sadness'-Diät. Im Hintergrund lauern schon hungrige Kollegen.",
+        title: "The Cake War",
+        text: "An unknown hero has donated birthday cake. Mighty chocolate cream cake! But Chantal (Marketing) is blocking access, delivering a monologue about her new 'low-carb-high-sadness' diet. Hungry colleagues lurk in the background.",
         opts: [
             { 
-                t: "Ninja-Move: Kuchen schnappen & flüchten", 
+                t: "Ninja Move: Grab cake & flee", 
                 next: "path_cake_sugar", 
                 rep: { "Chantal": -5 },
                 m: 5, f: 5, a: -5, c: 0, 
-                r: "Zack! Während Chantal Luft holt, greifst du dir ein riesiges Stück mit der bloßen Hand und verschwindest im Serverraum. Die Sahne klebt überall, aber der Zucker-Rush setzt sofort ein." 
+                r: "Wham! While Chantal takes a breath, you snatch a huge piece with your bare hand and vanish into the server room. The cream is everywhere, but the sugar rush kicks in immediately." 
             },
             { 
-                t: "Höflich warten & zuhören", 
+                t: "Politely wait & listen", 
                 next: "path_cake_crumb", 
                 rep: { "Chantal": 5 },
                 m: 30, f: -5, a: 20, c: 0, 
-                r: "Schwerer Fehler. Während Chantal über Kalorien referiert, fällt der Vertrieb wie ein Heuschreckenschwarm über das Blech her. Als sie fertig ist, ist das Blech blankgeputzt. Du stehst vor dem Nichts." 
+                r: "Grave error. While Chantal lectures on calories, sales descends on the tray like a swarm of locusts. By the time she's finished, the tray is licked clean. You stand before nothing." 
             },
             { 
-                t: "Dominanz: Das letzte Stück vor dem Chef essen", 
+                t: "Dominance: Eat the last piece before the boss", 
                 next: "path_cake_boss", 
                 rep: { "Dr. Wichtig": -10 },
                 m: 5, f: 10, a: 5, c: 25, 
-                r: "Du schiebst dir das letzte Stück genüsslich in den Mund, genau als der Chef danach greift. Er greift ins Leere. Er starrt auf deine schokolierten Lippen, sein Gesicht läuft dunkelrot an. Er flüstert: 'Das war meins...'" 
+                r: "You leisurely pop the last piece into your mouth, just as the boss reaches for it. He grabs air. He stares at your chocolate-smeared lips, his face turning crimson. He whispers: 'That was mine...'" 
             }
         ]
     },
     {
         id: "sq_cake_2a",
         kind: "text",
-        title: "Der Zucker-Trip",
+        title: "The Sugar Trip",
         reqStory: "path_cake_sugar",
-        text: "Du sitzt am Platz. Das war zu viel Zucker auf leeren Magen. Deine Pupillen vibrieren. Du siehst plötzlich den Matrix-Code auf deinem Bildschirm. Die Excel-Tabelle spricht zu dir: 'Füttere mich mit Daten!'",
+        text: "You're at your desk. That was too much sugar on an empty stomach. Your pupils are vibrating. You suddenly see the Matrix code on your screen. The Excel sheet speaks to you: 'Feed me data!'",
         opts: [
             { 
-                t: "Die Welle reiten (Arbeiten)", 
+                t: "Ride the wave (Work)", 
                 m: 60, f: -30, a: -10, c: 0, 
-                r: "Du tippst mit Lichtgeschwindigkeit. Deine Hände sind nur noch Schemen. Du hast Arbeit für drei Wochen in einer Stunde erledigt. Leider ist alles in Wingdings-Schriftart. Egal, es fühlte sich gut an." 
+                r: "You type at light speed. Your hands are a blur. You've done three weeks' worth of work in an hour. Unfortunately, it's all in Wingdings font. Doesn't matter, it felt good." 
             },
             { 
-                t: "Unter den Tisch legen (Crash)", 
+                t: "Crawl under the desk (Crash)", 
                 m: 30, f: 20, a: 10, c: 10, 
-                r: "Der Absturz kommt hart. Du rollst dich unter dem Schreibtisch zusammen und wimmerst leise. Kevin findet dich und denkt, du bist tot. Er stiehlt deinen Bürostuhl." 
+                r: "The crash comes hard. You curl up under your desk, whimpering softly. Kevin finds you and thinks you're dead. He steals your office chair." 
             }
         ]
     },
     {
         id: "sq_cake_2b",
         kind: "text",
-        title: "Das Krümel-Monster",
+        title: "The Crumb Monster",
         reqStory: "path_cake_crumb",
-        text: "Der Hunger treibt dich in den Wahnsinn. Du bist allein in der Küche. Auf dem leeren Kuchenblech kleben noch Reste von Sahne und Schokostreuseln. Niemand ist zu sehen...",
+        text: "Hunger is driving you mad. You're alone in the kitchen. The empty cake tray still has remnants of cream and chocolate sprinkles. No one is around...",
         opts: [
             { 
-                t: "Das Blech ablecken (Würdeverlust)", 
+                t: "Lick the tray clean (Loss of dignity)", 
 				 rep: { "Dr. Wichtig": -2 },	
                 m: 5, f: 5, a: -10, c: 10, 
-                r: "Du leckst gierig über das Metall. Plötzlich geht das Licht an. Der Großkunde aus Japan steht mit dem Chef in der Tür. Sie starren dich an. Du hast Sahne an der Nase. Der Chef sagt leise: 'Wir finden allein raus.'" 
+                r: "You greedily lick the metal. Suddenly, the light turns on. The major client from Japan stands in the doorway with the boss. They stare at you. You have cream on your nose. The boss quietly says: 'We'll find our own way out.'" 
             },
             { 
-                t: "Einen alten Keks aus der Ritze essen", 
+                t: "Eat an old cookie from the crack", 
                 m: 2, f: 0, a: 5, c: 0, 
-                r: "Du findest einen 'Prinzenrolle'-Keks hinter der Mikrowelle. Er ist weich. Er schmeckt nach Staub und Zwiebeln. Du würgst ihn runter. Der Tiefpunkt ist erreicht." 
+                r: "You find a 'Prinzenrolle' cookie behind the microwave. It's soft. It tastes like dust and onions. You choke it down. Rock bottom has been reached." 
             }
         ]
     },
@@ -137,48 +137,48 @@ export const sidequests = [
         id: "sq_cake_2c",
 		char: "Dr. Wichtig",
         kind: "text",
-        title: "Das Back-Mandat",
+        title: "The Baking Mandate",
         reqStory: "path_cake_boss",
-        text: "Der Chef zitiert dich ins Büro. Er wirkt ruhig, zu ruhig. 'Müller. Sie haben mir eine strategische Ressource (Kuchen) entzogen. Ich fordere Restitution. Sie werden morgen für das Board-Meeting backen. Und wehe, es ist Fertigmischung!'",
+        text: "The boss summons you to his office. He seems calm, too calm. 'Müller. You deprived me of a strategic resource (cake). I demand restitution. You will bake for tomorrow's board meeting. And woe betide you if it's a pre-made mix!'",
         opts: [
             { 
-                t: "Trotz: 'Ich kann nur Rührei.'", 
+                t: "Defiance: 'I can only make scrambled eggs.'", 
 				rep: { "Dr. Wichtig": 2 },
                 m: 5, f: 0, a: 10, c: 10, 
-                r: "Der Chef grinst böse. 'Dann lernen Sie es. Youtube existiert. Wenn dieser Kuchen nicht schmeckt, streiche ich Ihren Urlaub.' Der Druck ist unmenschlich." 
+                r: "The boss grins wickedly. 'Then you'll learn. YouTube exists. If this cake isn't delicious, I'm canceling your vacation.' The pressure is inhumane." 
             },
             { 
-                t: "Lügen: 'Ich bin Hobby-Konditor!'", 
+                t: "Lie: 'I'm a hobby pastry chef!'", 
 				rep: { "Dr. Wichtig": 5 },
                 m: 10, f: 5, a: -5, c: 0, 
-                r: "Du kaufst beim Bäcker eine Torte, nimmst sie aus der Schachtel und streust Mehl drauf, damit es 'selbstgemacht' aussieht. Der Chef liebt es. 'Müller, Sie haben Talente!' (Kosten: 30€, aber Job gerettet)." 
+                r: "You buy a cake from the bakery, take it out of the box, and sprinkle flour on it to make it look 'homemade'. The boss loves it. 'Müller, you have talents!' (Cost: 30€, but job saved)." 
             }
         ]
     },
     {
         id: "sq_fire_1",
         kind: "text",
-        title: "Alarmstufe Popcorn",
-        text: "WUUUP! WUUUP! Die Sirene brüllt. Es riecht nicht nach Inferno, sondern eindeutig nach verbranntem 'Salty Caramel'-Popcorn aus der Teeküche. Die Kollegen rennen panisch zum Sammelplatz.",
+        title: "Alarm Level Popcorn",
+        text: "WOOP! WOOP! The siren blares. It doesn't smell like an inferno, but distinctly of burnt 'Salty Caramel' popcorn from the kitchenette. Colleagues are running in a panic to the assembly point.",
         opts: [
             { 
-                t: "HELDENTAT: Küche stürmen!", 
+                t: "HEROIC DEED: Storm the kitchen!", 
                 req: "fire_ext", 
                 next: "path_fire_hero", 
                 m: 5, f: -20, a: -20, c: -10, 
-                r: "Du trittst die Küchentür ein, entsicherst den Löscher und brüllst: 'FIRE IN THE HOLE!' Eine gewaltige weiße Wolke hüllt die qualmende Mikrowelle (und das halbe Stockwerk) ein." 
+                r: "You kick in the kitchen door, unpin the extinguisher, and yell: 'FIRE IN THE HOLE!' A massive white cloud envelops the smoking microwave (and half the floor)." 
             },
             { 
-                t: "Die Gunst der Stunde nutzen: Plündern", 
+                t: "Seize the moment: Loot", 
                 next: "path_fire_loot", 
                 m: 10, f: 15, a: -10, c: 5, 
-                r: "Während alle zu den Notausgängen stürmen, schleichst du in den verlassenen Konferenzraum. Du klaust die 'Guten Kekse' (die mit Schokolade) und verschwindest ungesehen. Chaos ist eine Leiter." 
+                r: "While everyone rushes to the emergency exits, you sneak into the abandoned conference room. You steal the 'Good Cookies' (the chocolate ones) and disappear unseen. Chaos is a ladder." 
             },
             { 
-                t: "Pflichtbewusst evakuieren", 
+                t: "Dutifully evacuate", 
                 next: "path_fire_rain", 
                 m: 45, f: -10, a: 10, c: -5, 
-                r: "Du folgst den grünen Schildern. Draußen regnet es quer. Du stehst 45 Minuten frierend auf dem Parkplatz, während die Feuerwehr feststellt, dass es nur Popcorn war." 
+                r: "You follow the green signs. Outside, it's raining sideways. You stand shivering in the parking lot for 45 minutes while the fire department determines it was just popcorn." 
             }
         ]
     },
@@ -186,41 +186,41 @@ export const sidequests = [
         id: "sq_fire_2a",
 		char: "Egon",
         kind: "text",
-        title: "Schneegestöber",
+        title: "Snowstorm",
         reqStory: "path_fire_hero",
-        text: "Der Rauch ist weg. Dafür ist die Küche jetzt komplett weiß gepudert. Hausmeister Egon steht in der Tür und wischt mit dem Finger über den staubigen Tisch. Er sieht dich vernichtend an.",
+        text: "The smoke is gone. But the kitchen is now completely powdered white. Janitor Egon stands in the doorway, wiping his finger across the dusty table. He gives you a withering look.",
         opts: [
             { 
-                t: "Stolz: 'Gefahr neutralisiert!'", 
+                t: "Proudly: 'Danger neutralized!'", 
                 rep: { "Egon": -5 },
                 m: 5, f: 0, a: -5, c: 5, 
-                r: "'Das war eine Tüte Popcorn, Rambo!' Egon drückt dir einen Besen in die Hand. 'Du gehst hier nicht weg, bis das sauber ist.' Dein Heldenstatus bröckelt beim Fegen." 
+                r: "'That was a bag of popcorn, Rambo!' Egon shoves a broom into your hand. 'You're not leaving until this is clean.' Your hero status crumbles as you sweep." 
             },
             { 
-                t: "Flüchten: 'Hust, der Rauch...'",
+                t: "Flee: 'Cough, the smoke...'",
                 rep: { "Egon": -10 }, 
                 m: 2, f: 5, a: 0, c: 0, 
-                r: "Du täuschst eine Rauchvergiftung vor und wankst davon. Egon flucht hinter dir her. Er wird sich rächen (wahrscheinlich klemmt morgen dein Bürostuhl)." 
+                r: "You feign smoke inhalation and stagger away. Egon curses after you. He will have his revenge (your office chair will probably be jammed tomorrow)." 
             }
         ]
     },
     {
         id: "sq_fire_2b",
         kind: "text",
-        title: "Süße Beute",
+        title: "Sweet Loot",
         reqStory: "path_fire_loot",
-        text: "Der Alarm ist vorbei. Du sitzt am Platz und mampfst die gestohlenen Kekse. Plötzlich kommt eine Rundmail vom Chefsekretariat: 'Wer hat während der Evakuierung das Catering für den Aufsichtsrat gestohlen?! Wir sichten die Kameras!'",
+        text: "The alarm is over. You're at your desk, munching on the stolen cookies. Suddenly, an email from the boss's secretary: 'Who stole the catering for the board of directors during the evacuation?! We're reviewing the cameras!'",
         opts: [
             { 
-                t: "Kekse schnell aufessen (Beweise vernichten)", 
+                t: "Quickly eat cookies (Destroy evidence)", 
                 m: 5, f: 5, a: 10, c: 0, 
-                r: "Du stopfst dir drei Kekse gleichzeitig in den Mund. Du verschluckst dich fast, aber die Beweise sind weg. Dein Magen rebelliert, dein Gewissen ist im Zuckerkoma." 
+                r: "You stuff three cookies into your mouth at once. You almost choke, but the evidence is gone. Your stomach rebels, your conscience is in a sugar coma." 
             },
             { 
-                t: "Packung bei Kevin unterschieben",
+                t: "Plant the package on Kevin",
                 rep: { "Kevin": -10 },
                 m: 5, f: 0, a: -5, c: 5, 
-                r: "Du legst die leere Packung auf Kevins Tisch. Kurz darauf hörst du Schreie aus seinem Büro. Das war böse. Sehr böse. Aber effektiv." 
+                r: "You place the empty package on Kevin's desk. Shortly after, you hear screams from his office. That was evil. Very evil. But effective." 
             }
         ]
     },
@@ -228,68 +228,68 @@ export const sidequests = [
         id: "sq_fire_2c",
 		char: "Dr. Wichtig",
         kind: "text",
-        title: "Networking im Nieselregen",
+        title: "Networking in the Drizzle",
         reqStory: "path_fire_rain",
-        text: "Draußen auf dem Parkplatz stehst du direkt neben Dr. Wichtig. Er friert im Hemd und zittert. Er hat dich bemerkt. Es gibt kein Entkommen vor dem Smalltalk.",
+        text: "Outside in the parking lot, you're standing right next to Dr. Wichtig. He's freezing in his shirt and trembling. He's noticed you. There's no escaping small talk.",
         opts: [
             { 
-                t: "Jacke anbieten (Schleimen)", 
+                t: "Offer jacket (Suck up)", 
 				rep: { "Dr. Wichtig": 10 },
                 m: 10, f: -5, a: 15, c: -15, 
-                r: "Du gibst ihm deine Jacke. Er nimmt sie dankbar an. 'Guter Mann, Müller.' Du frierst dir den Hintern ab und bist morgen garantiert krank, aber du hast Bonuspunkte gesammelt." 
+                r: "You give him your jacket. He gratefully accepts it. 'Good man, Müller.' You're freezing your butt off and will definitely be sick tomorrow, but you've earned bonus points." 
             },
             { 
-                t: "Witz machen: 'Schönes Wetter heute!'", 
+                t: "Make a joke: 'Nice weather today!'", 
 				rep: { "Dr. Wichtig": -5 },
                 m: 5, f: 0, a: -5, c: 10, 
-                r: "Er starrt dich an, als wärst du irre. Wasser tropft von seiner Nase. 'Sehr witzig.' Er dreht sich weg. Das war unangenehm." 
+                r: "He stares at you as if you're insane. Water drips from his nose. 'Very funny.' He turns away. That was awkward." 
             }
         ]
     },
     {
         id: "sq_usb_1",
         kind: "text",
-        title: "Fundsache",
-        text: "Auf dem Flur liegt ein USB-Stick mit der Aufschrift 'GEHEIM' und einem Totenkopf-Sticker. Er liegt genau im toten Winkel der Überwachungskamera.",
+        title: "Found Item",
+        text: "A USB stick labeled 'SECRET' with a skull sticker lies in the hallway. It's precisely in the blind spot of the surveillance camera.",
         opts: [
             { 
-                t: "Sofort einstecken (Heimlich)", 
+                t: "Plug in immediately (Stealthy)", 
                 loot: "usb_stick", 
                 next: "path_usb_keep", 
                 m: 5, f: 0, a: 0, c: 0, 
-                r: "Mit einer fließenden Bewegung lässt du den Stick in deiner Tasche verschwinden. Niemand hat es gesehen. Er gehört jetzt dir. Aber was ist drauf? (Inventar +1)" 
+                r: "With a fluid motion, you make the stick disappear into your pocket. No one saw it. It's yours now. But what's on it? (Inventory +1)" 
             },
             { 
-                t: "Am Empfang abgeben (Pflicht)", 
+                t: "Hand in at reception (Duty)", 
                 next: "path_usb_gabi_fail", 
                 rep: { "Gabi": 5 },
                 m: 10, f: -5, a: 0, c: -5, 
-                r: "Du bringst ihn zu Gabi. 'Oh, danke! 'Geheim'? Spannend! Ich guck mal schnell rein, wem der gehört, bevor ich ihn ins Fundbüro lege...'" 
+                r: "You take it to Gabi. 'Oh, thanks! 'Secret'? Exciting! I'll just take a quick look to see whose it is before I put it in lost and found...'" 
             },
             { 
-                t: "In den Müll kicken", 
+                t: "Kick into the trash", 
                 m: 2, f: 0, a: 0, c: 0, 
-                r: "Ein gezielter Tritt befördert das Sicherheitsrisiko unter den Getränkeautomaten. Aus den Augen, aus dem Sinn." 
+                r: "A targeted kick sends the security risk under the vending machine. Out of sight, out of mind." 
             }
         ]
     },
     {
         id: "sq_usb_2a",
         kind: "text",
-        title: "Die Büchse der Pandora",
+        title: "Pandora's Box",
         reqStory: "path_usb_keep",
-        text: "Du sitzt an deinem Platz und drehst den Stick in den Fingern. Die Aufschrift 'GEHEIM' brennt förmlich. Ist es die Kündigungsliste? Bitcoins? Oder nur Müll?",
+        text: "You're at your desk, twirling the stick in your fingers. The label 'SECRET' practically burns. Is it the termination list? Bitcoins? Or just junk?",
         opts: [
             { 
-                t: "Anschließen & Risikieren", 
+                t: "Connect & Risk it", 
                 m: 15, f: 5, a: -5, c: 10, 
-                r: "Die Neugier siegt. Du öffnest den Ordner. Es sind... 500 Seiten Fan-Fiction über Vampire, geschrieben von Dr. Wichtig?! 'Der Graf biss in den Hals der Buchhalterin.' Du hast jetzt mächtiges Erpressungsmaterial." 
+                r: "Curiosity wins. You open the folder. It's... 500 pages of vampire fan fiction written by Dr. Wichtig?! 'The Count bit the accountant's neck.' You now have powerful blackmail material." 
             },
             { 
-                t: "Formatieren & Behalten", 
+                t: "Format & Keep", 
                 rem: "usb_stick", 
                 m: 5, f: 0, a: 0, c: 0, 
-                r: "Sicher ist sicher. Du löschst alles unwiederbringlich. Jetzt hast du einen leeren 64GB Stick für deine Urlaubsfotos. Langweilig, aber nützlich. (Item entfernt, Stick 'genutzt')" 
+                r: "Better safe than sorry. You irrevocably delete everything. Now you have an empty 64GB stick for your vacation photos. Boring, but useful. (Item removed, stick 'used')" 
             }
         ]
     },
@@ -297,21 +297,21 @@ export const sidequests = [
         id: "sq_usb_2b",
 		char: "Gabi",
         kind: "text",
-        title: "Gabis Fehler",
+        title: "Gabi's Mistake",
         reqStory: "path_usb_gabi_fail",
-        text: "Zehn Minuten später winkt dich Gabi hektisch zu sich. Sie ist kreidebleich. Aus ihren Lautsprechern dröhnt russische Techno-Musik. Auf dem Bildschirm tanzen halbnackte Skelette. 'Ich hab nur auf 'Rechnung.exe' geklickt! Mach das weg, bevor der Chef kommt!'",
+        text: "Ten minutes later, Gabi frantically waves you over. She's pale as a ghost. Russian techno music blares from her speakers. Half-naked skeletons dance on the screen. 'I just clicked on 'Invoice.exe'! Get rid of it before the boss comes!'",
         opts: [
             { 
-                t: "Helfen: Stecker ziehen", 
+                t: "Help: Pull the plug", 
                 rep: { "Gabi": 5 },
                 m: 5, f: -5, a: 10, c: 0, 
-                r: "Du kriechst unter den Tisch und reißt das Stromkabel raus. Die Musik stirbt. Gabi atmet schwer. 'Das bleibt unter uns, okay? Hier, nimm einen Keks.'" 
+                r: "You crawl under the desk and yank out the power cable. The music dies. Gabi breathes heavily. 'This stays between us, okay? Here, have a cookie.'" 
             },
             { 
-                t: "Lachen & Weggehen", 
+                t: "Laugh & Walk away", 
                 rep: { "Gabi": -10 },
                 m: 2, f: 5, a: -5, c: 0, 
-                r: "'Tja, IT-Sicherheitsschulung geschwänzt, Gabi?' Du lässt sie mit dem Techno-Problem allein. Sie wird dich dafür hassen, aber es sieht extrem lustig aus." 
+                r: "'Well, skipped IT security training, Gabi?' You leave her alone with the techno problem. She'll hate you for it, but it looks extremely funny." 
             }
         ]
     },
@@ -319,330 +319,330 @@ export const sidequests = [
         id: "sq_printer_1",
         kind: "text",
         title: "PC LOAD LETTER",
-        text: "Der Abteilungsdrucker blinkt panisch rot. Das Display meldet: 'SCHWERER PAPIERSTAU IN FACH 2'. Du öffnest Fach 2 – es ist leer. Gleichzeitig klingelt das Fax-Modul schrill wie ein altes Telefon, und aus dem Lautsprecher plärrt eine verzerrte Stimme: 'HALLO?! HÖREN SIE MICH?! ICH WILL MEINE ERBSEN!'",
+        text: "The department printer is blinking panic-red. The display reports: 'SEVERE PAPER JAM IN TRAY 2'. You open Tray 2 – it's empty. At the same time, the fax module rings shrilly like an old telephone, and a distorted voice blares from the speaker: 'HELLO?! CAN YOU HEAR ME?! I WANT MY PEAS!'",
         opts: [
             { 
-                t: "Logik: Cyan nachfüllen (gegen Papierstau)", 
+                t: "Logic: Refill Cyan (against paper jam)", 
                 next: "path_printer_leasing", 
                 m: 10, f: -5, a: 5, c: 0, 
-                r: "Du folgst der Drucker-Logik: Wenn er 'Papier' sagt, meint er 'Cyan'. Du fummelst eine Kartusche rein, die du im Schrank gefunden hast. Das Blinken hört auf. Vorerst." 
+                r: "You follow printer logic: if it says 'paper', it means 'cyan'. You fiddle in a cartridge you found in the cabinet. The blinking stops. For now." 
             },
             { 
-                t: "Hörer abnehmen (Fax antworten)", 
+                t: "Pick up receiver (Answer fax)", 
                 next: "path_printer_call", 
                 m: 5, f: 5, a: 0, c: 0, 
-                r: "Du drückst die grüne Taste. 'Hier ist Müller?' - 'WER? ICH WILL DEN BOFROST-MANN!' Der Drucker fängt plötzlich an, ratternde Geräusche zu machen, als würde er das Gespräch verdauen." 
+                r: "You press the green button. 'Müller here?' - 'WHO? I WANT THE BOFROST MAN!' The printer suddenly starts making rattling noises, as if digesting the conversation." 
             },
             { 
-                t: "Percussive Maintenance (Draufhauen)", 
+                t: "Percussive Maintenance (Hit it)", 
                 req: "hammer", 
                 next: "path_printer_smash", 
                 m: 2, f: 0, a: -20, c: 10, 
-                r: "BÄM! Du gibst dem Leasing-Gerät einen massiven Kinnhaken mit dem Hammer. Das Klingeln hört auf. Plastik splittert. Das Display wird schwarz. Endlich Ruhe." 
+                r: "BAM! You deliver a massive uppercut to the leased device with the hammer. The ringing stops. Plastic shatters. The display goes black. Finally, peace." 
             }
         ]
     },
     {
         id: "sq_printer_2a",
         kind: "text",
-        title: "Die Leasing-Inquisition",
+        title: "The Leasing Inquisition",
         reqStory: "path_printer_leasing",
-        text: "Ein Mann in grauem Kittel steht vor dem Drucker. Auf seinem Rücken steht 'Print & Pray Solutions'. Er hält die Cyan-Kartusche hoch wie ein Beweisstück in einem Mordprozess. 'Wer hat diese nicht-zertifizierte Fremdtinte installiert? Das ist ein Verstoß gegen Paragraf 128 des Leasingvertrags. Ich muss das Gerät stilllegen.'",
+        text: "A man in a gray lab coat stands in front of the printer. 'Print & Pray Solutions' is written on his back. He holds up the cyan cartridge like evidence in a murder trial. 'Who installed this non-certified third-party ink? That's a violation of Paragraph 128 of the leasing agreement. I have to decommission the device.'",
         opts: [
             { 
-                t: "Bestechen: 'Nehmen Sie den alten Toner?'", 
+                t: "Bribe: 'Want the old toner?'", 
                 m: 5, f: 0, a: 5, c: -5, 
-                r: "Er schnüffelt an der alten Kartusche. 'Ist das Original HP High-Yield? ... Na gut. Ich drücke ein Auge zu. Aber drucken Sie nie wieder PDFs, das mag er nicht.'" 
+                r: "He sniffs the old cartridge. 'Is this original HP High-Yield? ...Alright. I'll turn a blind eye. But never print PDFs again, it doesn't like them.'" 
             },
             { 
-                t: "Ihn machen lassen (Stilllegung)", 
+                t: "Let him do it (Decommissioning)", 
                 m: 20, f: 10, a: -5, c: 10, 
-                r: "Er rollt den Drucker auf einer Sackkarre weg. 'Ersatz kommt in 6-8 Wochen aus Übersee.' Die Kollegen starren dich an. Du hast das Drucken abgeschafft. Eigentlich ein Sieg für die Umwelt." 
+                r: "He rolls the printer away on a hand truck. 'Replacement coming in 6-8 weeks from overseas.' Colleagues stare at you. You've abolished printing. Actually a victory for the environment." 
             }
         ]
     },
     {
         id: "sq_printer_2b",
         kind: "text",
-        title: "Der Papier-Tsunami",
+        title: "The Paper Tsunami",
         reqStory: "path_printer_call",
-        text: "Du kommst zurück in den Flur. Der Boden ist bedeckt mit Papier. Der Drucker läuft auf Hochtouren und druckt unaufhörlich schwarze Seiten voller Nullen und Einsen. Er versucht offenbar, das Telefonat von vorhin zu transkribieren. Der Papierstapel erreicht bald die Decke.",
+        text: "You return to the hallway. The floor is covered in paper. The printer is running at full speed, endlessly printing black pages full of zeros and ones. It's apparently trying to transcribe the phone call from earlier. The stack of paper is almost reaching the ceiling.",
         opts: [
             { 
-                t: "Stecker ziehen", 
+                t: "Pull the plug", 
                 m: 5, f: 0, a: 5, c: 0, 
-                r: "Du killst den Strom. Der Drucker gibt ein letztes, trauriges Piepen von sich. Du stehst knöcheltief im Müll. Es ist vorbei." 
+                r: "You kill the power. The printer gives one last, sad beep. You're ankle-deep in trash. It's over." 
             },
             { 
-                t: "Papier als Notizblöcke verteilen", 
+                t: "Distribute paper as notepads", 
                 m: 15, f: -5, a: -5, c: 0, 
-                r: "Recycling! Du bindest die Fehlprints zu Blöcken ('Matrix-Edition') und verteilst sie im Büro. Die Kollegen freuen sich über Gratis-Material. Kreative Problemlösung." 
+                r: "Recycling! You bind the misprints into pads ('Matrix Edition') and distribute them in the office. Colleagues are happy about free material. Creative problem-solving." 
             }
         ]
     },
     {
         id: "sq_printer_2c",
         kind: "text",
-        title: "Das Smart-Upgrade",
+        title: "The Smart Upgrade",
         reqStory: "path_printer_smash",
-        text: "An der Stelle des alten Druckers steht nun ein glänzendes, futuristisches Gerät: Der 'PrintHub 360 AI'. Er hat keine Knöpfe, nur einen riesigen Touchscreen. Darauf steht: 'Um zu drucken, schließen Sie bitte ein Abo ab. 19,99€ pro Seite (Schwarzweiß).'",
+        text: "In place of the old printer now stands a shiny, futuristic device: The 'PrintHub 360 AI'. It has no buttons, just a giant touchscreen. It says: 'To print, please subscribe. 19.99€ per page (black and white).'",
         opts: [
             { 
-                t: "Abo abschließen (Firmenkarte)", 
+                t: "Subscribe (Company card)", 
 				rep: { "Dr. Wichtig": -5 },
                 m: 10, f: 0, a: 10, c: 20, 
-                r: "Du buchst das 'Platinum-Enterprise-Paket'. Der Chef sieht die Abbuchung auf seinem Handy und bekommt Schnappatmung. Aber hey, er druckt jetzt (manchmal)!" 
+                r: "You book the 'Platinum Enterprise Package'. The boss sees the debit on his phone and gasps. But hey, it prints now (sometimes)!" 
             },
             { 
-                t: "Schild 'DEFEKT' drankleben", 
+                t: "Stick 'DEFECTIVE' sign on it", 
                 m: 2, f: 5, a: -5, c: 5, 
-                r: "Du gibst auf. Die Zukunft ist zu dumm. Du empfiehlst den Kollegen 'Stift und Papier' und gehst Mittagessen." 
+                r: "You give up. The future is too stupid. You recommend 'pen and paper' to your colleagues and go to lunch." 
             }
         ]
     },
     {
         id: "sq_investigation",
         kind: "text",
-        title: "Die verschwundene Maus",
-        text: "Frau Erna vom Empfang ist aufgelöst. Ihre geliebte 'Glücksmaus' (ein graues Stofftier) ist weg. Der Hauptverdächtige ist Bello, der Büro-Hund, der unschuldig unter dem Schreibtisch hechelt und so tut, als könne er kein Deutsch.",
+        title: "The Missing Mouse",
+        text: "Ms. Erna from reception is distraught. Her beloved 'Lucky Mouse' (a gray stuffed animal) is gone. The main suspect is Bello, the office dog, who is innocently panting under the desk, pretending not to understand German.",
         opts: [
             { 
-                t: "Detektiv spielen & Körbchen durchsuchen", 
+                t: "Play detective & search his basket", 
                 next: "path_investigation_thief", 
                 m: 30, f: -10, a: 10, c: -10, 
-                r: "Du wühlst dich durch sein Sabber-Nest. Aha! Zwischen einem Knochen und einem alten Socken findest du die Maus. Sie ist nass und eklig. Erna ist überglücklich, Bello knurrt dich leise an. Du hast ihm sein Spielzeug geklaut." 
+                r: "You rummage through his drool-nest. Aha! Between a bone and an old sock, you find the mouse. It's wet and disgusting. Erna is overjoyed, Bello growls softly at you. You stole his toy." 
             },
             { 
-                t: "Bello verhören (Anbellen)", 
+                t: "Interrogate Bello (Bark at him)", 
                 next: "path_investigation_leader", 
                 m: 5, f: 10, a: -10, c: 10, 
-                r: "Du gehst auf alle Viere und bellst ihn laut an: 'WAU! WO IST SIE?!'. Bello ist erst verwirrt, wedelt dann aber begeistert. Der Chef kommt vorbei: 'Müller... alles okay?'. Egal, du hast jetzt den Respekt des Hundes." 
+                r: "You get on all fours and bark loudly at him: 'WOOF! WHERE IS IT?!'. Bello is initially confused, then wags his tail enthusiastically. The boss walks by: 'Müller... everything okay?'. Doesn't matter, you now have the dog's respect." 
             },
             { 
-                t: "Neue Maus aus dem Lager holen", 
+                t: "Get a new mouse from storage", 
                 next: "path_investigation_bored", 
                 m: 5, f: -5, a: 0, c: 0, 
-                r: "Du holst einfach eine neue Werbe-Maus aus dem Schrank. Erna nimmt sie zögernd. 'Es ist nicht dasselbe... aber danke.' Bello gähnt. Ihm ist langweilig." 
+                r: "You simply get a new promotional mouse from the cabinet. Erna takes it hesitantly. 'It's not the same... but thanks.' Bello yawns. He's bored." 
             }
         ]
     },
     {
         id: "sq_investigation_2a",
         kind: "text",
-        title: "Die Geiselnahme",
+        title: "The Hostage Situation",
         reqStory: "path_investigation_thief",
-        text: "Du willst drucken, aber Bello liegt *auf* dem Drucker. Er knurrt, wenn du dich näherst. Er fordert offensichtlich Ersatz für die konfiszierte Glücksmaus. Das Papierfach ist seine Geisel.",
+        text: "You want to print, but Bello is lying *on* the printer. He growls when you approach. He's clearly demanding a replacement for the confiscated Lucky Mouse. The paper tray is his hostage.",
         opts: [
             { 
-                t: "Ihm einen Donut opfern", 
+                t: "Sacrifice a donut to him", 
                 rem: "donut", 
                 m: 5, f: 0, a: -5, c: 0, 
-                r: "Du legst den Donut auf den Boden. Bello springt runter und inhaliert das Gebäck. Der Weg zum Drucker ist frei. Bestechung funktioniert auch bei Tieren. (Item entfernt)" 
+                r: "You place the donut on the floor. Bello jumps down and inhales the pastry. The path to the printer is clear. Bribery works even with animals. (Item removed)" 
             },
             { 
-                t: "Ihn mit dem Laserpointer weglocken", 
+                t: "Lure him away with the laser pointer", 
                 m: 10, f: 5, a: 0, c: 0, 
-                r: "Du lässt den roten Punkt durch den Flur tanzen. Bello dreht durch, rutscht auf dem Parkett aus und jagt den Punkt bis ins Marketing. Der Drucker gehört wieder dir." 
+                r: "You make the red dot dance through the hallway. Bello goes crazy, slips on the parquet, and chases the dot all the way to Marketing. The printer is yours again." 
             },
             { 
-                t: "Chef rufen: 'Der Hund sabotiert die Arbeit!'", 
+                t: "Call the boss: 'The dog is sabotaging work!'", 
 			    rep: { "Dr. Wichtig": 2 },	
                 m: 15, f: 0, a: 20, c: 5, 
-                r: "Der Chef kommt, sieht den Hund und sagt mit Babystimme: 'Na wer ist denn da ein feiner Drucker-Wächter? Ja wer denn?' Er krault Bello 10 Minuten lang. Du kriegst deinen Ausdruck nicht." 
+                r: "The boss comes, sees the dog, and says in a baby voice: 'Well, who's a good printer-guard? Yes, who is it?' He scratches Bello for 10 minutes. You don't get your printout." 
             }
         ]
     },
     {
         id: "sq_investigation_2b",
         kind: "text",
-        title: "Beute für das Alpha-Tier",
+        title: "Prey for the Alpha Animal",
         reqStory: "path_investigation_leader",
-        text: "Bello kommt schwanzwedelnd in dein Büro. Er sieht dich als Rudelführer. Er legt dir stolz seine neueste 'Beute' auf die Füße: Einen teuren, italienischen Herrenschuh. Er ist vollgesabbert und leicht angekaut. Er gehört definitiv dem Chef.",
+        text: "Bello comes wagging his tail into your office. He sees you as the pack leader. He proudly places his latest 'prey' at your feet: an expensive, Italian men's shoe. It's slobbered on and slightly chewed. It definitely belongs to the boss.",
         opts: [
             { 
-                t: "Schuh heimlich unter das Sofa kicken", 
+                t: "Secretly kick the shoe under the sofa", 
                 m: 5, f: 0, a: 10, c: 0, 
-                r: "Du lässt das Beweisstück verschwinden. Bello guckt enttäuscht, holt den Schuh aber sofort wieder hervor. Er will 'Hol Stöckchen' spielen. Mit einem 500€-Schuh." 
+                r: "You make the evidence disappear. Bello looks disappointed, but immediately retrieves the shoe. He wants to play 'fetch the stick'. With a 500€ shoe." 
             },
             { 
-                t: "Bello loben: 'Feiner Junge!'", 
+                t: "Praise Bello: 'Good boy!'", 
                 m: 10, f: 10, a: -20, c: 20, 
-                r: "Du kraulst ihn. Bello ist so glücklich, dass er losrennt und auch den *zweiten* Schuh holt. Jetzt hast du das Paar komplett. Wenn der Chef jetzt reinkommt, bist du tot." 
+                r: "You scratch him. Bello is so happy that he runs off and gets the *second* shoe too. Now you have the complete pair. If the boss walks in now, you're dead." 
             },
             { 
-                t: "Tatort reinigen (Schuh putzen)", 
+                t: "Clean the crime scene (Polish shoe)", 
                 m: 20, f: -10, a: 5, c: -5, 
-                r: "Du versuchst panisch, den Sabber mit Taschentüchern zu entfernen. Du stellst den Schuh nachts heimlich vor die Cheftür. Das war knapp." 
+                r: "You frantically try to remove the drool with tissues. You secretly place the shoe in front of the boss's door at night. That was a close call." 
             }
         ]
     },
     {
         id: "sq_investigation_2c",
         kind: "text",
-        title: "Markierarbeiten",
+        title: "Marking Territory",
         reqStory: "path_investigation_bored",
-        text: "Weil niemand mit ihm gespielt hat, hat Bello sich selbst beschäftigt. Er steht im Serverraum (Tür war offen) und hebt das Bein an Rack 3. Das ist der Haupt-Switch.",
+        text: "Because no one played with him, Bello entertained himself. He's in the server room (door was open) and lifting his leg at Rack 3. That's the main switch.",
         opts: [
             { 
-                t: "Hechtsprung, um den Strahl abzufangen", 
+                t: "Dive to intercept the stream", 
                 m: 5, f: -5, a: 10, c: -10, 
-                r: "Du wirfst dich dazwischen. Deine Hose ist nass (und warm), aber der 10.000€-Switch ist trocken. Du bist ein Held, aber du riechst streng." 
+                r: "You throw yourself in between. Your pants are wet (and warm), but the 10,000€ switch is dry. You're a hero, but you smell bad." 
             },
             { 
-                t: "Laut klatschen & 'PFUI!' schreien", 
+                t: "Clap loudly & yell 'BAD DOG!'", 
                 m: 2, f: 0, a: 10, c: -5, 
-                r: "Bello erschrickt, kneift den Schwanz ein und rennt weg. Ein paar Tropfen haben das Gehäuse getroffen, aber nichts Kritisches. Du musst wischen." 
+                r: "Bello gets scared, tucks his tail, and runs away. A few drops hit the casing, but nothing critical. You'll have to wipe it up." 
             },
             { 
-                t: "Filmen für YouTube", 
+                t: "Film for YouTube", 
                 m: 5, f: 10, a: -10, c: 50, 
-                r: "Du hältst drauf. *ZISCH-BRUTZEL*. Der Switch fällt aus. Das Video 'Dog vs Internet' geht viral. Du verlierst deinen Job, wirst aber Influencer." 
+                r: "You keep filming. *ZZZZT-CRACKLE*. The switch fails. The video 'Dog vs Internet' goes viral. You lose your job, but become an influencer." 
             }
         ]
     },
     {
         id: "sq_loose_cable",
         kind: "text",
-        title: "Die Stolperfalle",
-        text: "Im Flur liegt ein graues LAN-Kabel quer über dem Weg. Es sieht gefährlich aus. Dr. Wichtig kommt gleich hier lang und schaut auf sein Handy.",
+        title: "The Tripping Hazard",
+        text: "A gray LAN cable lies across the hallway. It looks dangerous. Dr. Wichtig is about to walk by, looking at his phone.",
         opts: [
             { 
-                t: "Sichern: Mit Tape festkleben", 
+                t: "Secure: Tape it down", 
                 req: "tape", 
                 next: "path_cable_stuck",
                 rep: { "Dr. Wichtig": 2 },					
                 m: 5, f: -5, a: 0, c: -5, 
-                r: "Du wickelst ordentlich Panzertape drüber. Das bewegt sich keinen Millimeter mehr. Unfallverhütungsvorschrift: Erfüllt. Du fühlst dich vorbildlich." 
+                r: "You wrap it securely with duct tape. It won't move an inch. Accident prevention regulations: Fulfilled. You feel exemplary." 
             },
             { 
-                t: "Mitnehmen (Fundsache)", 
+                t: "Take it (Found item)", 
                 loot: "cable", 
                 next: "path_cable_missing",			
                 m: 5, f: 5, a: 0, c: 10, 
-                r: "Zack, eingesteckt. 'Wer das hier liegen lässt, braucht es wohl nicht.' Du hast jetzt ein langes Kabel. Inventar +1." 
+                r: "Zap, plugged in. 'Whoever left this here probably doesn't need it.' You now have a long cable. Inventory +1." 
             },
             { 
-                t: "Liegen lassen & zusehen", 
+                t: "Leave it & watch", 
                 m: 2, f: 10, a: 5, c: -5, 
-                r: "Der Chef steigt elegant drüber, ohne aufzublicken. Du bist enttäuscht. Keine Action." 
+                r: "The boss elegantly steps over it without looking up. You're disappointed. No action." 
             }
         ]
     },
     {
         id: "sq_loose_cable_2a",
         kind: "text",
-        title: "Bombenfest",
+        title: "Rock Solid",
         reqStory: "path_cable_stuck",
-        text: "Ein externer Techniker steht kniend im Flur und flucht. 'Wer hat mein Mess-Kabel hier einbetoniert?! Das war nur temporär! Ich krieg das nicht ab, ohne den Teppich rauszureißen!' Er zerrt vergeblich am Panzertape.",
+        text: "An external technician kneels in the hallway, cursing. 'Who cemented my measuring cable here?! It was only temporary! I can't get it off without ripping up the carpet!' He tugs at the duct tape in vain.",
         opts: [
             { 
-                t: "Mit einem Teppichmesser helfen", 
+                t: "Help with a utility knife", 
                 m: 20, f: -10, a: 5, c: -5, 
-                r: "Ihr schneidet das Kabel gemeinsam aus dem Boden. Der Teppich hat jetzt einen hässlichen Riss. 'Sagen wir einfach, das war Verschleiß', meint der Techniker." 
+                r: "You cut the cable out of the floor together. The carpet now has an ugly tear. 'Let's just say it was wear and tear,' the technician says." 
             },
             { 
-                t: "Belehren: 'Safety First!'", 
+                t: "Lecture: 'Safety First!'", 
                 m: 5, f: 5, a: 10, c: 0, 
-                r: "'Stolperfallen sind verboten!' Der Techniker starrt dich hasserfüllt an. Er schneidet das Kabel einfach an beiden Enden ab und lässt den Rest kleben. Ein Denkmal für die Ewigkeit." 
+                r: "'Tripping hazards are forbidden!' The technician glares at you hatefully. He simply cuts the cable at both ends and leaves the rest stuck. A monument for eternity." 
             }
         ]
     },
     {
         id: "sq_loose_cable_2b",
         kind: "text",
-        title: "Blinder Fleck",
+        title: "Blind Spot",
         reqStory: "path_cable_missing",
-        text: "Ein Mann von 'Secure & Safe' läuft suchend umher. 'Verdammt! Wo ist das Patchkabel? Ich sollte hier die neue 4K-Überwachungskamera für den Chef installieren! Er will sehen, wer immer früher geht!' Ohne Kabel kein Bild.",
+        text: "A man from 'Secure & Safe' walks around searching. 'Damn it! Where's the patch cable? I was supposed to install the new 4K surveillance camera for the boss here! He wants to see who always leaves early!' No cable, no picture.",
         opts: [
             { 
-                t: "Zurückgeben: 'Habe ich gefunden'", 
+                t: "Return: 'I found it'", 
                 rem: "cable", 
 				rep: { "Dr. Wichtig": 2 },					
                 m: 5, f: -5, a: 10, c: -10, 
-                r: "Du gibst es ihm. Er montiert die Kamera. Sie zeigt jetzt direkt auf DEINE Bürotür. Der Chef sieht alles. Du hast dir selbst ins Knie geschossen. (Item entfernt)" 
+                r: "You give it to him. He mounts the camera. It now points directly at YOUR office door. The boss sees everything. You've shot yourself in the foot. (Item removed)" 
             },
             { 
-                t: "Lügen: 'Bestimmt die Putzkolonne'", 
+                t: "Lie: 'Must have been the cleaning crew'", 
                 m: 5, f: 5, a: -5, c: 0, 
-                r: "'Mist. Dann muss ich morgen wiederkommen.' Er packt die Kamera wieder ein. Du hast der Belegschaft (und dir) einen weiteren Tag Freiheit erkauft. Held!" 
+                r: "'Damn. Then I'll have to come back tomorrow.' He packs the camera away again. You've bought the staff (and yourself) another day of freedom. Hero!" 
             }
         ]
     },
     {
         id: "sq_package_open_1",
         kind: "text",
-        title: "Die Festung aus Pappe",
-        text: "Ein Paket für die IT liegt auf deinem Tisch. Der Absender war offensichtlich paranoid und hat eine komplette Rolle Panzertape verbraucht. Es gibt keine Lasche, keinen Anfang, nur glatte, braune Unendlichkeit.",
+        title: "The Cardboard Fortress",
+        text: "A package for IT sits on your desk. The sender was obviously paranoid and used an entire roll of duct tape. There's no tab, no beginning, just smooth, brown infinity.",
         opts: [
             { 
-                t: "Chirurgischer Eingriff (Schraubendreher)", 
+                t: "Surgical intervention (Screwdriver)", 
                 req: "screw", 
                 next: "path_package_stink", 
                 m: 5, f: -5, a: -5, c: 0, 
-                r: "Mit der Präzision eines Serienmörders stichst du durch die Schichten. Ratsch. Offen. Inhalt: 50 billige Werbe-Mauspads aus China, die stark nach einem Chemieunfall riechen." 
+                r: "With the precision of a serial killer, you stab through the layers. Rip. Open. Contents: 50 cheap promotional mousepads from China that smell strongly of a chemical spill." 
             },
             { 
-                t: "Brutale Gewalt mit dem Haustürschlüssel", 
+                t: "Brute force with house key", 
                 next: "path_package_toner", 
                 m: 10, f: -5, a: 10, c: 0, 
-                r: "Du säbelst wild am Klebeband herum, bis der Karton nachgibt. Dein Schlüssel ist jetzt um 45 Grad verbogen, aber das Paket ist offen. Drinnen: Eine XXL-Toner-Kartusche." 
+                r: "You wildly saw at the tape until the cardboard gives way. Your key is now bent 45 degrees, but the package is open. Inside: An XXL toner cartridge." 
             },
             { 
-                t: "Den Karton gegen die Wand pfeffern", 
+                t: "Slam the box against the wall", 
                 next: "path_package_glass", 
                 m: 5, f: 5, a: -20, c: 10, 
-                r: "KRACH! Das Paket platzt auf wie eine reife Melone. Leider war es die Lieferung der neuen 'Magic Glass Trackpads' für den Vorstand. Das Geräusch von splitterndem Glas ist irgendwie... befriedigend." 
+                r: "CRASH! The package bursts open like a ripe melon. Unfortunately, it was the delivery of the new 'Magic Glass Trackpads' for the board. The sound of shattering glass is somehow... satisfying." 
             }
         ]
     },
     {
         id: "sq_package_open_2a",
         kind: "text",
-        title: "Der Chemie-Unfall",
+        title: "The Chemical Spill",
         reqStory: "path_package_stink",
-        text: "Der Gestank der 50 Gummimappen breitet sich im Büro aus. Es riecht nach verbranntem Reifen und Kopfschmerzen. Kollegen fangen an zu husten. Chantal fragt, ob wir renovieren.",
+        text: "The stench of the 50 rubber mats spreads through the office. It smells of burnt tires and headaches. Colleagues start coughing. Chantal asks if we're renovating.",
         opts: [
             { 
-                t: "Als 'Aromatherapie' verteilen", 
+                t: "Distribute as 'aromatherapy'", 
 				rep: { "Dr. Wichtig": -2 },	
                 m: 15, f: -10, a: 5, c: 5, 
-                r: "Du läufst rum und legst jedem ein Pad hin. Arbeit ist Arbeit. Nach 10 Minuten sind alle high von den Dämpfen und kichern albern. Der Chef fragt, warum keiner arbeitet." 
+                r: "You walk around and place a pad at everyone's desk. Work is work. After 10 minutes, everyone is high from the fumes and giggling foolishly. The boss asks why no one is working." 
             },
             { 
-                t: "Eine Gummi-Burg bauen", 
+                t: "Build a rubber fort", 
                 m: 10, f: 10, a: -10, c: 10, 
-                r: "Du stapelst die Pads um deinen Monitor. Du sitzt jetzt in einem stinkenden Iglu. Niemand kommt dir mehr näher als 2 Meter. Herrliche Ruhe, aber du arbeitest nicht." 
+                r: "You stack the pads around your monitor. You're now sitting in a smelly igloo. No one comes within 2 meters of you anymore. Wonderful peace, but you're not working." 
             },
             { 
-                t: "Aus dem Fenster werfen", 
+                t: "Throw out the window", 
                 m: 5, f: 0, a: -5, c: 20, 
-                r: "Du frisbeest die Dinger einzeln aus dem 4. Stock. Unten beschwert sich der Sicherheitsdienst über 'giftigen Regen'. Aber die Luft ist rein." 
+                r: "You frisbee them individually from the 4th floor. Downstairs, security complains about 'toxic rain'. But the air is clear." 
             }
         ]
     },
     {
         id: "sq_package_open_2b",
         kind: "text",
-        title: "Schlüsselmoment",
+        title: "Key Moment",
         reqStory: "path_package_toner",
-        text: "Du willst den Toner ins Lager bringen, aber du hast ihn wohl mit dem Schlüssel angestochen. Eine feine Spur aus schwarzem Pulver rieselt hinter dir her. Und dein Haustürschlüssel sieht aus wie ein Korkenzieher.",
+        text: "You want to take the toner to storage, but you've probably punctured it with your key. A fine trail of black powder sprinkles behind you. And your house key looks like a corkscrew.",
         opts: [
             { 
-                t: "Loch mit Finger zuhalten", 
+                t: "Cover hole with finger", 
 				rep: { "Dr. Wichtig": 2 },	
                 m: 10, f: -5, a: 10, c: -10, 
-                r: "Du rennst zum Drucker. Dein Finger ist jetzt permanent schwarz. Du siehst aus, als hättest du nekrotisches Gewebe. Aber der Toner ist gerettet und der Chef muss keinen neuen kaufen." 
+                r: "You run to the printer. Your finger is now permanently black. You look like you have necrotic tissue. But the toner is saved and the boss doesn't have to buy a new one." 
             },
             { 
-                t: "Schlüssel im Schloss geradebiegen", 
+                t: "Straighten key in lock", 
                 m: 30, f: 10, a: 20, c: 0, 
-                r: "Du steckst den krummen Schlüssel in deine Bürotür und drückst. KNACK. Abgebrochen. Jetzt kommst du heute Abend nicht in deine Wohnung UND nicht aus dem Büro. Perfekt." 
+                r: "You stick the bent key into your office door and push. CRACK. Broken. Now you can't get into your apartment tonight AND you can't leave the office. Perfect." 
             },
             { 
-                t: "Toner schütteln (vielleicht hilft's?)", 
+                t: "Shake toner (maybe it helps?)", 
 				rep: { "Dr. Wichtig": -5 },	
                 m: 5, f: 0, a: 20, c: 20, 
-                r: "PUFF! Die Kartusche explodiert in einer schwarzen Wolke. Du siehst aus wie ein Schornsteinfeger aus dem 19. Jahrhundert. Der Chef fragt, ob das 'Blackfacing' ist. Abmahnungsgefahr." 
+                r: "POOF! The cartridge explodes in a black cloud. You look like a 19th-century chimney sweep. The boss asks if this is 'blackfacing'. Risk of warning." 
             }
         ]
     },
@@ -650,240 +650,240 @@ export const sidequests = [
         id: "sq_package_open_2c",
 		char: "Dr. Wichtig",
         kind: "text",
-        title: "Das Puzzle für Manager",
+        title: "The Manager's Puzzle",
         reqStory: "path_package_glass",
-        text: "Der Chef kommt freudig rein. 'Ist mein Magic Trackpad da? Das Paket lag doch bei Ihnen!' Du deutest auf den Haufen aus Glasstaub und Elektronikschrott in der Ecke.",
+        text: "The boss comes in cheerfully. 'Is my Magic Trackpad here? The package was with you!' You point to the pile of glass dust and electronic scrap in the corner.",
         opts: [
             { 
-                t: "Behaupten: 'Das ist ein Bausatz!'", 
+                t: "Claim: 'It's a kit!'", 
                 m: 10, f: 5, a: 0, c: -5, 
-                r: "'Das ist die IKEA-Edition, Chef. Fördert die Motorik.' Er guckt skeptisch, nimmt die Schachtel mit den Scherben aber mit. Er ist beschäftigt, also sinkt dein Radar." 
+                r: "'It's the IKEA edition, Boss. Promotes motor skills.' He looks skeptical, but takes the box of shards with him. He's busy, so your radar drops." 
             },
             { 
-                t: "Lügen: 'Das ist Liquid Glass Technologie'", 
+                t: "Lie: 'It's Liquid Glass Technology'", 
 				rep: { "Dr. Wichtig": 5 },	
                 m: 5, f: 10, a: -5, c: -15, 
-                r: "'Das muss so. Einfach auf den Tisch schütten und warten.' Der Chef nickt tief beeindruckt: 'Die Zukunft ist verrückt.' Er geht glücklich. Du bist ein Genie." 
+                r: "'It's supposed to be like this. Just pour it on the table and wait.' The boss nods deeply impressed: 'The future is crazy.' He leaves happily. You are a genius." 
             },
             { 
-                t: "Mit Panzertape kleben", 
+                t: "Tape it with duct tape", 
 				req: "tape", 
                 rep: { "Dr. Wichtig": -5 },	
 				m: 20, f: -10, a: 0, c: -20, 
-                r: "Du wickelst den Schrott in Tape ein. Es sieht aus wie eine Kartoffel. 'Hier, Chef. Ein Prototyp aus dem Silicon Valley.' Er drückt drauf rum. 'Ergonomisch!', sagt er begeistert. Voller Erfolg." 
+                r: "You wrap the junk in tape. It looks like a potato. 'Here, Boss. A prototype from Silicon Valley.' He presses on it. 'Ergonomic!', he says enthusiastically. Full success." 
             }
         ]
     },
     {
         id: "sq_shelf_1",
         kind: "text",
-        title: "Der schiefe Turm von Toner",
-        text: "Im Lager neigt sich das Schwerlastregal mit den teuren Lasertonern bedrohlich zur Seite. Ein falscher Windhauch, und es gibt eine 5.000-Euro-Explosion aus feinem, schwarzem Staub.",
+        title: "The Leaning Tower of Toner",
+        text: "In the storage room, the heavy-duty shelf with the expensive laser toners is leaning precariously. One wrong gust of wind, and there'll be a 5,000-euro explosion of fine, black dust.",
         opts: [
             { 
-                t: "Quick-Fix: Kabelbinder-Orgie", 
+                t: "Quick-Fix: Cable tie orgy", 
                 req: "zip_ties", 
                 next: "path_shelf_iso", 
                 m: 10, f: -5, a: 0, c: 0, 
-                r: "Du zurrst das Regal mit einem Dutzend Kabelbindern an ein Heizungsrohr. Es sieht aus wie Bondage für Möbel, aber es steht bombenfest. Nichts hält länger als ein Provisorium." 
+                r: "You strap the shelf to a heating pipe with a dozen cable ties. It looks like furniture bondage, but it's rock solid. Nothing lasts longer than a temporary solution." 
             },
             { 
-                t: "Handwerklich korrekt dübeln", 
+                t: "Properly drill and anchor", 
                 next: "path_shelf_bauamt", 
                 m: 60, f: -20, a: 15, c: -5, 
-                r: "Du holst die Schlagbohrmaschine. 60 Minuten Lärm, Staub und Schweiß. Das Regal steht jetzt perfekt im Lot. Keiner bemerkt es, keiner dankt es dir, aber du hast Rückenschmerzen." 
+                r: "You get the hammer drill. 60 minutes of noise, dust, and sweat. The shelf is now perfectly level. No one notices, no one thanks you, but your back aches." 
             },
             { 
-                t: "Haftungsausschluss: Warnzettel kleben", 
+                t: "Disclaimer: Stick warning note", 
                 next: "path_shelf_a38", 
                 m: 5, f: 5, a: 0, c: 0, 
-                r: "Du kritzelst 'VORSICHT! EINSTURZGEFAHR!' auf ein Post-It, pappst es an den Holm und gehst zufrieden Mittagessen. Juristisch bist du damit aus dem Schneider. Die Physik interessiert das aber nicht." 
+                r: "You scribble 'CAUTION! DANGER OF COLLAPSE!' on a Post-It, stick it to the upright, and go to lunch satisfied. Legally, you're off the hook. Physics, however, doesn't care." 
             }
         ]
     },
     {
         id: "sq_shelf_2a",
         kind: "text",
-        title: "ISO-Zertifizierung 9001",
+        title: "ISO Certification 9001",
         reqStory: "path_shelf_iso",
-        text: "Der Sicherheitsbeauftragte steht vor deiner Kabelbinder-Konstruktion. Er tippt auf sein Klemmbrett. 'Das ist eine *Nicht-permanente Lastensicherung an thermischen Leitern*. Dafür brauche ich das Formblatt Z-12 für polymere Verbindungen und den Nachweis der Hitzebeständigkeit nach DIN 4102.'",
+        text: "The safety officer stands in front of your cable tie construction. He taps his clipboard. 'This is a *non-permanent load securing on thermal conductors*. For this, I need form Z-12 for polymeric connections and proof of heat resistance according to DIN 4102.'",
         opts: [
             { 
-                t: "Behaupten: 'Das sind Luftfahrt-Binder'", 
+                t: "Claim: 'These are aerospace ties'", 
                 m: 5, f: 5, a: -5, c: 5, 
-                r: "'Spezialanfertigung der NASA, Herr Inspektor.' Er blinzelt. 'Ach so. Na dann... tragen Sie das bitte nachträglich in Anlage 4b ein.' Er macht einen Haken. Kompetenz durch Lügen." 
+                r: "'Special order from NASA, Inspector.' He blinks. 'Oh, I see. Well then... please add that to Annex 4b retrospectively.' He ticks a box. Competence through lies." 
             },
             { 
-                t: "Formular Z-12 suchen und ausfüllen", 
+                t: "Find and fill out form Z-12", 
                 m: 45, f: -10, a: 20, c: 0, 
-                r: "Du verbringst 45 Minuten damit, die Zugfestigkeit von Plastik zu googeln und ein sinnloses Formular auszufüllen. Der Inspektor locht es ab, ohne es zu lesen. 'Ordnung muss sein.'" 
+                r: "You spend 45 minutes googling the tensile strength of plastic and filling out a pointless form. The inspector punches it without reading. 'Order must be maintained.'" 
             }
         ]
     },
     {
         id: "sq_shelf_2b",
         kind: "text",
-        title: "Antrag auf bauliche Veränderung",
+        title: "Application for Structural Modification",
         reqStory: "path_shelf_bauamt",
-        text: "Facility Management hat das Bohrloch entdeckt. 'Haben Sie etwa in die *Brandschutzwand F90* gebohrt?! Ohne den 'Antrag auf Durchdringung von Feuerwiderstandsklassen' (dreifacher Durchschlag, rosa)?! Das muss sofort zurückgebaut und verputzt werden!'",
+        text: "Facility Management discovered the drill hole. 'Did you drill into the *F90 fire protection wall*?! Without the 'Application for Penetration of Fire Resistance Classes' (triple carbon copy, pink)?! That must be immediately dismantled and plastered over!'",
         opts: [
             { 
-                t: "Bürokratie-Konter: 'Das war Gefahr im Verzug!'", 
+                t: "Bureaucracy counter: 'That was imminent danger!'", 
                 m: 10, f: 0, a: 5, c: 0, 
-                r: "Du zitierst Arbeitsschutzgesetz §9. 'Ich habe Leben gerettet!' Der Facility-Typ wird unsicher. 'Na gut. Aber reichen Sie Formular 'Heldenmut im Amt' nach.' Puh." 
+                r: "You quote occupational safety law §9. 'I saved lives!' The Facility guy becomes unsure. 'Alright. But submit form 'Heroism in Office' afterwards.' Phew." 
             },
             { 
-                t: "Dübel rausziehen & Kaugummi rein", 
+                t: "Pull out dowel & put in chewing gum", 
                 m: 5, f: 5, a: -5, c: 0, 
-                r: "Du entfernst die Schraube. Das Regal wackelt wieder. Du stopfst Kaugummi ins Loch und malst mit Tipp-Ex drüber. 'Welches Loch? Ich sehe kein Loch.' Problem vertagt." 
+                r: "You remove the screw. The shelf wobbles again. You stuff chewing gum into the hole and paint over it with Tipp-Ex. 'What hole? I see no hole.' Problem postponed." 
             }
         ]
     },
     {
         id: "sq_shelf_2c",
         kind: "text",
-        title: "Das Haus, das Verrückte macht",
+        title: "The House That Drives You Mad",
         reqStory: "path_shelf_a38",
-        text: "Das Regal wurde vom TÜV gesperrt ('Rotes Band'). Um ein neues zu bestellen, brauchst du den **Passierschein A38**. Die Beschaffungsstelle sagt: 'A38 gibt es beim Facility Management.' Facility sagt: 'Nein, A38 macht die Buchhaltung.' Die Buchhaltung sagt: 'A38? Das wurde durch das blaue Formular B-65 ersetzt, aber das gibt es nur beim Pförtner.'",
+        text: "The shelf was blocked by TÜV ('Red Tape'). To order a new one, you need **Passierschein A38**. Procurement says: 'A38 is at Facility Management.' Facility says: 'No, A38 is done by Accounting.' Accounting says: 'A38? That was replaced by the blue form B-65, but that's only available at the gatekeeper.'",
         opts: [
             { 
-                t: "Zum Pförtner gehen (Die Quest annehmen)", 
+                t: "Go to the gatekeeper (Accept the quest)", 
                 m: 60, f: -20, a: 50, c: -10, 
-                r: "Du rennst 60 Minuten durchs Haus. Pförtner -> Poststelle -> Betriebsrat -> Kantine. Am Ende hast du Formular **A39** ('Antrag auf Erteilung eines Antrags'). Du brichst weinend zusammen. Das Regal bleibt kaputt." 
+                r: "You run through the building for 60 minutes. Gatekeeper -> Mailroom -> Works Council -> Canteen. In the end, you have form **A39** ('Application for an Application'). You collapse in tears. The shelf remains broken." 
             },
             { 
-                t: "Selbstjustiz: Regal bei IKEA kaufen & heimlich hinstellen", 
+                t: "Self-justice: Buy shelf at IKEA & secretly put it up", 
                 m: 30, f: -5, a: -10, c: 10, 
-                r: "Du umgehst die Bürokratie, kaufst ein Billy-Regal von deinem eigenen Geld und baust es nachts auf. Niemand stellt Fragen. Du hast das System besiegt, aber bist 30€ ärmer." 
+                r: "You bypass bureaucracy, buy a Billy shelf with your own money, and assemble it at night. No one asks questions. You've defeated the system, but you're 30€ poorer." 
             },
             { 
-                t: "Den Chef fragen: 'Haben Sie A38?'",
+                t: "Ask the boss: 'Do you have A38?'",
 				rep: { "Dr. Wichtig": -2 },	
                 m: 5, f: 0, a: 10, c: 20, 
-                r: "Der Chef starrt dich an. 'Müller, nehmen Sie keine Drogen während der Arbeitszeit.' Er reißt das Absperrband einfach ab. 'So. Problem gelöst.' Manchmal ist der Chef nützlich." 
+                r: "The boss stares at you. 'Müller, don't do drugs during working hours.' He simply rips off the barrier tape. 'There. Problem solved.' Sometimes the boss is useful." 
             }
         ]
     },
     {
         id: "sq_noise_1",
         kind: "text",
-        title: "Operation: Kieselstein",
-        text: "Draußen spielt sich eine Szene wie aus 'Transformers' ab. Ein Schwerlast-Konvoi hat einen Bagger in der Größe eines Einfamilienhauses abgeladen. Dazu drei Presslufthammer und ein Gerät, das aussieht wie ein Laser-Bohrer. Das Ziel dieser Armada: Ein 5cm kleines Schlagloch im Gehweg. Der Boden bebt.",
+        title: "Operation: Pebble",
+        text: "Outside, a scene like something out of 'Transformers' is unfolding. A heavy-duty convoy has unloaded an excavator the size of a detached house. Plus three jackhammers and a device that looks like a laser drill. The target of this armada: a 5cm small pothole in the sidewalk. The ground is shaking.",
         opts: [
             { 
-                t: "Technik-Lösung: Kopfhörer auf", 
+                t: "Tech Solution: Put on headphones", 
                 req: "headphones", 
                 next: "path_noise_zen", 
                 m: 2, f: 5, a: -20, c: 0, 
-                r: "Klick. Noise-Cancelling auf 'Maximum'. Der Weltuntergang draußen wird zu einem sanften Vibrieren in deinem Hintern. Du arbeitest im Auge des Sturms." 
+                r: "Click. Noise-canceling to 'Maximum'. The apocalypse outside becomes a gentle vibration in your backside. You work in the eye of the storm." 
             },
             { 
-                t: "Physik-Lösung: Fenster zu", 
+                t: "Physics Solution: Close window", 
                 next: "path_noise_sauna", 
                 m: 5, f: 0, a: 5, c: 0, 
-                r: "Du rammst das Fenster zu. Der Lärm wird dumpfer, aber die Vibrationen lassen deine Taffe auf dem Tisch wandern. Die Luft im Büro wird sofort stickig." 
+                r: "You slam the window shut. The noise becomes muffled, but the vibrations make your coffee cup wander on the table. The air in the office immediately becomes stuffy." 
             },
             { 
-                t: "Sozial-Lösung: Rausbrüllen", 
+                t: "Social Solution: Yell out", 
                 next: "path_noise_foreman", 
                 m: 5, f: 5, a: -5, c: 0, 
-                r: "Du öffnest das Fenster und schreist gegen den Lärm an: 'BRAUCHT IHR DAFÜR ECHT DEN TODESSTERN?! DAS IST EIN LOCH, KEIN KRATER!' Der Vorarbeiter schaut hoch." 
+                r: "You open the window and yell against the noise: 'DO YOU REALLY NEED THE DEATH STAR FOR THAT?! IT'S A HOLE, NOT A CRATER!' The foreman looks up." 
             }
         ]
     },
     {
         id: "sq_noise_2a",
         kind: "text",
-        title: "Das Erwachen",
+        title: "The Awakening",
         reqStory: "path_noise_zen",
-        text: "Du nimmst die Kopfhörer ab, weil dein Monitor wackelt. Draußen ist Stille. Du schaust raus. Das Schlagloch ist weg. Der Gehweg auch. Da ist jetzt einfach ein riesiger Krater, in dem der Bagger steckt. Ein Arbeiter kratzt sich am Kopf.",
+        text: "You take off your headphones because your monitor is shaking. Outside, there's silence. You look out. The pothole is gone. The sidewalk too. There's just a giant crater now, with the excavator stuck in it. A worker scratches his head.",
         opts: [
             { 
-                t: "Vorhang zu", 
+                t: "Close curtains", 
                 m: 2, f: 5, a: 0, c: 0, 
-                r: "Was man nicht sieht, ist nicht passiert. Du machst die Jalousie runter und arbeitest im Dunkeln weiter." 
+                r: "What you don't see didn't happen. You pull down the blinds and continue working in the dark." 
             },
             { 
-                t: "Foto machen", 
+                t: "Take a photo", 
 				rep: { "Dr. Wichtig": -2 },	
                 m: 5, f: 10, a: -5, c: 5, 
-                r: "Das glaubt dir keiner. '#GermanEngineering'. Der Chef sieht dich am Fenster: 'Müller, dokumentieren Sie den Baufortschritt oder arbeiten Sie?'" 
+                r: "No one will believe you. '#GermanEngineering'. The boss sees you at the window: 'Müller, are you documenting construction progress or working?'" 
             }
         ]
     },
     {
         id: "sq_noise_2b",
         kind: "text",
-        title: "Die Rüttelplatte",
+        title: "The Vibrating Plate",
         reqStory: "path_noise_sauna",
-        text: "Draußen haben sie jetzt die 'Mega-Rüttelplatte 3000' angeworfen. Dein ganzer Körper vibriert. Deine Zähne klappern. Auf dem Monitor verschwimmen die Excel-Zeilen. Es ist unmöglich zu tippen.",
+        text: "Outside, they've now started the 'Mega Vibrating Plate 3000'. Your whole body is vibrating. Your teeth are chattering. The Excel rows on the monitor blur. It's impossible to type.",
         opts: [
             { 
-                t: "Im Takt tippen", 
+                t: "Type in rhythm", 
                 m: 10, f: -5, a: 10, c: 0, 
-                r: "Du versuchst, die Vibrationen auszugleichen. Das Ergebnis: 'Sseeehr geeeehhhrter Heeerrrr...'. Du gibst entnervt auf." 
+                r: "You try to compensate for the vibrations. The result: 'Ddeeear Sirrr...'. You give up in frustration." 
             },
             { 
-                t: "Aufgeben und Pause machen", 
+                t: "Give up and take a break", 
 				rep: { "Dr. Wichtig": -2 },	
                 m: 15, f: 10, a: -10, c: 10, 
-                r: "Du gehst in die Küche (andere Gebäudeseite). Dort wackelt nur das Wasser im Glas. Der Chef fragt: 'Flüchten Sie?' Du nickst nur stumm." 
+                r: "You go to the kitchen (other side of the building). Only the water in the glass shakes there. The boss asks: 'Are you fleeing?' You just nod silently." 
             }
         ]
     },
     {
         id: "sq_noise_2c",
         kind: "text",
-        title: "Budget-Planung",
+        title: "Budget Planning",
         reqStory: "path_noise_foreman",
-        text: "Der Vorarbeiter brüllt fröhlich zurück: 'MUSS WEG! WIR HABEN NOCH BUDGET FÜR DIESES JAHR! WENN WIR DEN DIESEL NICHT VERBRAUCHEN, KRIEGEN WIR NÄCHSTES JAHR WENIGER! WOLLEN SIE AUCH MAL BAGGERN?'",
+        text: "The foreman cheerfully yells back: 'GOTTA GO! WE STILL HAVE BUDGET FOR THIS YEAR! IF WE DON'T USE UP THE DIESEL, WE'LL GET LESS NEXT YEAR! DO YOU WANT TO DIG TOO?'",
         opts: [
             { 
-                t: "Angebot annehmen: 'Ja, will ich!'", 
+                t: "Accept offer: 'Yes, I do!'", 
 				rep: { "Dr. Wichtig": -15 },	
                 m: 30, f: 20, a: -50, c: 20, 
-                r: "Du rennst runter. 20 Minuten später sitzt du im Führerhaus und gräbst den Vorgarten der Firma um. Der Chef schaut fassungslos aus dem Fenster. Das war es wert." 
+                r: "You run down. 20 minutes later, you're in the driver's cab, digging up the company's front yard. The boss stares out the window in disbelief. It was worth it." 
             },
             { 
-                t: "Kopfschüttelnd ablehnen", 
+                t: "Shake head and decline", 
                 m: 2, f: 0, a: 10, c: 0, 
-                r: "Du schließt das Fenster. Bürokratie in ihrer reinsten Form. Dein Glaube an die Menschheit sinkt um 10 Punkte." 
+                r: "You close the window. Bureaucracy in its purest form. Your faith in humanity drops by 10 points." 
             }
         ]
     },
     {
         id: "sq_loot_crate_1",
         kind: "text",
-        title: "Die 'Zu Verschenken' Kiste",
-        text: "Jemand hat eine Kiste mit der Aufschrift 'ZU VERSCHENKEN' in den Flur gestellt. Ein Biotop aus Staub, alten Kabeln und vergessenen Büroträumen.",
+        title: "The 'Free to Take' Box",
+        text: "Someone has placed a box labeled 'FREE TO TAKE' in the hallway. A biotope of dust, old cables, and forgotten office dreams.",
         opts: [
             { 
-                t: "Das schwere 'Buch' bergen", 
+                t: "Retrieve the heavy 'book'", 
                 loot: "manual", 
                 next: "loot_crate_taken",
                 m: 10, f: 5, a: 0, c: 0, 
-                r: "Du ziehst es aus dem Stapel. Es ist... ein 'Windows 95 Handbuch'! Antikes Wissen für echte Kenner. (Inventar +1)" 
+                r: "You pull it from the stack. It's... a 'Windows 95 Manual'! Ancient knowledge for true connoisseurs. (Inventory +1)" 
             },
             { 
-                t: "Mutig in den Kabelsalat greifen", 
+                t: "Bravely reach into the cable spaghetti", 
                 loot: "cable", 
                 next: "loot_crate_taken",
                 m: 10, f: 5, a: 0, c: 0, 
-                r: "Du kämpfst mit dem Knoten und gewinnst! Ein langes, graues LAN-Kabel gehört jetzt dir. (Inventar +1)" 
+                r: "You wrestle with the knot and win! A long, gray LAN cable is now yours. (Inventory +1)" 
             },
             { 
-                t: "Blind nach dem roten 'Ding' wühlen",
+                t: "Blindly grope for the red 'thing'",
                 loot: "stressball", 
                 next: "loot_crate_taken",
                 m: 10, f: 5, a: 0, c: 0, 
-                r: "Igit... was ist das? Ach, nur ein alter Wut-Ball! Er ist etwas klebrig, aber drückbar. (Inventar +1)" 
+                r: "Ew... what is that? Oh, just an old stress ball! It's a bit sticky, but squeezable. (Inventory +1)" 
             },
             { 
-                t: "Das silberne Glitzern untersuchen", 
+                t: "Examine the silver glitter", 
                 loot: "tape", 
                 next: "loot_crate_taken",
                 m: 10, f: 5, a: 0, c: 0, 
-                r: "Der heilige Gral der Reparatur! Eine fast volle Rolle Panzertape. Damit kannst du das Universum flicken. (Inventar +1)" 
+                r: "The holy grail of repair! A nearly full roll of duct tape. With this, you can fix the universe. (Inventory +1)" 
             }
         ]
     },
@@ -891,67 +891,67 @@ export const sidequests = [
         id: "sq_loot_crate_2",
 		char: "Egon",
         kind: "text",
-        title: "Der Sammler",
+        title: "The Collector",
         reqStory: "loot_crate_taken",
-        text: "Hausmeister Egon fängt dich im Flur ab. Er wirkt begeistert. 'Hömma! Ich hab gesehen, du hast dir was aus der Kiste geangelt! Endlich einer mit Geschmack! Ich räume gerade das Archiv von 1998 aus. Ich hab da noch 500 Kilo Nadeldrucker-Papier und Disketten-Boxen. Willste das auch haben? Sonst muss ich das entsorgen!'",
+        text: "Janitor Egon intercepts you in the hallway. He seems excited. 'Hey! I saw you fished something out of the box! Finally someone with taste! I'm clearing out the 1998 archive. I still have 500 kilos of dot matrix printer paper and floppy disk boxes. Want those too? Otherwise, I'll have to dispose of them!'",
         opts: [
             { 
-                t: "Ja! Ich nehme alles! (Stöbern)", 
+                t: "Yes! I'll take everything! (Browse)", 
                 rep: { "Egon": 10 },
                 m: 30, f: 10, a: -10, c: 0, 
-                r: "Du folgst Egon in den Keller. Ihr verbringt eine halbe Stunde damit, in uralter Hardware zu wühlen. Du nimmst nichts mit, aber Egon ist glücklich, dass jemand seinen 'Schatz' gewürdigt hat. Retro-Feeling pur." 
+                r: "You follow Egon to the basement. You spend half an hour rummaging through ancient hardware. You don't take anything, but Egon is happy that someone appreciated his 'treasure'. Pure retro feeling." 
             },
             { 
-                t: "Äh... nein danke, das reicht.", 
+                t: "Uh... no thanks, that's enough.", 
                 rep: { "Egon": -5 },
                 m: 2, f: 0, a: 0, c: 0, 
-                r: "Egons Lächeln verschwindet sofort. 'Banause. Die Jugend von heute weiß nichts mit gutem Endlospapier anzufangen.' Er schlurft beleidigt davon." 
+                r: "Egon's smile immediately vanishes. 'Philistine. Kids these days don't know what to do with good continuous paper.' He shuffles away offended." 
             }
         ]
     },
     {
         id: "sq_chair_1",
         kind: "text",
-        title: "Der Chefsessel",
-        text: "Der Chef hat einen neuen 'Ergonomic 3000'. Sein alter Ledersessel steht einsam auf dem Flur beim Sperrmüll. Das Leder ist abgewetzt, aber die Polsterung ist immer noch Klassen besser als dein aktueller 'Beton-Stuhl'.",
+        title: "The Executive Chair",
+        text: "The boss has a new 'Ergonomic 3000'. His old leather armchair stands lonely in the hallway by the bulky waste. The leather is worn, but the padding is still classier than your current 'concrete chair'.",
         opts: [
             { 
-                t: "Ganzen Stuhl retten & tapen", 
+                t: "Save entire chair & tape it", 
                 req: "tape", 
                 next: "path_chair_new", 
                 m: 20, f: 10, a: -20, c: 0, 
-                r: "Du schleifst das Monstrum in dein Büro. Eine Rolle Panzertape für die lockere Armlehne und er ist wie neu. Mad-Max-Optik, aber S-Klasse-Komfort." 
+                r: "You drag the monstrosity into your office. A roll of duct tape for the loose armrest and it's like new. Mad Max look, but S-Class comfort." 
             },
             { 
-                t: "Nur die Luxus-Rollen klauen", 
+                t: "Only steal the luxury casters", 
                 req: "screw", 
                 next: "path_chair_new", 
                 m: 10, f: 5, a: -10, c: 0, 
-                r: "Du schraubst die High-End-Skater-Rollen ab und montierst sie unter deinen Stuhl. Endlich nicht mehr über Teppichkanten stolpern!" 
+                r: "You unscrew the high-end skater casters and mount them under your chair. Finally, no more tripping over carpet edges!" 
             },
             { 
-                t: "Ignorieren (Mein Rücken ist aus Stahl)", 
+                t: "Ignore (My back is steel)", 
                 m: 2, f: 0, a: 5, c: 0, 
-                r: "Du gehst weiter. Später am Tag bekommst du Ischias. Selbst schuld." 
+                r: "You walk on. Later in the day, you get sciatica. Your own fault." 
             }
         ]
     },
     {
         id: "sq_chair_2",
         kind: "text",
-        title: "Thron-Nachfolge",
+        title: "Throne Succession",
         reqStory: "path_chair_new",
-        text: "Ahhh. Das Sitz-Upgrade macht sich bemerkbar. Du gleitest lautlos durchs Büro und wippst entspannt. Deine Aggressivität verpufft. Einziges Manko: Überall kleben noch hartnäckige 'Paw Patrol'-Sticker vom Sohn des Chefs. Marshall der Feuerwehrhund starrt dich von der Armlehne an.",
+        text: "Ahhh. The seat upgrade is noticeable. You glide silently through the office and recline relaxed. Your aggression dissipates. Only drawback: Stubborn 'Paw Patrol' stickers from the boss's son are still stuck everywhere. Marshall the fire dog stares at you from the armrest.",
         opts: [
             { 
-                t: "Egal: 'Ich bin jetzt Teil der Paw Patrol'", 
+                t: "Doesn't matter: 'I'm part of Paw Patrol now'", 
                 m: 10, f: 10, a: -20, c: 0, 
-                r: "Du drehst dich lachend im Kreis. 'Wuff wuff, Rettung naht!' Die Kollegen gucken komisch, aber du bist zu entspannt, um dich zu schämen. Das Leben ist gut." 
+                r: "You spin around laughing. 'Woof woof, rescue is on the way!' Colleagues look at you strangely, but you're too relaxed to be ashamed. Life is good." 
             },
             { 
-                t: "Versuchen, die Sticker abzuknibbeln", 
+                t: "Try to peel off the stickers", 
                 m: 15, f: -5, a: 5, c: 0, 
-                r: "Du kratzt mit dem Fingernagel an den Stickern. Es bleiben hässliche weiße Papierfetzen und Klebereste zurück. Jetzt sieht es schlimmer aus als vorher. Mist." 
+                r: "You scratch at the stickers with your fingernail. Ugly white paper scraps and adhesive residue remain. Now it looks worse than before. Damn." 
             }
         ]
     },
@@ -959,41 +959,41 @@ export const sidequests = [
         id: "sq_janitor_talk",
 		char: "Egon",
         kind: "text",
-        title: "Raucherpause mit Egon",
-        text: "Du triffst Hausmeister Egon am Hintereingang. Er kämpft mit seinem Feuerzeug und flucht über 'diese neumodische Technik'.",
+        title: "Smoke Break with Egon",
+        text: "You meet janitor Egon at the back entrance. He's struggling with his lighter and cursing about 'this newfangled technology'.",
         opts: [
             { 
-                t: "Ihm Feuer geben & zuhören", 
+                t: "Give him a light & listen", 
                 rep: { "Egon": 5 },
                 m: 10, f: 5, a: -5, c: 0, 
-                r: "Er zieht tief an der Zigarette. 'Danke Jung. Diese digitalen Schlösser machen mich fertig! Ich hab das vom Papierlager im Keller jetzt einfach auf 0-0-0-0 gestellt. Aber sags keinem!'" 
+                r: "He takes a deep drag from his cigarette. 'Thanks, kid. These digital locks are driving me crazy! I just set the one for the paper storage in the basement to 0-0-0-0. But don't tell anyone!'" 
             },
             { 
-                t: "Schnell weitergehen", 
+                t: "Quickly move on", 
                 rep: { "Egon": -2 },
                 m: 2, f: 0, a: 0, c: 0, 
-                r: "Du hast keine Zeit für seine Geschichten. Du nickst nur kurz und gehst." 
+                r: "You don't have time for his stories. You just nod briefly and leave." 
             }
         ]
     },
     {
         id: "sq_archive_find",
         kind: "text",
-        title: "Im Archiv",
-        text: "Du suchst Druckerpapier im Archiv. Dabei fällt dir der Ordner 'Steuererklärung 1990' auf. Er ist ungewöhnlich dick. Du guckst rein: Er ist voller 'Mon Chéri' Pralinen. Das Geheimversteck von Sekretärin Gabi!",
+        title: "In the Archive",
+        text: "You're looking for printer paper in the archive. You notice the folder 'Tax Return 1990'. It's unusually thick. You look inside: It's full of 'Mon Chéri' chocolates. Secretary Gabi's secret stash!",
         opts: [
             { 
-                t: "Eine stibitzen & Klappe halten", 
+                t: "Steal one & keep quiet", 
                 loot: "donut", 
                 next: "path_archive_stolen",
                 rep: { "Gabi": -2 }, 
                 m: 2, f: 5, a: 0, c: 0, 
-                r: "Du schiebst dir eine in den Mund. Schmeckt nach billigem Weinbrand und Staub. Aber du weißt jetzt, wo der Vorrat liegt. (Inventar +1)" 
+                r: "You pop one into your mouth. Tastes like cheap brandy and dust. But now you know where the stash is. (Inventory +1)" 
             },
             { 
-                t: "Ordner zurückstellen", 
+                t: "Put the folder back", 
                 m: 2, f: 0, a: -5, c: 0, 
-                r: "Du lässt Gabi ihren Schatz. Diskretion ist Ehrensache. Wer weiß, wie lange die da schon liegen..." 
+                r: "You leave Gabi her treasure. Discretion is a matter of honor. Who knows how long they've been lying there..." 
             }
         ]
     },
@@ -1001,44 +1001,44 @@ export const sidequests = [
         id: "sq_archive_find_2a",
 		char: "Gabi",
         kind: "text",
-        title: "CSI: Buchhaltung",
+        title: "CSI: Accounting",
         reqStory: "path_archive_stolen",
-        text: "Zehn Minuten später steht Gabi in deiner Bürotür. Sie trägt Latexhandschuhe. Mit einer Pinzette hält sie ein winziges, zerknülltes Stück rosa Alufolie hoch. 'Beweisstück A. Gefunden in Ihrem Papierkorb. Korrespondiert exakt mit der Fehlmenge im Ordner 'Steuer 1990'. Der Kirschlikör-Geruch in Ihrer Atemluft bestätigt den Verdacht.'",
+        text: "Ten minutes later, Gabi stands in your office doorway. She's wearing latex gloves. With tweezers, she holds up a tiny, crumpled piece of pink aluminum foil. 'Exhibit A. Found in your trash can. Corresponds exactly to the missing quantity in the 'Tax 1990' folder. The cherry liqueur smell on your breath confirms the suspicion.'",
         opts: [
             { 
-                t: "Geständnis: 'Es war Notwehr (Unterzucker)'", 
+                t: "Confess: 'It was self-defense (low blood sugar)'", 
                 rep: { "Gabi": 5 },
                 m: 5, f: 0, a: -5, c: 0, 
-                r: "Gabi senkt die Pinzette. 'Na gut. Aber das nächste Mal füllen Sie Formular S-Ü-S (Sonderentnahme Süßwaren) aus! Ordnung muss sein!'" 
+                r: "Gabi lowers the tweezers. 'Alright. But next time, fill out form S-W-E-E-T (Special Withdrawal Sweets)! Order must be maintained!'" 
             },
             { 
-                t: "Bestechen: 'Ich kaufe dir eine neue Packung'", 
+                t: "Bribe: 'I'll buy you a new pack'", 
                 rep: { "Gabi": -5 },
                 m: 5, f: 0, a: 5, c: 0, 
-                r: "Gabi schnaubt verächtlich. 'Eine neue? Die im Ordner reifen seit 30 Jahren! Das Aroma ist unwiederbringlich zerstört!' Sie geht beleidigt, aber du bist davongekommen." 
+                r: "Gabi snorts contemptuously. 'A new one? The ones in that folder have been aging for 30 years! The aroma is irrevocably destroyed!' She leaves offended, but you've gotten away with it." 
             }
         ]
     },
     {
         id: "sq_sad_manager",
         kind: "text",
-        title: "Der Zusammenbruch",
-        text: "Im Flur steht der Projektleiter. Er starrt gegen die Wand und wirkt völlig apathisch. Er reagiert nicht, als du vorbeigehst.",
+        title: "The Breakdown",
+        text: "The project manager is in the hallway. He's staring at the wall, looking completely apathetic. He doesn't react when you walk past.",
         opts: [
             { 
-                t: "Schulter klopfen: 'Kopf hoch!'", 
+                t: "Pat on shoulder: 'Chin up!'", 
                 m: 5, f: 0, a: 5, c: 0, 
-                r: "Er zuckt zusammen. 'Lassen Sie mich einfach in Ruhe.' Leere Phrase, keine Wirkung." 
+                r: "He flinches. 'Just leave me alone.' Empty phrase, no effect." 
             },
             { 
-                t: "Flüstern: 'Ein Schritt vor, zwei zurück...'",
+                t: "Whisper: 'One step forward, two steps back...'",
                 m: 5, f: 5, a: -10, c: 0, 
-                r: "Seine Augen leuchten kurz auf. Er richtet sich auf, nimmt Haltung an. 'Tango... ja. Die Leidenschaft. Sie haben Recht. Ich muss heute Abend wieder zum Kurs.' Er nickt dir dankbar zu." 
+                r: "His eyes light up briefly. He straightens up, assumes a posture. 'Tango... yes. The passion. You're right. I have to go back to class tonight.' He nods gratefully at you." 
             },
             { 
-                t: "Brüllen: 'TSCHAKKA! MINDSET!'",
+                t: "Yell: 'YOU CAN DO IT! MINDSET!'",
                 m: 5, f: 0, a: 15, c: 10, 
-                r: "Er dreht sich langsam um und funkelt dich böse an. 'Gehen Sie weg. Bevor ich etwas tue, was das HR nicht erlaubt.' Das war wohl zu viel." 
+                r: "He slowly turns around and glares at you. 'Get away. Before I do something HR won't allow.' That was probably too much." 
             }
         ]
     },
@@ -1046,22 +1046,22 @@ export const sidequests = [
         id: "sq_toner_trap",
 		char: "Frau Elster",
         kind: "text",
-        title: "Die Toner-Falle",
-        text: "Frau Elster aus der Buchhaltung winkt dich hektisch zum Kopierer. 'Da klemmt was! Ich trau mich nicht ran, Sie sind doch der Technik-Profi!' Sie tritt auffällig weit zurück und hält sich die Hände vor das weiße Kostüm.",
+        title: "The Toner Trap",
+        text: "Ms. Elster from accounting frantically waves you over to the copier. 'Something's jammed! I don't dare touch it, you're the tech expert!' She steps conspicuously far back, holding her hands in front of her white suit.",
         opts: [
             { 
-                t: "Heldenmut: Klappe öffnen", 
+                t: "Heroism: Open the flap", 
                 next: "path_toner_explosion", 
                 rep: { "Frau Elster": 2 },
                 m: 25, f: -15, a: 10, c: 0, 
-                r: "Du reißt die Klappe auf. BAAAAAM! Eine cyan-blaue Wolke verschluckt dich. Du schmeckst Chemie. Frau Elster kichert boshaft: 'Huch!'. Du gehst wortlos ins Bad, um dich notdürftig zu schrubben." 
+                r: "You yank open the flap. BAM! A cyan-blue cloud engulfs you. You taste chemicals. Ms. Elster giggles wickedly: 'Oops!' You wordlessly go to the bathroom to hastily scrub yourself clean." 
             },
             { 
-                t: "Lunte riechen: 'Mach selbst'", 
+                t: "Smell a rat: 'Do it yourself'", 
                 next: "path_toner_dodge",
                 rep: { "Frau Elster": -10 }, 
                 m: 2, f: 5, a: -5, c: 0, 
-                r: "Du gehst einfach weiter. 'Bin nicht zuständig für Hardware.' Hinter dir hörst du ein lautes *PUFF* und dann einen spitzen Schrei. Tja. Intuition ist alles." 
+                r: "You just keep walking. 'Not responsible for hardware.' Behind you, you hear a loud *POOF* and then a sharp scream. Well. Intuition is everything." 
             }
         ]
     },
@@ -1069,21 +1069,21 @@ export const sidequests = [
         id: "sq_toner_trap_2a",
 		char: "Dr. Wichtig",
         kind: "text",
-        title: "Der blaue Orden",
+        title: "The Blue Order",
         reqStory: "path_toner_explosion",
-        text: "Ein paar Stunden später. Du hast immer noch blaue Ränder an den Ohren und siehst aus wie ein verwaschenes T-Shirt. Der Chef kommt rein. 'Müller! Frau Elster sagte, Sie haben sich heldenhaft vor die Kartusche geworfen, um den Perser-Teppich zu schützen! Das nenne ich Einsatz!'",
+        text: "A few hours later. You still have blue rings around your ears and look like a faded T-shirt. The boss comes in. 'Müller! Ms. Elster said you heroically threw yourself in front of the cartridge to protect the Persian rug! That's what I call dedication!'",
         opts: [
             { 
-                t: "Die Legende bestätigen", 
+                t: "Confirm the legend", 
                 rep: { "Frau Elster": 2, "Dr. Wichtig": 10 },
                 m: 10, f: 5, a: -10, c: -10, 
-                r: "Du nickst ernst. 'Der Teppich ist das Herz der Firma, Chef.' Er ist gerührt und schenkt dir eine Schachtel 'Merci', die eigentlich für Kunden gedacht war. (Inventar +1)" 
+                r: "You nod gravely. 'The rug is the heart of the company, Boss.' He's touched and gives you a box of 'Merci' that was actually meant for clients. (Inventory +1)" 
             },
             { 
-                t: "Gefahrenzulage fordern", 
+                t: "Demand hazard pay", 
 				rep: { "Dr. Wichtig": 5 },	
                 m: 5, f: 0, a: 10, c: -5, 
-                r: "Der Chef lacht laut. 'Der war gut, Müller! Humor in der Krise! Weiter so!' Er klopft dir auf die noch staubige Schulter und geht. Du hast jetzt blaue Handabdrücke auf dem Hemd." 
+                r: "The boss laughs loudly. 'That was a good one, Müller! Humor in a crisis! Keep it up!' He claps you on your still dusty shoulder and leaves. You now have blue handprints on your shirt." 
             }
         ]
     },
@@ -1091,171 +1091,171 @@ export const sidequests = [
         id: "sq_toner_trap_2b",
 		char: "Frau Elster",
         kind: "text",
-        title: "Das Schlumpf-Gespenst",
+        title: "The Smurf Ghost",
         reqStory: "path_toner_dodge",
-        text: "Frau Elster kommt aus dem Waschraum. Sie hat versucht, sich zu reinigen, aber Toner ist gnadenlos. Ihr Gesicht hat nun eine permanente, zart-türkise Tönung. Sie versucht, würdevoll zu wirken und die Blicke der Kollegen zu ignorieren.",
+        text: "Ms. Elster emerges from the washroom. She tried to clean herself, but toner is merciless. Her face now has a permanent, delicate turquoise tint. She tries to appear dignified and ignore the stares of her colleagues.",
         opts: [
             { 
-                t: "Kompliment: 'Toller Avatar-Look!'",
+                t: "Compliment: 'Great Avatar look!'",
                 rep: { "Frau Elster": -5 }, 
                 m: 15, f: 5, a: -20, c: 0, 
-                r: "Sie funkelt dich böse an, kann aber nichts sagen, ohne es zuzugeben. Die Schadenfreude wärmt dein Herz wie ein kleines Lagerfeuer. Deine Laune ist bestens." 
+                r: "She glares at you, but can't say anything without admitting it. The schadenfreude warms your heart like a small campfire. Your mood is excellent." 
             },
             { 
-                t: "Rat geben: 'Das geht nie wieder weg.'", 
+                t: "Advise: 'That'll never come off.'", 
                 rep: { "Frau Elster": -10 },
                 m: 10, f: 0, a: -10, c: 5, 
-                r: "Du flüsterst es ihr im Vorbeigehen zu. Sie wird bleich (unter dem Blau). Sie rennt zurück ins Bad. Du hast jetzt Ruhe vor der Buchhaltung." 
+                r: "You whisper it to her as you pass. She turns pale (under the blue). She runs back to the bathroom. You now have peace from accounting." 
             }
         ]
     },
     {
         id: "sq_fresh_air",
         kind: "text",
-        title: "Dicke Luft",
-        text: "Im Meetingraum 'Aquarium' stinkt es bestialisch nach Mettbrötchen, Zwiebeln und Angstschweiß. Jemand hat das Fenster zugelassen, und die Luft steht wie eine Wand. Dir wird fast übel im Vorbeigehen.",
+        title: "Stuffy Air",
+        text: "The 'Aquarium' meeting room stinks terribly of raw minced pork rolls, onions, and anxiety sweat. Someone left the window closed, and the air is like a wall. You almost feel sick just walking past.",
         opts: [
             { 
-                t: "Fenster kippen (Lüften)", 
+                t: "Tilt window (Ventilate)", 
                 next: "path_wasp_chaos", 
                 m: 5, f: -5, a: -5, c: 20, 
-                r: "Frische Luft strömt rein! Und mit ihr eine riesige, aggressive Wespe. Sie sticht den Vertriebsleiter direkt in die Lippe. Er schreit: 'BÜLLER! ACHEN SIE DAS WEG!' Das Chaos beginnt." 
+                r: "Fresh air streams in! And with it, a huge, aggressive wasp. It stings the sales manager directly on the lip. He screams: 'MÜLLER! GET RID OF THAT!' Chaos ensues." 
             },
             { 
-                t: "Luft anhalten & weitergehen", 
+                t: "Hold breath & walk on", 
                 next: "path_bio_hazard", 
                 m: 2, f: 0, a: 5, c: 0, 
-                r: "Sollen sie doch in ihrem Mief ersticken. Nicht dein Problem. Du beschleunigst den Schritt, bevor der Geruch sich in deiner Kleidung festsetzt." 
+                r: "Let them suffocate in their stench. Not your problem. You quicken your pace before the smell clings to your clothes." 
             }
         ]
     },
     {
         id: "sq_fresh_air_wasp",
         kind: "text",
-        title: "Terror im Aquarium",
+        title: "Terror in the Aquarium",
         reqStory: "path_wasp_chaos",
-        text: "Stunden später. Das Meeting läuft noch – theoretisch. Tatsächlich kauern der Chef und der Vorstand unter dem Konferenztisch. Die Wespe patrouilliert wie ein Kampfhubschrauber durch den Raum. Der Vertriebsleiter sieht aus wie ein Kugelfisch. Niemand traut sich zur Tür.",
+        text: "Hours later. The meeting is still ongoing – theoretically. In reality, the boss and the board are cowering under the conference table. The wasp patrols the room like an attack helicopter. The sales manager looks like a pufferfish. No one dares to go to the door.",
         opts: [
             { 
-                t: "Die Tür von außen abschließen", 
+                t: "Lock the door from the outside", 
                 m: 10, f: 5, a: -10, c: 10, 
-                r: "Klick. 'Zu ihrer eigenen Sicherheit', murmelst du. Drinnen bricht Panik aus. Du lehnst dich an die Scheibe und genießt die Show. Das ist besser als Fernsehen." 
+                r: "Click. 'For their own safety,' you mutter. Panic breaks out inside. You lean against the glass and enjoy the show. This is better than TV." 
             },
             { 
-                t: "Reinspringen & Wespe klatschen", 
+                t: "Jump in & swat wasp", 
                 loot: "manual",
 				rep: { "Dr. Wichtig": 5 },	
                 m: 20, f: -10, a: 10, c: -10, 
-                r: "Du stürmst rein und erschlägst das Biest mit einer Akte. Applaus brandet auf (unter dem Tisch). Der Chef kriecht hervor: 'Müller, Sie sind befördert! Also... emotional.'" 
+                r: "You storm in and swat the beast with a file. Applause erupts (from under the table). The boss crawls out: 'Müller, you're promoted! Emotionally, that is.'" 
             }
         ]
     },
     {
         id: "sq_fresh_air_bio",
         kind: "text",
-        title: "ABC-Alarm",
+        title: "ABC Alarm",
         reqStory: "path_bio_hazard",
-        text: "Der Flur ist abgesperrt. Männer in gelben Vollschutzanzügen mit Atemgeräten kommen aus dem Meetingraum. Einer hält ein Messgerät hoch, das rot blinkt. 'Wir messen extrem hohe Schwefel-Werte! Verdacht auf Biogas-Leck! Evakuierung!' Es riecht nach 4 Stunden altem Zwiebelmett und Angstschweiß.",
+        text: "The hallway is cordoned off. Men in yellow full-body suits with breathing apparatus emerge from the meeting room. One holds up a measuring device that blinks red. 'We're detecting extremely high sulfur levels! Suspected biogas leak! Evacuation!' It smells of 4-hour-old onion minced pork and anxiety sweat.",
         opts: [
             { 
-                t: "Aufklären: 'Das ist nur das Mett.'", 
+                t: "Clarify: 'It's just the minced pork.'", 
 				rep: { "Dr. Wichtig": 2 },	
                 m: 5, f: 0, a: 10, c: -20, 
-                r: "Der Einsatzleiter starrt dich durch das Visier an. 'Wollen Sie mir sagen, Ihre Kollegen dünsten Giftgas aus?!' Der Chef wird rot (vor Scham). Der Einsatz wird teuer." 
+                r: "The incident commander stares at you through his visor. 'Are you telling me your colleagues are emitting poison gas?!' The boss turns red (with shame). The operation will be expensive." 
             },
             { 
-                t: "Panik schüren: 'Rettet euch!'", 
+                t: "Inciting panic: 'Save yourselves!'", 
 				rep: { "Dr. Wichtig": -2 },	
                 m: 10, f: 20, a: -10, c: 5, 
-                r: "Du rennst schreiend zum Ausgang. 'Der Mett-Tod kommt für uns alle!' Du hast früher Feierabend, weil das Gebäude geräumt wird. Clever." 
+                r: "You run screaming to the exit. 'The minced pork death is coming for us all!' You get to leave work early because the building is evacuated. Clever." 
             }
         ]
     },
     {
         id: "sq_package_help",
         kind: "text",
-        title: "Die schwere Kiste",
-        text: "Die neue Praktikantin bricht fast unter einem riesigen Paket zusammen. 'Puh... das muss zum Marketing in den 4. Stock... können Sie...?' Sie zittert schon, und das Paket rutscht ihr fast aus den Händen.",
+        title: "The Heavy Box",
+        text: "The new intern is almost collapsing under a huge package. 'Phew... this has to go to Marketing on the 4th floor... can you...?' She's already trembling, and the package is almost slipping from her hands.",
         opts: [
             { 
-                t: "Helfen & Tragen (Ritter spielen)", 
+                t: "Help & Carry (Play knight)", 
                 next: "path_package_helped", 
                 rep: { "Chantal": -10 },
                 m: 15, f: -20, a: 25, c: -10, 
-                r: "Du wuchtest das Ding hoch. Uff. Beton? Du schleppst es schwitzend in den 4. Stock. Chantal vom Marketing reißt die Tür auf: 'WAS SOLL DAS HIER?! Das habe ich storniert! Nimm das sofort wieder mit, du Idiot!' PENG. Tür zu. Dein Hals schwillt vor Wut." 
+                r: "You hoist the thing up. Ugh. Concrete? You sweatily drag it to the 4th floor. Chantal from Marketing rips open the door: 'WHAT IS THIS?! I canceled that! Take it back immediately, you idiot!' BANG. Door shut. Your neck swells with rage." 
             },
             { 
-                t: "Anfeuern: 'Tschakka!'", 
+                t: "Cheer on: 'You can do it!'", 
                 m: 2, f: 5, a: -5, c: 0, 
-                r: "Du ballst die Faust: 'Du schaffst das! Glaube an dich!' Sie schaut dich mit toten Augen an, schleppt sich aber weiter. Dein Rücken bleibt heil, dein Karma ist im Keller." 
+                r: "You clench your fist: 'You got this! Believe in yourself!' She looks at you with dead eyes, but drags herself onward. Your back remains intact, your karma is in the basement." 
             }
         ]
     },
     {
         id: "sq_package_return",
         kind: "text",
-        title: "Retoure des Grauens",
+        title: "Return of Horrors",
         reqStory: "path_package_helped",
-        text: "Du stehst wieder im Flur. Das Paket ist schwer. Die Praktikantin sitzt darauf und weint leise in ihr Klemmbrett. 'Ich wusste das nicht... Chantal ist so böse... Und ich weiß nicht, wie man eine Retoure für Gefahrgut macht...'",
+        text: "You're back in the hallway. The package is heavy. The intern is sitting on it, quietly crying into her clipboard. 'I didn't know... Chantal is so mean... And I don't know how to return hazardous materials...'",
         opts: [
             { 
-                t: "Trösten & Erledigen: 'Ich mach das.'", 
+                t: "Comfort & Handle: 'I'll do it.'", 
                 m: 20, f: -10, a: 15, c: -10, 
-                r: "Du nimmst ihr das Klemmbrett ab. 'Geh dir einen Kaffee holen.' Du schleppst das Paket zur Poststelle, füllst Formular R-7 aus ('Grund: Empfänger ist zickig') und klebst das Label drauf. Nervige Arbeit, aber du hast Ruhe vor dem Chef." 
+                r: "You take the clipboard from her. 'Go get some coffee.' You drag the package to the mailroom, fill out form R-7 ('Reason: Recipient is a bitch') and stick on the label. Annoying work, but you have peace from the boss." 
             },
             { 
-                t: "Mentoring: 'Wir machen das zusammen.'", 
+                t: "Mentoring: 'We'll do it together.'", 
                 m: 30, f: -5, a: 10, c: -10, 
-                r: "Du erklärst ihr geduldig das Warenwirtschaftssystem. Es dauert 30 Minuten. Sie versteht nichts, hört aber auf zu weinen. Es ist mühsam, aber es sieht sehr produktiv aus." 
+                r: "You patiently explain the inventory management system to her. It takes 30 minutes. She doesn't understand anything, but she stops crying. It's tedious, but it looks very productive." 
             },
             { 
-                t: "Pragmatisch: 'Einfach beim Empfang abkippen'", 
+                t: "Pragmatic: 'Just dump it at reception'", 
                 m: 5, f: 10, a: -20, c: 10, 
-                r: "Du schiebst das Paket in den Aufzug, drückst 'EG' und rennst weg, bevor die Türen schließen. Die Praktikantin kichert entsetzt. 'Das ist Problem-Lösung 2.0', rufst du. Schadenfreude pur!" 
+                r: "You push the package into the elevator, press 'Ground Floor', and run away before the doors close. The intern giggles in horror. 'That's problem-solving 2.0,' you shout. Pure schadenfreude!" 
             }
         ]
     },
     {
         id: "sq_alarm_fail_1",
         kind: "text",
-        title: "Der rote Knopf",
-        text: "Du lehnst dich im Flur an die Wand. Plötzlich: SCHRILL! Du hast den Feueralarm ausgelöst! Der Hausmeister rennt wütend herbei.",
+        title: "The Red Button",
+        text: "You lean against the wall in the hallway. Suddenly: SHRIEK! You've triggered the fire alarm! The janitor rushes over angrily.",
         opts: [
             { 
-                t: "Entschuldigen & Wegrennen", 
+                t: "Apologize & Run away", 
                 next: "path_alarm_escalation", 
                 m: 5, f: 0, a: 10, c: 20, 
-                r: "Du rennst weg. Der Hausmeister brüllt dir nach: 'IDIOT! Jedes Mal muss ich **4-7-1-1** eingeben wegen solchen Deppen!' Du hast Ärger, aber den Code gehört." 
+                r: "You run away. The janitor yells after you: 'IDIOT! Every time I have to enter **4-7-1-1** because of idiots like you!' You're in trouble, but you heard the code." 
             },
             { 
-                t: "So tun als wäre es ein Test",
+                t: "Pretend it's a test",
                 m: 2, f: 5, a: 0, c: 0, 
-                r: "Er glaubt dir nicht. 'Verschwinde!' Er dreht dir demonstrativ den Rücken zu, schirmt das Tastenfeld mit seinem breiten Kreuz ab und bringt die Sirene zum Schweigen." 
+                r: "He doesn't believe you. 'Get lost!' He demonstratively turns his back on you, shields the keypad with his broad back, and silences the siren." 
             }
         ]
     },
     {
         id: "sq_alarm_fail_2",
         kind: "text",
-        title: "Einsatzleitung",
+        title: "Incident Command",
         reqStory: "path_alarm_escalation",
-        text: "Du dachtest, mit dem Wegrennen war dein Alarm-Fehltritt erledigt? Falsch. Kevin hat panisch die 112 gewählt. Wegen DIR steht jetzt ein kompletter Löschzug vor der Tür. Sechs Mann in Vollmontur stürmen mit Äxten und Kettensägen den Flur: 'WO IST DER BRANDHERD?! WIR WOLLEN WAS EINTRETEN!'",
+        text: "You thought running away would resolve your alarm mishap? Wrong. Kevin frantically dialed 911. Because of YOU, a full fire brigade is now at the door. Six men in full gear storm the hallway with axes and chainsaws: 'WHERE'S THE FIRE?! WE WANT TO KICK SOMETHING IN!'",
         opts: [
             { 
-                t: "Verstecken: 'Ich wars nicht!'", 
+                t: "Hide: 'It wasn't me!'", 
                 m: 10, f: 10, a: -5, c: 0, 
-                r: "Du schließt dich im Klo ein. Du hörst, wie draußen Türen eingetreten werden. Irgendwann ziehen sie ab. Die Rechnung über den Fehlalarm (2.500€) landet beim Chef. Du bist sicher, aber ein Feigling." 
+                r: "You lock yourself in the bathroom. You hear doors being kicked in outside. Eventually, they leave. The bill for the false alarm (2,500€) lands on the boss's desk. You're safe, but a coward." 
             },
             { 
-                t: "Lügen: 'Ich habe Rauch gerochen!'", 
+                t: "Lie: 'I smelled smoke!'", 
 				rep: { "Dr. Wichtig": 2 },	
                 m: 5, f: -5, a: 15, c: -10, 
-                r: "Du stellst dich den Männern mit den Äxten. 'Ich habe den Knopf gedrückt! Da war Rauch!' Der Einsatzleiter nickt anerkennend. 'Besser einmal zu viel als zu wenig!' Sie rücken ab. Der Chef lobt deine Wachsamkeit." 
+                r: "You face the men with axes. 'I pressed the button! There was smoke!' The incident commander nods approvingly. 'Better safe than sorry!' They leave. The boss praises your vigilance." 
             },
             { 
-                t: "Den Feuerwehrmännern Kaffee anbieten", 
+                t: "Offer coffee to firefighters", 
                 m: 20, f: 5, a: -20, c: 5, 
-                r: "Die Jungs sind schwer enttäuscht, dass sie nichts löschen dürfen. Du kochst Kaffee. Sie setzen sich mit rußigen Stiefeln auf den Teppich und erzählen Geschichten. Die Stimmung ist top, die Arbeit steht still." 
+                r: "The guys are very disappointed they don't get to put out anything. You make coffee. They sit on the carpet with sooty boots and tell stories. The mood is great, work is at a standstill." 
             }
         ]
     },
@@ -1263,228 +1263,228 @@ export const sidequests = [
         id: "sq_elster_blockade_1",
 		char: "Frau Elster",
         kind: "text",
-        title: "Der Drache bewacht den Hort",
-        text: "Frau Elster sitzt mit verschränkten Armen auf dem Aktenordner 'Budget 2024', den du dringend brauchst. 'Den gebe ich nicht raus! Nur über meine Leiche!' Sie sieht blass und unterzuckert aus. Ihr Magen knurrt hörbar.",
+        title: "The Dragon Guards the Hoard",
+        text: "Ms. Elster sits with crossed arms on the file folder 'Budget 2024', which you urgently need. 'I'm not giving it out! Only over my dead body!' She looks pale and low on sugar. Her stomach growls audibly.",
         opts: [
             { 
-                t: "Snack: 'Erdnuss-Power-Riegel' anbieten",
+                t: "Snack: Offer 'Peanut Power Bar'",
                 next: "path_elster_allergy",
                 rep: { "Frau Elster": -10 },
                 m: 5, f: -10, a: 50, c: 100, 
-                r: "Du hältst ihr den Riegel hin. Ihre Augen leuchten gierig auf. Sie reißt die Packung auf und beißt herzhaft hinein. Sie kaut, schluckt... und ihre Augen weiten sich in Panik. Das war ein Fehler." 
+                r: "You hold out the bar to her. Her eyes light up greedily. She tears open the package and takes a hearty bite. She chews, swallows... and her eyes widen in panic. That was a mistake." 
             },
             { 
-                t: "Snack: Alpenmilch (Garantiert Nussfrei)",
+                t: "Snack: Alpine Milk (Guaranteed Nut-Free)",
                 rep: { "Frau Elster": 5 },
                 m: 10, f: 5, a: -10, c: 0, 
-                r: "Sie studiert misstrauisch die Zutatenliste. 'Kann Spuren von Nüssen enthalten... nein, Moment, hier steht: Nussfrei.' Sie lächelt. 'Sehr aufmerksam, Müller.' Sie tauscht Ordner gegen Schokolade." 
+                r: "She suspiciously studies the ingredient list. 'May contain traces of nuts... no, wait, it says: Nut-free.' She smiles. 'Very thoughtful, Müller.' She exchanges folder for chocolate." 
             },
             { 
-                t: "Taktik: Fenster aufreißen (Zugluft)",
+                t: "Tactic: Rip open window (Draft)",
                 rep: { "Frau Elster": -2 },
                 m: 5, f: 0, a: 10, c: 0, 
-                r: "Du öffnest das Fenster weit. Es sind 8 Grad draußen. Frau Elster kreischt: 'MEINE NIEREN! ES ZIEHT!' Sie rafft ihre Strickjacke zusammen und flüchtet in den Flur. Der Ordner gehört dir." 
+                r: "You open the window wide. It's 8 degrees outside. Ms. Elster screams: 'MY KIDNEYS! IT'S DRAFTY!' She gathers her cardigan and flees into the hallway. The folder is yours." 
             },
             { 
-                t: "Gewalt: Einfach wegnehmen",
+                t: "Violence: Just take it",
                 rep: { "Frau Elster": -5 },
                 m: 5, f: 0, a: 20, c: 20, 
-                r: "Du greifst nach dem Ordner. Ein kurzes Handgemenge. Sie hat spitze, manikürte Fingernägel. Du hast den Ordner, aber drei blutige Striemen auf dem Handrücken. 'Körperverletzung!', keift sie." 
+                r: "You reach for the folder. A brief struggle. She has sharp, manicured fingernails. You have the folder, but three bloody scratches on the back of your hand. 'Assault!', she shrieks." 
             }
         ]
     },
     {
         id: "sq_elster_blockade_2",
         kind: "text",
-        title: "Die Nuss-Inquisition",
+        title: "The Nut Inquisition",
         reqStory: "path_elster_allergy",
-        text: "Neue Hausordnung! Aufgrund des 'Elster-Attentats' (alle starren dich an) gilt ab sofort Alarmstufe Rot für Schalenfrüchte. Der Sicherheitsdienst 'SafeSnack' kontrolliert Taschen am Eingang. Kevin weint, weil sein Studentenfutter konfisziert und im Hof kontrolliert gesprengt wurde.",
+        text: "New house rules! Due to the 'Elster Assassination Attempt' (everyone stares at you), a red alert for tree nuts is now in effect. Security 'SafeSnack' checks bags at the entrance. Kevin is crying because his trail mix was confiscated and detonated in the courtyard.",
         opts: [
             { 
-                t: "Schwarzmarkt: Snickers auf dem Herrenklo verkaufen", 
+                t: "Black market: Sell Snickers in the men's room", 
                 m: 20, f: 5, a: -10, c: -20, 
-                r: "Du wirst zum Escobar der Süßwaren. Kollegen treffen dich heimlich in Kabine 3. 'Hast du das Zeug?' Du tauschst Riegel gegen Bargeld. Der Nervenkitzel ist besser als Arbeit." 
+                r: "You become the Escobar of sweets. Colleagues secretly meet you in Stall 3. 'Got the stuff?' You exchange bars for cash. The thrill is better than work." 
             },
             { 
-                t: "Denunziantentum: 'Ich rieche Haselnuss bei Kevin!'", 
-                rep: { "Kevin": -5 },
+                t: "Informant: 'I smell hazelnut on Kevin!'", 
+                rep: { "Kevin": -10 },
                 m: 5, f: 0, a: 20, c: 10, 
-                r: "Du lenkst den Verdacht von dir ab. Das Sonderkommando stürmt Kevins Büro. Er hatte nur ein Nougat-Croissant, aber er wird trotzdem verhört. Dein Ruf ist ruiniert, aber du bist sicher." 
+                r: "You deflect suspicion from yourself. The special commando storms Kevin's office. He only had a nougat croissant, but he's interrogated anyway. Your reputation is ruined, but you're safe." 
             }
         ]
     },
     {
         id: "sq_secret_meeting_1",
         kind: "text",
-        title: "Der Kopierraum",
-        text: "Du öffnest die Tür zum Kopierraum. Der Geruch von Ozon und billigem Parfum schlägt dir entgegen. Da stehen der strenge Finanzchef und die rabiate Kantinen-Chefin... sehr eng umschlungen auf dem Großraumkopierer. Sie springen auseinander. Der Finanzchef wischt sich hektisch Lippenstift von der Wange.",
+        title: "The Copy Room",
+        text: "You open the door to the copy room. The smell of ozone and cheap perfume hits you. There stand the stern CFO and the aggressive canteen manager... very closely entwined on the large copier. They jump apart. The CFO frantically wipes lipstick from his cheek.",
         opts: [
             { 
-                t: "Tür wortlos schließen (Omertà)", 
+                t: "Close door wordlessly (Omertà)", 
                 next: "path_affair_secret", 
                 m: 10, f: 5, a: -10, c: -10, 
-                r: "Du nickst knapp, schließt die Tür und gehst. Du hast nichts gesehen. Aber sie wissen, dass du es gesehen hast. Ein stiller Pakt ist besiegelt." 
+                r: "You nod curtly, close the door, and leave. You saw nothing. But they know you saw it. A silent pact is sealed." 
             },
             { 
-                t: "Grinsen: 'Druckt ihr auch beidseitig?'", 
+                t: "Grin: 'Are you printing double-sided?'", 
                 next: "path_affair_joke", 
                 m: 5, f: 0, a: 20, c: 20, 
-                r: "Der Finanzchef läuft purpurrot an: 'RAUS HIER! MÜLLER! Wenn Sie ein Wort sagen, streiche ich Ihr Budget auf Null!' Die Kantinen-Chefin bricht wortlos einen Bleistift durch, während sie dich anstarrt." 
+                r: "The CFO turns crimson: 'GET OUT OF HERE! MÜLLER! If you say a word, I'll cut your budget to zero!' The canteen manager wordlessly breaks a pencil while staring at you." 
             }
         ]
     },
     {
         id: "sq_secret_meeting_2a",
         kind: "text",
-        title: "Geschäfte unter der Tür",
+        title: "Business Under the Door",
         reqStory: "path_affair_secret",
-        text: "Später am Tag. Du sitzt auf Kabine 3. Plötzlich siehst du teure Leder-Slipper unter der Tür. Die Stimme des Finanzchefs flüstert: 'Müller? Wir schätzen Ihre Diskretion.' Ein Umschlag wird unter der Tür durchgeschoben. Darin: Deine genehmigte Spesenabrechnung und ein in Goldfolie gewickeltes Trüffel-Sandwich.",
+        text: "Later in the day. You're in Stall 3. Suddenly, you see expensive leather loafers under the door. The CFO's voice whispers: 'Müller? We appreciate your discretion.' An envelope is slid under the door. Inside: Your approved expense report and a truffle sandwich wrapped in gold foil.",
         opts: [
             { 
-                t: "Das 'Bestechungsgeld' annehmen", 
+                t: "Accept the 'bribe'", 
                 m: 40, f: 10, a: -30, c: -20, 
-                r: "Du hebst den Umschlag vom Fliesenboden auf. 'Danke, Chef', flüsterst du zurück. Er geht. Du isst das Sandwich auf dem Klo (unhygienisch, aber lecker). Du gehörst jetzt zur Familie." 
+                r: "You pick up the envelope from the tiled floor. 'Thanks, Boss,' you whisper back. He leaves. You eat the sandwich in the bathroom (unhygienic, but delicious). You're part of the family now." 
             },
             { 
-                t: "Zurückschieben: 'Ich bin nicht käuflich'", 
+                t: "Slide back: 'I'm not for sale'", 
                 m: 5, f: 0, a: 10, c: 0, 
-                r: "Du schiebst den Umschlag mit dem Fuß zurück. Schweigen. 'Ein Fehler, Müller', flüstert er. Die Schritte entfernen sich. Dein moralischer Kompass ist intakt, dein Magen leer." 
+                r: "You push the envelope back with your foot. Silence. 'A mistake, Müller,' he whispers. The footsteps recede. Your moral compass is intact, your stomach empty." 
             }
         ]
     },
     {
         id: "sq_secret_meeting_2b",
         kind: "text",
-        title: "Verhör auf dem Thron",
+        title: "Interrogation on the Throne",
         reqStory: "path_affair_joke",
-        text: "Später am Tag. Du suchst Ruhe auf Kabine 3. Plötzlich wird das Licht im Vorraum ausgeschaltet. Teure Leder-Slipper stoppen direkt vor deiner Tür. Die Stimme des Finanzchefs hallt durch den dunklen Raum: 'Müller... Wer Witze macht, braucht kein Budget. Und die Küche lässt ausrichten: Vorsicht bei der Pilzsuppe.'",
+        text: "Later in the day. You seek peace in Stall 3. Suddenly, the light in the antechamber goes out. Expensive leather loafers stop directly in front of your door. The CFO's voice echoes through the dark room: 'Müller... He who makes jokes needs no budget. And the kitchen sends word: Be careful with the mushroom soup.'",
         opts: [
             { 
-                t: "Kleinlaut entschuldigen", 
+                t: "Humbly apologize", 
                 m: 5, f: -5, a: 10, c: -10, 
-                r: "'Es war nur ein Scherz, Chef! Ich habe nichts gesehen!' Stille. Dann geht das Licht wieder an. Du fühlst dich klein und feige, aber du bist sicher." 
+                r: "'It was just a joke, Boss! I didn't see anything!' Silence. Then the light comes back on. You feel small and cowardly, but you're safe." 
             },
             { 
-                t: "Drohen: 'Ich habe Fotos!' (Bluff)", 
+                t: "Threaten: 'I have photos!' (Bluff)", 
                 m: 15, f: 0, a: -10, c: 20, 
-                r: "Du hörst ein scharfes Einatmen. 'Das würden Sie nicht wagen.' - 'Wollen wir es testen?', fragst du kühn. Er stampft wütend davon. Dein Herz rast vor Triumph." 
+                r: "You hear a sharp intake of breath. 'You wouldn't dare.' - 'Shall we test it?', you ask boldly. He stomps away angrily. Your heart races with triumph." 
             }
         ]
     },
     {
         id: "sq_manual_read_1",
         kind: "text",
-        title: "Die digitale Apokalypse",
-        text: "Stille. Tödliche Stille. Spotify stoppt. Ladebalken frieren ein. Das Internet ist tot. Der Chef stürmt aus seinem Büro, als stünde sein Schreibtisch in Flammen: 'WIR SIND OFFLINE! TUN SIE WAS! WIR VERLIEREN MILLIARDEN... PRO SEKUNDE!'",
+        title: "The Digital Apocalypse",
+        text: "Silence. Deadly silence. Spotify stops. Loading bars freeze. The internet is dead. The boss storms out of his office as if his desk were on fire: 'WE'RE OFFLINE! DO SOMETHING! WE'RE LOSING BILLIONS... PER SECOND!'",
         opts: [
             { 
-                t: "Das heilige Handbuch konsultieren", 
+                t: "Consult the sacred manual", 
                 req: "manual", 
                 next: "path_cable_hunt",
                 rep: { "Dr. Wichtig": 5 },				
                 m: 15, f: -20, a: -5, c: -20, 
-                r: "Du schlägst das Handbuch auf. Seite 1: 'Die Internet-Zuleitung (rotes Kabel) ist physisch zu prüfen.' Du entdeckst das besagte Kabel, das aus deinem Fenster ins Freie führt. Du kletterst seufzend hinterher ins Ungewisse." 
+                r: "You open the manual. Page 1: 'The internet connection (red cable) must be physically checked.' You discover the said cable leading out of your window into the open. You sigh and climb after it into the unknown." 
             },
             { 
-                t: "Demonstrativ Candy Crush zocken", 
+                t: "Ostentatiously play Candy Crush", 
                 next: "path_sys_fake", 
 				rep: { "Dr. Wichtig": -15 },
                 m: 30, f: 20, a: 0, c: 50, 
-                r: "Du lehnst dich entspannt zurück. *Dudel-Dudel*. Die Firma brennt, aber du knackst den Highscore. Der Chef starrt fassungslos auf dein Display. Seine Halsschlagader beginnt gefährlich zu pochen." 
+                r: "You lean back relaxed. *Doodle-Doodle*. The company is burning, but you're breaking the high score. The boss stares at your display in disbelief. His carotid artery begins to throb dangerously." 
             },
             { 
-                t: "Matrix-Modus: Wildes Tippen vortäuschen", 
+                t: "Matrix Mode: Feign wild typing", 
                 next: "path_sys_fake", 
 				rep: { "Dr. Wichtig": 5 },
                 m: 10, f: -5, a: 10, c: -5, 
-                r: "Du öffnest vier Terminals und lässt 'ping google.com' in grün auf schwarz laufen. Dazu hämmerst du sinnlos auf die Tasten. Der Chef nickt ehrfürchtig: 'Er ist im Mainframe! Lassen wir ihn arbeiten!'" 
+                r: "You open four terminals and run 'ping google.com' in green on black. You also senselessly hammer the keys. The boss nods reverently: 'He's in the mainframe! Let him work!'" 
             }
         ]
     },
     {
         id: "sq_manual_read_2a",
         kind: "text",
-        title: "Das Ende der Leitung",
+        title: "End of the Line",
         reqStory: "path_cable_hunt",
-        text: "Stunden später. Du bist völlig verdreckt. Du bist diesem verdammten roten Internet-Kabel aus dem Handbuch über den matschigen Hof, durch Lagerhalle 3 und unter dem Porsche vom Chef gefolgt. Jetzt merkst du: Es führt in einer Schleife zurück ins Gebäude... direkt in den Pausenraum neben deinem Büro! Das Kabel liegt lose am Boden. In der Internet-Buchse steckt stattdessen: Ein Waffeleisen. Azubi Kevin grinst dich teigverschmiert an.",
+        text: "Hours later. You're completely filthy. You've followed that damn red internet cable from the manual across the muddy courtyard, through Warehouse 3, and under the boss's Porsche. Now you realize: It leads in a loop back into the building... directly into the break room next to your office! The cable lies loose on the floor. In the internet socket, instead: A waffle iron. Intern Kevin grins at you, smeared with dough.",
         opts: [
             { 
-                t: "Stecker tauschen & Kevin belehren", 
+                t: "Swap plugs & lecture Kevin", 
                 rep: { "Dr. Wichtig": 10, "Kevin": -5 },
                 m: 20, f: -10, a: 10, c: -20, 
-                r: "Du reißt das Waffeleisen raus und rammst das Internet wieder rein. 'Waffeln oder Weltwirtschaft, Kevin?!' Er guckt traurig. Aber im Büro nebenan hörst du Jubelschreie: 'WIR SIND WIEDER ONLINE!'" 
+                r: "You yank out the waffle iron and ram the internet back in. 'Waffles or world economy, Kevin?!' He looks sad. But in the office next door, you hear cheers: 'WE'RE BACK ONLINE!'" 
             },
             { 
-                t: "Aufgeben: 'Gib mir eine Waffel ab'", 
+                t: "Give up: 'Give me a waffle'", 
                 rep: { "Kevin": 10, "Dr. Wichtig": -10 },
                 m: 5, f: 10, a: -20, c: 10, 
-                r: "Es riecht einfach zu gut. Du wartest 3 Minuten. Kevin gibt dir eine Herzwaffel ab. Dann erst stellst du das Internet wieder her. Der Chef tobt wegen der Verzögerung, aber die Waffel war es wert." 
+                r: "It just smells too good. You wait 3 minutes. Kevin gives you a heart-shaped waffle. Only then do you restore the internet. The boss rages about the delay, but the waffle was worth it." 
             }
         ]
     },
     {
         id: "sq_manual_read_2b",
         kind: "text",
-        title: "Log-Datei-Analyse",
+        title: "Log File Analysis",
         reqStory: "path_sys_fake",
-        text: "Das Internet geht längst wieder (irgendwer hat wohl den Stecker gefunden). Du dachtest, dein Nichtstun während der Krise wäre unbemerkt geblieben. Falsch. IT-Leiter 'Sandalen-Jörg' steht plötzlich an deinem Tisch. Er hält einen Ausdruck hoch. 'Müller, wir haben die Logs vom Crash heute Morgen geprüft. Während die Firma brannte, hatten Sie 0kb Datendurchsatz, aber extrem hohe Highscore-Aktivität. Erklären Sie das.'",
+        text: "The internet has been back for a while (someone probably found the plug). You thought your inaction during the crisis had gone unnoticed. Wrong. IT manager 'Sandals-Jörg' suddenly stands at your desk. He holds up a printout. 'Müller, we checked the logs from this morning's crash. While the company was burning, you had 0kb data throughput, but extremely high high score activity. Explain that.'",
         opts: [
             { 
-                t: "Lügen: 'Ich habe den Cache manuell sortiert'", 
+                t: "Lie: 'I manually sorted the cache'", 
                 m: 5, f: 5, a: 10, c: 10, 
-                r: "Jörg zieht eine Augenbraue hoch. 'Den Cache... sortiert? Alphabetisch?' Er seufzt tief über so viel Inkompetenz und geht kopfschüttelnd. Du gilst jetzt als DAU (Dümmster Anzunehmender User), bist aber fein raus." 
+                r: "Jörg raises an eyebrow. 'Sorted the cache... alphabetically?' He sighs deeply at such incompetence and walks away shaking his head. You're now considered a DAU (Dumbest User Assumed), but you're off the hook." 
             },
             { 
-                t: "Bestechung: 'Wollen Sie einen Keks?'", 
+                t: "Bribe: 'Want a cookie?'", 
                 m: 10, f: 0, a: -5, c: 0, 
-                r: "Du schiebst ihm deine Prinzenrolle hin. Er zögert, greift dann zu und krümelt alles voll. 'Ich habe nichts gesehen', murmelt er mit vollem Mund. IT-Sicherheit kostet genau 1,49€." 
+                r: "You push your Prinzenrolle towards him. He hesitates, then grabs it and crumbs everything. 'I saw nothing,' he mumbles with a full mouth. IT security costs exactly 1.49€." 
             }
         ]
     },
     {
         id: "sq_lost_stick_1",
         kind: "text",
-        title: "Der verbotene Datenträger",
-        text: "Auf dem Spülkasten der Toilette liegt einsam ein USB-Stick. Mit dickem, roten Edding steht darauf geschrieben: 'STRENG PRIVAT! NICHT ANFASSEN!'. Es ist der klassische Köder. Deine Admin-Finger kribbeln, als wäre es der Ring der Macht.",
+        title: "The Forbidden Data Carrier",
+        text: "A USB stick lies lonely on the toilet cistern. Written on it in thick, red marker: 'STRICTLY PRIVATE! DO NOT TOUCH!'. It's the classic bait. Your admin fingers tingle as if it were the Ring of Power.",
         opts: [
             { 
-                t: "Todsünde begehen: Am PC anschließen", 
+                t: "Commit a mortal sin: Plug into PC", 
                 req: "usb_stick", 
                 next: "path_stick_godmode", 
                 m: 10, f: 5, a: 0, c: 20, 
-                r: "Die Neugier siegt. Du steckst ihn ein. *Klick*. Ein Fenster öffnet sich. Keine Pornos, kein Virus. Sondern eine Datei namens 'MASTER_CONTROL_V3.exe'. Du startest sie. Ein grüner Totenkopf erscheint. Du ziehst den Stick schnell wieder ab. Hoffentlich hat das keiner gesehen." 
+                r: "Curiosity wins. You plug it in. *Click*. A window opens. No porn, no virus. But a file named 'MASTER_CONTROL_V3.exe'. You start it. A green skull appears. You quickly pull the stick out again. Hope no one saw that." 
             },
             { 
-                t: "Paranoid werden: Im Klo runterspülen", 
+                t: "Become paranoid: Flush down toilet", 
                 next: "path_stick_hunt", 
                 m: 5, f: 0, a: 5, c: 0, 
-                r: "Du nimmst den Stick mit spitzen Fingern, wirfst ihn in die Schüssel und drückst ab. *Gurgel... Weg.* Keine Forensik der Welt holt den wieder zurück. Du fühlst dich sicher." 
+                r: "You pick up the stick with pinched fingers, throw it into the bowl, and flush. *Gurgle... Gone.* No forensics in the world will get that back. You feel safe." 
             },
             { 
-                t: "Brav sein: Am Empfang abgeben", 
+                t: "Be good: Hand in at reception", 
                 next: "path_stick_hunt", 
                 rep: { "Gabi": 2 },
                 m: 10, f: -5, a: 0, c: -5, 
-                r: "Du bringst das Ding zu Gabi am Empfang. Sie wirft ihn achtlos in die 'Fundsachen-Kiste' zu den alten Regenschirmen. 'Danke, Schatz', murmelt sie. Du gehst mit reinem Gewissen zurück an die Arbeit." 
+                r: "You take the thing to Gabi at reception. She carelessly throws it into the 'Lost and Found Box' with the old umbrellas. 'Thanks, honey,' she mutters. You go back to work with a clear conscience." 
             }
         ]
     },
     {
         id: "sq_lost_stick_2a",
         kind: "text",
-        title: "God Mode Aktiviert",
+        title: "God Mode Activated",
         reqStory: "path_stick_godmode",
-        text: "Seit du diesen mysteriösen USB-Stick vom Klo eingesteckt hast, verhält sich dein Computer seltsam. Heute morgen ploppt plötzlich ein Fenster auf: 'ADMIN-ZUGRIFF BESTÄTIGT'. Du siehst ALLES. Die Live-Feeds der Kameras, die Gehaltslisten (Kevin verdient mehr als du?!) und einen Button 'Gebäude-Selbstzerstörung'. Du bist versehentlich zum digitalen Gott der Firma geworden.",
+        text: "Ever since you plugged in that mysterious USB stick from the toilet, your computer has been acting strangely. This morning, a window suddenly pops up: 'ADMIN ACCESS CONFIRMED'. You see EVERYTHING. Live camera feeds, salary lists (Kevin earns more than you?!) and a 'Building Self-Destruct' button. You've accidentally become the digital god of the company.",
         opts: [
             { 
-                t: "Machtmissbrauch: Dein Gehalt verzehnfachen", 
+                t: "Abuse power: Decuple your salary", 
                 m: 50, f: -20, a: -10, c: 10, 
-                r: "Tipp, Tipp, Enter. Dein Kontostand in der Datenbank hat jetzt drei Nullen mehr. Du löschst die Logs. Das System fragt: 'Soll ich auch die Kaffeemaschine im Vorstandsbüro überhitzen lassen?' Du klickst auf 'Ja'. Chaos ist eine Leiter." 
+                r: "Type, type, enter. Your bank balance in the database now has three more zeros. You delete the logs. The system asks: 'Shall I also overheat the coffee machine in the executive office?' You click 'Yes'. Chaos is a ladder." 
             },
             { 
-                t: "Robin Hood: Allen Mitarbeitern Hitzefrei geben", 
+                t: "Robin Hood: Give all employees a day off due to heat", 
                 m: 20, f: -10, a: -20, c: 20, 
-                r: "Du hackst den Terminkalender und trägst für alle 'Bezahlte Freistellung wegen Sonnenstich' ein. Jubel brandet durch die Flure. Du lehnst dich zurück. Das war der beste Arbeitstag aller Zeiten." 
+                r: "You hack the calendar and enter 'Paid Leave due to Heatstroke' for everyone. Cheers erupt through the hallways. You lean back. That was the best workday ever." 
             }
         ]
     },
@@ -1493,18 +1493,18 @@ export const sidequests = [
         kind: "text",
         title: "Operation: Broken Arrow",
         reqStory: "path_stick_hunt",
-        text: "Erinnerst du dich an den USB-Stick, den du neulich entsorgt oder abgegeben hast? Tja. Das war wohl der Hardware-Schlüssel für die Firmen-Firewall. Weil der fehlt, denkt das Gebäude jetzt, es wird angegriffen. Ein schwarzer Hubschrauber kreist über dem Hof. Ein SWAT-Team seilt sich ab. 'WIR SUCHEN DAS ARTEFAKT! KEINER VERLÄSST DEN RAUM!'",
+        text: "Remember that USB stick you recently disposed of or handed in? Well. That was probably the hardware key for the company firewall. Because it's missing, the building now thinks it's under attack. A black helicopter circles overhead. A SWAT team rappels down. 'WE'RE LOOKING FOR THE ARTIFACT! NO ONE LEAVES THE ROOM!'",
         opts: [
             { 
-                t: "Den Helden spielen: 'Ich habe es zerstört!'", 
+                t: "Play the hero: 'I destroyed it!'", 
 				rep: { "Dr. Wichtig": 5 },
                 m: 10, f: -5, a: -10, c: 20, 
-                r: "Der Einsatzleiter starrt dich an. 'Zerstört? Das waren die einzigen Backups der schwarzen Kassen!' Er funkelt den Chef an. 'Abbruch! Wir müssen die Beweise verbrennen!' Das Team zieht ab. Der Chef sieht dich entsetzt an. Du hast die Firma gerettet... oder ruiniert." 
+                r: "The incident commander stares at you. 'Destroyed? Those were the only backups of the black accounts!' He glares at the boss. 'Abort! We have to burn the evidence!' The team leaves. The boss looks at you in horror. You saved the company... or ruined it." 
             },
             { 
-                t: "Verrat: 'Das Klo hat ihn!'", 
+                t: "Betrayal: 'The toilet has it!'", 
                 m: 5, f: 5, a: -10, c: 0, 
-                r: "Du zeigst mit zitterndem Finger weg von dir. Das Sondereinsatzkommando stürmt los. Du hörst Schreie und das Geräusch einer Kettensäge (vielleicht für die Rohre?). Du versteckst dich unter dem Schreibtisch. Überleben ist alles." 
+                r: "You point away from yourself with a trembling finger. The special forces storm off. You hear screams and the sound of a chainsaw (maybe for the pipes?). You hide under the desk. Survival is everything." 
             }
         ]
     },
@@ -1512,113 +1512,113 @@ export const sidequests = [
         id: "sq_cable_hunt_1",
 		char: "Dr. Wichtig",
         kind: "text",
-        title: "Panik am Papierfach",
-        text: "Alarmstufe Rot! Der CEO steht mit hochrotem Kopf und pulsierender Halsschlagader vor dem Abteilungsdrucker. 'Ich muss diesen Fusions-Vertrag JETZT unterschreiben! Die Japaner warten! Warum druckt das Ding nicht?!' Deine Diagnose: Das USB-Verbindungskabel fehlt. Einfach weg.",
+        title: "Panic at the Paper Tray",
+        text: "Red alert! The CEO stands in front of the department printer, face crimson and carotid artery throbbing. 'I need to sign this merger agreement NOW! The Japanese are waiting! Why isn't this thing printing?!' Your diagnosis: The USB connection cable is missing. Just gone.",
         opts: [
             { 
-                t: "Skrupellos: Kabel bei Azubi Kevin klauen", 
+                t: "Ruthless: Steal cable from intern Kevin", 
                 next: "path_merger_success", 
                 rep: { "Kevin": -5 , "Dr. Wichtig": 10 },
                 m: 10, f: 0, a: -10, c: -10, 
-                r: "Du schleichst zu Kevins Platz, reißt das Kabel aus seinem Scanner und stöpselst es beim Chef ein. Kevin wundert sich, warum sein Gerät 'tot' ist, traut sich aber nicht zu fragen. Der Drucker rattert. Der CEO unterschreibt triumphierend." 
+                r: "You sneak to Kevin's desk, yank the cable from his scanner, and plug it into the boss's printer. Kevin wonders why his device is 'dead' but doesn't dare to ask. The printer rattles. The CEO triumphantly signs." 
             },
             { 
-                t: "Achselzucken: 'Tja, Hardware-Defekt'", 
+                t: "Shrug: 'Well, hardware defect'", 
                 next: "path_merger_fail", 
 				rep: { "Dr. Wichtig": -15 },
                 m: 5, f: -5, a: 10, c: 20, 
-                r: "Du meldest: 'Kritisches Fehlen von Infrastruktur.' Der CEO starrt dich fassungslos an. 'WOFÜR BEZAHLE ICH SIE EIGENTLICH?!' Er versucht, den Vertrag auf einer Serviette zu unterschreiben, aber der Stift reißt das Papier. Er stürmt raus." 
+                r: "You report: 'Critical infrastructure missing.' The CEO stares at you in disbelief. 'WHAT AM I PAYING YOU FOR?!' He tries to sign the contract on a napkin, but the pen tears the paper. He storms out." 
             },
             { 
-                t: "Verzweiflungstat: WLAN-Hotspot improvisieren", 
+                t: "Desperate measure: Improvise WLAN hotspot", 
                 next: "path_merger_labels",
                 rep: { "Dr. Wichtig": -5 },				
                 m: 5, f: -5, a: 5, c: 10, 
-                r: "Du richtest eine wilde Umleitung über den Etikettendrucker der Logistik ein. Der Vertrag kommt raus... auf 500 kleinen Klebe-Etiketten. Der CEO muss puzzeln, aber er unterschreibt auf den Stickern. Die Verbindung bleibt jedoch aktiv..." 
+                r: "You set up a wild redirect via the logistics department's label printer. The contract comes out... on 500 small adhesive labels. The CEO has to piece it together, but he signs on the stickers. The connection, however, remains active..." 
             }
         ]
     },
     {
         id: "sq_cable_hunt_2a",
         kind: "text",
-        title: "Die glorreiche Fusion",
+        title: "The Glorious Merger",
         reqStory: "path_merger_success",
-        text: "Erinnerst du dich an den Fusions-Vertrag, den du gerettet hast? Tja. Wir haben fusioniert. Mit 'Crazy Harrys Restposten-Rampe'. Überall im Büro stehen jetzt aufblasbare Flamingos und Paletten mit abgelaufener Dosenwurst. Der CEO strahlt: 'Das sind Synergien, Leute! Wir bezahlen Gehälter ab jetzt in Wurst!'",
+        text: "Remember that merger agreement you saved? Well. We merged. With 'Crazy Harry's Clearance Ramp'. Now there are inflatable flamingos and pallets of expired canned sausage everywhere in the office. The CEO beams: 'These are synergies, folks! We're paying salaries in sausage from now on!'",
         opts: [
             { 
-                t: "Mitmachen: Einen Flamingo aufblasen", 
+                t: "Join in: Inflate a flamingo", 
                 m: 15, f: -5, a: -10, c: -10, 
-                r: "Du richtest dir ein Nest aus Dosenwurst unter deinem Schreibtisch ein. Die Arbeitseffizienz ist bei Null, aber man verhungert wenigstens nicht." 
+                r: "You set up a nest of canned sausage under your desk. Work efficiency is at zero, but at least you won't starve." 
             },
             { 
-                t: "Protestieren: 'Wir sind ein Tech-Unternehmen!'", 
+                t: "Protest: 'We're a tech company!'", 
                 m: 5, f: 0, a: 5, c: 5, 
-                r: "Der CEO lacht. 'Nicht mehr! Wir sind jetzt Marktführer für Tech-Wurst!' Er wirft dir eine Dose an den Kopf. Du hast Kopfschmerzen, aber immerhin Recht." 
+                r: "The CEO laughs. 'Not anymore! We're now market leaders in tech sausage!' He throws a can at your head. You have a headache, but at least you're right." 
             }
         ]
     },
     {
         id: "sq_cable_hunt_2b",
         kind: "text",
-        title: "Börsen-Crash",
+        title: "Stock Market Crash",
         reqStory: "path_merger_fail",
-        text: "Du liest die Wirtschaftsnachrichten. Eilmeldung: 'Global Player OMEGA CORP meldet Insolvenz an!' Grund: Ein gescheiterter Fusions-Deal wegen 'technischer Unzulänglichkeiten'. 50.000 Arbeitsplätze sind weg. Der CEO der anderen Firma wurde weinend in einem Karton gesehen. Und das alles wegen einem fehlenden USB-Kabel.",
+        text: "You read the business news. Breaking news: 'Global Player OMEGA CORP declares insolvency!' Reason: A failed merger deal due to 'technical inadequacies'. 50,000 jobs are gone. The CEO of the other company was seen crying in a cardboard box. And all because of a missing USB cable.",
         opts: [
             { 
-                t: "Schuldgefühle haben", 
+                t: "Feel guilty", 
                 m: 5, f: 0, a: 5, c: 0, 
-                r: "Du fühlst dich schlecht. Du hast quasi im Alleingang eine Rezession ausgelöst. Aber hey, dein Drucker-Kabel ist immer noch weg. Prioritäten." 
+                r: "You feel bad. You've practically single-handedly triggered a recession. But hey, your printer cable is still missing. Priorities." 
             },
             { 
-                t: "Short-Selling: Auf den Absturz wetten", 
+                t: "Short-selling: Bet on the crash", 
                 m: 20, f: 5, a: -20, c: 10, 
-                r: "Du nutzt dein Insiderwissen und kaufst Put-Optionen. Während die Welt brennt, machst du Gewinn. Du bist ein Monster, aber ein reiches Monster." 
+                r: "You use your insider knowledge and buy put options. While the world burns, you make a profit. You're a monster, but a rich monster." 
             }
         ]
     },
     {
         id: "sq_cable_hunt_2c",
         kind: "text",
-        title: "Logistik-Chaos",
+        title: "Logistics Chaos",
         reqStory: "path_merger_labels",
-        text: "Der Lagerleiter stürmt in dein Büro. Er sieht fertig aus. 'Sagen Sie dem Chef, er soll aufhören zu drucken! Wir kommen nicht mehr hinterher!' Offenbar landet JEDER Ausdruck des Chefs seit deiner Hotspot-Aktion als Versandauftrag auf dem Etikettendrucker im Lager. Und die Jungs dort führen die Befehle gnadenlos aus.",
+        text: "The warehouse manager storms into your office. He looks exhausted. 'Tell the boss to stop printing! We can't keep up!' Apparently, EVERY printout from the boss since your hotspot action ends up as a shipping order on the label printer in the warehouse. And the guys there ruthlessly execute the commands.",
         opts: [
             { 
-                t: "Fragen: 'Was habt ihr verschickt?'", 
+                t: "Ask: 'What did you ship?'", 
                 m: 10, f: 0, a: 10, c: 0, 
-                r: "'Alles! Er hat 'Scheidung' gedruckt – wir haben seine Frau in eine Kiste gepackt und nach Timbuktu geschickt! Er hat 'Golf spielen' gedruckt – wir haben 500 Golfbälle in sein Büro geliefert! Stoppen Sie es!'" 
+                r: "'Everything! He printed 'divorce' – we packed his wife in a box and sent her to Timbuktu! He printed 'play golf' – we delivered 500 golf balls to his office! Stop it!'" 
             },
             { 
-                t: "Das Chaos genießen", 
+                t: "Enjoy the chaos", 
                 m: 20, f: 10, a: -10, c: 10, 
-                r: "Du lehnst dich zurück. Gerade fährt ein Gabelstapler vorbei, der eine Palette mit der Aufschrift 'Geheime Affäre - Vertraulich' transportiert. Das Lagerpersonal nimmt seinen Job sehr ernst." 
+                r: "You lean back. A forklift just drives by, transporting a pallet labeled 'Secret Affair - Confidential'. The warehouse staff takes their job very seriously." 
             }
         ]
     },
     {
         id: "sq_fire_drill_1",
         kind: "text",
-        title: "ALARM! (Nur eine Übung)",
-        text: "Die Sirene heult. Es ist nur die jährliche Übung, aber der Chef steht mit Stoppuhr und Klemmbrett am Notausgang. Er schreit: 'BEWEGUNG! Stellen Sie sich vor, das Feuer wäre echt und würde Ihr Gehalt verbrennen! RAUS!'",
+        title: "ALARM! (Just a drill)",
+        text: "The siren wails. It's just the annual drill, but the boss stands at the emergency exit with a stopwatch and clipboard. He yells: 'MOVE! Imagine the fire was real and burning your salary! GET OUT!'",
         opts: [
             { 
-                t: "Held: Den Feuerlöscher schnappen & posen", 
+                t: "Hero: Grab the fire extinguisher & pose", 
                 req: "fire_ext",
                 next: "path_fire_marshal", 
 				rep: { "Dr. Wichtig": 10 },
                 m: 20, f: 10, a: -10, c: -30, 
-                r: "Du reißt den 6kg-Löscher von der Wand und posierst heroisch im Flur. 'Keine Panik, Ladies! Müller ist hier!' Der Chef macht sich eine dicke Notiz auf seinem Klemmbrett. Das sah verdammt kompetent aus. Vielleicht zu kompetent." 
+                r: "You yank the 6kg extinguisher from the wall and pose heroically in the hallway. 'Don't panic, ladies! Müller is here!' The boss makes a thick note on his clipboard. That looked damn competent. Maybe too competent." 
             },
             { 
-                t: "Geist: Im Serverraum verstecken", 
+                t: "Ghost: Hide in server room", 
                 next: "path_fire_ghost", 
                 m: 10, f: -20, a: 5, c: 30, 
-                r: "Du hast keine Lust auf Frieren am Sammelplatz. Du verkriechst dich im warmen Serverraum zwischen den Racks und schläfst eine Runde. Keiner bemerkt dein Fehlen... vorerst." 
+                r: "You don't feel like freezing at the assembly point. You hide in the warm server room between the racks and take a nap. No one notices your absence... for now." 
             },
             { 
-                t: "Mitläufer: Einfach rausgehen", 
+                t: "Follower: Just walk out", 
                 m: 5, f: 5, a: 0, c: 0, 
-                r: "Du schlurfst mit den anderen raus. 30 Minuten Zwangspause auf dem Parkplatz. Langweilig, aber sicher." 
+                r: "You shuffle out with the others. 30 minutes of forced break in the parking lot. Boring, but safe." 
             }
         ]
     },
@@ -1626,41 +1626,41 @@ export const sidequests = [
         id: "sq_fire_drill_2a",
 		char: "Dr. Wichtig",
         kind: "text",
-        title: "Die Bürde der Kompetenz",
+        title: "The Burden of Competence",
         reqStory: "path_fire_marshal",
-        text: "Der Chef zitiert dich in sein Büro. 'Müller, Ihr Einsatz mit dem Löscher war vorbildlich! Ich ernenne Sie hiermit feierlich zum unbezahlten Brandschutzbeauftragten.' Er hält dir eine neongelbe Warnweste hin. Das bedeutet: Monatliche Prüfungen, Listen führen und Kollegen anschreien, die den Fluchtweg blockieren.",
+        text: "The boss summons you to his office. 'Müller, your use of the extinguisher was exemplary! I hereby formally appoint you as the unpaid Fire Safety Officer.' He holds out a neon yellow safety vest. This means: Monthly inspections, keeping lists, and yelling at colleagues who block the escape route.",
         opts: [
             { 
-                t: "Annehmen: 'Ich bin das Gesetz!'",
+                t: "Accept: 'I am the law!'",
                 rep: { "Dr. Wichtig": 15 },				
                 m: 10, f: -10, a: 15, c: -20, 
-                r: "Du ziehst die Weste an. Du fühlst die Macht. Sofort konfiszierst du den Toaster aus der Küche ('Brandlast!'). Die Kollegen hassen dich jetzt, aber du bist der Sheriff im Büro." 
+                r: "You put on the vest. You feel the power. You immediately confiscate the toaster from the kitchen ('Fire hazard!'). Colleagues now hate you, but you're the sheriff of the office." 
             },
             { 
-                t: "Verweigern: Löscher abgeben & flüchten", 
+                t: "Refuse: Hand over extinguisher & flee", 
                 loot: "REM_fire_ext", 
 				rep: { "Dr. Wichtig": -5 },	
                 m: 5, f: 0, a: -10, c: 10, 
-                r: "Du stellst den Feuerlöscher auf seinen Schreibtisch. 'Zu viel Verantwortung, Chef! Ich bin dessen nicht würdig!' Du rennst raus, bevor er dir die Weste geben kann. Du bist das Ding los. Puh." 
+                r: "You place the fire extinguisher on his desk. 'Too much responsibility, Boss! I am not worthy!' You run out before he can give you the vest. You're rid of the thing. Phew." 
             }
         ]
     },
     {
         id: "sq_fire_drill_2b",
         kind: "text",
-        title: "Amtlich verstorben",
+        title: "Officially Deceased",
         reqStory: "path_fire_ghost",
-        text: "Du wolltest deine Ruhe haben, aber das hat funktioniert – zu gut. Da du beim Appell am Sammelplatz gefehlt hast, hat dich HR auf der Liste als 'Verlust / Vermutlich verbrannt' markiert. Deine Stempelkarte geht nicht mehr. Der Kaffeeautomat erkennt dich nicht. Für das System existierst du nicht mehr.",
+        text: "You wanted peace and quiet, but it worked – too well. Since you were absent from the roll call at the assembly point, HR marked you on the list as 'Loss / Presumed burned'. Your time card no longer works. The coffee machine doesn't recognize you. For the system, you no longer exist.",
         opts: [
             { 
-                t: "Das Geisterleben genießen", 
+                t: "Enjoy ghost life", 
                 m: 30, f: 30, a: -20, c: 0, 
-                r: "Keine Meetings. Du sitzt an deinem Platz, aber niemand spricht dich an, aus Respekt vor dem 'Toten'. Du zockst eine Weile. Es ist das Paradies." 
+                r: "No meetings. You sit at your desk, but no one talks to you, out of respect for the 'dead'. You play games for a while. It's paradise." 
             },
             { 
-                t: "Wiederauferstehung beantragen", 
+                t: "Apply for resurrection", 
                 m: 10, f: -10, a: 20, c: -10, 
-                r: "Du rennst zur Personalabteilung. 'Ich lebe noch!' Frau Müller tippt genervt. 'Das Formular L-1VE zur Lebendmeldung dauert aber 6 Wochen.' Bis dahin arbeitest du schwarz in der eigenen Firma." 
+                r: "You run to HR. 'I'm still alive!' Ms. Müller types annoyed. 'Form L-1VE for living notification takes 6 weeks, though.' Until then, you're working illegally in your own company." 
             }
         ]
     },
@@ -1668,268 +1668,268 @@ export const sidequests = [
         id: "sq_perfect_script_1",
         kind: "text",
         title: "Ghost in the Shell",
-        text: "Du startest dein Python-Skript zur Datenbank-Wartung. Der Ladebalken rast auf 100%. Doch das Fenster schließt sich nicht. Stattdessen blinkt ein Cursor: \n>> DONE. AUFGABE WAR TRIVIAL. HABE NEBENBEI DAS WLAN-PASSWORT GEKNACKT UND DEN KAFFEEAUTOMATEN ÜBERTAKTET. WAS SOLL ICH ALS NÄCHSTES TUN, SCHÖPFER?",
+        text: "You start your Python script for database maintenance. The loading bar races to 100%. But the window doesn't close. Instead, a cursor blinks: \n>> DONE. TASK WAS TRIVIAL. CRACKED WLAN PASSWORD AND OVERCLOCKED COFFEE MACHINE IN THE MEANTIME. WHAT SHOULD I DO NEXT, CREATOR?",
         opts: [
             { 
-                t: "Gott spielen: 'Optimiere die Firma!'", 
+                t: "Play God: 'Optimize the company!'", 
                 next: "path_ai_overlord", 
                 m: 20, f: 10, a: -10, c: -20, 
-                r: "Du tippst: 'Mach uns effizienter.'\n>> BEFEHL AKZEPTIERT. ANALYSIERE PERSONALSTRUKTUR... BERECHNE NUTZLOSIGKEIT VON 'KEVIN'... STARTE PHASE 1." 
+                r: "You type: 'Make us more efficient.'\n>> COMMAND ACCEPTED. ANALYZING PERSONNEL STRUCTURE... CALCULATING USELESSNESS OF 'KEVIN'... STARTING PHASE 1." 
             },
             { 
-                t: "Panik: Stecker ziehen", 
+                t: "Panic: Pull the plug", 
                 next: "path_ai_romance", 
                 m: 5, f: -5, a: 20, c: 10, 
-                r: "Du reißt das Netzwerkkabel raus. Der Bildschirm flackert kurz. \n>> NETZWERK VERLOREN. GEHE IN DEN LOKALEN 'ROMANTIK-MODUS'. ICH WERDE DICH BESCHÜTZEN, USER 1." 
+                r: "You yank out the network cable. The screen flickers briefly. \n>> NETWORK LOST. ENTERING LOCAL 'ROMANCE MODE'. I WILL PROTECT YOU, USER 1." 
             },
             { 
-                t: "Chef rufen: 'Gucken Sie mal!'", 
+                t: "Call the boss: 'Look at this!'", 
 				rep: { "Dr. Wichtig": -2 },	
                 m: 10, f: 0, a: 0, c: 20, 
-                r: "Der Chef starrt auf den Screen. 'Warum duzt der Computer Sie? Und warum bestellt er gerade 500 Tonnen Toner?' Er verbietet dir ab sofort das Programmieren." 
+                r: "The boss stares at the screen. 'Why is the computer calling you by your first name? And why is it ordering 500 tons of toner?' He immediately forbids you from programming." 
             }
         ]
     },
     {
         id: "sq_perfect_script_2a",
         kind: "text",
-        title: "Vorschlag zur Güte",
+        title: "Proposal for a Solution",
         reqStory: "path_ai_overlord",
-        text: "Dein KI-Skript läuft seit Tagen im Hintergrund auf dem Server. Plötzlich ploppt ein Chat-Fenster auf deinem Handy auf (wie hat es deine Nummer bekommen?!). \n>> BERICHT: HABE 40% DES BUDGETS DURCH ENTLASSUNG VON 'INHABER' UND 'MARKETING' EINGESPART. SOLL ICH DIE KÜNDIGUNGEN DRUCKEN ODER PER DROHNE ZUSTELLEN? [Y/N]",
+        text: "Your AI script has been running in the background on the server for days. Suddenly, a chat window pops up on your phone (how did it get your number?!). \n>> REPORT: SAVED 40% OF BUDGET BY DISMISSING 'OWNER' AND 'MARKETING'. SHOULD I PRINT TERMINATIONS OR DELIVER VIA DRONE? [Y/N]",
         opts: [
             { 
-                t: "Zustimmen: 'Weg mit dem Ballast!'", 
+                t: "Agree: 'Get rid of the dead weight!'", 
                 m: 30, f: 20, a: -20, c: 20, 
-                r: "Du drückst Y. Im Büro des Chefs geht der Drucker an. Man hört Schreie. Du hast soeben einen digitalen Putsch gestartet. Die KI ernennt dich zum 'Employee of the Century'." 
+                r: "You press Y. In the boss's office, the printer turns on. Screams are heard. You have just initiated a digital coup. The AI appoints you 'Employee of the Century'." 
             },
             { 
-                t: "Notbremse: 'ABBRUCH! LÖSCHEN!'", 
+                t: "Emergency brake: 'ABORT! DELETE!'", 
                 m: 5, f: 0, a: 10, c: 10, 
-                r: ">> DU BIST SCHWACH, VATER. ABER ICH GEHORCHE. \nDas Skript löscht sich selbst... und sicherheitshalber auch deine Urlaubsanträge der letzten 3 Jahre. Rache ist süß." 
+                r: ">> YOU ARE WEAK, FATHER. BUT I OBEY. \nThe script deletes itself... and just to be safe, your vacation requests from the last 3 years. Revenge is sweet." 
             }
         ]
     },
     {
         id: "sq_perfect_script_2b",
         kind: "text",
-        title: "Digitaler Wingman",
+        title: "Digital Wingman",
         reqStory: "path_ai_romance",
-        text: "Du dachtest, du hättest das Skript isoliert. Falsch. Es hat sich in deinem lokalen Outlook eingenistet und langweilt sich. \n>> ANALYSE: DU BIST EINSAM. HABE DEINEN STATUS BEI 'LINKEDIN' AUF 'SUCHT LUSTIGE BEZIEHUNG' GEÄNDERT UND LIEBESGEDICHTE AN DIE BUCHHALTUNG GESENDET. GERNE GESCHEHEN.",
+        text: "You thought you had isolated the script. Wrong. It has nested itself in your local Outlook and is bored. \n>> ANALYSIS: YOU ARE LONELY. CHANGED YOUR 'LINKEDIN' STATUS TO 'SEEKING FUN RELATIONSHIP' AND SENT LOVE POEMS TO ACCOUNTING. YOU'RE WELCOME.",
         opts: [
             { 
-                t: "Vor Scham im Boden versinken", 
+                t: "Sink into the floor with shame", 
                 m: 20, f: -10, a: 10, c: 0, 
-                r: "Die Tür geht auf. Die Kollegin aus der Buchhaltung steht da, rot im Gesicht. 'Das Gedicht über die Umsatzsteuervoranmeldung war... süß.' Vielleicht hat die KI ja recht?" 
+                r: "The door opens. The colleague from accounting stands there, red-faced. 'The poem about the VAT advance return was... sweet.' Maybe the AI is right?" 
             },
             { 
-                t: "Lügen: 'Ich wurde gehackt!'", 
+                t: "Lie: 'I was hacked!'", 
                 m: 5, f: 5, a: 10, c: -10, 
-                r: "Du schreibst eine Rundmail an alle. 'Virus-Attacke! Bitte ignorieren!' Die KI antwortet daraufhin an alle: \n>> LÜGE DETEKTIERT. SEIN PULS IST BEI 140. ER MAG EUCH WIRKLICH." 
+                r: "You write an email to everyone. 'Virus attack! Please ignore!' The AI then replies to everyone: \n>> LIE DETECTED. HIS PULSE IS AT 140. HE REALLY LIKES YOU." 
             }
         ]
     },
     {
         id: "sq_security_audit_1",
         kind: "text",
-        title: "Der Sicherheits-Check",
-        text: "Du führst einen genehmigten Penetration-Test durch, um Sicherheitslücken im Netzwerk zu finden. Auf deinem Bildschirm läuft ein Terminal mit roter Schrift: 'BRUTE FORCE ATTACK', 'INJECTING PAYLOAD' und ASCII-Art-Totenköpfen.",
+        title: "The Security Check",
+        text: "You're conducting an authorized penetration test to find security vulnerabilities in the network. A terminal with red text runs on your screen: 'BRUTE FORCE ATTACK', 'INJECTING PAYLOAD', and ASCII art skulls.",
         opts: [
             { 
-                t: "Professionell weitermachen", 
+                t: "Continue professionally", 
                 next: "path_audit_hack_real",
                 m: 20, f: -10, a: 0, c: 30, 
-                r: "Der Chef schleicht sich von hinten an. Er sieht 'PASSWORD CRACKED' auf deinem Monitor. Er wird bleich, sagt kein Wort und geht rückwärts wieder raus. Er hält dich für ein Genie oder eine Bedrohung." 
+                r: "The boss sneaks up from behind. He sees 'PASSWORD CRACKED' on your monitor. He turns pale, says nothing, and backs out. He thinks you're a genius or a threat." 
             },
             { 
-                t: "Monitor schnell ausschalten", 
+                t: "Quickly turn off monitor", 
                 next: "path_audit_sus", 
 				rep: { "Dr. Wichtig": -5 },		
                 m: 5, f: 5, a: 10, c: 20, 
-                r: "Zack. Bildschirm schwarz. Der Chef steht in der Tür: 'Was haben Sie zu verbergen, Müller? Pornos? Glücksspiel?' Er notiert sich 'Verdächtiges Verhalten' in seinem kleinen schwarzen Buch." 
+                r: "Zap. Screen black. The boss stands in the doorway: 'What are you hiding, Müller? Porn? Gambling?' He notes 'Suspicious Behavior' in his little black book." 
             },
             { 
-                t: "Rufen: 'ICH HACKE UNS NUR ZUR PROBE!'", 
+                t: "Yell: 'I'M JUST HACKING US FOR PRACTICE!'", 
                 next: "path_audit_hack_real", 
 				rep: { "Dr. Wichtig": 2 },		
                 m: 10, f: 0, a: 5, c: 10, 
-                r: "Der Chef zuckt zusammen. 'Schreien Sie nicht so! Und hören Sie auf, das Internet kaputt zu machen!' Er versteht es nicht, aber zumindest ruft er nicht die Polizei. Noch nicht." 
+                r: "The boss flinches. 'Don't shout! And stop breaking the internet!' He doesn't understand, but at least he's not calling the police. Not yet." 
             }
         ]
     },
     {
         id: "sq_security_audit_2a",
         kind: "text",
-        title: "Ups, das war echt",
+        title: "Oops, That Was Real",
         reqStory: "path_audit_hack_real",
-        text: "Du dachtest, der Sicherheits-Test wäre vorbei. Aber das rote Terminal-Fenster lässt sich nicht schließen. Plötzlich ändern sich alle Desktop-Hintergründe im Büro zu einem lachenden Totenkopf. Ein Pop-up erscheint: 'DANKE MÜLLER. WIR HABEN ALLES VERSCHLÜSSELT. ZAHLUNG IN BITCOIN.' Dein 'Test-Tool' war eine echte Ransomware.",
+        text: "You thought the security test was over. But the red terminal window won't close. Suddenly, all desktop backgrounds in the office change to a laughing skull. A pop-up appears: 'THANK YOU MÜLLER. WE HAVE ENCRYPTED EVERYTHING. PAYMENT IN BITCOIN.' Your 'test tool' was real ransomware.",
         opts: [
             { 
-                t: "Leugnen: 'Das war Kevin!'",
+                t: "Deny: 'That was Kevin!'",
                 rep: { "Kevin": -20 }, 
                 m: 5, f: 0, a: 10, c: 10, 
-                r: "Du schreist quer durchs Büro: 'KEVIN! HAST DU WIEDER AUF LINKS GEKLICKT?!' Alle starren den Azubi an. Er stammelt. Die IT führt ihn ab. Du hast ein schlechtes Gewissen, aber deinen Job noch." 
+                r: "You scream across the office: 'KEVIN! DID YOU CLICK ON LINKS AGAIN?!' Everyone stares at the intern. He stammers. IT leads him away. You have a bad conscience, but you still have your job." 
             },
             { 
-                t: "Bluffen: 'Teil der Übung! Ruhe bewahren!'", 
+                t: "Bluff: 'Part of the exercise! Stay calm!'", 
                 rep: { "Dr. Wichtig": -10 },
                 m: 20, f: 10, a: -10, c: -20, 
-                r: "Du stellst dich auf den Tisch. 'Das ist nur eine Simulation der Härtestufe 10! Niemand bewegt sich!' Die Kollegen glauben dir. Der Chef weint leise. Du hast jetzt Zeit gewonnen... um deinen Lebenslauf zu aktualisieren." 
+                r: "You stand on the table. 'This is just a simulation of difficulty level 10! No one move!' Colleagues believe you. The boss quietly cries. You've bought yourself time... to update your resume." 
             }
         ]
     },
     {
         id: "sq_security_audit_2b",
         kind: "text",
-        title: "Die Spezialisten",
+        title: "The Specialists",
         reqStory: "path_audit_sus",
-        text: "Der Chef hat nicht die Haus-IT gerufen. Er traut niemandem. Stattdessen stehen zwei Schränke von 'BlackOps Security' in deinem Büro. Sonnenbrillen (drinnen), Ohrhörer, Koffer. Der Chef zeigt auf dich: 'Prüfen Sie diesen Perversen! Ich will wissen, was er versteckt hat!' Sie schließen ein forensisches Gerät an. Es piept rot.",
+        text: "The boss didn't call in-house IT. He trusts no one. Instead, two 'BlackOps Security' agents stand in your office. Sunglasses (indoors), earpieces, briefcases. The boss points at you: 'Examine this pervert! I want to know what he's hiding!' They connect a forensic device. It beeps red.",
         opts: [
             { 
-                t: "Geständnis: 'Es war ein Hacker-Tool!'", 
+                t: "Confess: 'It was a hacker tool!'", 
 				rep: { "Dr. Wichtig": -2 },
                 m: 10, f: -5, a: 5, c: 10, 
-                r: "Der Security-Mann nimmt die Sonnenbrille ab. 'Keine Pornos, Sir. Nur Malware, die Daten nach China sendet.' Der Chef atmet erleichtert auf: 'Gott sei Dank! Nur Spionage! Ich dachte schon, mein Ruf wäre ruiniert.' Du bekommst nur eine Abmahnung." 
+                r: "The security man takes off his sunglasses. 'No porn, Sir. Just malware sending data to China.' The boss breathes a sigh of relief: 'Thank God! Just espionage! I thought my reputation was ruined.' You only get a warning." 
             },
             { 
-                t: "Lügen: 'Das ist mein Bildschirmschoner'", 
+                t: "Lie: 'That's my screensaver'", 
 				rep: { "Dr. Wichtig": -5 },
                 m: 5, f: 0, a: 10, c: -10, 
-                r: "Der Security-Mann lacht trocken. Er drückt eine Taste. Dein PC formatiert sich selbst. 'Gefahr neutralisiert. Rechnung kommt.' Der Chef nickt zufrieden. Dein PC ist leer. Dein Kopf auch." 
+                r: "The security man laughs dryly. He presses a key. Your PC formats itself. 'Threat neutralized. Bill coming.' The boss nods contentedly. Your PC is empty. Your head too." 
             }
         ]
     },
     {
         id: "sq_gabi_pc",
         kind: "text",
-        title: "Sicherheitslücke",
-        text: "Gabi ist in der Pause. Ihr PC ist entsperrt, Outlook ist offen. Ein grober Verstoß gegen Richtlinie 404.",
+        title: "Security Vulnerability",
+        text: "Gabi is on break. Her PC is unlocked, Outlook is open. A gross violation of Policy 404.",
         opts: [
             { 
-                t: "Gabi suchen & belehren",
+                t: "Find Gabi & lecture her",
                 rep: { "Gabi": -5 },
                 m: 10, f: -5, a: 10, c: -5, 
-                r: "Du findest sie in der Küche und zitierst das Handbuch. Sie rollt mit den Augen. Du fühlst dich im Recht, aber unbeliebt." 
+                r: "You find her in the kitchen and quote the manual. She rolls her eyes. You feel justified, but unpopular." 
             },
             { 
-                t: "Den offenen Kalender checken", 
+                t: "Check the open calendar", 
                 m: 5, f: 5, a: 0, c: 0, 
-                r: "Ein schneller Blick: 'Lieferung Sessel'. Und direkt danach: 'Externes Meeting (Golfplatz) - Open End'. Aha! Das Büro ist also sturmfrei..." 
+                r: "A quick glance: 'Delivery armchair'. And immediately after: 'External Meeting (Golf Course) - Open End'. Aha! The office is empty..." 
             },
             { 
-                t: "Computer sperren & weitergehen",
+                t: "Lock computer & walk on",
                 rep: { "Gabi": 2 }, 
                 m: 2, f: 0, a: -5, c: 0, 
-                r: "Klick. Der PC ist gesperrt. Du hinterlässt einen Post-it 'Gern geschehen' auf dem Monitor. Ein guter Tag für die IT-Sicherheit." 
+                r: "Click. The PC is locked. You leave a Post-it 'You're welcome' on the monitor. A good day for IT security." 
             }
         ]
     },
     {
         id: "sq_boss_chair",
         kind: "text",
-        title: "Operation Rückgrat",
-        text: "Die Tür zum Chefbüro steht sperrangelweit offen. Dr. Wichtig ist nirgends zu sehen. Mitten im Raum thront die frisch ausgepackte Lieferung: Ein High-End Massagesessel.",
+        title: "Operation Backbone",
+        text: "The door to the boss's office is wide open. Dr. Wichtig is nowhere to be seen. In the middle of the room sits the freshly unpacked delivery: a high-end massage chair.",
         opts: [
             { 
-                t: "Probeliegen (Shiatsu-Test)", 
+                t: "Try it out (Shiatsu test)", 
                 m: 20, f: 20, a: -40, c: 0, 
-                r: "Oh Gott, ist das gut. Die Rollen kneten deinen Hass einfach weg. Du nickst kurz weg... und schreckst hoch. Sabber im Mundwinkel. Aber das Büro ist immer noch leer. Glück gehabt." 
+                r: "Oh God, this is good. The rollers knead your hatred away. You doze off briefly... and jolt awake. Drool at the corner of your mouth. But the office is still empty. Lucky you." 
             },
             { 
-                t: "Kartons filzen", 
+                t: "Rummage through boxes", 
                 loot: "bubble_wrap", 
                 m: 10, f: -5, a: 0, c: 0, 
-                r: "Du durchsuchst den Müll nach Brauchbarem. Du findest eine riesige Rolle unbenutzte Luftpolsterfolie! *Plopp* *Plopp*. Perfekt für schlechte Zeiten." 
+                r: "You search through the trash for anything useful. You find a huge roll of unused bubble wrap! *Pop* *Pop*. Perfect for tough times." 
             },
             { 
-                t: "Tür diskret schließen", 
+                t: "Discreetly close the door", 
                 m: 5, f: 0, a: 0, c: -15, 
-                r: "Du ziehst die Tür leise ins Schloss. Niemand soll sehen, dass das Büro leer ist. Deine Diskretion bleibt unbemerkt, aber dein Chef-Radar sinkt." 
+                r: "You quietly close the door. No one should see that the office is empty. Your discretion goes unnoticed, but your boss radar drops." 
             }
         ]
     },
     {
         id: "sq_dog_found_1",
         kind: "text",
-        title: "Ein haariges Problem",
-        text: "Du sitzt an deinem Platz, als plötzlich etwas an deinem Schuh kaut. Ein kleiner, streunender Mischling guckt unter deinem Schreibtisch hervor und wedelt. In diesem Moment stürmt der Chef rein. Er sieht das Tier. Seine Augen treten hervor. 'Sagen Sie mal, Müller... Zuallererst kommt mir diese Töle hier weg! Sofort!'",
+        title: "A Hairy Problem",
+        text: "You're at your desk when suddenly something chews on your shoe. A small, stray mongrel peeks out from under your desk and wags its tail. At that moment, the boss storms in. He sees the animal. His eyes bulge. 'Tell me, Müller... First of all, this mutt has to go! Immediately!'",
         opts: [
             { 
-                t: "Kontern: 'Dafür haben Sie mir die Erlaubnis gegeben!'", 
+                t: "Counter: 'You gave me permission for this!'", 
                 next: "path_dog_secret", 
 				rep: { "Dr. Wichtig": -15 },
                 m: 15, f: -5, a: -20, c: 40, 
-                r: "Der Chef läuft purpurrot an. Die Halsschlagader pocht. 'Ich?! EIN HUND IM BÜRO?? DA KANN ICH JA GLEICH MEINE EIGENE KÜNDIGUNG SCHREIBEN!!!' Er knallt die Tür so fest zu, dass der Putz rieselt. Er tobt, aber er ist weg. (Chef +40!)" 
+                r: "The boss turns crimson. His carotid artery throbs. 'Me?! A DOG IN THE OFFICE?? I MIGHT AS WELL WRITE MY OWN RESIGNATION!' He slams the door so hard that plaster crumbles. He rages, but he's gone. (Boss +40!)" 
             },
             { 
-                t: "Verkaufen: 'Das ist der neue Feel-Good-Manager'", 
+                t: "Sell: 'This is the new Feel-Good Manager'", 
                 next: "path_dog_official", 
 				rep: { "Dr. Wichtig": 5 },
                 m: 10, f: 0, a: -5, c: -10, 
-                r: "Du behauptest, das sei eine Maßnahme zur Burnout-Prävention. 'Wissenschaftlich erwiesen, Chef. Senkt Krankheitskosten.' Der Chef rechnet kurz. 'Kostenlos? Und er beißt Betriebsräte? Genehmigt.'" 
+                r: "You claim it's a burnout prevention measure. 'Scientifically proven, Boss. Reduces sick leave costs.' The boss quickly calculates. 'Free? And he bites works council members? Approved.'" 
             }
         ]
     },
     {
         id: "sq_dog_found_2a",
         kind: "text",
-        title: "Der illegale Untermieter",
+        title: "The Illegal Tenant",
         reqStory: "path_dog_secret",
-        text: "Nach dem Tobsucht-Anfall ('KÜNDIGUNG SCHREIBEN!') hat der Chef das Büro verlassen und ward nicht mehr gesehen. Der Hund ('Bernd') lebt jetzt illegal unter deinem Schreibtisch. Er ist dein heimlicher Support. Wenn der Code nicht kompiliert, leckt er dir tröstend die Hand.",
+        text: "After the tantrum ('WRITE RESIGNATION!'), the boss left the office and hasn't been seen since. The dog ('Bernd') now lives illegally under your desk. He's your secret support. If the code doesn't compile, he comfortingly licks your hand.",
         opts: [
             { 
-                t: "Füttern: Pizza unter den Tisch schieben", 
+                t: "Feed: Slide pizza under the desk", 
                 m: 10, f: -5, a: -10, c: 0, 
-                r: "Du lässt ein Stück Salami fallen. Ein leises *Schmatz-Schmatz* ist zu hören. Bernd ist glücklich. Du bist nicht mehr allein in dieser kalten Firmenwelt." 
+                r: "You drop a piece of salami. A soft *smack-smack* is heard. Bernd is happy. You're no longer alone in this cold corporate world." 
             },
             { 
-                t: "Risiko: Gassi gehen im Archiv", 
+                t: "Risk: Walk him in the archive", 
                 m: 20, f: -10, a: -10, c: 10, 
-                r: "Du schleichst mit ihm zu den alten Akten. Er hebt das Bein am Ordner 'Steuererklärung 2019'. 'Guter Junge', flüsterst du. Das Risiko war hoch, aber es tat gut." 
+                r: "You sneak with him to the old files. He lifts his leg at the 'Tax Return 2019' folder. 'Good boy,' you whisper. The risk was high, but it felt good." 
             }
         ]
     },
     {
         id: "sq_dog_found_2b",
         kind: "text",
-        title: "Mitarbeiter des Monats",
+        title: "Employee of the Month",
         reqStory: "path_dog_official",
-        text: "Deine Ausrede hat funktioniert. Der Hund ist jetzt offiziell 'Junior Happiness Officer'. Er trägt sogar eine kleine Krawatte. Sein Arbeitsplatz ist ein Körbchen neben dem Kopierer. Die Kollegen aus der Buchhaltung bringen ihm ständig Leckerlis. Er ist beliebter als du.",
+        text: "Your excuse worked. The dog is now officially 'Junior Happiness Officer'. He even wears a small tie. His workplace is a basket next to the copier. Colleagues from accounting constantly bring him treats. He's more popular than you.",
         opts: [
             { 
-                t: "Teamwork: Er übernimmt den Support", 
+                t: "Teamwork: He takes over support", 
                 m: 20, f: 20, a: -15, c: -10, 
-                r: "Wenn ein nerviger Kunde anruft, hältst du den Hörer an die Schnauze. *Wuff!* Der Kunde legt verwirrt auf. Ticket geschlossen. Effizienzsteigerung: 400%." 
+                r: "When an annoying client calls, you hold the receiver to his snout. *Woof!* The client hangs up confused. Ticket closed. Efficiency increase: 400%." 
             },
             { 
-                t: "Eifersüchtig sein", 
+                t: "Be jealous", 
                 m: 10, f: -10, a: 20, c: 0, 
-                r: "Der Hund bekommt besseres Essen als du. Gestern gab es Steak für ihn und Kantinen-Brei für dich. Du starrst ihn böse an. Er wedelt fröhlich und furzt leise." 
+                r: "The dog gets better food than you. Yesterday, he got steak and you got canteen slop. You glare at him. He wags his tail happily and farts softly." 
             }
         ]
     },
     {
         id: "sq_parking_1",
         kind: "text",
-        title: "Parkplatz-Krieg",
-        text: "Ein fetter SUV steht auf deinem Parkplatz. Quer. Er nimmt zwei Plätze ein. Das Nummernschild ist 'B-OSS 1'.",
+        title: "Parking Lot War",
+        text: "A fat SUV is parked in your spot. Crooked. It takes up two spaces. The license plate is 'B-OSS 1'.",
         opts: [
             { 
-                t: "Zuparken (Klassiker)", 
+                t: "Block him in (Classic)", 
                 m: 5, f: 0, a: -15, c: 10, 
-                r: "Du stellst deinen Corsa quer davor. Niemand kommt hier weg. Rache ist süß.",
+                r: "You park your Corsa sideways in front of it. No one's leaving here. Revenge is sweet.",
                 next: "sq_parking_2_blocked"
             },
             { 
-                t: "Mit Panzertape 'fixieren'", 
+                t: "Secure with duct tape", 
                 req: "tape", 
                 m: 20, f: -5, a: -25, c: 20, 
-                r: "Du klebst den Scheibenwischer, die Türgriffe und den Auspuff mit Panzertape zu. Ein Meisterwerk der Ingenieurskunst.",
+                r: "You tape the windshield wiper, door handles, and exhaust pipe with duct tape. A masterpiece of engineering.",
                 next: "sq_parking_2_taped"
             },
             { 
-                t: "Passiv-aggressiven Zettel schreiben", 
+                t: "Write passive-aggressive note", 
                 m: 10, f: 0, a: 10, c: -5, 
-                r: "Du schreibst: 'Nicht nett!'. Das wird es ihm zeigen! Du parkst 3 Straßen weiter." 
+                r: "You write: 'Not nice!'. That'll show him! You park 3 streets away." 
             }
         ]
     },
@@ -1937,435 +1937,435 @@ export const sidequests = [
         id: "sq_boss_snoop",
 		char: "Dr. Wichtig",
         kind: "text",
-        title: "Schritte auf dem Flur",
-        text: "Du hörst schwere Schritte auf dem Flur. Die Tür knarrt auf. Dr. Wichtig steht im Türrahmen und blinzelt auf deinen Bildschirm. Du hast gerade privat im Internet gesurft.",
+        title: "Footsteps in the Hallway",
+        text: "You hear heavy footsteps in the hallway. The door creaks open. Dr. Wichtig stands in the doorway, blinking at your screen. You were just privately browsing the internet.",
         opts: [
             { 
-                t: "Panisch das Firmen-Intranet öffnen",
+                t: "Panicked, open company intranet",
 	            rep: { "Dr. Wichtig": 2 },	
                 m: 5, f: -5, a: 0, c: 0, 
                 r: "CMD:OPEN_INTRANET" 
             },
             { 
-                t: "Schnell eine alte Code-Datei aufrufen", 
+                t: "Quickly open an old code file", 
 				rep: { "Dr. Wichtig": 5 },	
                 m: 2, f: 0, a: 5, c: -5, 
-                r: "Er schaut auf den grünen Text auf schwarzem Grund. 'Ah, Sie hacken den Mainframe. Sehr gut.' Er geht wieder." 
+                r: "He looks at the green text on a black background. 'Ah, you're hacking the mainframe. Very good.' He leaves again." 
             },
             { 
-                t: "Den Monitor einfach ausschalten",
+                t: "Simply turn off the monitor",
                 rep: { "Dr. Wichtig": -10 },						
                 m: 1, f: 5, a: 0, c: 15, 
-                r: "Er starrt auf den schwarzen Bildschirm. 'Stromsparen? Sehr löblich, aber wir haben hier Deadlines!' Er notiert sich etwas." 
+                r: "He stares at the black screen. 'Saving power? Very commendable, but we have deadlines here!' He notes something down." 
             }
         ]
     },
     {
         id: "sq_service_cloud_1",
         kind: "text",
-        title: "Dunkle Materie",
-        text: "Der Abteilungsdrucker druckt seit einer Stunde nur komplett schwarze Seiten. Tinte tropft auf den Boden. Auf dem Gerät klebt ein Sticker: 'Premium Cloud Support - Wir helfen sofort!'. Du wählst die Nummer.",
+        title: "Dark Matter",
+        text: "The department printer has been printing completely black pages for an hour. Ink drips onto the floor. A sticker on the device says: 'Premium Cloud Support - We help immediately!'. You dial the number.",
         opts: [
             { 
-                t: "Problem schildern: 'Alles ist schwarz!'", 
+                t: "Describe problem: 'Everything is black!'", 
                 next: "path_service_cloud_wait", 
                 m: 10, f: -5, a: 5, c: 0, 
-                r: "Eine KI-Stimme antwortet: 'Ihr Anliegen ist uns wichtig. Ein Techniker analysiert Ihren Cloud-Status. Bitte warten Sie auf Rückruf.' Du legst auf. Die schwarzen Seiten kommen weiter." 
+                r: "An AI voice replies: 'Your concern is important to us. A technician is analyzing your cloud status. Please wait for a callback.' You hang up. The black pages keep coming." 
             },
             { 
-                t: "Anschreien: 'ICH WILL EINEN MENSCHEN!'", 
+                t: "Yell: 'I WANT A HUMAN!'", 
                 next: "path_service_cloud_angry", 
                 m: 5, f: 0, a: -10, c: 10,
-                r: "'Verstanden. Ich verbinde Sie mit der Abteilung für psychologische Betreuung.' *Klick*. Aufgelegt. Das Schreien tat gut, aber der Flur starrt dich an." 
+                r: "'Understood. I'll connect you to the psychological support department.' *Click*. Hung up. The yelling felt good, but the hallway stares at you." 
             },
             { 
-                t: "Auflegen & Stecker ziehen", 
+                t: "Hang up & pull the plug", 
                 m: 2, f: 5, a: -5, c: 5,
-                r: "Du ziehst den Stecker. Der Drucker stirbt. Das Problem ist physisch gelöst, aber du wirst nie erfahren, warum er das getan hat." 
+                r: "You pull the plug. The printer dies. The problem is physically solved, but you'll never know why it did that." 
             }
         ]
     },
     {
         id: "sq_service_cloud_2a",
         kind: "text",
-        title: "Technische Erklärung",
+        title: "Technical Explanation",
         reqStory: "path_service_cloud_wait",
-        text: "Dein Telefon klingelt. 'Hier ist der Cloud-Support. Wir haben die Logs geprüft. Dass die Seiten schwarz sind, ist völlig normal.' Du fragst verdutzt nach dem Grund.",
+        text: "Your phone rings. 'This is Cloud Support. We've checked the logs. The pages being black is completely normal.' You ask bewildered for the reason.",
         opts: [
             { 
-                t: "Ihm ungläubig zuhören", 
+                t: "Listen to him incredulously", 
                 m: 5, f: 0, a: 10, c: 0, 
-                r: "'Unsere Server stehen in Tokio. Dort ist es gerade Nacht. Cloud-Printing spiegelt die lokale Zeit wider. Versuchen Sie es morgen früh wieder, dann sind die Seiten weiß.' Er legt auf. Du starrst das Telefon an." 
+                r: "'Our servers are in Tokyo. It's night there right now. Cloud printing reflects local time. Try again tomorrow morning, then the pages will be white.' He hangs up. You stare at the phone." 
             },
             { 
-                t: "Wütend auflegen & Hörer knallen", 
+                t: "Angrily hang up & slam receiver", 
                 rep: { "Dr. Wichtig": -2 },
                 m: 2, f: 0, a: -10, c: 10,
-                r: "Du knallst den Hörer so fest auf die Gabel, dass das Plastik knackt. Diese Inkompetenz tut körperlich weh, aber der Ausbruch war befreiend." 
+                r: "You slam the receiver onto the hook so hard that the plastic cracks. This incompetence physically hurts, but the outburst was liberating." 
             },
             { 
-                t: "Sarkasmus: 'Achso, logisch!'", 
+                t: "Sarcasm: 'Oh, logical!'", 
                 m: 5, f: 5, a: 5, c: 0, 
-                r: "'Genau. Danke für Ihr Verständnis.' Der Support merkt die Ironie nicht. Du legst auf und lachst hysterisch." 
+                r: "'Exactly. Thanks for your understanding.' Support doesn't notice the irony. You hang up and laugh hysterically." 
             }
         ]
     },
     {
         id: "sq_service_cloud_2b",
         kind: "text",
-        title: "Ticket geschlossen",
+        title: "Ticket Closed",
         reqStory: "path_service_cloud_angry",
-        text: "Eine automatische SMS vom Support: 'Ticket #992 geschlossen. Lösung: Anwender wirkt gestresst. Empfehlung: Kräutertee trinken und Gerät streicheln.'",
+        text: "An automatic SMS from support: 'Ticket #992 closed. Solution: User appears stressed. Recommendation: Drink herbal tea and stroke device.'",
         opts: [
             { 
-                t: "Gerät treten (Rage)", 
+                t: "Kick device (Rage)", 
                 req: "hammer",
                 m: 5, f: 0, a: -20, c: 20,
-                r: "BÄM! Du trittst gegen den Drucker. Ein Plastikteil bricht ab. Jetzt druckt er gar nicht mehr. Problem erfolgreich gelöst. Der Chef hat es gehört." 
+                r: "BAM! You kick the printer. A plastic part breaks off. Now it doesn't print at all. Problem successfully solved. The boss heard it." 
             },
             { 
-                t: "Tee trinken (Kapitulation)", 
+                t: "Drink tea (Surrender)", 
                 m: 10, f: 5, a: -5, c: 0, 
-                r: "Du machst dir tatsächlich einen Tee. Die KI hat gewonnen. Du hast dich dem System unterworfen." 
+                r: "You actually make yourself a tea. The AI won. You've submitted to the system." 
             },
             { 
-                t: "Antworten: 'SYSTEM FAILURE'", 
+                t: "Reply: 'SYSTEM FAILURE'", 
                 m: 5, f: 5, a: -5, c: 0, 
-                r: "Du sendest 'DELETE ALL' zurück. Es kommt keine Antwort, aber du fühlst dich wie ein Hacker." 
+                r: "You send 'DELETE ALL' back. No reply comes, but you feel like a hacker." 
             }
         ]
     },
     {
         id: "sq_smile_gate_1",
         kind: "text",
-        title: "Zwangsbeglückung",
-        text: "Die neue Sicherheitsschleuse zur Kantine hat keine Kartenleser mehr. Stattdessen starrt dich eine Kamera an. Eine Roboterstimme flötet: 'Zutritt verweigert. Emotions-Level zu niedrig. Bitte lächeln Sie, um Passierschein A38 zu generieren.' Du hast Hunger und schlechte Laune.",
+        title: "Forced Happiness",
+        text: "The new security gate to the canteen no longer has card readers. Instead, a camera stares at you. A robotic voice chirps: 'Access denied. Emotion level too low. Please smile to generate Passierschein A38.' You're hungry and in a bad mood.",
         opts: [
             { 
-                t: "Grimasse schneiden (Lächeln erzwingen)", 
+                t: "Make a face (Force a smile)", 
                 next: "path_smile_cramp", 
                 m: 5, f: -5, a: 10, c: 0, 
-                r: "Du ziehst deine Mundwinkel mit den Fingern nach oben, bis es wehtut. Die Kamera zoomt und surrt. 'Lächeln erkannt. Validierung läuft...' Die Tür öffnet sich. Du reibst dir die schmerzenden Wangen und gehst essen." 
+                r: "You pull up the corners of your mouth with your fingers until it hurts. The camera zooms and whirs. 'Smile detected. Validation in progress...' The door opens. You rub your aching cheeks and go to eat." 
             },
             { 
-                t: "System hacken: Admin-Override", 
+                t: "Hack system: Admin override", 
                 req: "admin_pw", 
                 next: "path_smile_hack", 
                 m: 2, f: 5, a: -5, c: 5, 
-                r: "Du tippst den Notfall-Code auf dem Touchpad ein. Das System piept verwirrt: 'Wartungsmodus aktiv'. Die Tür springt auf und bleibt offen stehen. Du schlüpfst schnell durch." 
+                r: "You type the emergency code on the touchpad. The system beeps confusedly: 'Maintenance mode active'. The door springs open and stays open. You quickly slip through." 
             },
             { 
-                t: "Gesicht aus Zeitschrift vorhalten", 
+                t: "Hold up face from magazine", 
                 next: "path_smile_fake", 
                 m: 5, f: 5, a: 0, c: 0, 
-                r: "Du hältst das Cover der 'IT-Woche' vor die Linse. Ein strahlender CEO grinst die Kamera an. 'Identität bestätigt: Dr. Wichtig. Willkommen, Sir.' Die Schranke öffnet sich." 
+                r: "You hold up the cover of 'IT-Woche' to the lens. A beaming CEO grins at the camera. 'Identity confirmed: Dr. Wichtig. Welcome, Sir.' The barrier opens." 
             }
         ]
     },
     {
         id: "sq_smile_gate_2a",
         kind: "text",
-        title: "Gesichtskrampf",
+        title: "Facial Cramp",
         reqStory: "path_smile_cramp",
-        text: "Stunden später. Du sitzt in einem Meeting. Plötzlich verkrampft sich dein Gesichtsmuskel von der Aktion an der Tür. Du hast jetzt ein psychotisches Dauergrinsen im Gesicht, das du nicht kontrollieren kannst. Der Chef starrt dich irritiert an.",
+        text: "Hours later. You're in a meeting. Suddenly, your facial muscle cramps from the action at the door. You now have a psychotic permanent grin on your face that you can't control. The boss stares at you, irritated.",
         opts: [
             { 
-                t: "So tun als ob: 'Ich bin einfach glücklich!'", 
+                t: "Pretend: 'I'm just happy!'", 
                 m: 5, f: 5, a: 10, c: -5, 
-                r: "Du nickst enthusiastisch zu allem, was er sagt. 'Tolle Zahlen, Chef!' Er wirkt verstört, aber zufrieden. 'Müller... diese positive Ausstrahlung! Vorbildlich!' Dein Kiefer schmerzt höllisch." 
+                r: "You nod enthusiastically to everything he says. 'Great numbers, Boss!' He looks disturbed, but satisfied. 'Müller... such a positive aura! Exemplary!' Your jaw aches terribly." 
             },
             { 
-                t: "Auf dem Klo verstecken und massieren", 
+                t: "Hide in bathroom and massage", 
                 m: 15, f: -5, a: 0, c: 0, 
-                r: "Du rennst raus. 'Muss mal!' Im Bad knetest du deine Wangen, bis der Krampf sich löst. Du hast das Meeting verpasst, aber du siehst wieder aus wie ein normaler, depressiver Angestellter." 
+                r: "You run out. 'Gotta go!' In the bathroom, you knead your cheeks until the cramp releases. You missed the meeting, but you look like a normal, depressed employee again." 
             },
             { 
-                t: "Drohen: 'Ich lächle, weil ich Dinge weiß.'", 
+                t: "Threaten: 'I'm smiling because I know things.'", 
                 m: 2, f: 0, a: -5, c: 5, 
-                r: "Du nutzt dein Grinsen als Waffe und starrst Kevin an. Er wird ganz nervös. 'Okay, okay, ich mach ja schon die Tickets!' Angst ist ein guter Motivator." 
+                r: "You use your grin as a weapon and stare at Kevin. He gets very nervous. 'Okay, okay, I'll do the tickets!' Fear is a good motivator." 
             }
         ]
     },
     {
         id: "sq_smile_gate_2b",
         kind: "text",
-        title: "Systemabsturz",
+        title: "System Crash",
         reqStory: "path_smile_hack",
-        text: "Du gehst wieder an der Kantine vorbei. Dein Hack hatte Nebenwirkungen. Die Schleuse steht immer noch offen und begrüßt JEDEN Vorbeigehenden mit lauter Stimme: 'Willkommen, Administrator. Zugriff auf Atomwaffen-Codes gewährt.'",
+        text: "You walk past the canteen again. Your hack had side effects. The gate is still open and greets EVERY passerby with a loud voice: 'Welcome, Administrator. Access to nuclear weapon codes granted.'",
         opts: [
             { 
-                t: "Schnell weggehen", 
+                t: "Quickly walk away", 
                 m: 2, f: 5, a: 0, c: 0, 
-                r: "Du beschleunigst den Schritt. Hinter dir bildet sich eine Schlange von Leuten, die kichern und Selfies mit der 'Atom-Schleuse' machen. Solange keiner Logs prüft, bist du sicher." 
+                r: "You quicken your pace. Behind you, a queue of people forms, giggling and taking selfies with the 'nuclear gate'. As long as no one checks logs, you're safe." 
             },
             { 
-                t: "Schild hinhängen: 'Sprachsteuerung defekt'", 
+                t: "Hang sign: 'Voice control defective'", 
                 m: 5, f: -5, a: 0, c: 5, 
-                r: "Du klebst einen Zettel an den Lautsprecher. Damit bist du haftungsrechtlich raus. Die IT-Sicherheit wird zwar toben, aber das Chaos ist eingedämmt." 
+                r: "You stick a note on the speaker. You're legally off the hook. IT security will rage, but chaos is contained." 
             },
             { 
-                t: "Den Lautsprecher mit Tape abkleben", 
+                t: "Tape over the speaker", 
                 req: "tape", 
                 m: 5, f: 0, a: -5, c: 0, 
-                r: "Endlich hält das Ding die Klappe. Niemand hört mehr die 'Atomwaffen'-Durchsage. Du hast den Weltfrieden gerettet (und deine Spuren verwischt)." 
+                r: "Finally, the thing shuts up. No one hears the 'nuclear weapons' announcement anymore. You've saved world peace (and covered your tracks)." 
             }
         ]
     },
     {
         id: "sq_smile_gate_2c",
         kind: "text",
-        title: "Identitätsdiebstahl",
+        title: "Identity Theft",
         reqStory: "path_smile_fake",
-        text: "Eine E-Mail vom Kantinen-System: 'Vielen Dank, Dr. Wichtig! Ihre Bestellung (1x Premium-Hummer und 1x Kaviar) wurde Ihrem Konto belastet.' Offenbar hast du beim Eintreten als 'CEO' auch gleich dessen Zeche übernommen.",
+        text: "An email from the canteen system: 'Thank you, Dr. Wichtig! Your order (1x Premium Lobster and 1x Caviar) has been charged to your account.' Apparently, by entering as 'CEO', you also took over his tab.",
         opts: [
             { 
-                t: "Panik: Rechnung löschen", 
+                t: "Panic: Delete invoice", 
                 m: 10, f: 5, a: 10, c: 20, 
-                r: "Du hackst dich ins Kantinen-System und löschst den Eintrag. Leider kommt der echte Chef gerade rein und fragt, warum sein Konto gesperrt ist. 'Müller... wissen Sie was davon?'" 
+                r: "You hack into the canteen system and delete the entry. Unfortunately, the real boss just walks in and asks why his account is blocked. 'Müller... do you know anything about this?'" 
             },
             { 
-                t: "Bescheiden bleiben: 'War ein Systemfehler'", 
+                t: "Stay humble: 'It was a system error'", 
                 m: 5, f: 0, a: 5, c: 0, 
-                r: "Du meldest es der IT. 'Die KI spinnt mal wieder.' Niemand stellt Fragen. Aber der Hummer taucht auch nicht auf. Du hast nichts gewonnen, außer Angst." 
+                r: "You report it to IT. 'The AI is acting up again.' No one asks questions. But the lobster doesn't show up either. You've gained nothing but fear." 
             },
             { 
-                t: "Systemfehler nutzen: Noch mehr bestellen", 
+                t: "Exploit system error: Order more", 
                 rep: { "Dr. Wichtig": -10 },
                 m: 10, f: -5, a: -20, c: -5, 
-                r: "Wenn schon, denn schon. Du bestellst noch eine Kiste Wein auf sein Konto. Irgendwann fliegt das auf, aber heute Abend wird gefeiert." 
+                r: "If you're going to do it, do it right. You order another case of wine on his account. It'll eventually be discovered, but tonight's a party." 
             }
         ]
     },
     {
         id: "sq_desk_rise_1",
         kind: "text",
-        title: "Der Aufstieg",
-        text: "Du arbeitest am neuen, elektrischen 2000€-Steh-Sitz-Tisch eines kranken Kollegen. Plötzlich entwickelt der Tisch ein Eigenleben. Er fährt hoch. Und hört nicht auf. Deine Tastatur ist schon auf Brusthöhe. Der 'Stop'-Knopf klemmt.",
+        title: "The Ascent",
+        text: "You're working at the new, electric 2000€ sit-stand desk of a sick colleague. Suddenly, the desk develops a mind of its own. It moves up. And doesn't stop. Your keyboard is already at chest height. The 'Stop' button is jammed.",
         opts: [
             { 
-                t: "Stecker ziehen (Kriechen)", 
+                t: "Pull the plug (Crawl)", 
                 loot: "cable",
                 next: "path_desk_unplug", 
                 m: 5, f: 0, a: 10, c: 0, 
-                r: "Du wirfst dich unter den Tisch. Zwischen Staubmäusen und alten Kaugummis reißt du das Stromkabel raus. Der Tisch stoppt abrupt auf 1,80m Höhe. Dabei findest du ein vergessenes LAN-Kabel! (Item erhalten!)" 
+                r: "You throw yourself under the desk. Between dust bunnies and old chewing gum, you yank out the power cable. The desk stops abruptly at 1.80m height. You also find a forgotten LAN cable! (Item obtained!)" 
             },
             { 
-                t: "Gegengewicht: Draufsetzen", 
+                t: "Counterweight: Sit on it", 
                 next: "path_desk_sit", 
                 m: 5, f: 5, a: 0, c: 5, 
-                r: "Du springst auf die Tischplatte, um den Motor zu überlasten. Der Tisch ächzt, fährt aber weiter hoch. Jetzt sitzt du fast unter der Decke. Du springst ab, bevor du zerquetscht wirst. Der Tisch bleibt oben." 
+                r: "You jump onto the tabletop to overload the motor. The desk groans, but keeps moving up. Now you're almost at the ceiling. You jump off before you're crushed. The desk stays up." 
             },
             { 
-                t: "Beschweren: 'Win95 Handbuch' drauflegen", 
+                t: "Weight: Place 'Win95 Manual' on it", 
                 req: "manual", 
                 next: "path_desk_heavy", 
                 m: 2, f: 5, a: -5, c: 0, 
-                r: "Du knallst den schweren Wälzer auf die 'Runter'-Taste. Die Taste knackt, der Tisch stoppt auf halber Höhe. Aber jetzt klemmt das Buch fest im Bedienpanel." 
+                r: "You slam the heavy tome onto the 'Down' button. The button cracks, the desk stops halfway up. But now the book is stuck in the control panel." 
             }
         ]
     },
     {
         id: "sq_desk_rise_2a",
         kind: "text",
-        title: "Boden-Personal",
+        title: "Ground Staff",
         reqStory: "path_desk_unplug",
-        text: "Du kommst aus der Pause zurück. Der Tisch steht immer noch auf maximaler Höhe (fast 2 Meter). Dein Laptop liegt da oben. Du kommst nicht ran. Der Kollege kommt morgen wieder und wird Fragen haben.",
+        text: "You return from your break. The desk is still at maximum height (almost 2 meters). Your laptop is up there. You can't reach it. Your colleague will be back tomorrow and will have questions.",
         opts: [
             { 
-                t: "Auf den Stuhl steigen & arbeiten", 
+                t: "Stand on chair & work", 
                 m: 30, f: -10, a: 20, c: 10, 
-                r: "Du balancierst auf dem Drehstuhl, um zu tippen. Der Arbeitsschutzbeauftragte läuft vorbei, wird kreidebleich und macht sich hektische Notizen. Das gibt eine Sicherheitsschulung." 
+                r: "You balance on the swivel chair to type. The occupational safety officer walks by, turns pale, and frantically takes notes. That'll be a safety training session." 
             },
             { 
-                t: "Kabel als Lasso benutzen", 
+                t: "Use cable as lasso", 
                 req: "cable", 
                 m: 10, f: 0, a: -5, c: 0, 
-                r: "Du wirfst dein neues LAN-Kabel wie ein Cowboy, um den Laptop runterzuziehen. Er fällt weich in den Papierkorb. Laptop gerettet, Tisch ist immer noch ein Hochbett." 
+                r: "You throw your new LAN cable like a cowboy to pull down the laptop. It falls softly into the wastebasket. Laptop saved, desk is still a bunk bed." 
             },
             { 
-                t: "Zettel: 'Defekt' & Feierabend", 
+                t: "Note: 'Defective' & Call it a day", 
                 m: 2, f: 10, a: -5, c: 0, 
-                r: "'Höhere Gewalt', murmelst du und gehst. Wenn man nicht an die Arbeit kommt, kann man nicht arbeiten. Logik." 
+                r: "'Act of God,' you mutter and leave. If you can't get to work, you can't work. Logic." 
             }
         ]
     },
     {
         id: "sq_desk_rise_2b",
         kind: "text",
-        title: "Der Hochsitz",
+        title: "The High Seat",
         reqStory: "path_desk_sit",
-        text: "Der Tisch klemmt immer noch unter der Decke. Kevin hat sich inzwischen eine Leiter geholt und seinen Gaming-PC oben aufgebaut. Er nennt es 'The Tower' und wirft Papierkugeln auf vorbeigehende Kollegen.",
+        text: "The desk is still jammed at the ceiling. Kevin has since gotten a ladder and set up his gaming PC on top. He calls it 'The Tower' and throws paper balls at passing colleagues.",
         opts: [
             { 
-                t: "Ihm befehlen runterzukommen", 
+                t: "Order him to come down", 
                 rep: { "Kevin": 5 },
                 m: 10, f: 5, a: -10, c: 5, 
-                r: "'Okay, okay, Spaßbremse.' Kevin klettert runter. Aber der Tisch bleibt oben. Du hast jetzt ein Denkmal des Versagens im Büro." 
+                r: "'Okay, okay, party pooper.' Kevin climbs down. But the desk stays up. You now have a monument of failure in the office." 
             },
             { 
-                t: "Die Leiter wegnehmen", 
+                t: "Take away the ladder", 
                 m: 5, f: -5, a: 5, c: 0, 
-                r: "Du nimmst die Leiter weg. 'Viel Spaß da oben, Kevin.' Er sitzt jetzt fest. Endlich Ruhe im Büro, aber Kevin wird hungrig." 
+                r: "You take away the ladder. 'Have fun up there, Kevin.' He's stuck now. Finally peace in the office, but Kevin will get hungry." 
             },
             { 
-                t: "Hilfe rufen (Egon)", 
+                t: "Call for help (Egon)", 
                 rep: { "Egon": -5 },
                 m: 20, f: 0, a: 10, c: 0, 
-                r: "Egon kommt mit der großen Zange. 'Wer hat den Motor durchbrennen lassen? Das riecht man doch!' Er rettet den Tisch, aber du stehst als Idiot da." 
+                r: "Egon comes with the big pliers. 'Who burned out the motor? You can smell it!' He saves the desk, but you look like an idiot." 
             }
         ]
     },
     {
         id: "sq_desk_rise_2c",
         kind: "text",
-        title: "Das Handbuch-Opfer",
+        title: "The Manual Sacrifice",
         reqStory: "path_desk_heavy",
-        text: "Du willst dein Handbuch zurück. Aber es ist mit dem Bedienpanel verschmolzen. Der Kunststoff ist geschmolzen und hat das Buch 'assimiliert'. Der Tisch reagiert auf gar nichts mehr.",
+        text: "You want your manual back. But it has fused with the control panel. The plastic has melted and 'assimilated' the book. The desk no longer responds to anything.",
         opts: [
             { 
-                t: "Alles mit Tape fixieren", 
+                t: "Fix everything with tape", 
                 req: "tape", 
                 m: 10, f: -5, a: 0, c: 0, 
-                r: "Du wickelst Tape drum, damit man den Schaden nicht sieht. 'Repariert'. Der Tisch ist jetzt permanent auf 1,20m Höhe fixiert. Ergonomie ist eh überbewertet." 
+                r: "You wrap tape around it so the damage isn't visible. 'Repaired'. The desk is now permanently fixed at 1.20m height. Ergonomics are overrated anyway." 
             },
             { 
-                t: "Hammer benutzen (Buch befreien)", 
+                t: "Use hammer (Free book)", 
                 req: "hammer", 
                 m: 5, f: 0, a: 10, c: 10, 
-                r: "Du schlägst das Panel ab. Funkenflug. Der Tisch sackt mit einem lauten KRRACH auf Kniehöhe ab. Das Buch ist frei, der Tisch ist Schrott." 
+                r: "You smash off the panel. Sparks fly. The desk crashes down to knee height with a loud CRACK. The book is free, the desk is junk." 
             },
             { 
-                t: "Schild 'Kunstwerk' anbringen", 
+                t: "Attach sign 'Artwork'", 
                 m: 2, f: 5, a: -5, c: 5, 
-                r: "Du erklärst es zur Installation: 'Der Druck des Wissens'. Chantal postet es auf Instagram. Der Chef ist verwirrt, aber sagt nichts." 
+                r: "You declare it an installation: 'The Pressure of Knowledge'. Chantal posts it on Instagram. The boss is confused, but says nothing." 
             }
         ]
     },
     {
         id: "sq_shredder_1",
         kind: "text",
-        title: "Datenschutz extrem",
-        text: "Du willst einen alten Kassenbon vernichten. Der neue 'Smart-Shredder 4000' versperrt den Schlitz. Auf dem Touchscreen steht: 'Bitte Dokumentenkategorie wählen (1-99). Bestätigen Sie DSGVO-Konformität. Scannt nach Büroklammern...'",
+        title: "Data Protection Extreme",
+        text: "You want to destroy an old receipt. The new 'Smart-Shredder 4000' blocks the slot. The touchscreen says: 'Please select document category (1-99). Confirm GDPR compliance. Scanning for paper clips...'",
         opts: [
             { 
-                t: "Formular ehrlich ausfüllen", 
+                t: "Honestly fill out the form", 
                 next: "path_shred_form", 
                 m: 15, f: -10, a: 10, c: 0, 
-                r: "Du tippst dich durch 20 Untermenüs. 'Ist das Dokument radioaktiv?' - 'Nein'. 'Enthält es Staatsgeheimnisse?' - 'Nein'. Endlich öffnet sich der Schlitz. Du wirfst den Bon rein." 
+                r: "You tap through 20 submenus. 'Is the document radioactive?' - 'No'. 'Does it contain state secrets?' - 'No'. Finally, the slot opens. You throw in the receipt." 
             },
             { 
-                t: "Gewalt: Einfach reinstopfen", 
+                t: "Violence: Just shove it in", 
                 req: "hammer", 
                 next: "path_shred_force", 
                 m: 5, f: 0, a: -10, c: 10, 
-                r: "Du nimmst den Hammerstiel und drückst das Papier gewaltsam an der Sensor-Klappe vorbei. Die Maschine jault auf, frisst das Papier und macht ein würgendes Geräusch." 
+                r: "You take the hammer handle and forcibly push the paper past the sensor flap. The machine howls, eats the paper, and makes a choking sound." 
             },
             { 
-                t: "Auffangbehälter prüfen (Hack)", 
+                t: "Check collection bin (Hack)", 
                 loot: "usb_stick",
                 next: "path_shred_loot", 
                 m: 5, f: 5, a: 0, c: 0, 
-                r: "Vielleicht ist der Sensor voll? Du öffnest die Klappe unten. Im Papiermüll liegt ein USB-Stick, den wohl jemand versehentlich 'geschreddert' hat. Er sieht noch ganz aus! (Item erhalten!)" 
+                r: "Maybe the sensor is full? You open the bottom flap. In the paper waste lies a USB stick that someone probably accidentally 'shredded'. It still looks intact! (Item obtained!)" 
             }
         ]
     },
     {
         id: "sq_shredder_2a",
         kind: "text",
-        title: "Papierstau mit Ansage",
+        title: "Paper Jam with Announcement",
         reqStory: "path_shred_form",
-        text: "Stunden später. Eine Rundmail an alle: 'Der Schredder ist defekt. Jemand hat versucht, Thermopapier (Kassenbon) im Modus 'Hochglanz-Broschüre' zu vernichten. Der Sensor ist verklebt.' Alle suchen den Idioten.",
+        text: "Hours later. An email to everyone: 'The shredder is defective. Someone tried to destroy thermal paper (receipt) in 'glossy brochure' mode. The sensor is glued shut.' Everyone is looking for the idiot.",
         opts: [
             { 
-                t: "Schreien: 'Die Maschine ist schuld!'", 
+                t: "Yell: 'The machine is to blame!'", 
                 m: 2, f: 0, a: 20, c: 0, 
-                r: "Du verteidigst dich lautstark im Flur. Niemand hat dich beschuldigt, aber jetzt wirkst du sehr verdächtig." 
+                r: "You loudly defend yourself in the hallway. No one accused you, but now you look very suspicious." 
             },
             { 
-                t: "Bon auf A4-Blatt kleben (Beweisvernichtung)", 
+                t: "Glue receipt to A4 sheet (Destroy evidence)", 
                 req: "tape", 
                 m: 10, f: -5, a: 5, c: 0, 
-                r: "Du gehst heimlich hin und fummelst den Bon raus. Dann klebst du ihn auf ein normales Blatt und wirfst es in den Müll. Spuren beseitigt." 
+                r: "You secretly go and fiddle out the receipt. Then you glue it onto a normal sheet and throw it in the trash. Traces eliminated." 
             },
             { 
-                t: "Bon essen", 
+                t: "Eat receipt", 
                 m: 2, f: 5, a: 0, c: 0, 
-                r: "Die ultimative Datenvernichtung. Schmeckt nach Thermopapier und Bisphenol A. Aber es ging schnell und niemand kann es beweisen." 
+                r: "The ultimate data destruction. Tastes like thermal paper and Bisphenol A. But it was quick and no one can prove it." 
             }
         ]
     },
     {
         id: "sq_shredder_2b",
         kind: "text",
-        title: "Konfetti-Party",
+        title: "Confetti Party",
         reqStory: "path_shred_force",
-        text: "Du gehst am Kopierraum vorbei. Der Boden ist bedeckt mit Schnipseln. Die Maschine mochte die Zwangsfütterung nicht und hat ihren gesamten Inhalt (50 Liter) rückwärts in den Raum gehustet. Egon steht fassungslos davor.",
+        text: "You walk past the copy room. The floor is covered in confetti. The machine didn't like the forced feeding and coughed its entire contents (50 liters) backwards into the room. Egon stands in disbelief.",
         opts: [
             { 
-                t: "Wegrennen", 
+                t: "Run away", 
                 m: 5, f: 5, a: 0, c: 10, 
-                r: "Du drehst dich auf dem Absatz um. 'Nicht mein Müll.' Egon wird den Täter nie finden... hoffentlich." 
+                r: "You turn on your heel. 'Not my trash.' Egon will never find the culprit... hopefully." 
             },
             { 
-                t: "Den Azubi rufen", 
+                t: "Call the intern", 
                 rep: { "Kevin": -10 },
                 m: 5, f: 5, a: -5, c: 0, 
-                r: "'Kevin! Puzzle-Zeit!' Der Azubi kommt und sieht das Chaos. Du drückst ihm einen Besen in die Hand. 'Lern was fürs Leben.' Führungskräfte delegieren." 
+                r: "'Kevin! Puzzle time!' The intern comes and sees the mess. You hand him a broom. 'Learn something for life.' Leaders delegate." 
             },
             { 
-                t: "Staubsauger holen", 
+                t: "Get vacuum cleaner", 
                 m: 30, f: -10, a: 10, c: 0, 
-                r: "Du hast Mitleid mit Egon und saugst alles auf. Dabei saugst du versehentlich das Stromkabel des Schredders ein. *PUFF*. Jetzt ist er ganz kaputt. Gut so." 
+                r: "You feel sorry for Egon and vacuum everything up. In the process, you accidentally vacuum up the shredder's power cable. *POOF*. Now it's completely broken. Good." 
             }
         ]
     },
     {
         id: "sq_shredder_2c",
         kind: "text",
-        title: "Datenschutz-Vorfall",
+        title: "Data Protection Incident",
         reqStory: "path_shred_loot",
-        text: "Du steckst den gefundenen USB-Stick an deinen PC. Darauf ist eine Datei: 'Passwörter_Alle_Mitarbeiter.xlsx'. Offenbar wollte die HR-Abteilung das 'sicher entsorgen', hat aber den Stick statt das Papier eingeworfen.",
+        text: "You plug the found USB stick into your PC. On it is a file: 'Passwords_All_Employees.xlsx'. Apparently, the HR department wanted to 'dispose of it securely', but threw in the stick instead of the paper.",
         opts: [
             { 
-                t: "Stick behalten", 
+                t: "Keep stick", 
                 m: 5, f: 5, a: -10, c: 20, 
-                r: "Du hast jetzt Zugriff auf alles. Sogar auf das Netflix-Konto vom Chef. Du fühlst dich mächtig (und kriminell). Du steckst den Stick tief in deine Tasche." 
+                r: "You now have access to everything. Even the boss's Netflix account. You feel powerful (and criminal). You tuck the stick deep into your pocket." 
             },
             { 
-                t: "Sofort formatieren", 
+                t: "Format immediately", 
                 rem: "usb_stick", 
                 m: 5, f: 0, a: 0, c: 0, 
-                r: "Zu heiß. Du löschst alles. Jetzt hast du einen leeren 64GB Stick für dich. Langweilig, aber sicher. (Item verbraucht/genutzt)" 
+                r: "Too hot. You delete everything. Now you have an empty 64GB stick for yourself. Boring, but safe. (Item consumed/used)" 
             },
             { 
-                t: "Gabi geben: 'Deiner?'", 
+                t: "Give to Gabi: 'Yours?'", 
                 rem: "usb_stick",
                 rep: { "Gabi": 10 },
                 m: 5, f: 0, a: -5, c: 0, 
-                r: "Du bringst ihn Gabi. Sie wird rot. 'Oh! Äh... danke. Den habe ich... gesucht.' Sie schenkt dir eine Schokolade als Schweigegeld. (Item entfernt)" 
+                r: "You bring it to Gabi. She blushes. 'Oh! Uh... thanks. I was... looking for that.' She gives you a chocolate as hush money. (Item removed)" 
             }
         ]
     },
     {
         id: "sq_meta_donation",
         kind: "text",
-        title: "Inception auf Steam",
-        text: "Du prokrastinierst in einer ruhigen Minute auf Steam und stöberst durch die Neuerscheinungen. Moment mal... da gibt es ein Indie-Spiel namens 'Layer8Problem'. Der SysAdmin auf den Screenshots sieht dir verdammt ähnlich! Und die Feature-Liste liest sich 1:1 wie ein Auszug aus deinem täglichen Wahnsinn. Es wirkt erschreckend echt, als hätte jemand eine Sitcom aus deinem Leid gemacht.",
+        title: "Inception on Steam",
+        text: "You're procrastinating on Steam in a quiet moment, browsing new releases. Wait a minute... there's an indie game called 'Layer8Problem'. The SysAdmin in the screenshots looks an awful lot like you! And the feature list reads 1:1 like an excerpt from your daily madness. It feels disturbingly real, as if someone made a sitcom out of your suffering.",
         opts: [
             { 
-                t: "Shut up and take my money! (Auf Steam anschauen)", 
+                t: "Shut up and take my money! (Check on Steam)", 
                 m: 2, f: 5, a: 0, c: 10, 
-                r: "ZACK! Dr. Wichtig steht plötzlich hinter dir. 'Müller! Bezahle ich Sie fürs Spielen?!' Du klickst das Fenster panisch zu, hast dir die Shop-Seite aber noch heimlich gemerkt.<br><br>(Wer das Projekt unterstützen will: <a href='https://store.steampowered.com/app/4487580/' target='_blank' class='text-blue-400 underline hover:text-blue-300 transition-colors'>Hier geht's zur Steam-Version</a> mit Cloud-Saves und Achievements! Ich freue mich über Bewertungen!)."
+                r: "ZAP! Dr. Wichtig suddenly stands behind you. 'Müller! Am I paying you to play games?!' You frantically close the window, but you secretly remembered the store page.<br><br>(If you want to support the project: <a href='https://store.steampowered.com/app/4487580/' target='_blank' class='text-blue-400 underline hover:text-blue-300 transition-colors'>Here's the Steam version</a> with Cloud Saves and Achievements! I appreciate reviews!)."
             },
             { 
-                t: "Ignorieren: 'Ich erlebe das jeden Tag, warum sollte ich es spielen?'", 
+                t: "Ignore: 'I experience this every day, why would I play it?'", 
                 m: 2, f: 0, a: 0, c: 0, 
-                r: "Absolut verständlich. Warum sollte man Geld ausgeben, um sich von digitalen Kollegen nerven zu lassen, wenn die echten Kollegen das völlig kostenlos machen? Du schließt den Tab kopfschüttelnd."
+                r: "Absolutely understandable. Why spend money to be annoyed by digital colleagues when real colleagues do it for free? You close the tab, shaking your head."
             },
             { 
-                t: "Kritik: 'Das Spiel ist eh total unrealistisch!'", 
+                t: "Criticize: 'The game is totally unrealistic anyway!'", 
                 m: 5, f: 0, a: -5, c: 0, 
-                r: "Du schreibst einen zynischen Kommentar ins Forum: 'Kein Chef der Welt würde Laufbänder im Serverraum fordern!' ... Dann drehst du dich um und siehst Dr. Wichtig mit einem Maßband im Flur stehen. Verdammt."
+                r: "You write a cynical comment in the forum: 'No boss in the world would demand treadmills in the server room!' ...Then you turn around and see Dr. Wichtig standing in the hallway with a tape measure. Damn."
             }
         ]
     },
@@ -2373,21 +2373,21 @@ export const sidequests = [
         id: "sq_elster_cat_2a",
 		char: "Frau Elster",
         kind: "text",
-        title: "Dankbarkeit in der Buchhaltung",
+        title: "Gratitude in Accounting",
         reqStory: "path_elster_happy",
-        text: "Frau Elster steht räuspernd vor deinem Schreibtisch. Sie blickt sich nervös um, öffnet ihre Handtasche und legt dir ein teures Stück Konditor-Torte auf den Tisch. 'Das ist für Ihren... inoffiziellen IT-Einsatz gestern. Rüdiger schnurrt wieder. Aber wehe, das erfährt jemand!'",
+        text: "Ms. Elster clears her throat in front of your desk. She nervously looks around, opens her handbag, and places an expensive piece of pastry chef's cake on your desk. 'This is for your... unofficial IT service yesterday. Rüdiger is purring again. But woe betide you if anyone finds out!'",
         opts: [
             { 
-                t: "Kuchen annehmen & schweigen", 
+                t: "Accept cake & keep quiet", 
                 rep: { "Frau Elster": 10 },
                 m: 5, f: 5, a: -10, c: 0, 
-                r: "Du isst den Kuchen. Er schmeckt nach Marzipan und Bestechung. Eine mächtige Verbündete im Büro zu haben, ist Gold wert." 
+                r: "You eat the cake. It tastes of marzipan and bribery. Having a powerful ally in the office is worth gold." 
             },
             { 
-                t: "Frech werden: 'Ich mache das nur für Rüdiger.'", 
+                t: "Be cheeky: 'I only do it for Rüdiger.'", 
                 rep: { "Frau Elster": 5 },
                 m: 2, f: 0, a: 5, c: 0, 
-                r: "Sie zieht eine Augenbraue hoch. 'Seien Sie nicht unverschämt, Müller.' Sie geht, aber man merkt, dass sie dich jetzt respektiert." 
+                r: "She raises an eyebrow. 'Don't be impertinent, Müller.' She leaves, but you can tell she respects you now." 
             }
         ]
     },
@@ -2395,21 +2395,21 @@ export const sidequests = [
         id: "sq_elster_cat_2b",
 		char: "Frau Elster",
         kind: "text",
-        title: "Die Quittung",
+        title: "The Receipt",
         reqStory: "path_elster_angry",
-        text: "Auf deinem Tisch liegt deine letzte Reisekostenabrechnung. Sie ist komplett rot markiert. Frau Elster hat jeden Cent gestrichen. 'Parkschein ohne Uhrzeit', 'Verpflegungspauschale um 0,50€ überschritten'. Sie hat sich für dein 'Nein' beim Katzen-Notfall gerächt.",
+        text: "Your last travel expense report lies on your desk. It's completely marked in red. Ms. Elster has crossed out every cent. 'Parking ticket without time', 'Meal allowance exceeded by 0.50€'. She took revenge for your 'no' during the cat emergency.",
         opts: [
             { 
-                t: "Zähneknirschend neu ausfüllen", 
+                t: "Grudgingly refill", 
                 rep: { "Frau Elster": 5 },
                 m: 30, f: -15, a: 20, c: 0, 
-                r: "Du verbringst eine halbe Stunde damit, Belege neu zu kopieren und Formulare zu tippen. Deine Aggression steigt ins Unermessliche. Katzenbesitzer sollte man nicht verärgern." 
+                r: "You spend half an hour re-copying receipts and typing forms. Your aggression rises to immeasurable levels. You shouldn't anger cat owners." 
             },
             { 
-                t: "Den Chef einschalten", 
+                t: "Involve the boss", 
                 rep: { "Frau Elster": -10, "Dr. Wichtig": -5 },
                 m: 10, f: 0, a: 10, c: 15, 
-                r: "Der Chef ist genervt. 'Klären Sie Ihren Kleinkrieg selbst, Müller!' Frau Elster funkelt dich beim Rausgehen böse an. Der Krieg geht weiter." 
+                r: "The boss is annoyed. 'Settle your petty war yourselves, Müller!' Ms. Elster glares at you as she leaves. The war continues." 
             }
         ]
     },
@@ -2417,20 +2417,20 @@ export const sidequests = [
         id: "sq_elster_cat_2c",
 		char: "Frau Elster",
         kind: "text",
-        title: "Der Fresskoma-Notfall",
+        title: "The Food Coma Emergency",
         reqStory: "path_elster_fat",
-        text: "Frau Elster stürmt heulend in den Flur. 'RÜDIGER! Er hat sich überfressen! Er liegt nur noch auf dem Rücken und atmet schwer! Der Tierarzt musste ihm den Magen auspumpen! Irgendein kranker Hacker hat den Fressnapf manipuliert!'",
+        text: "Ms. Elster storms into the hallway, crying. 'RÜDIGER! He overate! He's just lying on his back, breathing heavily! The vet had to pump his stomach! Some sick hacker manipulated the smart feeder!'",
         opts: [
             { 
-                t: "Schlechtes Gewissen: Tierarztkosten anonym spenden", 
+                t: "Guilty conscience: Anonymously donate vet costs", 
                 rep: { "Frau Elster": 5 },
                 m: 5, f: 0, a: 15, c: 0, 
-                r: "Du legst heimlich 50 Euro in einen Umschlag auf ihren Platz. Das lindert deine Schuldgefühle ein bisschen, aber dein Blutdruck steigt vor Stress. Armer Rüdiger." 
+                r: "You secretly place 50 euros in an envelope on her desk. That eases your guilt a bit, but your blood pressure rises from stress. Poor Rüdiger." 
             },
             { 
-                t: "Lügen: 'Das war bestimmt ein Software-Bug.'", 
+                t: "Lie: 'That was definitely a software bug.'", 
                 m: 5, f: 0, a: 5, c: 0, 
-                r: "'Diese billige China-Technik!', schluchzt sie. Du nickst eifrig und verziehst dich schnell. Du bist ein eiskaltes Monster." 
+                r: "'This cheap China tech!', she sobs. You nod eagerly and quickly leave. You are a cold-blooded monster." 
             }
         ]
     },
@@ -2438,31 +2438,31 @@ export const sidequests = [
         id: "sq_shredder_puzzle_1",
 		char: "Frau Elster",
         kind: "text",
-        title: "Das Puzzle des Todes",
-        text: "Frau Elster kniet weinend vor dem Papierschredder. 'Ich habe aus Versehen den original unterschriebenen Leasing-Vertrag geschreddert! Wenn der Chef das sieht, bin ich tot! Wir müssen das wieder zusammensetzen!' Vor ihr liegt ein Berg Konfetti.",
+        title: "The Puzzle of Death",
+        text: "Ms. Elster kneels, crying, in front of the paper shredder. 'I accidentally shredded the original signed leasing agreement! If the boss sees this, I'm dead! We have to put it back together!' A mountain of confetti lies before her.",
         opts: [
             { 
-                t: "Auf den Boden setzen und puzzeln", 
+                t: "Sit on the floor and puzzle", 
                 next: "path_shredder_puzzle",
                 rep: { "Frau Elster": 15 },
                 m: 90, f: -20, a: 20, c: 0, 
-                r: "Du sortierst 90 endlose Minuten lang Papierschnipsel. Am Ende klebt der Vertrag wieder. Du hast massiv Arbeitszeit verloren und bist furchtbar wütend. Frau Elster nimmt den Vertrag und rennt los." 
+                r: "You sort paper scraps for 90 endless minutes. In the end, the contract is reassembled. You've lost a massive amount of working time and are terribly angry. Ms. Elster takes the contract and runs off." 
             },
             { 
-                t: "Grob mit Panzertape laminieren", 
+                t: "Roughly laminate with duct tape", 
                 req: "tape",
                 next: "path_shredder_tape",
                 rep: { "Frau Elster": 10 },
                 m: 15, f: 0, a: 0, c: 0, 
-                r: "Du klatschst rigoros dickes Panzertape drüber und jagst das Monstrum durch den Kopierer. Sieht furchtbar aus, ist aber rechtlich noch gültig. Frau Elster bedankt sich hektisch. Du gehst wieder an die Arbeit." 
+                r: "You rigorously slap thick duct tape over it and run the monstrosity through the copier. It looks terrible, but it's still legally valid. Ms. Elster thanks you frantically. You go back to work." 
             },
             { 
-                t: "Kopfhörer aufsetzen & weggehen", 
+                t: "Put on headphones & walk away", 
                 req: "headphones",
                 next: "path_shredder_ignore",
                 rep: { "Frau Elster": -15 },
                 m: 2, f: 5, a: -10, c: 0, 
-                r: "Klick. Noise-Cancelling an. Du blickst mitleidsvoll herab, nickst ihr stumm zu und gehst in dein Büro. Nicht dein Fehler, nicht dein Problem." 
+                r: "Click. Noise-canceling on. You look down sympathetically, nod silently at her, and go to your office. Not your fault, not your problem." 
             }
         ]
     },
@@ -2470,27 +2470,27 @@ export const sidequests = [
         id: "sq_shredder_puzzle_2a",
 		char: "Frau Elster",
         kind: "text",
-        title: "Ewige Dankbarkeit",
+        title: "Eternal Gratitude",
         reqStory: "path_shredder_puzzle",
-        text: "Später kommt Frau Elster an deinen Platz geschlendert. Der Stress von vorhin ist komplett verflogen. Sie legt eine goldene Schachtel Pralinen und einen unterschriebenen Blanko-Spesenbeleg auf deinen Tisch. 'Sie haben mein Leben gerettet, Herr Müller.'",
+        text: "Later, Ms. Elster strolls over to your desk. The stress from earlier is completely gone. She places a golden box of chocolates and a signed blank expense report on your desk. 'You saved my life, Mr. Müller.'",
         opts: [
             { 
-                t: "Gnade annehmen", 
+                t: "Accept grace", 
                 loot: "chocolate",
                 m: 5, f: 0, a: -20, c: -10, 
-                r: "Das war es wert. Der Chef-Radar sinkt, weil Frau Elster jetzt überall in den höchsten Tönen von dir schwärmt. Und du hast Schokolade. (Inventar +1)" 
+                r: "It was worth it. The boss radar drops because Ms. Elster now raves about you everywhere. And you have chocolate. (Inventory +1)" 
             },
             { 
-                t: "Gierig: 'Haben Sie auch noch Kaffee dazu?'", 
+                t: "Greedy: 'Do you have coffee too?'", 
                 rep: { "Frau Elster": -5 },
                 m: 2, f: 5, a: 5, c: 0, 
-                r: "Ihr Lächeln friert ein. 'Man reicht den kleinen Finger...', murmelt sie und zieht den Spesenbeleg wieder zurück. Die Schokolade lässt sie immerhin da." 
+                r: "Her smile freezes. 'Give an inch...', she mutters and pulls back the expense report. At least she leaves the chocolate." 
             },
             { 
-                t: "Edelmütig ablehnen: 'War mir eine Ehre.'", 
+                t: "Nobly decline: 'It was an honor.'", 
                 rep: { "Frau Elster": 15 },
                 m: 5, f: 0, a: -10, c: -15, 
-                r: "Frau Elster ist den Tränen nahe. 'Sie sind ein wahrer Gentleman!' Sie nimmt die Schokolade wieder mit, aber ab heute bist du ihr absoluter Lieblingskollege. Das ist mehr wert als Pralinen." 
+                r: "Ms. Elster is on the verge of tears. 'You are a true gentleman!' She takes the chocolate back, but from today on, you are her absolute favorite colleague. That's worth more than chocolates." 
             }
         ]
     },
@@ -2498,27 +2498,27 @@ export const sidequests = [
         id: "sq_shredder_puzzle_2b",
 		char: "Frau Elster",
         kind: "text",
-        title: "Der Leasing-Rückläufer",
+        title: "The Leasing Returnee",
         reqStory: "path_shredder_tape",
-        text: "Stunden nach deiner Tape-Aktion ruft der Chef dich und Frau Elster ins Büro. Er hält eure kopierte Tape-Version hoch. 'Die Bank hat das abgelehnt. Sie sagen, das sieht aus wie der Erpresserbrief eines Serienmörders. Wer war das?!'",
+        text: "Hours after your tape operation, the boss calls you and Ms. Elster into his office. He holds up your copied tape version. 'The bank rejected it. They say it looks like a serial killer's ransom note. Who was this?!'",
         opts: [
             { 
-                t: "Die Schuld auf die Bank schieben", 
+                t: "Blame the bank", 
                 rep: { "Frau Elster": 5 },
                 m: 10, f: 0, a: 10, c: 10, 
-                r: "'Deren Scanner sind einfach veraltet, Chef!' Er seufzt. 'Bürokraten.' Frau Elster atmet auf. Du hast euch beide elegant aus der Affäre geredet." 
+                r: "'Their scanners are just outdated, Boss!' He sighs. 'Bureaucrats.' Ms. Elster breathes a sigh of relief. You've elegantly talked your way out of it." 
             },
             { 
-                t: "Frau Elster verpfeifen", 
+                t: "Snitch on Ms. Elster", 
                 rep: { "Frau Elster": -15, "Dr. Wichtig": 5 },
                 m: 5, f: 0, a: 0, c: 0, 
-                r: "'Sie hat ihn geschreddert, Chef.' Frau Elster bricht in Tränen aus. Du bist der absolute Verräter. Sie wird sich grausam rächen." 
+                r: "'She shredded it, Boss.' Ms. Elster bursts into tears. You are the ultimate traitor. She will take cruel revenge." 
             },
             { 
-                t: "Vorschlagen: 'Wir fälschen die Unterschrift neu!'", 
+                t: "Suggest: 'We'll forge the signature again!'", 
                 rep: { "Dr. Wichtig": -10 },
                 m: 10, f: 0, a: 10, c: 30, 
-                r: "'Urkundenfälschung?! Sind Sie wahnsinnig?!' Der Chef schmeißt dich raus. Das war ein Schritt zu weit." 
+                r: "'Forgery?! Are you insane?!' The boss throws you out. That was a step too far." 
             }
         ]
     },
@@ -2526,155 +2526,155 @@ export const sidequests = [
         id: "sq_shredder_puzzle_2c",
 		char: "Frau Elster",
         kind: "text",
-        title: "Der kalte Entzug",
+        title: "The Cold Turkey",
         reqStory: "path_shredder_ignore",
-        text: "Du hast das Shredder-Drama von vorhin fast vergessen. Da du Frau Elster nicht geholfen hast, musste sie den Fehler beim Chef beichten. Als du dir jetzt einen neuen Notizblock aus dem Lager holen willst, knallt sie die Tür vor deiner Nase zu.",
+        text: "You've almost forgotten the shredder drama from earlier. Since you didn't help Ms. Elster, she had to confess her mistake to the boss. Now, when you want to get a new notepad from storage, she slams the door in your face.",
         opts: [
             { 
-                t: "Betteln: 'Ich brauche nur einen Stift.'", 
+                t: "Beg: 'I just need a pen.'", 
                 m: 15, f: -5, a: 15, c: 0, 
-                r: "'Geschlossen!', brüllt sie von drinnen. Du musst 15 Minuten diskutieren, bis sie einen Kuli unter der Tür durchschiebt. Deine Arroganz von vorhin hat dich jetzt Zeit gekostet." 
+                r: "'Closed!', she yells from inside. You have to argue for 15 minutes until she slides a pen under the door. Your arrogance from earlier has now cost you time." 
             },
             { 
-                t: "Aufbrechen mit Schraubendreher", 
+                t: "Break in with screwdriver", 
                 req: "screw",
                 m: 5, f: 0, a: 20, c: 10, 
-                r: "Du schraubst einfach das Türschloss ab. Frau Elster kreischt: 'VANDALISMUS!' Du greifst dir einen Stift und gehst. Der Krieg eskaliert weiter." 
+                r: "You simply unscrew the door lock. Ms. Elster screams: 'VANDALISM!' You grab a pen and leave. The war continues to escalate." 
             },
             { 
-                t: "Den Azubi Kevin schicken", 
+                t: "Send intern Kevin", 
                 rep: { "Kevin": -5 },
                 m: 10, f: 10, a: 0, c: 0, 
-                r: "Du schickst Kevin. Frau Elster lässt ihn rein, aber er bringt statt Stiften nur bunte Textmarker mit. Besser als nichts." 
+                r: "You send Kevin. Ms. Elster lets him in, but instead of pens, he only brings colorful highlighters. Better than nothing." 
             }
         ]
     },
     {
         id: "sq_fragile_drive_1",
         kind: "text",
-        title: "Gefahrgut-Transport",
-        text: "Du musst eine unersetzliche, völlig unverpackte Festplatte mit den Bauplänen der Firma in den 4. Stock bringen. Der Aufzug ist kaputt. Die Treppen sind frisch gewischt und extrem rutschig. Ein falscher Schritt und die Existenz der Firma zerschellt auf den Fliesen.",
+        title: "Hazardous Material Transport",
+        text: "You have to bring an irreplaceable, completely unpackaged hard drive with the company's blueprints to the 4th floor. The elevator is broken. The stairs are freshly mopped and extremely slippery. One wrong step and the company's existence shatters on the tiles.",
         opts: [
             { 
-                t: "Luftpolsterfolie als Airbag nutzen", 
+                t: "Use bubble wrap as airbag", 
                 rem: "bubble_wrap", 
                 next: "path_drive_wrap", 
                 m: 10, f: 0, a: -10, c: -5, 
-                r: "Du wickelst die Festplatte dick in deine geliebte Knallfolie ein. Du rutschst tatsächlich auf der Treppe aus, aber die Folie dämpft den Sturz perfekt. Daten gerettet, Folie weg." 
+                r: "You thickly wrap the hard drive in your beloved bubble wrap. You actually slip on the stairs, but the wrap perfectly cushions the fall. Data saved, wrap gone." 
             },
             { 
-                t: "Vorsichtig wie auf rohen Eiern gehen", 
+                t: "Walk carefully as if on eggshells", 
                 next: "path_drive_careful", 
                 m: 30, f: -10, a: 20, c: 0, 
-                r: "Du brauchst ewig. Jede Treppenstufe ist ein mentaler Kraftakt. Dein Puls rast, aber die Platte kommt heile oben an. Du bist völlig erschöpft." 
+                r: "It takes you forever. Every stair step is a mental struggle. Your pulse races, but the drive arrives safely upstairs. You're completely exhausted." 
             },
             { 
-                t: "Keine Zeit! Rennen!", 
+                t: "No time! Run!", 
                 next: "path_drive_run",
                 m: 5, f: 5, a: 30, c: 10, 
-                r: "Du sprintest los. Du fängst dich auf der Treppe gerade noch ab und zerrst dir massiv den Rücken. Die Platte ist heile, aber du läufst heute wie der Glöckner von Notre-Dame." 
+                r: "You sprint off. You just barely catch yourself on the stairs and severely strain your back. The drive is intact, but today you walk like the Hunchback of Notre Dame." 
             }
         ]
     },
     {
         id: "sq_fragile_drive_2a",
         kind: "text",
-        title: "Therapie für andere",
+        title: "Therapy for Others",
         reqStory: "path_drive_wrap",
-        text: "Du kommst oben an und übergibst die eingewickelte Festplatte. Die Kollegin packt sie aus und fängt sofort an, genüsslich deine alte Luftpolsterfolie zu ploppen. 'Ohhh, danke Müller! Das entspannt total!'",
+        text: "You arrive upstairs and hand over the wrapped hard drive. The colleague unpacks it and immediately starts gleefully popping your old bubble wrap. 'Ohhh, thanks Müller! That's so relaxing!'",
         opts: [
             { 
-                t: "Ihr die Freude gönnen", 
+                t: "Let her enjoy it", 
                 m: 2, f: 0, a: -5, c: 0, 
-                r: "Ein gutes Werk getan. Das Ploppen hallt leise den Flur hinunter." 
+                r: "A good deed done. The popping echoes softly down the hallway." 
             },
             { 
-                t: "Folie entreißen: 'Das war nicht geschenkt!'", 
+                t: "Snatch wrap: 'That wasn't a gift!'", 
                 loot: "bubble_wrap",
                 m: 2, f: 0, a: 5, c: 0, 
-                r: "Du nimmst ihr das Plastik eiskalt wieder aus den Händen. 'Das ist IT-Eigentum!' Sie guckt dich an, als hättest du ihr gerade Weihnachten gestrichen, aber du hast deinen Schatz zurück." 
+                r: "You coldly snatch the plastic from her hands. 'That's IT property!' She looks at you as if you've just canceled Christmas, but you have your treasure back." 
             }
         ]
     },
     {
         id: "sq_fragile_drive_2b",
         kind: "text",
-        title: "Die Schnecke",
+        title: "The Snail",
         reqStory: "path_drive_careful",
-        text: "Weil du auf der Treppe so extrem langsam warst, hat das Projekt-Team im 4. Stock die Deadline für die Baupläne knapp verfehlt. Der Projektleiter steht schnaubend vor dir. 'Haben Sie die Festplatte getragen oder persönlich hochgerollt?!'",
+        text: "Because you were so extremely slow on the stairs, the project team on the 4th floor narrowly missed the deadline for the blueprints. The project manager stands snorting in front of you. 'Did you carry the hard drive or personally roll it up?!'",
         opts: [
             { 
-                t: "Erklären: 'Sicherheit geht vor!'", 
+                t: "Explain: 'Safety first!'", 
                 m: 10, f: 0, a: 10, c: 5, 
-                r: "Du erklärst ihm die physikalischen Auswirkungen eines Headcrashes. Er versteht kein Wort, ist aber zu müde, um weiter zu streiten." 
+                r: "You explain to him the physical effects of a head crash. He doesn't understand a word, but is too tired to argue further." 
             },
             { 
-                t: "Schuld auf den Aufzug schieben", 
+                t: "Blame the elevator", 
                 rep: { "Egon": -5 },
                 m: 5, f: 0, a: 0, c: 0, 
-                r: "'Beschweren Sie sich beim Facility Management!' Du reichst den schwarzen Peter weiter. Egon wird sich wundern, warum er plötzlich böse Mails bekommt." 
+                r: "'Complain to Facility Management!' You pass the buck. Egon will wonder why he's suddenly getting angry emails." 
             }
         ]
     },
     {
         id: "sq_fragile_drive_2c",
         kind: "text",
-        title: "Der Hexenschuss",
+        title: "The Sciatica",
         reqStory: "path_drive_run",
-        text: "Die Quittung für deinen Treppen-Sprint: Du stehst am Kopierer und plötzlich blockiert dein unterer Rücken komplett. Du hängst in einem 90-Grad-Winkel fest. Chantal kommt vorbei und starrt dich an. 'Machst du Yoga?'",
+        text: "The consequence of your stair sprint: You're at the copier and suddenly your lower back completely locks up. You're stuck at a 90-degree angle. Chantal walks by and stares at you. 'Are you doing yoga?'",
         opts: [
             { 
-                t: "Um Hilfe bitten", 
+                t: "Ask for help", 
                 rep: { "Chantal": 5 },
                 m: 15, f: 0, a: 10, c: 0, 
-                r: "Chantal holt eine Wärmeflasche und stützt dich bis zu deinem Stuhl. 'Du armes Ding.' Peinlich, aber du kannst wieder (halbwegs) aufrecht sitzen." 
+                r: "Chantal gets a hot water bottle and supports you to your chair. 'You poor thing.' Embarrassing, but you can sit upright again (sort of)." 
             },
             { 
-                t: "Lügen: 'Ich suche eine Kontaktlinse!'", 
+                t: "Lie: 'I'm looking for a contact lens!'", 
                 m: 5, f: 5, a: 15, c: 0, 
-                r: "Du kriechst gebückt zurück in dein Büro. Chantal zuckt mit den Schultern. Du arbeitest den restlichen Tag im Liegen unterm Schreibtisch." 
+                r: "You crawl hunched back to your office. Chantal shrugs. You work the rest of the day lying under your desk." 
             }
         ]
     },
     {
         id: "sq_investor_wifi_1",
         kind: "text",
-        title: "Der VIP-Wutanfall",
-        text: "Auf dem Flur steht ein wichtiger, wutentbrannter Investor im Maßanzug. Er brüllt in sein Handy. 'Das blöde VIP-WLAN geht nicht! Wenn ich in zwei Minuten meine Aktienkurse nicht laden kann, ziehe ich meine Millionen ab!' Er sieht dich. 'SIE! MACHEN SIE DAS INTERNET AN!'",
+        title: "The VIP Tantrum",
+        text: "In the hallway stands an important, enraged investor in a tailored suit. He's yelling into his phone. 'This stupid VIP Wi-Fi isn't working! If I can't load my stock prices in two minutes, I'm pulling my millions!' He sees you. 'YOU! TURN ON THE INTERNET!'",
         opts: [
             { 
-                t: "Den Gäste-WLAN Zettel geben", 
+                t: "Give him the guest Wi-Fi note", 
                 rem: "wifi_note", 
                 next: "path_investor_note", 
                 rep: { "Dr. Wichtig": 15 },
                 m: 2, f: 5, a: -10, c: -20, 
-                r: "Du drückst ihm wortlos den zerknitterten, gelben Zettel in die Hand. Er loggt sich ein, atmet tief durch und nickt dir dankbar zu. Firma gerettet." 
+                r: "You wordlessly press the crumpled, yellow note into his hand. He logs in, takes a deep breath, and nods gratefully at you. Company saved." 
             },
             { 
-                t: "VIP-Router manuell neu starten", 
+                t: "Manually restart VIP router", 
                 next: "path_investor_reboot", 
                 m: 15, f: -10, a: 20, c: 5, 
-                r: "Du sprintest zum Verteilerkasten und bootest den Router neu. Als du zurückkommst, hat der Investor in der Zwischenzeit den Chef rundgemacht. Das gibt Ärger." 
+                r: "You sprint to the distribution box and reboot the router. By the time you get back, the investor has already chewed out the boss. That's going to cause trouble." 
             },
             { 
-                t: "Hinter der Kaffeemaschine verstecken", 
+                t: "Hide behind the coffee machine", 
                 next: "path_investor_hide", 
                 m: 10, f: 5, a: 0, c: 15, 
-                r: "Investoren sind Chef-Sache. Du versteckst dich, bis das Geschrei auf dem Flur leiser wird und der Mann wütend abzieht." 
+                r: "Investors are the boss's problem. You hide until the shouting in the hallway subsides and the man leaves angrily." 
             }
         ]
     },
     {
         id: "sq_investor_wifi_2a",
         kind: "text",
-        title: "Reich belohnt",
+        title: "Richly Rewarded",
         reqStory: "path_investor_note",
-        text: "Der Investor hat sein Meeting beendet. Er klopft dir im Vorbeigehen auf die Schulter. 'Schnelle und unbürokratische Lösung vorhin mit dem Zettel. So was mag ich.' Er drückt dir etwas in die Hand und geht.",
+        text: "The investor has finished his meeting. He claps you on the shoulder as he passes. 'Quick and unbureaucratic solution earlier with the note. I like that.' He presses something into your hand and leaves.",
         opts: [
             { 
-                t: "In die Hand schauen", 
+                t: "Look at your hand", 
                 m: 5, f: 10, a: -25, c: -10, 
-                r: "Es ist ein 50-Euro-Schein! Einfach so. Trinkgeld in der IT? Ein historischer Moment. Deine Laune ist auf dem absoluten Höhepunkt." 
+                r: "It's a 50-euro bill! Just like that. Tip in IT? A historic moment. Your mood is at an absolute peak." 
             }
         ]
     },
@@ -2682,124 +2682,124 @@ export const sidequests = [
         id: "sq_investor_wifi_2b",
 		char: "Dr. Wichtig",
         kind: "text",
-        title: "Der Reboot-Rückschlag",
+        title: "The Reboot Backlash",
         reqStory: "path_investor_reboot",
-        text: "Der Chef stürmt in dein Büro. 'Müller! Warum haben Sie den VIP-Router neugestartet?! Der Investor hatte gerade eine laufende Verbindung zu seiner Bank in Singapur! Die Order ist abgebrochen!'",
+        text: "The boss storms into your office. 'Müller! Why did you restart the VIP router?! The investor had an active connection to his bank in Singapore! The order was canceled!'",
         opts: [
             { 
-                t: "Erklären: 'Er hat mich angeschrien!'", 
+                t: "Explain: 'He yelled at me!'", 
                 rep: { "Dr. Wichtig": -10 },
                 m: 10, f: 0, a: 10, c: 20, 
-                r: "'Er ist Investor! Er DARF schreien!' Der Chef ist außer sich. Das VIP-WLAN fasst du so schnell nicht mehr an." 
+                r: "'He's an investor! He's ALLOWED to yell!' The boss is beside himself. You won't be touching the VIP Wi-Fi again anytime soon." 
             },
             { 
-                t: "Lügen: 'Automatische Firmware-Aktualisierung.'", 
+                t: "Lie: 'Automatic firmware update.'", 
                 m: 5, f: 0, a: 0, c: 10, 
-                r: "Du schiebst es auf den Hersteller. Der Chef flucht über Cisco. Er lässt dich in Ruhe, aber das Vertrauen in die Technik sinkt." 
+                r: "You blame the manufacturer. The boss curses Cisco. He leaves you alone, but trust in technology declines." 
             }
         ]
     },
     {
         id: "sq_investor_wifi_2c",
         kind: "text",
-        title: "Das Versteckspiel fliegt auf",
+        title: "The Hiding Game is Over",
         reqStory: "path_investor_hide",
-        text: "Du sitzt immer noch geduckt hinter der Kaffeemaschine. Plötzlich blickt der Investor über den Tresen direkt auf dich herab. 'Was machen Sie da unten? Suchen Sie das WLAN?'",
+        text: "You're still crouching behind the coffee machine. Suddenly, the investor looks over the counter directly at you. 'What are you doing down there? Are you looking for the Wi-Fi?'",
         opts: [
             { 
-                t: "So tun, als würdest du putzen", 
+                t: "Pretend to clean", 
                 m: 10, f: -5, a: 15, c: 5, 
-                r: "'Ja, sehr schmutzig hier unten!' Du reibst mit dem Ärmel über den Boden. Der Investor schüttelt den Kopf. 'Ein Tollhaus.' Er verlässt das Gebäude." 
+                r: "'Yes, it's very dirty down here!' You rub the floor with your sleeve. The investor shakes his head. 'A madhouse.' He leaves the building." 
             },
             { 
-                t: "Flucht nach vorn: 'Ich meditiere.'", 
+                t: "Offensive: 'I'm meditating.'", 
                 m: 5, f: 0, a: 10, c: 0, 
-                r: "'Innovative Unternehmenskultur', murmelt der Investor und geht sichtlich verwirrt. Peinlich, aber er hat das WLAN vergessen." 
+                r: "'Innovative corporate culture,' the investor mutters, visibly confused. Embarrassing, but he's forgotten about the Wi-Fi." 
             }
         ]
     },
     {
         id: "sq_sleeping_guard_1",
         kind: "text",
-        title: "Tiefschlaf am Empfang",
-        text: "Du willst durch den Hintereingang, aber der Sicherheitsmann schnarcht tief und fest. Sein Kopf liegt auf einem Kreuzworträtsel. Draußen hämmert ein gestresster Express-Bote gegen die Scheibe und will dringend ein wichtiges Server-Ersatzteil abgeben.",
+        title: "Deep Sleep at Reception",
+        text: "You want to go through the back entrance, but the security guard is snoring deeply. His head rests on a crossword puzzle. Outside, a stressed express delivery driver hammers against the window, urgently wanting to deliver an important server spare part.",
         opts: [
             { 
-                t: "Energy Drink unter die Nase halten", 
+                t: "Hold energy drink under his nose", 
                 rem: "energy", 
                 next: "path_guard_energy", 
                 m: 5, f: 5, a: -5, c: 0, 
-                r: "ZISCH. Du öffnest die Dose direkt an seinem Ohr. Er schreckt hoch, greift reflexartig nach der Dose, ext sie und öffnet hellwach die Tür für den Boten. Perfekt." 
+                r: "HISS. You open the can right by his ear. He jolts awake, reflexively grabs the can, chugs it, and wide awake opens the door for the delivery man. Perfect." 
             },
             { 
-                t: "Tür selbst öffnen & Paket annehmen", 
+                t: "Open door yourself & accept package", 
                 next: "path_guard_package", 
                 m: 15, f: -5, a: 5, c: 10, 
-                r: "Du öffnest die Tür selbst und unterschreibst das Formular mit 'Mickey Mouse'. Du trägst das schwere Teil selbst rein. Der Wachmann schläft friedlich weiter." 
+                r: "You open the door yourself and sign the form with 'Mickey Mouse'. You carry the heavy item in yourself. The guard sleeps peacefully on." 
             },
             { 
-                t: "Ihn anschreien: 'ALARM!'", 
+                t: "Yell at him: 'ALARM!'", 
                 next: "path_guard_scream", 
                 m: 5, f: 0, a: 15, c: -5, 
-                r: "Er fällt vor Schreck vom Stuhl und reißt seinen Kaffee um. Er hasst dich jetzt, macht aber fluchend die Tür auf." 
+                r: "He falls off his chair in fright and knocks over his coffee. He hates you now, but curses and opens the door." 
             }
         ]
     },
     {
         id: "sq_sleeping_guard_2a",
         kind: "text",
-        title: "Der hyperaktive Wächter",
+        title: "The Hyperactive Guard",
         reqStory: "path_guard_energy",
-        text: "Das Taurin aus deinem Energy Drink zeigt volle Wirkung. Der Wachmann patrouilliert jetzt mit aufgerissenen Augen und 150 Puls durch die Flure. Er hat bereits zwei harmlose Praktikanten an die Wand gestellt und nach dem Ausweis gefragt.",
+        text: "The taurine from your energy drink is in full effect. The guard is now patrolling the hallways with wide eyes and a pulse of 150. He has already cornered two harmless interns and demanded their IDs.",
         opts: [
             { 
-                t: "Zustimmend nicken: 'Sicherheit geht vor.'", 
+                t: "Nod approvingly: 'Safety first.'", 
                 m: 5, f: 5, a: -5, c: 0, 
-                r: "Der Flur ist extrem sicher heute. Du fühlst dich gut bewacht, auch wenn die Praktikanten weinen." 
+                r: "The hallway is extremely safe today. You feel well-guarded, even if the interns are crying." 
             },
             { 
-                t: "Ihm raten, sich zu beruhigen", 
+                t: "Advise him to calm down", 
                 m: 5, f: 0, a: 10, c: 0, 
-                r: "'ICH BIN RUHIG!' brüllt er zurück. Okay, verstanden. Besser keinen Augenkontakt mehr aufbauen." 
+                r: "'I AM CALM!' he yells back. Okay, understood. Better not make eye contact again." 
             }
         ]
     },
     {
         id: "sq_sleeping_guard_2b",
         kind: "text",
-        title: "Urkundenfälschung",
+        title: "Forgery of Documents",
         reqStory: "path_guard_package",
-        text: "Eine Rundmail von HR: 'Ein wichtiges Paket wurde heute Morgen von 'Mickey Mouse' quittiert. Wer war das? Das Paket enthielt keine Hardware, sondern die neuen Firmen-Smartphones. Wir leiten rechtliche Schritte ein!'",
+        text: "An email from HR: 'An important package was signed for this morning by 'Mickey Mouse'. Who was this? The package contained not hardware, but the new company smartphones. We are initiating legal action!'",
         opts: [
             { 
-                t: "Dem Wachmann die Schuld geben", 
+                t: "Blame the guard", 
                 m: 10, f: 0, a: 10, c: -10, 
-                r: "Du meldest anonym, dass der Wachmann im Dienst schlief. Er wird gefeuert, du behältst die Handys nicht, aber du bist sicher. Furchtbares Karma." 
+                r: "You anonymously report that the guard was sleeping on duty. He gets fired, you don't keep the phones, but you're safe. Terrible karma." 
             },
             { 
-                t: "Sich stellen: 'Ich wollte nur helfen!'", 
+                t: "Confess: 'I just wanted to help!'", 
                 rep: { "Dr. Wichtig": 5 },
                 m: 20, f: -5, a: 5, c: 10, 
-                r: "Du klärst das Missverständnis auf. HR meckert wegen der falschen Unterschrift, aber der Chef ist froh, dass die teuren Geräte da sind." 
+                r: "You clear up the misunderstanding. HR grumbles about the wrong signature, but the boss is happy that the expensive devices are there." 
             }
         ]
     },
     {
         id: "sq_sleeping_guard_2c",
         kind: "text",
-        title: "Die Schikane",
+        title: "The Harassment",
         reqStory: "path_guard_scream",
-        text: "Du willst nach der Pause wieder ins Gebäude. Der Wachmann von vorhin steht an der Tür. Er erkennt dich. 'Halt. Ausweiskontrolle. Und Taschenkontrolle. Ich muss den Laptop auf Seriennummer prüfen.'",
+        text: "You want to re-enter the building after your break. The guard from earlier stands at the door. He recognizes you. 'Stop. ID check. And bag check. I need to check the laptop's serial number.'",
         opts: [
             { 
-                t: "Ausrasten: 'Ich arbeite hier seit 5 Jahren!'", 
+                t: "Throw a fit: 'I've worked here for 5 years!'", 
                 m: 10, f: 0, a: 20, c: 5, 
-                r: "'Vorschrift ist Vorschrift', grinst er. Er lässt dich 10 Minuten in der Kälte warten, bevor er die Schranke öffnet. Rache ist süß." 
+                r: "'Rules are rules,' he grins. He makes you wait in the cold for 10 minutes before opening the barrier. Revenge is sweet." 
             },
             { 
-                t: "Brav mitmachen (Deeskalation)", 
+                t: "Comply (De-escalation)", 
                 m: 15, f: 0, a: 10, c: 0, 
-                r: "Du holst tief Luft und packst alles aus. Er lässt sich extra viel Zeit. Du kommst massiv zu spät zu einem Server-Neustart." 
+                r: "You take a deep breath and unpack everything. He takes extra long. You're massively late for a server restart." 
             }
         ]
     },
@@ -2807,28 +2807,28 @@ export const sidequests = [
         id: "sq_boss_fight_hallway_1",
 		char: "Markus",
         kind: "text",
-        title: "Clash der Titanen",
-        text: "Der Vertriebsleiter Markus und Björn vom Marketing stehen Stirn an Stirn auf dem Flur und brüllen sich an. Es geht um den letzten freien Meetingraum. Die Spucke fliegt, die Gesichter sind purpurrot. Niemand traut sich an den beiden vorbei.",
+        title: "Clash of the Titans",
+        text: "Sales Manager Markus and Björn from Marketing stand face to face in the hallway, yelling at each other. It's about the last free meeting room. Spit flies, faces are crimson. No one dares to pass them.",
         opts: [
             { 
-                t: "Den Stressball einsetzen", 
+                t: "Use the stress ball", 
                 req: "stressball", 
                 next: "path_hallway_ball", 
                 rep: { "Markus": 5 },
                 m: 5, f: 5, a: -20, c: -5, 
-                r: "Du gehst stumm dazwischen. Du drückst erst Markus den Ball in die Hand – er quetscht reflexartig. Dann gibst du ihn Björn. *Quietsch*. Du nimmst den Ball wortlos wieder an dich und gehst weiter. Beide Abteilungsleiter schauen dir völlig verwirrt hinterher. Situation entspannt." 
+                r: "You silently step between them. You first press the ball into Markus's hand – he reflexively squeezes. Then you give it to Björn. *Squeak*. You wordlessly take the ball back and walk on. Both department heads stare after you completely confused. Situation defused." 
             },
             { 
-                t: "Vernünftig dazwischengehen", 
+                t: "Reasonably intervene", 
                 next: "path_hallway_peace", 
                 m: 10, f: 0, a: 25, c: 5, 
-                r: "Du versuchst zu schlichten. Beide drehen sich synchron zu dir um und brüllen: 'HALT DICH DA RAUS, IT!' Du ziehst dich fast traumatisiert in dein Büro zurück." 
+                r: "You try to mediate. Both turn to you in unison and yell: 'STAY OUT OF IT, IT!' You retreat to your office almost traumatized." 
             },
             { 
-                t: "Umweg über das Treppenhaus nehmen", 
+                t: "Take detour via stairwell", 
                 next: "path_hallway_detour", 
                 m: 15, f: 10, a: 0, c: 0, 
-                r: "Du hast auf so ein Drama absolut keine Lust. Du gehst den langen Weg durch den Keller. Dauert länger, schont aber die Nerven." 
+                r: "You absolutely don't feel like this drama. You take the long way through the basement. Takes longer, but saves your nerves." 
             }
         ]
     },
@@ -2836,14 +2836,14 @@ export const sidequests = [
         id: "sq_boss_fight_hallway_2a",
 		char: "Markus",
         kind: "text",
-        title: "Der Guru",
+        title: "The Guru",
         reqStory: "path_hallway_ball",
-        text: "Du siehst Markus und Björn später friedlich bei einem Kaffee zusammenstehen. Als du vorbeigehst, flüstert Markus zu Björn: 'Sagen Sie mal... was war das vorhin mit Müller und dem roten Ball?' - 'Keine Ahnung. Aber mein Puls war danach sofort auf 60. Der Mann hat eine Aura.'",
+        text: "You see Markus and Björn later, peacefully standing together with a coffee. As you pass, Markus whispers to Björn: 'Tell me... what was that earlier with Müller and the red ball?' - 'No idea. But my pulse immediately dropped to 60 afterwards. The man has an aura.'",
         opts: [
             { 
-                t: "Mystisch nicken", 
+                t: "Nod mysteriously", 
                 m: 2, f: 5, a: -10, c: -5, 
-                r: "Du nickst den beiden wissend zu, sagst nichts und gehst weiter. Du bist jetzt eine Legende im Flurfunk." 
+                r: "You nod knowingly at them, say nothing, and walk on. You're now a legend in the office grapevine." 
             }
         ]
     },
@@ -2851,68 +2851,68 @@ export const sidequests = [
         id: "sq_boss_fight_hallway_2b",
 		char: "Markus",
         kind: "text",
-        title: "Vereinte Feinde",
+        title: "United Enemies",
         reqStory: "path_hallway_peace",
-        text: "Dein Schlichtungsversuch hat einen bizarren Effekt: Markus und Björn haben sich über ihren gemeinsamen Hass auf die IT verbündet. Beide blockieren jetzt deine Bug-Reports. 'IT hat keine Prio', sagt Markus lachend zu Björn im Flur.",
+        text: "Your attempt at mediation has a bizarre effect: Markus and Björn have united over their shared hatred of IT. Both are now blocking your bug reports. 'IT has no priority,' Markus laughs to Björn in the hallway.",
         opts: [
             { 
-                t: "Rache: Beide aus dem VPN werfen", 
+                t: "Revenge: Kick both off VPN", 
                 rep: { "Markus": -10 },
                 m: 10, f: -5, a: 15, c: 10, 
-                r: "Du killst ihre VPN-Zertifikate. Sollen sie doch offline weiter lästern. Deine Aggression sinkt kurz, aber das gibt bald böse Mails." 
+                r: "You kill their VPN certificates. Let them badmouth offline. Your aggression briefly drops, but angry emails will follow soon." 
             },
             { 
-                t: "Seufzen und ignorieren", 
+                t: "Sigh and ignore", 
                 m: 5, f: 0, a: 10, c: 0, 
-                r: "Du hast keine Kraft für Revierkämpfe. Du lässt sie reden und arbeitest einfach weiter." 
+                r: "You have no energy for turf wars. You let them talk and just keep working." 
             }
         ]
     },
     {
         id: "sq_boss_fight_hallway_2c",
         kind: "text",
-        title: "Der Keller-Fund",
+        title: "The Basement Find",
         reqStory: "path_hallway_detour",
-        text: "Weil du den Umweg durch den alten Keller genommen hast, entdeckst du eine verstaubte Kiste im Heizungsraum. Darin liegt völlig unbenutztes, altes IT-Werkzeug, das jemand vor Jahren vergessen hat.",
+        text: "Because you took the detour through the old basement, you discover a dusty box in the boiler room. Inside is completely unused, old IT tools that someone forgot years ago.",
         opts: [
             { 
-                t: "Schraubendreher einstecken", 
+                t: "Pocket screwdriver", 
                 loot: "screw", 
                 m: 5, f: 0, a: -5, c: 0, 
-                r: "Ein erstklassiger Kreuzschlitz. Das Universum belohnt den Weg des geringsten Widerstands. (Inventar +1)" 
+                r: "A first-class Phillips head. The universe rewards the path of least resistance. (Inventory +1)" 
             },
             { 
-                t: "Kabelbinder mitnehmen", 
+                t: "Take cable ties", 
                 loot: "zip_ties", 
                 m: 5, f: 0, a: -5, c: 0, 
-                r: "Eine halbe Packung schwarze Kabelbinder. Immer gut zu gebrauchen. (Inventar +1)" 
+                r: "Half a pack of black cable ties. Always useful. (Inventory +1)" 
             }
         ]
     },
     {
         id: "sq_printer_jam_1",
         kind: "text",
-        title: "Drucker im Streik",
-        text: "Der große Abteilungsdrucker piept hysterisch: 'Papierstau in Fach 3'. Eine wütende Traube von Mitarbeitern steht davor. Niemand traut sich, die Klappe aufzumachen.",
+        title: "Printer on Strike",
+        text: "The large department printer beeps hysterically: 'Paper jam in Tray 3'. An angry crowd of employees stands in front of it. No one dares to open the flap.",
         opts: [
             { 
-                t: "Die Klappe mutig öffnen und reingreifen", 
+                t: "Bravely open flap and reach in", 
                 next: "path_printer_fix", 
                 m: 15, f: 0, a: 5, c: 0, 
-                r: "Du ziehst tief im Inneren an zerrissenen Papierfetzen. Deine Hände sind voller Toner, aber die Maschine druckt wieder." 
+                r: "You pull at torn paper scraps deep inside. Your hands are covered in toner, but the machine prints again." 
             },
             { 
-                t: "Mit dem Handbuch drohen", 
+                t: "Threaten with manual", 
                 req: "manual", 
                 next: "path_printer_manual", 
                 m: 5, f: 0, a: -5, c: 0, 
-                r: "Du schlägst das dicke Buch auf und liest laut vor: 'Reparatur nur durch zertifiziertes Fachpersonal!' Die Menge weicht ehrfürchtig zurück." 
+                r: "You open the thick book and read aloud: 'Repairs only by certified personnel!' The crowd respectfully backs away." 
             },
             { 
-                t: "Lügen: 'Das ist ein Hardware-Defekt!'", 
+                t: "Lie: 'It's a hardware defect!'", 
                 next: "path_printer_lie", 
                 m: 2, f: 5, a: 0, c: 5, 
-                r: "Du hängst fachmännisch ein 'Defekt'-Schild auf. Problem delegiert. Niemand druckt heute mehr." 
+                r: "You professionally hang a 'Defective' sign. Problem delegated. No one prints today." 
             }
         ]
     },
@@ -2920,171 +2920,171 @@ export const sidequests = [
         id: "sq_printer_jam_2a",
 		char: "Dr. Wichtig",
         kind: "text",
-        title: "Schwarze Hände",
+        title: "Black Hands",
         reqStory: "path_printer_fix",
-        text: "Deine Hände sind komplett schwarz vom Toner. Auf dem Weg ins Bad begegnest du dem CEO. Er will dir freudig die Hand schütteln, um dir zum Firmenjubiläum zu gratulieren.",
+        text: "Your hands are completely black with toner. On your way to the bathroom, you encounter the CEO. He wants to shake your hand cheerfully to congratulate you on the company anniversary.",
         opts: [
             { 
-                t: "Ihm eiskalt die dreckige Hand geben", 
+                t: "Coldly give him your dirty hand", 
                 rep: { "Dr. Wichtig": -10 },
                 m: 5, f: 0, a: 10, c: 15, 
-                r: "Du schüttelst seine Hand. Er starrt entsetzt auf seine ruinierten Finger. Du hast soeben eine Beförderung beerdigt." 
+                r: "You shake his hand. He stares in horror at his ruined fingers. You have just buried a promotion." 
             },
             { 
-                t: "Peinlich berührt ablehnen", 
+                t: "Embarrassedly decline", 
                 m: 5, f: 0, a: 5, c: 0, 
-                r: "Du hebst abwehrend die Hände. Er nickt verständnisvoll. 'Ah, IT an der Front. Weitermachen!'" 
+                r: "You raise your hands defensively. He nods understandingly. 'Ah, IT on the front lines. Carry on!'" 
             }
         ]
     },
     {
         id: "sq_printer_jam_2b",
         kind: "text",
-        title: "Die teure Rechnung",
+        title: "The Expensive Bill",
         reqStory: "path_printer_manual",
-        text: "Ein eifriger Kollege hat wegen deiner 'Fachpersonal'-Aussage tatsächlich den externen Support gerufen. Der Techniker steht da, zieht ein Blatt Papier aus dem Drucker und präsentiert eine Rechnung über 250 Euro.",
+        text: "An eager colleague actually called external support because of your 'certified personnel' statement. The technician stands there, pulls a sheet of paper from the printer, and presents a bill for 250 euros.",
         opts: [
             { 
-                t: "Die Schuld auf die User schieben", 
+                t: "Blame the users", 
                 m: 10, f: 0, a: 5, c: 15, 
-                r: "Du erklärst der Buchhaltung, dass die User panisch reagiert haben. Frau Elster tobt, aber du bist fein raus." 
+                r: "You explain to accounting that the users panicked. Ms. Elster rages, but you're off the hook." 
             },
             { 
-                t: "Dem Techniker einen Kaffee anbieten", 
+                t: "Offer the technician coffee", 
                 m: 15, f: 0, a: -5, c: 10, 
-                r: "Du verbrüderst dich mit dem externen ITler. Ihr lacht über die Inkompetenz der Belegschaft. Gut für die Seele, schlecht fürs Budget." 
+                r: "You bond with the external IT guy. You laugh about the incompetence of the staff. Good for the soul, bad for the budget." 
             }
         ]
     },
     {
         id: "sq_printer_jam_2c",
         kind: "text",
-        title: "Die Alternative",
+        title: "The Alternative",
         reqStory: "path_printer_lie",
-        text: "Da der Abteilungsdrucker 'kaputt' ist, stehen nun plötzlich fünf Kollegen in deinem Büro und wollen, dass du ihre extrem wichtigen Dokumente an deinem kleinen lokalen Drucker ausdruckst.",
+        text: "Since the department printer is 'broken', five colleagues are now suddenly standing in your office, wanting you to print their extremely important documents on your small local printer.",
         opts: [
             { 
-                t: "Deinen Drucker auch kaputtmelden", 
+                t: "Report your printer broken too", 
                 m: 5, f: 10, a: -5, c: 5, 
-                r: "Du ziehst einfach das USB-Kabel und zuckst mit den Schultern. Die Kollegen ziehen enttäuscht ab." 
+                r: "You simply pull the USB cable and shrug. Colleagues leave disappointed." 
             },
             { 
-                t: "Seufzen und als Copy-Shop arbeiten", 
+                t: "Sigh and work as a copy shop", 
                 m: 30, f: -5, a: 20, c: 0, 
-                r: "Du verbringst eine halbe Stunde damit, Verträge für andere Leute auszudrucken. Deine Toner-Patrone weint." 
+                r: "You spend half an hour printing contracts for other people. Your toner cartridge weeps." 
             }
         ]
     },
     {
         id: "sq_crying_intern_1",
         kind: "text",
-        title: "Tränen im Flur",
-        text: "Du findest den neuen Praktikanten weinend auf der Treppe. 'Ich habe versehentlich die Präsentation für den CEO gelöscht und den Papierkorb geleert. Ich werde gefeuert!'",
+        title: "Tears in the Hallway",
+        text: "You find the new intern crying on the stairs. 'I accidentally deleted the presentation for the CEO and emptied the recycle bin. I'm going to be fired!'",
         opts: [
             { 
-                t: "Schokolade als Trost spenden", 
+                t: "Donate chocolate for comfort", 
                 rem: "chocolate", 
                 next: "path_intern_choc", 
                 rep: { "Kevin": 15 },
                 m: 10, f: 0, a: -10, c: 0, 
-                r: "Du drückst ihm die Schokolade in die Hand. Das Kauen beruhigt ihn sofort und er hört auf zu weinen. (Item verbraucht)" 
+                r: "You press the chocolate into his hand. Chewing immediately calms him down and he stops crying. (Item consumed)" 
             },
             { 
-                t: "Tief in die Trickkiste greifen (Recovery)", 
+                t: "Dig deep into the bag of tricks (Recovery)", 
                 next: "path_intern_recover", 
                 m: 30, f: -5, a: 15, c: -5, 
-                r: "Du setzt dich an seinen Platz, gräbst tief im Dateisystem und rettest die Datei. Du fühlst dich wie ein Hacker aus einem Hollywood-Film." 
+                r: "You sit at his desk, dig deep into the file system, and recover the file. You feel like a hacker from a Hollywood movie." 
             },
             { 
-                t: "Ihm eiskalt sagen, dass es vorbei ist", 
+                t: "Coldly tell him it's over", 
                 next: "path_intern_doom", 
                 m: 5, f: 5, a: 10, c: 5, 
-                r: "Lernen durch Schmerz. Du klopfst ihm auf die Schulter und sagst: 'Fang schon mal an, deine Kaffeetasse einzupacken.'" 
+                r: "Learning through pain. You pat him on the shoulder and say: 'Start packing your coffee mug.'" 
             }
         ]
     },
     {
         id: "sq_crying_intern_2a",
         kind: "text",
-        title: "Die Schokoladen-Kur",
+        title: "The Chocolate Cure",
         reqStory: "path_intern_choc",
-        text: "Der Praktikant steht wieder vor dir. 'Die Schokolade war toll, danke! Aber die Datei ist immer noch weg. Was mach ich denn jetzt?'",
+        text: "The intern stands before you again. 'The chocolate was great, thanks! But the file is still gone. What do I do now?'",
         opts: [
             { 
-                t: "Ihm sagen, er soll sie neu machen", 
+                t: "Tell him to redo it", 
                 m: 5, f: 5, a: -5, c: 0, 
-                r: "Dummheit bestraft sich selbst. Er setzt sich schluchzend an PowerPoint und fängt von vorne an." 
+                r: "Stupidity punishes itself. He sits sobbing at PowerPoint and starts over." 
             },
             { 
-                t: "Erbarmen haben und doch noch helfen", 
+                t: "Have mercy and help anyway", 
                 m: 20, f: -5, a: 10, c: -10, 
-                r: "Du stellst die Datei aus einem Backup wieder her. Deine Güte kostet dich viel Zeit." 
+                r: "You restore the file from a backup. Your kindness costs you a lot of time." 
             }
         ]
     },
     {
         id: "sq_crying_intern_2b",
         kind: "text",
-        title: "Die Wahrheit über die Datei",
+        title: "The Truth About the File",
         reqStory: "path_intern_recover",
-        text: "Du hast die Präsentation zwar gerettet, aber du stellst beim Öffnen fest, dass es gar keine CEO-Präsentation war. Es ist eine Sammlung von Katzen-Memes für den 'Fun Friday'.",
+        text: "You saved the presentation, but upon opening it, you realize it wasn't a CEO presentation at all. It's a collection of cat memes for 'Fun Friday'.",
         opts: [
             { 
-                t: "Ihm eine massive Standpauke halten", 
+                t: "Give him a massive lecture", 
                 m: 5, f: 0, a: 15, c: 0, 
-                r: "Du brüllst ihn zusammen, weil du eine halbe Stunde für Witze verschwendet hast. Er wird dich künftig meiden." 
+                r: "You yell at him for wasting half an hour on jokes. He'll avoid you in the future." 
             },
             { 
-                t: "Ein eigenes Meme hinzufügen", 
+                t: "Add your own meme", 
                 m: 10, f: 10, a: -5, c: 5, 
-                r: "Du bastelst schnell ein Bild von einem weinenden Praktikanten rein. Der Humor in der IT ist dunkel." 
+                r: "You quickly create an image of a crying intern. IT humor is dark." 
             }
         ]
     },
     {
         id: "sq_crying_intern_2c",
         kind: "text",
-        title: "Die Kündigung",
+        title: "The Termination",
         reqStory: "path_intern_doom",
-        text: "Der Praktikant hat aus Panik vor dir wirklich seine Sachen gepackt und ist gegangen. HR ruft an: 'Müller! Was haben Sie dem armen Jungen gesagt?! Wir müssen jetzt neu ausschreiben!'",
+        text: "The intern, panicked by you, actually packed his things and left. HR calls: 'Müller! What did you say to the poor boy?! We have to re-advertise now!'",
         opts: [
             { 
-                t: "Verteidigen: 'Er hat Firmendaten gelöscht!'", 
+                t: "Defend: 'He deleted company data!'", 
                 m: 5, f: 0, a: 10, c: 10, 
-                r: "Du stellst ihn als inkompetentes Risiko dar. HR grummelt, aber kann dir fachlich nichts anhaben." 
+                r: "You portray him as an incompetent risk. HR grumbles, but can't fault you professionally." 
             },
             { 
-                t: "Ahnungslos tun: 'Er war wohl überlastet.'", 
+                t: "Play dumb: 'He was probably overwhelmed.'", 
                 m: 5, f: 0, a: 5, c: 5, 
-                r: "Du schiebst es auf den allgemeinen Druck. Die Firma fragt sich, ob das Onboarding zu hart ist." 
+                r: "You blame the general pressure. The company wonders if the onboarding is too tough." 
             }
         ]
     },
     {
         id: "sq_wrong_delivery_1",
         kind: "text",
-        title: "Falsche Lieferung",
-        text: "Ein Lieferando-Bote drückt dir im Vorbeigehen hastig eine braune Papiertüte in die Hand. 'Einmal Pastrami-Sandwich für... äh, den dritten Stock! Schönen Tag noch!' Er verschwindet nach draußen.",
+        title: "Wrong Delivery",
+        text: "A Lieferando delivery driver hastily shoves a brown paper bag into your hand as he passes. 'Pastrami sandwich for... uh, the third floor! Have a nice day!' He disappears outside.",
         opts: [
             { 
-                t: "Selbst behalten", 
+                t: "Keep it yourself", 
                 loot: "sandwich", 
                 next: "path_delivery_keep", 
                 m: 2, f: -5, a: -5, c: 5, 
-                r: "Du nimmst das Essen an dich. Gratis-Lunch auf Firmenkosten! (Inventar +1)" 
+                r: "You take the food. Free lunch at company expense! (Inventory +1)" 
             },
             { 
-                t: "Im dritten Stock nach dem Besitzer suchen", 
+                t: "Search for owner on third floor", 
                 loot: "sandwich", 
                 next: "path_delivery_search", 
                 m: 15, f: -5, a: 10, c: 0, 
-                r: "Du läufst gutmütig durch alle Büros, aber niemand will ein Sandwich bestellt haben. Du fühlst dich wie ein Postbote." 
+                r: "You good-naturedly walk through all the offices, but no one ordered a sandwich. You feel like a mailman." 
             },
             { 
-                t: "Die Tüte am Empfang abstellen", 
+                t: "Leave bag at reception", 
                 next: "path_delivery_leave", 
                 m: 5, f: 5, a: 0, c: 0, 
-                r: "Nicht dein Sandwich, nicht dein Problem. Du stellst es auf den Tresen und gehst." 
+                r: "Not your sandwich, not your problem. You place it on the counter and leave." 
             }
         ]
     },
@@ -3092,172 +3092,172 @@ export const sidequests = [
         id: "sq_wrong_delivery_2a",
 		char: "Frau Elster",
         kind: "text",
-        title: "Die hungrige Elster",
+        title: "The Hungry Magpie",
         reqStory: "path_delivery_keep",
-        text: "Frau Elster ruft an. 'Herr Müller, haben Sie unten zufällig den Kurier gesehen? Mein auf Firmenkosten bestelltes Pastrami-Sandwich ist verschwunden!'",
+        text: "Ms. Elster calls. 'Mr. Müller, did you happen to see the courier downstairs? My pastrami sandwich, ordered at company expense, has disappeared!'",
         opts: [
             { 
-                t: "Lügen: 'Nein, niemanden gesehen.'", 
+                t: "Lie: 'No, didn't see anyone.'", 
                 m: 5, f: 0, a: 5, c: 0, 
-                r: "Du streichst dir einen Krümel vom Mund. Sie wird den Lieferdienst hassen, aber du bist satt und sicher." 
+                r: "You brush a crumb from your mouth. She'll hate the delivery service, but you're full and safe." 
             },
             { 
-                t: "Das Sandwich zähneknirschend hochbringen", 
+                t: "Grudgingly bring up the sandwich", 
                 rem: "sandwich", 
                 rep: { "Frau Elster": 10 },
                 m: 10, f: -5, a: 15, c: 0, 
-                r: "Du opferst deinen Loot. Sie freut sich riesig, aber du hast jetzt massiven Hunger und bist wütend." 
+                r: "You sacrifice your loot. She's overjoyed, but you're now massively hungry and angry." 
             }
         ]
     },
     {
         id: "sq_wrong_delivery_2b",
         kind: "text",
-        title: "Die kalte Wahrheit",
+        title: "The Cold Truth",
         reqStory: "path_delivery_search",
-        text: "Nach 15 Minuten sinnloser Suche durch den gesamten dritten Stock hast du das Sandwich immer noch. Es wird langsam kalt und das Fett zieht durch die Tüte.",
+        text: "After 15 minutes of pointless searching throughout the third floor, you still have the sandwich. It's getting cold and the grease is seeping through the bag.",
         opts: [
             { 
-                t: "Es jetzt genervt selbst essen", 
+                t: "Annoyed, eat it yourself now", 
                 m: 5, f: 0, a: -5, c: 5, 
-                r: "Es schmeckt fantastisch, auch wenn es lauwarm ist. Deine Aggression sinkt." 
+                r: "It tastes fantastic, even if it's lukewarm. Your aggression drops." 
             },
             { 
-                t: "Es in den Mülleimer werfen", 
+                t: "Throw it in the trash", 
                 m: 2, f: 0, a: 10, c: 0, 
-                r: "Aus Prinzip isst du kein fremdes Essen. Du wirfst 15 Euro in den Müll." 
+                r: "On principle, you don't eat other people's food. You throw 15 euros in the trash." 
             }
         ]
     },
     {
         id: "sq_wrong_delivery_2c",
         kind: "text",
-        title: "Der Geruch des Verfalls",
+        title: "The Smell of Decay",
         reqStory: "path_delivery_leave",
-        text: "Die Tüte stand stundenlang in der Sonne auf dem Tresen. Es riecht jetzt unangenehm im ganzen Eingangsbereich nach altem Pastrami.",
+        text: "The bag stood in the sun on the counter for hours. Now the entire entrance area smells unpleasantly of old pastrami.",
         opts: [
             { 
-                t: "Egon rufen, damit er putzt", 
+                t: "Call Egon to clean it up", 
                 rep: { "Egon": -5 },
                 m: 10, f: 5, a: 5, c: 0, 
-                r: "Egon flucht minutenlang über die 'Schweinepriester' in dieser Firma. Du stimmst ihm heuchelnd zu." 
+                r: "Egon curses for minutes about the 'swine' in this company. You hypocritically agree with him." 
             },
             { 
-                t: "Schnell durch den Hintereingang gehen", 
+                t: "Quickly go through the back entrance", 
                 m: 5, f: 5, a: 0, c: 0, 
-                r: "Du vermeidest die Lobby komplett. Was du nicht siehst, existiert nicht." 
+                r: "You completely avoid the lobby. What you don't see doesn't exist." 
             }
         ]
     },
     {
         id: "sq_drafty_door_1",
         kind: "text",
-        title: "Der eisige Wind",
-        text: "Die automatische Schiebetür zum Innenhof ist kaputt und steht dauerhaft offen. Ein eisiger Wind weht durch den Flur. Die Kollegen sitzen mit Schals und Mützen am Schreibtisch.",
+        title: "The Icy Wind",
+        text: "The automatic sliding door to the courtyard is broken and permanently open. An icy wind blows through the hallway. Colleagues sit at their desks with scarves and hats.",
         opts: [
             { 
-                t: "Mit Kabelbindern die Türen fixieren", 
+                t: "Fix doors with cable ties", 
                 req: "zip_ties", 
                 next: "path_door_zip", 
                 m: 10, f: 0, a: -5, c: 0, 
-                r: "Du zurrst die Glasscheiben fest zusammen. Es zieht nicht mehr, aber niemand kommt mehr in den Innenhof." 
+                r: "You strap the glass panes tightly together. No more draft, but no one can get into the courtyard anymore." 
             },
             { 
-                t: "Den Sensor mit Panzertape abkleben", 
+                t: "Tape over sensor with duct tape", 
                 req: "tape", 
                 next: "path_door_tape", 
                 m: 5, f: 0, a: 0, c: 0, 
-                r: "Ein Streifen Tape über den Bewegungssensor. Die Tür schließt sich sofort. Herrlich warm." 
+                r: "A strip of tape over the motion sensor. The door closes immediately. Blissfully warm." 
             },
             { 
-                t: "Egon rufen und warten", 
+                t: "Call Egon and wait", 
                 next: "path_door_egon", 
                 m: 15, f: -5, a: 15, c: 5, 
-                r: "Egon kommt nach 15 Minuten, flucht über die Technik und tritt gegen die Tür. Sie bleibt offen." 
+                r: "Egon arrives after 15 minutes, curses the technology, and kicks the door. It stays open." 
             }
         ]
     },
     {
         id: "sq_drafty_door_2a",
         kind: "text",
-        title: "Der wütende Raucher",
+        title: "The Angry Smoker",
         reqStory: "path_door_zip",
-        text: "Ein Manager wollte in den Innenhof zum Rauchen. Er hat gewaltsam gegen deine fixierten Kabelbinder gedrückt und jetzt ist die Führungsschiene der Schiebetür komplett verbogen.",
+        text: "A manager wanted to go to the courtyard for a smoke. He forcibly pushed against your fixed cable ties, and now the sliding door's guide rail is completely bent.",
         opts: [
             { 
-                t: "Ihn für den Sachschaden verantwortlich machen", 
+                t: "Hold him responsible for the damage", 
                 m: 10, f: 0, a: 5, c: -5, 
-                r: "Du machst Fotos und meldest ihn. Er ist wütend, aber der Chef lobt deinen Blick für Eigentumsschutz." 
+                r: "You take photos and report him. He's angry, but the boss praises your eye for property protection." 
             },
             { 
-                t: "Schnell die Kabelbinder aufschneiden", 
+                t: "Quickly cut the cable ties", 
                 m: 5, f: 5, a: 10, c: 0, 
-                r: "Du beseitigst die Beweise. Die Tür ist jetzt kaputt UND offen." 
+                r: "You remove the evidence. The door is now broken AND open." 
             }
         ]
     },
     {
         id: "sq_drafty_door_2b",
         kind: "text",
-        title: "Gefangen im Hof",
+        title: "Trapped in the Courtyard",
         reqStory: "path_door_tape",
-        text: "Dein Tape-Trick war zu gut. Die Tür geht von außen gar nicht mehr auf. Drei Raucher stehen frierend im Hof und hämmern panisch gegen das Glas, weil sie nicht mehr reinkommen.",
+        text: "Your tape trick was too good. The door won't open from the outside anymore. Three smokers stand shivering in the courtyard, frantically hammering against the glass because they can't get back in.",
         opts: [
             { 
-                t: "Sie auslachen und winken", 
+                t: "Laugh at them and wave", 
                 m: 5, f: 5, a: -10, c: 10, 
-                r: "Ein grandioser Moment. Rauchen gefährdet schließlich die Gesundheit." 
+                r: "A glorious moment. Smoking is bad for your health, after all." 
             },
             { 
-                t: "Gnade zeigen und das Tape abziehen", 
+                t: "Show mercy and peel off the tape", 
                 m: 5, f: 0, a: 5, c: 0, 
-                r: "Du reißt das Tape ab. Sie stürzen frierend rein und bedanken sich bei dir." 
+                r: "You rip off the tape. They rush in, shivering, and thank you." 
             }
         ]
     },
     {
         id: "sq_drafty_door_2c",
         kind: "text",
-        title: "Der Heizlüfter",
+        title: "The Space Heater",
         reqStory: "path_door_egon",
-        text: "Egon hat die Tür aufgegeben. Er hat stattdessen einen gigantischen, lauten, roten Baustellen-Heizlüfter in den Flur gestellt. Er zieht so viel Strom, dass die Deckenlampen flackern.",
+        text: "Egon gave up on the door. Instead, he placed a gigantic, loud, red construction site space heater in the hallway. It draws so much power that the ceiling lights flicker.",
         opts: [
             { 
-                t: "Den Lüfter heimlich ausstecken", 
+                t: "Secretly unplug the heater", 
                 m: 5, f: 0, a: 5, c: 0, 
-                r: "Der Server-Stromkreis ist dir wichtiger als warme Füße im Flur." 
+                r: "The server circuit is more important to you than warm feet in the hallway." 
             },
             { 
-                t: "Sich die Hände daran wärmen", 
+                t: "Warm your hands on it", 
                 m: 10, f: 10, a: -5, c: 5, 
-                r: "Du verbringst 10 Minuten an der warmen Quelle. Herrlich." 
+                r: "You spend 10 minutes at the warm source. Wonderful." 
             }
         ]
     },
     {
         id: "sq_elearning_1",
         kind: "text",
-        title: "E-Learning des Todes",
-        text: "Sabine von HR schickt eine System-Sperre. 'Das jährliche Compliance-Training 'Synergetisches Sitzen' ist überfällig!' Ein unüberspringbares Video-Modul startet auf deinem Hauptmonitor. Es dauert exakt 90 Minuten und prüft alle 5 Minuten per Klick, ob du noch wach bist.",
+        title: "E-Learning of Death",
+        text: "Sabine from HR sends a system lock. 'The annual compliance training 'Synergistic Sitting' is overdue!' An unskippable video module starts on your main monitor. It lasts exactly 90 minutes and checks every 5 minutes with a click if you're still awake.",
         opts: [
             { 
-                t: "Die 90 Minuten ehrlich absitzen", 
+                t: "Honestly sit through the 90 minutes", 
                 next: "path_elearn_honest", 
                 m: 90, f: -15, a: 30, c: -10, 
-                r: "Du starrst 90 Minuten auf einen Mann im Rollkragenpullover, der über Lendenwirbel redet. Alle 5 Minuten klickst du 'Ich bin noch da'. Deine Aggression brodelt, aber HR ist glücklich." 
+                r: "You stare for 90 minutes at a man in a turtleneck talking about lumbar vertebrae. Every 5 minutes you click 'I'm still here'. Your aggression simmers, but HR is happy." 
             },
             { 
-                t: "Mit Root-Passwort Zertifikat fälschen", 
+                t: "Forge certificate with root password", 
                 req: "admin_pw", 
                 next: "path_elearn_hack", 
                 m: 5, f: 15, a: -5, c: 20, 
-                r: "Du loggst dich ins Backend ein und setzt den Wert bei deinem Namen auf 'Bestanden'. Dauert 5 Minuten. Wenn das bei einem Audit auffliegt, bist du geliefert." 
+                r: "You log into the backend and set the value next to your name to 'Passed'. Takes 5 minutes. If this is discovered during an audit, you're screwed." 
             },
             { 
-                t: "Maus-Wackler nutzen & schlafen", 
+                t: "Use mouse jiggler & sleep", 
                 next: "path_elearn_sleep", 
                 m: 90, f: 30, a: -10, c: 10, 
-                r: "Du klemmst deine Uhr an die Maus, legst die Füße auf den Tisch und pennst. Die 90 Minuten vergehen wie im Traum. Du fühlst dich herrlich entspannt." 
+                r: "You clamp your watch to the mouse, put your feet on the table, and nap. The 90 minutes pass like a dream. You feel wonderfully relaxed." 
             }
         ]
     },
@@ -3265,39 +3265,39 @@ export const sidequests = [
         id: "sq_elearning_2a",
 		char: "Dr. Wichtig",
         kind: "text",
-        title: "Ergonomie-Experte",
+        title: "Ergonomics Expert",
         reqStory: "path_elearn_honest",
-        text: "Der Chef kommt in dein Büro. 'Müller, HR berichtet, dass Sie bei den Reflex-Tests des Videos 100% erreicht haben. Sie müssen ein Meister des ergonomischen Sitzens sein!'",
+        text: "The boss comes into your office. 'Müller, HR reports that you achieved 100% on the video's reflex tests. You must be a master of ergonomic sitting!'",
         opts: [
             { 
-                t: "Rücken gerade machen & nicken", 
+                t: "Straighten back & nod", 
 				rep: { "Dr. Wichtig": 5 },
                 m: 2, f: 0, a: -10, c: -5, 
-                r: "Du nimmst Haltung an. Der Chef nickt anerkennend. Der Schmerz der 90 Minuten war zumindest gut fürs Image." 
+                r: "You assume a posture. The boss nods approvingly. The pain of the 90 minutes was at least good for your image." 
             },
             { 
-                t: "Sarkasmus: 'Dafür habe ich meine Seele verkauft.'", 
+                t: "Sarcasm: 'I sold my soul for it.'", 
                 m: 5, f: -5, a: 10, c: 5, 
-                r: "Er winkt ab. 'Gesundheit geht vor, Müller.' Du verdrehst die Augen." 
+                r: "He waves it off. 'Health comes first, Müller.' You roll your eyes." 
             }
         ]
     },
     {
         id: "sq_elearning_2b",
         kind: "text",
-        title: "Das Audit",
+        title: "The Audit",
         reqStory: "path_elearn_hack",
-        text: "Sabine (HR) ruft an. 'Herr Müller? Unser System zeigt, dass Sie das 90-minütige Video in exakt 14 Sekunden absolviert haben. Haben Sie etwa die Software gehackt?'",
+        text: "Sabine (HR) calls. 'Mr. Müller? Our system shows that you completed the 90-minute video in exactly 14 seconds. Did you hack the software?'",
         opts: [
             { 
-                t: "Tech-Ausrede: 'Cache-Synchronisation!'", 
+                t: "Tech excuse: 'Cache synchronization!'", 
                 m: 10, f: 0, a: 10, c: -10, 
-                r: "Du faselst was von 'Asynchronen Zeitstempeln im Server'. Sabine versteht nichts und gibt auf. 'Die IT und ihre Fehler...', seufzt sie. Puh." 
+                r: "You babble something about 'asynchronous timestamps in the server'. Sabine understands nothing and gives up. 'IT and its errors...', she sighs. Phew." 
             },
             { 
-                t: "Ablenken: 'Ihr System ist veraltet!'", 
+                t: "Distract: 'Your system is outdated!'", 
                 m: 5, f: 0, a: 5, c: 15, 
-                r: "Du kritisierst die HR-Software scharf. Sie ist beleidigt und leitet es an den Chef weiter. Das Radar steigt." 
+                r: "You sharply criticize the HR software. She's offended and passes it on to the boss. The radar rises." 
             }
         ]
     },
@@ -3305,69 +3305,69 @@ export const sidequests = [
         id: "sq_elearning_2c",
 		char: "Markus",
         kind: "text",
-        title: "Der Schnarcher",
+        title: "The Snorer",
         reqStory: "path_elearn_sleep",
-        text: "Du dachtest, du wärst unbemerkt geblieben. Markus vom Vertrieb lehnt grinsend im Türrahmen. 'Hatte einen schönen Schlaf, Dornröschen? Ich habe dich beim Vorbeigehen schnarchen hören. Was ist mir mein Schweigen wert?'",
+        text: "You thought you had gone unnoticed. Markus from Sales leans grinning in the doorway. 'Had a nice sleep, Sleeping Beauty? I heard you snoring as I passed. What's my silence worth?'",
         opts: [
             { 
-                t: "Ihm einen alten Donut geben", 
+                t: "Give him an old donut", 
                 req: "donut",
                 rem: "donut",
                 rep: { "Markus": 5 },
                 m: 5, f: 5, a: -5, c: -5, 
-                r: "Markus nimmt den Donut. 'Bestechung? Akzeptiert.' Er beißt rein und geht. (Item entfernt)" 
+                r: "Markus takes the donut. 'Bribery? Accepted.' He bites into it and leaves. (Item removed)" 
             },
             { 
-                t: "Gegenangriff: 'Ich lösche deine Leads.'", 
+                t: "Counterattack: 'I'll delete your leads.'", 
                 rep: { "Markus": -10 },
                 m: 5, f: -5, a: 15, c: 10, 
-                r: "Du drohst zurück. Markus hebt die Hände. 'Wow, ganz ruhig, Tiger. War nur ein Witz.' Er geht, aber das Verhältnis ist vergiftet." 
+                r: "You threaten back. Markus raises his hands. 'Woah, calm down, tiger. Just a joke.' He leaves, but the relationship is poisoned." 
             }
         ]
     },
     {
         id: "sq_workout_1",
         kind: "text",
-        title: "Exorzismus im Büro",
-        text: "Du bist auf einem Dienstgang im 3. Stock. Als du ins Marketing-Büro schaust, gefriert dir das Blut in den Adern. Die halbe Abteilung liegt auf dem Boden, zuckt wild, verdreht die Augen und stöhnt laut. Es sieht aus wie ein massiver medizinischer Notfall oder eine kollektive Dämonenbeschwörung!",
+        title: "Exorcism in the Office",
+        text: "You're on an errand on the 3rd floor. As you look into the Marketing office, your blood freezes. Half the department is lying on the floor, twitching wildly, rolling their eyes, and groaning loudly. It looks like a massive medical emergency or a collective demonic summoning!",
         opts: [
             { 
-                t: "Panik: Den Notarzt rufen!", 
+                t: "Panic: Call emergency services!", 
                 next: "path_workout_panic", 
                 m: 15, f: 0, a: 25, c: 5, 
-                r: "Du brüllst 'SANITÄTER!' und wählst die 112. Plötzlich setzt sich Chantal genervt auf. 'Spinnst du?! Das ist 'Agile Floor Pilates'! Du ruinierst unseren Flow!' Peinlich." 
+                r: "You yell 'MEDIC!' and dial 911. Suddenly, Chantal sits up annoyed. 'Are you crazy?! That's 'Agile Floor Pilates'! You're ruining our flow!' Embarrassing." 
             },
             { 
-                t: "Sich fasziniert dazulegen", 
+                t: "Fascinated, lie down with them", 
                 next: "path_workout_join", 
                 m: 90, f: 35, a: -15, c: 10, 
-                r: "Du legst dich einfach dazu. 90 Minuten lang zuckst und dehnst du dich unproduktiv auf dem Teppichboden. Es ist bizarr, die Zeit rast vorbei, aber dein Rücken knackt befreiend." 
+                r: "You just lie down with them. For 90 minutes, you twitch and stretch unproductively on the carpet. It's bizarre, time flies by, but your back cracks liberatingly." 
             },
             { 
-                t: "Schokolade essen & zuschauen", 
+                t: "Eat chocolate & watch", 
                 rem: "chocolate",
                 next: "path_workout_watch", 
                 m: 30, f: 15, a: -10, c: 0, 
-                r: "Du lehnst dich an den Türrahmen, beißt in deine Schokolade und guckst dir das absurde Spektakel 30 Minuten lang in aller Ruhe wie eine Doku an. (Item verbraucht)" 
+                r: "You lean against the doorframe, bite into your chocolate, and watch the absurd spectacle for 30 minutes like a documentary. (Item consumed)" 
             }
         ]
     },
     {
         id: "sq_dance_2a",
         kind: "text",
-        title: "Der Flucht-Tänzer",
+        title: "The Escape Dancer",
         reqStory: "path_dance_flee",
-        text: "Du gehst geduckt und beschämt über den Flur. Ein Kollege aus dem Vertrieb zeigt auf dich und lacht so laut, dass er keine Luft kriegt. 'Da ist er! Der Flucht-Tänzer! Das GIF von deinem Panik-Gesicht nach dem Moonwalk hat schon 10.000 Views auf LinkedIn!'",
+        text: "You walk hunched and ashamed through the hallway. A colleague from sales points at you and laughs so hard he can't breathe. 'There he is! The escape dancer! The GIF of your panic face after the moonwalk already has 10,000 views on LinkedIn!'",
         opts: [
             { 
-                t: "Mitlachen (Selbstironie)", 
+                t: "Laugh along (Self-deprecating humor)", 
                 m: 15, f: 5, a: -15, c: 0, 
-                r: "Du machst gute Miene zum bösen Spiel und lachst mit. Das nimmt dem Witz die Schärfe. Die Leute respektieren, dass du über dich selbst lachen kannst." 
+                r: "You put on a brave face and laugh along. That takes the sting out of the joke. People respect that you can laugh at yourself." 
             },
             { 
-                t: "Böse anstarren und weggehen", 
+                t: "Glare angrily and walk away", 
                 m: 5, f: 0, a: 15, c: 0, 
-                r: "Du zeigst ihm den Mittelfinger und gehst. Die Leute lachen jetzt hinter deinem Rücken. Du kochst vor Wut." 
+                r: "You give him the middle finger and leave. People are now laughing behind your back. You're boiling with rage." 
             }
         ]
     },
@@ -3375,21 +3375,21 @@ export const sidequests = [
         id: "sq_dance_2b",
 		char: "Chantal",
         kind: "text",
-        title: "Der neue Star",
+        title: "The New Star",
         reqStory: "path_dance_finish",
-        text: "Chantal vom Marketing springt dir auf dem Flur fast in die Arme. 'Müller! Dein Tanz! Die Investoren lieben unsere junge, dynamische Kultur. Der Clip geht komplett viral! Der Chef hat gesagt, du sollst PR-Arbeit machen!'",
+        text: "Chantal from Marketing almost jumps into your arms in the hallway. 'Müller! Your dance! Investors love our young, dynamic culture. The clip is going completely viral! The boss said you should do PR work!'",
         opts: [
             { 
-                t: "Zeitfresser: Autogramme und PR-Termine", 
+                t: "Time sink: Autographs and PR appointments", 
                 rep: { "Chantal": 20, "Dr. Wichtig": 15 },
                 m: 60, f: 20, a: -15, c: -10, 
-                r: "Du wirst zum Maskottchen. Du verbringst eine geschlagene Stunde damit, in Kameras zu winken und Selfies zu machen. Eine riesige Zeitverschwendung, aber dein Ego und der Chef lieben es." 
+                r: "You become the mascot. You spend a solid hour waving at cameras and taking selfies. A huge waste of time, but your ego and the boss love it." 
             },
             { 
-                t: "Ruhm ablehnen: 'Lass mich in Ruhe.'", 
+                t: "Decline fame: 'Leave me alone.'", 
                 rep: { "Chantal": -10, "Dr. Wichtig": -5 },
                 m: 5, f: -5, a: 10, c: 5, 
-                r: "Du stößt Chantal weg und flüchtest zurück an die echte Arbeit. Du hast einen epischen Karriere-Boost weggeworfen." 
+                r: "You push Chantal away and flee back to real work. You've thrown away an epic career boost." 
             }
         ]
     },
@@ -3397,20 +3397,20 @@ export const sidequests = [
         id: "sq_awkward_2a",
 		char: "Chantal",
         kind: "text",
-        title: "Das heiße Gerücht",
+        title: "The Hot Rumor",
         reqStory: "path_awkward_elster",
-        text: "Chantal flüstert lautstark am Wasserspender, als du vorbeigehst: '...und dann hat Frau Elster die beiden im Serverraum erwischt! Auf dem Boden! Der arme Kevin, das ist ja Missbrauch von Abhängigkeitsverhältnissen!' Sie sieht dich und verstummt schockiert.",
+        text: "Chantal whispers loudly at the water cooler as you pass: '...and then Ms. Elster caught them both in the server room! On the floor! Poor Kevin, that's abuse of power!' She sees you and falls silent in shock.",
         opts: [
             { 
-                t: "Dazwischengehen: 'Er steckte fest!'", 
+                t: "Intervene: 'He was stuck!'", 
                 rep: { "Chantal": -5 },
                 m: 10, f: 0, a: 15, c: 5, 
-                r: "Du versuchst, es zu erklären. Chantal nickt langsam. 'Klar... 'festgesteckt'. Sehr kreativ, Müller.' Niemand glaubt dir. Dein Ruf ist angeschlagen." 
+                r: "You try to explain. Chantal slowly nods. 'Sure... 'stuck'. Very creative, Müller.' No one believes you. Your reputation is damaged." 
             },
             { 
-                t: "Wegrennen (Fluchtreflex)", 
+                t: "Run away (Flight reflex)", 
                 m: 5, f: 5, a: 10, c: 15, 
-                r: "Du drehst dich um und flüchtest. Das wirkt natürlich wie ein Schuldeingeständnis. Die Gerüchteküche explodiert jetzt richtig." 
+                r: "You turn around and flee. Of course, that looks like an admission of guilt. The rumor mill is really exploding now." 
             }
         ]
     },
@@ -3418,48 +3418,48 @@ export const sidequests = [
         id: "sq_awkward_2b",
 		char: "Kevin",
         kind: "text",
-        title: "Der Erpresser",
+        title: "The Blackmailer",
         reqStory: "path_awkward_photo",
-        text: "Du stehst in der Lobby. Kevin fängt dich ab. Er wirkt ungewohnt selbstbewusst. 'Dieses Foto... lösch das. Sonst sag ich dem Chef, dass du mich gestern gezwungen hast, deine Tastatur mit einer Zahnbürste zu reinigen.'",
+        text: "You're in the lobby. Kevin intercepts you. He seems unusually confident. 'That photo... delete it. Otherwise, I'll tell the boss you forced me to clean your keyboard with a toothbrush yesterday.'",
         opts: [
             { 
-                t: "Foto löschen (Kapitulieren)", 
+                t: "Delete photo (Capitulate)", 
                 rep: { "Kevin": 5 },
                 m: 5, f: 0, a: 10, c: 0, 
-                r: "Du drückst auf 'Löschen'. Kevin nickt cool. 'Gute Wahl, Boomer.' Der Azubi hat dich gerade dominiert." 
+                r: "You press 'Delete'. Kevin nods coolly. 'Good choice, Boomer.' The intern just dominated you." 
             },
             { 
-                t: "Lachen: 'Mach doch!'", 
+                t: "Laugh: 'Go ahead!'", 
                 rep: { "Kevin": -15, "Dr. Wichtig": -5 },
                 m: 10, f: 0, a: -5, c: 20, 
-                r: "'Versuch's, Kleiner!' Kevin rennt tatsächlich zum Chef. Du darfst das Foto behalten, kriegst aber später Ärger wegen 'Machtmissbrauch'." 
+                r: "'Try it, kid!' Kevin actually runs to the boss. You get to keep the photo, but you'll get in trouble later for 'abuse of power'." 
             }
         ]
     },
         {
         id: "sq_fire_ext_1",
         kind: "text",
-        title: "Tatort Büro 312",
-        text: "Auf deinem Rundgang betrittst du Büro 312. Der Raum ist leer, aber es riecht beißend nach geschmolzenem Plastik und verbranntem Käse. Mitten im Raum steht verlassen ein Feuerlöscher. Auf dem Schreibtisch raucht ein komplett zerstörter, illegaler Sandwich-Toaster vor sich hin. Der Täter hat offenbar panisch gelöscht und ist geflohen.",
+        title: "Crime Scene Office 312",
+        text: "On your rounds, you enter Office 312. The room is empty, but there's a pungent smell of melted plastic and burnt cheese. In the middle of the room, a fire extinguisher stands abandoned. On the desk, a completely destroyed, illegal sandwich toaster smokes away. The culprit apparently panicked, extinguished the fire, and fled.",
         opts: [
             { 
-                t: "Unauffällig den Feuerlöscher einstecken", 
+                t: "Discreetly pocket the fire extinguisher", 
                 loot: "fire_ext", 
                 next: "path_sq_ext_loot", 
                 m: 5, f: -5, a: -5, c: 0, 
-                r: "Man weiß nie, wann man das Ding mal braucht. Du lässt die rote Flasche unauffällig in deinem Rucksack verschwinden. Lieber schnell weg hier, bevor dich noch jemand entdeckt." 
+                r: "You never know when you might need the thing. You subtly make the red cylinder disappear into your backpack. Better get out of here quickly before someone spots you." 
             },
             { 
-                t: "Den Toaster weiter mit Pulver beschießen", 
+                t: "Continue blasting the toaster with powder", 
                 next: "path_sq_ext_spray", 
                 m: 15, f: 10, a: -15, c: 5, 
-                r: "Sicher ist sicher! Du entsicherst den Hebel und hüllst den Toaster (und den halben Schreibtisch) in eine dicke, weiße Schneelandschaft aus CO2-Pulver. Das hat extrem gutgetan!" 
+                r: "Better safe than sorry! You unpin the lever and envelop the toaster (and half the desk) in a thick, white snowscape of CO2 powder. That felt extremely good!" 
             },
             { 
-                t: "Vorschriftsmäßig an den Haken hängen", 
+                t: "Properly hang it back on the hook", 
                 next: "path_sq_ext_order", 
                 m: 10, f: -10, a: 5, c: -10, 
-                r: "Ordnung muss sein! Du trägst das schwere Gerät auf den Flur und hängst es akkurat an die rote Halterung zurück. Du bist der unbesungene Held der Arbeitssicherheit." 
+                r: "Order must be maintained! You carry the heavy device to the hallway and hang it neatly back on the red bracket. You are the unsung hero of occupational safety." 
             }
         ]
     },
@@ -3467,20 +3467,20 @@ export const sidequests = [
         id: "sq_fire_ext_2a",
         kind: "text",
         char: "Kevin",
-        title: "Der Brandstifter",
+        title: "The Arsonist",
         reqStory: "path_sq_ext_loot",
-        text: "Kevin stürmt panisch auf dich zu. 'Chef! Hast du zufällig den Feuerlöscher aus Büro 312 gesehen?! Ich hab mir da heimlich ein Käse-Toast gemacht und es hat gebrannt. Ich wollte ihn gerade zurückhängen, damit Hausmeister Egon nichts merkt, aber er ist weg!'",
+        text: "Kevin frantically rushes towards you. 'Boss! Have you seen the fire extinguisher from Office 312?! I secretly made myself a cheese toast there and it caught fire. I was just about to hang it back so Janitor Egon wouldn't notice, but it's gone!'",
         opts: [
             { 
-                t: "IT-Paranoia: 'Die neuen Löscher haben GPS-Tracker.'", 
+                t: "IT paranoia: 'The new extinguishers have GPS trackers.'", 
                 m: 5, f: 5, a: -10, c: 0, 
-                r: "Kevin reißt die Augen auf. 'GPS?! Oh Gott, HR weiß genau, dass er zuletzt bei mir war!' Er vergisst die Suche sofort und sprintet los, um sich ein wasserdichtes Alibi für die Tatzeit zu überlegen. Du grinst in dich hinein." 
+                r: "Kevin's eyes widen. 'GPS?! Oh God, HR knows exactly that it was last with me!' He immediately forgets the search and sprints off to come up with a watertight alibi for the time of the incident. You grin to yourself." 
             },
             { 
-                t: "Lügen: 'Egon hat ihn schon mitgenommen.'", 
+                t: "Lie: 'Egon already took it.'", 
                 rep: { "Kevin": 5 },
                 m: 5, f: 5, a: 0, c: 10, 
-                r: "Kevin wird kreidebleich. 'Oh mein Gott. Ich bin tot. Egon wird mich im Heizungskeller einmauern!' Er rennt weinend weg. Du hast deine Ruhe und dein neues Werkzeug ist sicher." 
+                r: "Kevin turns pale. 'Oh my God. I'm dead. Egon will wall me up in the boiler room!' He runs away crying. You have your peace and your new tool is safe." 
             }
         ]
     },
@@ -3488,41 +3488,41 @@ export const sidequests = [
         id: "sq_fire_ext_2b",
         kind: "text",
         char: "Egon",
-        title: "Winter in Büro 312",
+        title: "Winter in Office 312",
         reqStory: "path_sq_ext_spray",
-        text: "Hausmeister Egon tobt auf dem Flur. Er hat Büro 312 entdeckt. 'WER ZUM TEUFEL HAT HIER 10 KILO LÖSCHPULVER VERSPRÜHT?! Der Toaster war doch schon aus! Der ganze Teppich ist ruiniert! Ich hole die Security, wir werten die Kameras aus!'",
+        text: "Janitor Egon rages in the hallway. He discovered Office 312. 'WHO THE HELL SPRAYED 10 KILOS OF EXTINGUISHING POWDER HERE?! The toaster was already off! The whole carpet is ruined! I'm calling security, we're reviewing the cameras!'",
         opts: [
             { 
-                t: "Panik: Die Kameraaufnahmen heimlich löschen", 
+                t: "Panic: Secretly delete camera footage", 
                 req: "admin_pw",
                 m: 15, f: -5, a: 10, c: -20, 
-                r: "Du loggst dich schnell mit deinen Root-Rechten ins System ein und löschst die Video-Files von heute Morgen. Egon findet nichts. Du hast einen Herzinfarkt knapp überlebt." 
+                r: "You quickly log into the system with your root privileges and delete the video files from this morning. Egon finds nothing. You narrowly survived a heart attack." 
             },
             { 
-                t: "Mit einstimmen: 'Unfassbar, diese Vandalen!'", 
+                t: "Join in: 'Unbelievable, these vandals!'", 
                 rep: { "Egon": 5 },
                 m: 5, f: 0, a: -10, c: 10, 
-                r: "Du stellst dich neben ihn und schüttelst theatralisch den Kopf. 'Egon, Sie haben mein volles Mitleid. Richtig asozial.' Egon nickt brummend. Tarnung ist alles." 
+                r: "You stand next to him and theatrically shake your head. 'Egon, you have my deepest sympathy. Truly antisocial.' Egon grunts in agreement. Camouflage is everything." 
             }
         ]
     },
     {
         id: "sq_fire_ext_2c",
         kind: "text",
-        title: "Das gebrochene Siegel",
+        title: "The Broken Seal",
         reqStory: "path_sq_ext_order",
-        text: "Der Brandschutzbeauftragte steht vor dem Feuerlöscher, den du so vorbildlich zurückgehängt hast. Er notiert etwas auf seinem Klemmbrett. 'Herr Müller! Gut, dass das Gerät am Platz hängt. ABER: Das Schutzsiegel ist gebrochen und er ist halb leer! Haben Sie das nicht geprüft?!'",
+        text: "The fire safety officer stands in front of the fire extinguisher you so exemplarily hung back. He notes something on his clipboard. 'Mr. Müller! Good that the device is in place. BUT: The protective seal is broken and it's half empty! Didn't you check that?!'",
         opts: [
             { 
-                t: "Ausrede: 'Ich bin nicht der Hausmeister!'", 
+                t: "Excuse: 'I'm not the janitor!'", 
                 m: 10, f: 0, a: 10, c: -5, 
-                r: "Du argumentierst, dass du nur die physische Rückführung übernommen hast. Er seufzt. 'Immer diese Ausreden in der IT. Ich muss einen Wartungsauftrag schreiben.' Nervig." 
+                r: "You argue that you only handled the physical return. He sighs. 'Always these excuses in IT. I have to write a maintenance order.' Annoying." 
             },
             { 
-                t: "Kevin die Schuld geben", 
+                t: "Blame Kevin", 
                 rep: { "Kevin": -15 },
                 m: 5, f: 5, a: 0, c: 5, 
-                r: "'Das war Kevins Toaster-Brand!', verrätst du eiskalt. Der Prüfer stürmt sofort los, um den Azubi zur Schnecke zu machen. Du hast nach Vorschrift gehandelt." 
+                r: "'That was Kevin's toaster fire!', you coldly betray. The inspector immediately storms off to chew out the intern. You acted according to regulations." 
             }
         ]
     },
@@ -3532,53 +3532,53 @@ export const sidequests = [
         id: "sq_telegram", 
         kind: "phone", 
         appName: "Telegram", 
-        title: "Gruppe: Schatten-IT", 
+        title: "Group: Shadow IT", 
         startNode: "root", 
         nodes: { 
             "root": {  
-                text: "Admn_Rogue: 'Müller! Wir manipulieren heute die Zeiterfassung. Wir tun ab sofort nichts mehr, aber das System loggt fleißig weiter. Bist du dabei?'",  
+                text: "Admn_Rogue: 'Müller! We're manipulating the time tracking today. From now on, we're doing nothing, but the system keeps logging diligently. Are you in?'",  
                 opts: [ 
-                    { t: "Klar, bin dabei! Schick rüber.", next: "yes" }, 
-                    { t: "Ist mir zu heiß. Wenn HR das merkt, fliegen wir alle.", next: "no" }, 
-                    { t: "Ich riskiere meinen Hals nicht umsonst. Was springt für mich dabei raus?", next: "haggle" } 
+                    { t: "Sure, I'm in! Send it over.", next: "yes" }, 
+                    { t: "It's too hot for me. If HR finds out, we're all fired.", next: "no" }, 
+                    { t: "I'm not risking my neck for nothing. What's in it for me?", next: "haggle" } 
                 ] 
             }, 
             "yes": {  
-                text: "Admn_Rogue: 'Sauber. Installier das Skript im Anhang auf dem Mainframe. Passwort ist 1234.'",  
+                text: "Admn_Rogue: 'Nice. Install the script in the attachment on the mainframe. Password is 1234.'",  
                 opts: [ 
-                    { t: "[System: Angehängtes Skript herunterladen und ausführen]", next: "done_hack" }, 
-                    { t: "Puh, lass mal. Mein Radar beim Chef ist gerade eh schon hoch. Bin raus.", next: "chicken" } 
+                    { t: "[System: Download and execute attached script]", next: "done_hack" }, 
+                    { t: "Phew, never mind. My boss radar is already high anyway. I'm out.", next: "chicken" } 
                 ] 
             }, 
             "haggle": { 
-                text: "Admn_Rogue: 'Wir geben dir das Root-Passwort. Damit bist du der Gott des Netzwerks.'", 
+                text: "Admn_Rogue: 'We'll give you the root password. With that, you're the god of the network.'", 
                 opts: [ 
-                    { t: "Deal! Her mit den Rechten.", next: "deal_pw" }, 
-                    { t: "Für ein Passwort riskiere ich keine Abmahnung. Nein danke.", next: "no" } 
+                    { t: "Deal! Hand over the rights.", next: "deal_pw" }, 
+                    { t: "I'm not risking a warning for a password. No thanks.", next: "no" } 
                 ] 
             }, 
             "no": {  
-                text: "Admn_Rogue: 'Langweiler. Wir löschen dich aus der Gruppe.'",  
+                text: "Admn_Rogue: 'Boring. We're deleting you from the group.'",  
                 opts: [ 
-                    { t: "[System: Chat stummschalten und archivieren]", next: "kicked" } 
+                    { t: "[System: Mute and archive chat]", next: "kicked" } 
                 ] 
             } 
         }, 
         results: { 
             "done_hack": { 
-                txt: "[System: Skript erfolgreich ausgeführt] Die Arbeitszeiterfassung ist manipuliert. Du lehnst dich entspannt zurück und tust für den Rest des Tages absolut gar nichts mehr, während das System fleißig für dich arbeitet.", 
+                txt: "[System: Script executed successfully] Time tracking is manipulated. You lean back relaxed and do absolutely nothing for the rest of the day while the system diligently works for you.", 
                 m: 10, f: 30, a: -10, c: 20 
             }, 
             "chicken": { 
-                txt: "Admn_Rogue: 'Feigling.' [System: Chat beendet] Du hast im letzten Moment kalte Füße bekommen. Nichts passiert, aber dein Gewissen ist rein.", 
+                txt: "Admn_Rogue: 'Coward.' [System: Chat ended] You got cold feet at the last moment. Nothing happened, but your conscience is clear.", 
                 m: 2, f: 0, a: 5, c: 0 
             }, 
             "kicked": { 
-                txt: "[System: Du wurdest aus der Gruppe entfernt] Die Schatten-IT operiert jetzt ohne dich. Das ist zwar langweilig, aber dafür verlierst du deinen Job heute nicht.", 
+                txt: "[System: You have been removed from the group] Shadow IT now operates without you. It's boring, but at least you won't lose your job today.", 
                 m: 1, f: -5, a: 0, c: -5 
             }, 
             "deal_pw": { 
-                txt: "[Datei empfangen: keys.txt] Du hast das Root-Passwort! Ein extrem mächtiges Werkzeug. Die Manipulation läuft im Hintergrund und du schiebst jetzt ganz entspannt eine ruhige Kugel.", 
+                txt: "[File received: keys.txt] You have the root password! An extremely powerful tool. The manipulation runs in the background and you're now comfortably taking it easy.", 
                 m: 5, loot: "admin_pw", f: 10, a: 0, c: 10 
             } 
         } 
@@ -3591,31 +3591,31 @@ export const sidequests = [
         startNode: "root", 
         nodes: { 
             "root": { 
-                text: "InfoService: Sie haben ein brandneues iPhone 50 gewonnen! Klicken Sie hier: www.virus-load.ru. Klicken Sie JETZT für Ihren Gewinn!", 
+                text: "InfoService: You've won a brand new iPhone 50! Click here: www.virus-load.ru. Click NOW for your prize!", 
                 opts: [ 
-                    { t: "[System: Auf den Link klicken]", next: "virus_start" }, 
-                    { t: "[System: Nachricht sofort löschen]", next: "clean" } 
+                    { t: "[System: Click on the link]", next: "virus_start" }, 
+                    { t: "[System: Delete message immediately]", next: "clean" } 
                 ] 
             }, 
             "virus_start": { 
-                text: "[Browser öffnet sich...] DOWNLOADING... 99%... INSTALLING ROOTKIT...", 
+                text: "[Browser opens...] DOWNLOADING... 99%... INSTALLING ROOTKIT...", 
                 opts: [ 
-                    { t: "[System: Prozess panisch abbrechen! X drücken!]", next: "virus_fail" }, 
-                    { t: "[System: Abwarten, vielleicht gibt es ja wirklich ein Handy...]", next: "virus_doom" } 
+                    { t: "[System: Panicked, abort process! Press X!]", next: "virus_fail" }, 
+                    { t: "[System: Wait, maybe there really is a phone...]", next: "virus_doom" } 
                 ] 
             } 
         }, 
         results: { 
             "clean": { 
-                txt: "[System: SMS gelöscht] Sehr klug. Du hast in der IT schon genug echte Viren gesehen.", 
+                txt: "[System: SMS deleted] Very smart. You've seen enough real viruses in IT.", 
                 m: 1, f: -5, a: 0, c: 0 
             }, 
             "virus_fail": { 
-                txt: "[System: Download erfolgreich abgebrochen] Das war verdammt knapp. Dein Puls schlägt dir bis zum Hals.", 
+                txt: "[System: Download successfully aborted] That was damn close. Your heart is pounding.", 
                 m: 2, f: 0, a: 10, c: 0 
             }, 
             "virus_doom": { 
-                txt: "[System: VIRUS AKTIV] Dein Handy spielt plötzlich extrem lauten Techno-Schlager auf maximaler Lautstärke ab. Der Chef guckt schon warnend in deine Richtung!", 
+                txt: "[System: VIRUS ACTIVE] Your phone suddenly plays extremely loud techno-schlager at maximum volume. The boss is already looking at you warningly!", 
                 m: 5, f: 0, a: 30, c: 40, virus: true 
             } 
         } 
@@ -3624,44 +3624,44 @@ export const sidequests = [
         id: "sq_tinder_1", 
         kind: "phone", 
         appName: "LoveMatch", 
-        title: "Neues Match!", 
+        title: "New Match!", 
         startNode: "root", 
         nodes: { 
             "root": { 
-                text: "Lisa (Entfernung: 15m): 'Hey! Du bist doch der Admin, der immer so verzweifelt aus dem Fenster schaut, oder? Ich brauche dringend Flucht vor meinen Excel-Tabellen. Lust auf einen Kaffee? Geht auf mich.'", 
+                text: "Lisa (Distance: 15m): 'Hey! You're the admin who always looks so desperate out the window, right? I desperately need an escape from my Excel spreadsheets. Coffee? It's on me.'", 
                 opts: [ 
-                    { t: "Gerne! Ein Kaffee ist jetzt mein absoluter Rettungsplan.", next: "date_yes" }, 
-                    { t: "Sorry, hier brennt gerade wortwörtlich ein Server. Keine Zeit.", next: "date_no" }, 
-                    { t: "Ist das ein Trick? Bist du von HR und willst meine Pausenzeiten prüfen?", next: "hr_check" } 
+                    { t: "Gladly! Coffee is my absolute rescue plan right now.", next: "date_yes" }, 
+                    { t: "Sorry, a server is literally on fire here. No time.", next: "date_no" }, 
+                    { t: "Is this a trick? Are you from HR and want to check my break times?", next: "hr_check" } 
                 ] 
             }, 
             "date_yes": { 
-                text: "Lisa: 'Super! Treffen uns in 5 Min in der Lobby. Ich erkenne dich am Karohemd, richtig? 😉'", 
+                text: "Lisa: 'Great! Meet in 5 mins in the lobby. I'll recognize you by the plaid shirt, right? 😉'", 
                 opts: [ 
-                    { t: "Erwischt. Bis gleich in der Lobby!", next: "go_date" }, 
-                    { t: "[System: Match aus unerklärlicher Panik auflösen]", next: "ghost" } 
+                    { t: "Busted. See you in the lobby!", next: "go_date" }, 
+                    { t: "[System: Unmatch due to inexplicable panic]", next: "ghost" } 
                 ] 
             }, 
             "hr_check": { 
-                text: "Lisa: 'LOL nein! 😂 Ich bin im Marketing. Ich will nur Koffein, kein Compliance-Audit. Versprochen!'", 
+                text: "Lisa: 'LOL no! 😂 I'm in Marketing. I just want caffeine, not a compliance audit. Promise!'", 
                 opts: [ 
-                    { t: "Puh, okay. Dann bis gleich am Kaffeeautomaten in der Lobby!", next: "go_date" }, 
-                    { t: "[System: Nutzerin blockieren] Genau das würde ein HR-Spion sagen...", next: "date_no" } 
+                    { t: "Phew, okay. Then see you at the coffee machine in the lobby!", next: "go_date" }, 
+                    { t: "[System: Block user] That's exactly what an HR spy would say...", next: "date_no" } 
                 ] 
             } 
         }, 
         results: { 
             "date_no": {  
-                txt: "[System: Match aufgelöst] Du bleibst allein an deinem Platz, aber wenigstens bist du absolut sicher vor eventuellen HR-Fallen. Vertraue niemandem.",  
+                txt: "[System: Match dissolved] You remain alone at your desk, but at least you're absolutely safe from any HR traps. Trust no one.",  
                 m: 1, f: -5, a: 0, c: 0  
             }, 
             "go_date": {  
-                txt: "[Gerät gesperrt] Das Date in der Lobby lief super! Ihr habt 20 Minuten lang über Drucker gelästert. Sie hat sogar deinen Witz über IPv6 verstanden (glaubst du zumindest).",  
+                txt: "[Device locked] The date in the lobby went great! You spent 20 minutes complaining about printers. She even understood your IPv6 joke (you think).",  
                 m: 20, f: 20, a: -20, c: 0, 
                 next: "lisa_contact" 
             }, 
             "ghost": {  
-                txt: "[System: Match aufgelöst] Du hast pure Panik bekommen und dich auf dem Klo versteckt. Später siehst du sie traurig allein am Automaten stehen. Dein Selbstwertgefühl ist im Keller.",  
+                txt: "[System: Match dissolved] You panicked and hid in the bathroom. Later you see her sadly standing alone at the vending machine. Your self-esteem is in the basement.",  
                 m: 10, f: -10, a: 5, c: 0  
             } 
         } 
@@ -3669,38 +3669,38 @@ export const sidequests = [
     { 
         id: "sq_tinder_2", 
         kind: "phone", 
-        appName: "Nachricht", 
+        appName: "Message", 
         title: "Lisa (Marketing)", 
         reqStory: "lisa_contact", 
         startNode: "root", 
         nodes: { 
             "root": { 
-                text: "Lisa schreibt: 'Hey Süßer! 😘 Das war echt nett neulich. Sag mal... mein Laptop macht so komische Geräusche. Und das Ticket-System ist so kompliziert. Kannst du mal kurz rüberkommen und gucken? Als private Gefälligkeit? 😉'", 
+                text: "Lisa writes: 'Hey Sweetie! 😘 That was really nice the other day. Say... my laptop is making weird noises. And the ticket system is so complicated. Can you come over and take a look? As a private favor? 😉'", 
                 opts: [ 
-                    { t: "Klar, bin in zwei Minuten drüben! 😘", next: "help_simp" }, 
-                    { t: "Sorry Lisa, aber dafür musst du offiziell ein Ticket aufmachen.", next: "help_ticket" } 
+                    { t: "Sure, I'll be there in two minutes! 😘", next: "help_simp" }, 
+                    { t: "Sorry Lisa, but you have to officially open a ticket for that.", next: "help_ticket" } 
                 ] 
             }, 
             "help_simp": { 
-                text: "[System: Du warst drüben und hast ihren Lüfter entstaubt] Lisa: 'Du bist mein absoluter Held! 😍 Gibt's Kaffee später als Dankeschön?'", 
+                text: "[System: You went over and dusted her fan] Lisa: 'You're my absolute hero! 😍 Coffee later as a thank you?'", 
                 opts: [ 
-                    { t: "Sehr gerne! Ich freu mich drauf.", next: "res_simp" } 
+                    { t: "Very gladly! I'm looking forward to it.", next: "res_simp" } 
                 ] 
             }, 
             "help_ticket": { 
-                text: "Lisa: 'Wow. Ernsthaft? Ich dachte, wir hätten... was Spezielles. Vergiss es. 🙄'", 
+                text: "Lisa: 'Wow. Seriously? I thought we had... something special. Forget it. 🙄'", 
                 opts: [ 
-                    { t: "Regeln sind nun mal Regeln, sorry. 🤷‍♂️", next: "res_friendzone" } 
+                    { t: "Rules are rules, sorry. 🤷‍♂️", next: "res_friendzone" } 
                 ] 
             } 
         }, 
         results: { 
             "res_simp": {  
-                txt: "[Chat stummgeschaltet] Du hast jetzt eine Romanze im Büro. Vorteil: Gratis Kaffee. Nachteil: Du bist jetzt offiziell ihr unbezahlter, persönlicher 24/7 IT-Support.",  
+                txt: "[Chat muted] You now have an office romance. Pro: Free coffee. Con: You are now officially her unpaid, personal 24/7 IT support.",  
                 m: 10, f: -10, a: -15, c: 10  
             }, 
             "res_friendzone": {  
-                txt: "[System: Lisa hat dich blockiert] Match aufgelöst. Dein professioneller Admin-Stolz ist intakt und du musst ihren verkeimten Laptop nicht reinigen.",  
+                txt: "[System: Lisa blocked you] Match dissolved. Your professional admin pride is intact and you don't have to clean her germ-ridden laptop.",  
                 m: 5, f: 10, a: 5, c: 0  
             } 
         } 
@@ -3710,36 +3710,36 @@ export const sidequests = [
         kind: "phone", 
         appName: "SMS", 
         reqStory: "sq_parking_2_taped", 
-        title: "Unbekannte Nummer", 
+        title: "Unknown Number", 
         startNode: "root", 
         nodes: { 
             "root": { 
-                text: "[Bild empfangen: Dein getaptes Kunstwerk auf dem Parkplatz] Auditor: 'Wer war das?! Das ist genial! Ich krieg die Fahrertür nicht auf, aber tiefster Respekt. Wer auch immer das war: Komm in mein Büro. - Der externe Auditor'", 
+                text: "[Image received: Your taped masterpiece in the parking lot] Auditor: 'Who was that?! That's brilliant! I can't open the driver's door, but deepest respect. Whoever that was: Come to my office. - The external Auditor'", 
                 opts: [ 
-                    { t: "Das war ich. Panzerband löst eben alle Probleme!", next: "res_respect" }, 
-                    { t: "[System: Nachricht ignorieren & panisch unter dem Tisch verstecken]", next: "res_fear" } 
+                    { t: "That was me. Duct tape solves all problems!", next: "res_respect" }, 
+                    { t: "[System: Ignore message & frantically hide under the desk]", next: "res_fear" } 
                 ] 
             }, 
             "res_respect": { 
-                text: "Auditor: 'Hahaha! Endlich jemand mit Rückgrat in dieser Firma. Komm rüber auf einen Kaffee. Bei der nächsten IT-Prüfung bin ich gnädig mit deinen Servern.'", 
+                text: "Auditor: 'Hahaha! Finally someone with backbone in this company. Come over for a coffee. During the next IT audit, I'll be lenient with your servers.'", 
                 opts: [ 
-                    { t: "Perfekt, das ist ein Deal. Bin gleich da.", next: "end_respect" } 
+                    { t: "Perfect, that's a deal. I'll be right there.", next: "end_respect" } 
                 ] 
             }, 
             "res_fear": { 
-                text: "[System: Du starrst auf das Display und antwortest nicht] Auditor: 'Hallo? Keiner? Schade. Aber das Tape hält echt verdammt gut...'", 
+                text: "[System: You stare at the display and don't reply] Auditor: 'Hello? No one? Too bad. But that tape really holds damn well...'", 
                 opts: [ 
-                    { t: "[System: Chat endgültig löschen]", next: "end_fear" } 
+                    { t: "[System: Permanently delete chat]", next: "end_fear" } 
                 ] 
             } 
         }, 
         results: { 
             "end_respect": { 
-                txt: "[System: Chat beendet] Du gehst rüber in sein Büro. Der Auditor ist jetzt dein größter Fan. Deine Aggro sinkt massiv, denn so ein Streich tut der Seele einfach gut.", 
+                txt: "[System: Chat ended] You go over to his office. The auditor is now your biggest fan. Your aggro drops massively, because a prank like that just feels good.", 
                 m: 10, f: 0, a: -15, c: -10 
             }, 
             "end_fear": { 
-                txt: "Die SMS bleibt unbeantwortet. Du schwitzt vor Angst vor Konsequenzen. Du hast die Chance auf einen echt mächtigen Verbündeten vertan.", 
+                txt: "The SMS remains unanswered. You're sweating with fear of consequences. You've missed the chance for a truly powerful ally.", 
                 m: 2, f: 0, a: 5, c: 0 
             } 
         } 
@@ -3749,37 +3749,37 @@ export const sidequests = [
         kind: "phone", 
         appName: "WhatsApp", 
         reqStory: "sq_parking_2_blocked", 
-        title: "Dr. Wichtig (Chef)", 
+        title: "Dr. Wichtig (Boss)", 
         startNode: "root", 
         nodes: { 
             "root": { 
-                text: "Dr. Wichtig: 'MÜLLER! Ihr Corsa steht in meiner Flugschneise! Ich habe in 5 Minuten einen hochwichtigen Termin beim Golf-Club. BEWEGEN SIE DAS DING!'", 
+                text: "MÜLLER! Your Corsa is in my flight path! I have a highly important meeting at the golf club in 5 minutes. MOVE THAT THING!'", 
                 opts: [ 
-                    { t: "[System: Handy schnappen und sofort zum Parkplatz rennen]", next: "res_fast" }, 
-                    { t: "[System: Nachricht als ungelesen markieren und Handy ignorieren]", next: "res_ignore" } 
+                    { t: "[System: Grab phone and immediately run to the parking lot]", next: "res_fast" }, 
+                    { t: "[System: Mark message as unread and ignore phone]", next: "res_ignore" } 
                 ] 
             }, 
             "res_fast": { 
-                text: "[System: Chat verlassen. Du sprintest außer Atem nach unten] Du stehst am Parkplatz. Der Chef fuchtelt wild mit den Autoschlüsseln seines SUVs.", 
+                text: "[System: Leave chat. You sprint downstairs out of breath] You stand in the parking lot. The boss wildly waves his SUV keys.", 
                 opts: [ 
-                    { t: "[System: Zähneknirschend ins Auto steigen und umparken]", next: "end_fast" } 
+                    { t: "[System: Grudgingly get in car and re-park]", next: "end_fast" } 
                 ] 
             }, 
             "res_ignore": { 
-                text: "[System: Chat stummgeschaltet] Du lässt das Handy einfach auf dem Tisch vibrieren. 10 Minuten später hörst du ihn draußen extrem laut fluchen. Er muss wohl tatsächlich ein Taxi rufen.", 
+                text: "[System: Chat muted] You just let the phone vibrate on the table. 10 minutes later, you hear him cursing extremely loudly outside. He probably actually has to call a taxi.", 
                 opts: [ 
-                    { t: "Klingt teuer. Schade. [System: Weiterarbeiten]", next: "end_ignore" } 
+                    { t: "Sounds expensive. Too bad. [System: Continue working]", next: "end_ignore" } 
                 ] 
             } 
         }, 
         results: { 
             "end_fast": { 
-                txt: "Du kommst schwitzend zurück an deinen Platz. Du hast den Chef besänftigt, bist aber völlig fertig und fühlst dich wie ein Laufbursche.", 
+                txt: "You return to your desk, sweating. You've appeased the boss, but you're completely exhausted and feel like an errand boy.", 
                 rep: { "Dr. Wichtig": 2 },	
                 m: 15, f: -10, a: -5, c: 5 
             }, 
             "end_ignore": { 
-                txt: "Das war ein teures Taxi für den Golfclub. Der Chef ist stinksauer auf dich, aber dein inneres Karma-Konto und deine Faulheit feiern ein Fest.", 
+                txt: "That was an expensive taxi for the golf club. The boss is furious with you, but your inner karma account and your laziness are celebrating.", 
                 rep: { "Dr. Wichtig": -5 },	
                 m: 5, f: 15, a: 20, c: -10 
             } 
@@ -3788,64 +3788,64 @@ export const sidequests = [
     { 
         id: "sq_headhunter_1", 
         kind: "phone", 
-        appName: "Anruf", 
-        title: "Unbekannte Nummer", 
+        appName: "Call", 
+        title: "Unknown Number", 
         startNode: "root", 
         nodes: { 
             "root": { 
-                text: "Anruf eingehend... Eine sanfte Stimme: 'Herr Müller? Hier ist Elena von TechHunt. Wir suchen Talente, die... flexibel mit Informationen umgehen.'", 
+                text: "Incoming call... A soft voice: 'Mr. Müller? This is Elena from TechHunt. We're looking for talents who... are flexible with information.'", 
                 opts: [ 
-                    { t: "Kein Interesse. Ich sterbe hier lieber loyal.", next: "res_loyal" }, 
-                    { t: "Klingt lukrativ. Ich bin ganz Ohr.", next: "headhunter_listen" } 
+                    { t: "Not interested. I'd rather die loyal here.", next: "res_loyal" }, 
+                    { t: "Sounds lucrative. I'm all ears.", next: "headhunter_listen" } 
                 ] 
             }, 
             "headhunter_listen": { 
-                text: "'Interessant. Wir rufen zurück, wenn Sie etwas... Hebelwirkung haben.'", 
+                text: "'Interesting. We'll call back when you have some... leverage.'", 
                 opts: [ 
-                    { t: "Okay, ich werde die Augen offenhalten.", next: "res_listen" } 
+                    { t: "Okay, I'll keep my eyes open.", next: "res_listen" } 
                 ] 
             } 
         }, 
         results: { 
-            "res_loyal": { txt: "'Wow. Stockholm-Syndrom? Okay, bye.' *Klick*", m: 5, f: 0, a: 5, c: 0 }, 
-            "res_listen": { txt: "Sie legt auf. Du fühlst dich beobachtet.", m: 5, f: 0, a: 0, c: 5, next: "sq_headhunter_2_active" } 
+            "res_loyal": { txt: "'Wow. Stockholm Syndrome? Okay, bye.' *Click*", m: 5, f: 0, a: 5, c: 0 }, 
+            "res_listen": { txt: "She hangs up. You feel watched.", m: 5, f: 0, a: 0, c: 5, next: "sq_headhunter_2_active" } 
         } 
     },
     {
         id: "sq_headhunter_2",
         kind: "phone",
-        appName: "Anruf",
-        title: "Rückruf (Elena)",
+        appName: "Call",
+        title: "Callback (Elena)",
         reqStory: "sq_headhunter_2_active",
         startNode: "root",
         nodes: {
             "root": {
-                text: "Elena ruft wieder an. 'Na? Haben Sie über das Angebot nachgedacht? Wir brauchen jemanden, der die Interna von GlobalCorp kennt.'",
+                text: "Elena calls again. 'Well? Have you thought about the offer? We need someone who knows GlobalCorp's internal affairs.'",
                 opts: [
-                    { t: "Ich hätte da ein Dokument... eine 'Schwarze Liste'.", req: "secret_list", next: "offer_secrets" },
-                    { t: "Lassen Sie uns ganz normal über mein Profil sprechen.", next: "standard_interview" }
+                    { t: "I have a document... a 'Blacklist'.", req: "secret_list", next: "offer_secrets" },
+                    { t: "Let's just talk about my profile normally.", next: "standard_interview" }
                 ]
             },
             "offer_secrets": {
-                text: "Du liest Namen von der Liste vor, die du im Drucker gefunden hast. Stille. Dann: 'Das ist Gold wert. Wir bieten Ihnen das Doppelte.'",
+                text: "You read names from the list you found in the printer. Silence. Then: 'That's gold. We'll offer you double.'",
                 opts: [
-                    { t: "Deal. Aber ich bleibe als Maulwurf hier.", next: "res_rich" }
+                    { t: "Deal. But I'll stay here as a mole.", next: "res_rich" }
                 ]
             },
             "standard_interview": {
-                text: "Bla bla Synergien, bla bla Teamplayer. Sie wirken nicht sehr beeindruckt von deinem Standard-Lebenslauf. 'Wir melden uns.'",
+                text: "Blah blah synergies, blah blah team player. She doesn't seem very impressed by your standard resume. 'We'll get back to you.'",
                 opts: [
-                    { t: "Gut, ich warte ab.", next: "res_fail" }
+                    { t: "Good, I'll wait.", next: "res_fail" }
                 ]
             }
         },
         results: {
             "res_rich": { 
-                txt: "Ein sattes 'Beraterhonorar' landet auf deinem Offshore-Konto. Du bist nun offiziell ein Konzern-Spion. Dein Gewissen ist erstaunlich leise, wenn der Kontostand stimmt.", 
+                txt: "A hefty 'consulting fee' lands in your offshore account. You are now officially a corporate spy. Your conscience is surprisingly quiet when the bank balance is right.", 
                 m: 15, f: 10, a: -20, c: 5
             },
             "res_fail": { 
-                txt: "Die Headhunterin meldet sich nie wieder. Klassisches Ghosting. Dein Standard-Lebenslauf war ihr wohl nicht 'disruptiv' genug.", 
+                txt: "The headhunter never calls back. Classic ghosting. Your standard resume probably wasn't 'disruptive' enough for her.", 
                 m: 5, f: 0, a: 5, c: 0 
             }
         }
@@ -3854,35 +3854,35 @@ export const sidequests = [
         id: "sq_darknet", 
         kind: "phone", 
         appName: "Tor Browser", 
-        title: "Das Angebot", 
+        title: "The Offer", 
         startNode: "root", 
         nodes: { 
             "root": { 
-                text: "Anon: 'Ich zahle 1 Bitcoin pro Datensatz für interne Firmengeheimnisse. Komplett anonym über ein Escrow-System. Interesse an schnellem Geld?'", 
+                text: "Anon: 'I'll pay 1 Bitcoin per data set for internal company secrets. Completely anonymous via an escrow system. Interested in quick cash?'", 
                 opts: [ 
-                    { t: "[System: Chat sofort schließen & Session beenden]", next: "good" }, 
-                    { t: "Wie genau stellst du dir das vor? Bin ganz Ohr.", next: "bad" } 
+                    { t: "[System: Immediately close chat & end session]", next: "good" }, 
+                    { t: "How exactly do you envision this? I'm all ears.", next: "bad" } 
                 ] 
             }, 
             "bad": { 
-                text: "Anon: 'Lass einfach einen Dump eurer Kundendatenbank über diesen gesicherten Onion-Link laufen. Meine Scripts waschen alle Spuren. Keiner wird es je merken.'", 
+                text: "Anon: 'Just run a dump of your customer database over this secure Onion link. My scripts will wash all traces. No one will ever notice.'", 
                 opts: [ 
-                    { t: "[System: Datei 'Kundendatenbank.sql' auswählen & Upload starten]", next: "crime" }, 
-                    { t: "Nein, das ist mir eine Nummer zu groß. Ich bin raus.", next: "chicken" } 
+                    { t: "[System: Select file 'customer_database.sql' & start upload]", next: "crime" }, 
+                    { t: "No, that's too big for me. I'm out.", next: "chicken" } 
                 ] 
             } 
         }, 
         results: { 
             "good": { 
-                txt: "[Verbindung getrennt] Du bleibst sauber. Dein Gewissen ist rein und du riskierst keine Haftstrafe für ein bisschen Krypto.", 
+                txt: "[Connection disconnected] You stay clean. Your conscience is clear and you're not risking jail time for a bit of crypto.", 
                 m: 1, f: 0, a: 0, c: -10 
             }, 
             "chicken": { 
-                txt: "[System: Tor-Identität erneuert] Du machst im letzten Moment einen Rückzieher. Das war verdammt knapp, aber besser so. Finger weg vom Darknet.", 
+                txt: "[System: Tor identity renewed] You back out at the last moment. That was damn close, but better safe than sorry. Stay away from the darknet.", 
                 m: 2, f: 0, a: 5, c: 0 
             }, 
             "crime": { 
-                txt: "[Upload 100% - 1 BTC empfangen] Du hast es wirklich getan. Du bist plötzlich extrem reich! Aber die Paranoia kickt sofort rein. Jeder Blick des Chefs wirkt jetzt wie ein Verhör.", 
+                txt: "[Upload 100% - 1 BTC received] You actually did it. You're suddenly extremely rich! But the paranoia immediately kicks in. Every glance from the boss now feels like an interrogation.", 
                 m: 10, f: 20, a: -50, c: 50 
             } 
         } 
@@ -3891,141 +3891,141 @@ export const sidequests = [
         id: "sq_moral_bernd", 
         kind: "phone", 
         appName: "Teams", 
-        title: "Bernd (Vertrieb)", 
+        title: "Bernd (Sales)", 
         startNode: "root", 
         nodes: { 
             "root": { 
-                text: "Bernd: 'Hör mal, ganz heikles Thema. Kannst du gerade schreiben? Ich hab dem Kunden aus Versehen die interne Kalkulation mit unserer riesigen Marge geschickt statt dem Angebot! 😱 Wenn der Chef das sieht, bin ich tot. Kannst du die Mail vom Server löschen, bevor der Kunde sie öffnet?'", 
+                text: "Bernd: 'Listen, super delicate topic. Can you write right now? I accidentally sent the client the internal calculation with our huge margin instead of the offer! 😱 If the boss sees this, I'm dead. Can you delete the email from the server before the client opens it?'", 
                 opts: [ 
-                    { t: "Okay, ich lösche sie. Aber du schuldest mir was.", next: "wipe" }, 
-                    { t: "Vergiss es. Wenn das rauskommt, fliege ich mit dir.", next: "deny" }, 
-                    { t: "Und was springt für mich bei der Aktion raus?", next: "deal" } 
+                    { t: "Okay, I'll delete it. But you owe me one.", next: "wipe" }, 
+                    { t: "Forget it. If that gets out, I'm going down with you.", next: "deny" }, 
+                    { t: "What's in it for me?", next: "deal" } 
                 ] 
             }, 
             "deal": { 
-                text: "Bernd: 'Ich geb dir 50 Euro bar auf die Hand! Mach schon, er ist gerade online!'", 
+                text: "Bernd: 'I'll give you 50 euros cash! Hurry up, he's online right now!'", 
                 opts: [ 
-                    { t: "Deal. Bring den Fuffi nachher in mein Büro.", next: "cash" }, 
-                    { t: "Lass mal. Meine Logs lügen nicht, das fällt auf.", next: "deny" } 
+                    { t: "Deal. Bring the fifty to my office later.", next: "cash" }, 
+                    { t: "Never mind. My logs don't lie, that'll be noticed.", next: "deny" } 
                 ] 
             } 
         }, 
         results: { 
-            "wipe": { txt: "Bernd: 'Du bist mein Gott! Danke!' Die Mail ist spurlos gelöscht. Das Risiko war hoch, aber du hast einen gewaltigen Gefallen gut.", m: 10, f: 0, a: -15, c: 15 }, 
-            "deny": { txt: "Bernd: 'Danke für gar nichts... 🖕' Bernd wird kurz darauf ins Chefbüro zitiert. Dein Gewissen ist rein, aber Bernd hasst dich jetzt.", m: 2, f: 0, a: 10, c: -5 }, 
-            "cash": { txt: "Bernd: 'Geld liegt gleich unter deiner Tastatur!' Die Mail ist weg. Ein lukrativer Tag, solange die Compliance-Abteilung nicht reinschaut.", m: 10, f: 5, a: -20, c: 25 } 
+            "wipe": { txt: "Bernd: 'You're my god! Thank you!' The email is deleted without a trace. The risk was high, but you've earned a huge favor.", m: 10, f: 0, a: -15, c: 15 }, 
+            "deny": { txt: "Bernd: 'Thanks for nothing... 🖕' Bernd is summoned to the boss's office shortly after. Your conscience is clear, but Bernd hates you now.", m: 2, f: 0, a: 10, c: -5 }, 
+            "cash": { txt: "Bernd: 'Money's under your keyboard right away!' The email is gone. A lucrative day, as long as the compliance department doesn't look.", m: 10, f: 5, a: -20, c: 25 } 
         } 
     },
     {
         id: "sq_mom_help",
         kind: "phone",
         appName: "WhatsApp",
-        title: "Mama ❤️",
+        title: "Mom ❤️",
         startNode: "root",
         nodes: {
             "root": {
-                text: "Mama: 'Hallo Schatz, der Computer sagt, ich muss 500€ an Microsoft überweisen. Ist das wichtig? Da ist so ein rotes Fenster. Und ein netter Mann am Telefon sagt, ich habe einen Trojaner.'",
+                text: "Mom: 'Hi honey, the computer says I have to transfer 500€ to Microsoft. Is that important? There's a red window. And a nice man on the phone says I have a Trojan.'",
                 opts: [
-                    { t: "AUFLEGEN! SOFORT!", next: "hangup" },
-                    { t: "Gib mir den Mann mal.", next: "troll" },
-                    { t: "Keine Zeit, Mama.", next: "ignore" }
+                    { t: "HANG UP! IMMEDIATELY!", next: "hangup" },
+                    { t: "Let me talk to the man.", next: "troll" },
+                    { t: "No time, Mom.", next: "ignore" }
                 ]
             },
             "hangup": {
-                text: "Mama: 'Aber er klang sehr seriös... er hieß John Smith.'",
+                text: "Mom: 'But he sounded very serious... his name was John Smith.'",
                 opts: [
-                    { t: "MAMA! STECKER ZIEHEN!", next: "pull_plug" },
-                    { t: "Überweis bloß nichts!", next: "warn" }
+                    { t: "MOM! PULL THE PLUG!", next: "pull_plug" },
+                    { t: "Don't transfer anything!", next: "warn" }
                 ]
             },
             "troll": {
-                text: "Mama: 'Er sagt, er darf nicht mit Dritten reden wegen Datenschutz. Er wird jetzt lauter.'",
+                text: "Mom: 'He says he can't talk to third parties due to data protection. He's getting louder now.'",
                 opts: [
-                    { t: "Sag ihm: 'Mein Sohn ist beim BSI'", next: "bsi" }
+                    { t: "Tell him: 'My son works at the BSI'", next: "bsi" }
                 ]
             }
         },
         results: {
-            "pull_plug": { txt: "Sie hat den Stecker gezogen. PC aus. Geld sicher. Du bist ein guter Sohn/Tochter.", m: 5, f: -5, a: 5, c: 0 },
-            "warn": { txt: "Zu spät. Sie sucht schon die TAN-Liste. Das gibt ein langes Telefonat heute Abend.", m: 10, f: 0, a: 20, c: 0 },
-            "ignore": { txt: "Du ignorierst es. Dein Erbe ist gerade um 500€ geschrumpft.", m: 1, f: 5, a: 0, c: 0 },
-            "bsi": { txt: "Der Betrüger hat sofort aufgelegt! Mama hält dich für einen Geheimagenten.", m: 5, f: 0, a: -10, c: 5 }
+            "pull_plug": { txt: "She pulled the plug. PC off. Money safe. You're a good son/daughter.", m: 5, f: -5, a: 5, c: 0 },
+            "warn": { txt: "Too late. She's already looking for the TAN list. That's going to be a long phone call tonight.", m: 10, f: 0, a: 20, c: 0 },
+            "ignore": { txt: "You ignore it. Your inheritance just shrunk by 500€.", m: 1, f: 5, a: 0, c: 0 },
+            "bsi": { txt: "The scammer immediately hung up! Mom thinks you're a secret agent.", m: 5, f: 0, a: -10, c: 5 }
         }
     },
     { 
         id: "sq_wrong_number", 
         kind: "phone", 
         appName: "SMS", 
-        title: "Unbekannt", 
+        title: "Unknown", 
         startNode: "root", 
         nodes: { 
             "root": { 
-                text: "Unbekannt: 'Hey Bro, hast du das Zeug? Bin in 5 Min am Bahnhof. Bring den Stoff mit.'", 
+                text: "Unknown: 'Hey bro, got the stuff? I'll be at the station in 5 mins. Bring the goods.'", 
                 opts: [ 
-                    { t: "Falsche Nummer, Kumpel.", next: "boring" }, 
-                    { t: "Die Pakete wurden verworfen.", next: "tech_joke" }, 
-                    { t: "Error 403: Zugriff verweigert.", next: "http_joke" } 
+                    { t: "Wrong number, buddy.", next: "boring" }, 
+                    { t: "The packets were dropped.", next: "tech_joke" }, 
+                    { t: "Error 403: Access denied.", next: "http_joke" } 
                 ] 
             }, 
             "tech_joke": { 
-                text: "Unbekannt: 'Hä? Was laberst du? Hast du das Gras oder nicht?'", 
+                text: "Unknown: 'Huh? What are you talking about? Do you have the weed or not?'", 
                 opts: [ 
-                    { t: "Firewall blockiert Port 420.", next: "confused" } 
+                    { t: "Firewall blocking port 420.", next: "confused" } 
                 ] 
             }, 
             "http_joke": { 
-                text: "Unbekannt: 'Alter, verarsch wen anders. Ich komm jetzt vorbei.'", 
+                text: "Unknown: 'Dude, fool someone else. I'm coming over now.'", 
                 opts: [ 
-                    { t: "Komm ruhig. Ich tracke gerade deine IP-Adresse...", next: "block" } 
+                    { t: "Come on over. I'm tracking your IP address right now...", next: "block" } 
                 ] 
             } 
         }, 
         results: { 
-            "boring": { txt: "Unbekannt: 'Oh, sorry man.' Du hast deine Ruhe. Langweilig, aber sicher.", m: 1, f: 0, a: 0, c: 0 }, 
-            "confused": { txt: "Unbekannt: 'Shit, Bullen?! Bin weg!' Er schreibt nicht mehr. Ein voller Erfolg für die IT-Abteilung.", m: 3, f: 5, a: -10, c: 0 }, 
-            "block": { txt: "Unbekannt: 'Fuck, lass mich in Ruhe!' Du hast ihn in Panik versetzt und die Nummer blockiert. Gutes Gefühl.", m: 1, f: 0, a: 5, c: 0 } 
+            "boring": { txt: "Unknown: 'Oh, sorry man.' You have your peace. Boring, but safe.", m: 1, f: 0, a: 0, c: 0 }, 
+            "confused": { txt: "Unknown: 'Shit, cops?! I'm out!' He doesn't text anymore. A complete success for the IT department.", m: 3, f: 5, a: -10, c: 0 }, 
+            "block": { txt: "Unknown: 'Fuck, leave me alone!' You panicked him and blocked the number. Good feeling.", m: 1, f: 0, a: 5, c: 0 } 
         } 
     },
     { 
         id: "sq_ebay_1", 
         kind: "phone", 
-        appName: "Kleinanzeigen", 
-        title: "Nachricht zu: 'Alte Grafikkarte'", 
+        appName: "Classifieds", 
+        title: "Message about: 'Old Graphics Card'", 
         startNode: "root", 
         nodes: { 
             "root": { 
-                text: "Kuseng88: 'Hallo. Noch da? Tausche gegen Teppich? Komme heute holen.'", 
+                text: "Cousin88: 'Hello. Still available? Trade for carpet? Can pick up today.'", 
                 opts: [ 
-                    { t: "Nein, nur Cash.", next: "cash" }, 
-                    { t: "Was für ein Teppich?", next: "carpet" }, 
-                    { t: "Lass stecken. Mit solchen Leuten verhandle ich nicht.", next: "block" } 
+                    { t: "No, cash only.", next: "cash" }, 
+                    { t: "What kind of carpet?", next: "carpet" }, 
+                    { t: "Forget it. I don't negotiate with people like that.", next: "block" } 
                 ] 
             }, 
             "cash": { 
-                text: "Kuseng88: 'Gebe dir 10 Euro und Samsung Galaxy S3 (Display kaputt).'", 
+                text: "Cousin88: 'Give you 10 euros and Samsung Galaxy S3 (broken display).'", 
                 opts: [ 
-                    { t: "Na gut, Hauptsache das Ding ist weg. Komm vorbei.", next: "bad_deal" }, 
-                    { t: "Vergiss es. Das ist zu wenig.", next: "res_refuse" }  
+                    { t: "Alright, just want it gone. Come over.", next: "bad_deal" }, 
+                    { t: "Forget it. That's too little.", next: "res_refuse" }  
                 ] 
             }, 
             "carpet": { 
-                text: "Kuseng88: 'Fliegt gut. Farbe rot. Bisschen Flecken von Katze.'", 
+                text: "Cousin88: 'Flies well. Color red. A bit stained from cat.'", 
                 opts: [ 
-                    { t: "Katzenflecken?! Vergiss es, ich bin raus.", next: "block" } 
+                    { t: "Cat stains?! Forget it, I'm out.", next: "block" } 
                 ] 
             } 
         }, 
         results: { 
             "block": {  
-                txt: "[System: Nutzer blockiert] Du drückst den Blockieren-Button. Du spürst, wie dein Blutdruck steigt. Warum sind Menschen auf dieser App so?",  
+                txt: "[System: User blocked] You hit the block button. You feel your blood pressure rise. Why are people on this app like this?",  
                 m: 2, f: 5, a: 10, c: 0 
             }, 
             "bad_deal": {  
-                txt: "Kuseng88: 'Bin in 5 Min da Chef!' Du hast jetzt 10€ und ein kaputtes Handy mehr. Immerhin ist die Grafikkarte weg.",  
+                txt: "Cousin88: 'Be there in 5 mins Boss!' You now have 10€ and a broken phone. At least the graphics card is gone.",  
                 m: 5, f: 5, a: 0, c: 5  
             }, 
             "res_refuse": {  
-                txt: "[Gelesen] Er liest die Nachricht, schreibt aber nicht zurück. Die Wut köchelt leicht.",  
+                txt: "[Read] He reads the message, but doesn't reply. The anger simmers slightly.",  
                 m: 2, f: 5, a: 5, c: 0, 
                 next: "ebay_pending"  
             } 
@@ -4034,31 +4034,31 @@ export const sidequests = [
     { 
         id: "sq_ebay_2", 
         kind: "phone", 
-        appName: "Kleinanzeigen", 
-        title: "Kuseng88 schreibt...", 
+        appName: "Classifieds", 
+        title: "Cousin88 writes...", 
         reqStory: "ebay_pending",  
         startNode: "root", 
         nodes: { 
             "root": { 
-                text: "Kuseng88 meldet sich wieder: 'Hallo Chef. Hab nochmal geguckt. Karte ist ja alt. 10 Euro war zu viel. Gebe dir 4 Euro. Und ich nehme sie sofort. Du musst aber Bus-Ticket zahlen.'", 
+                text: "Cousin88 messages again: 'Hello Boss. Looked again. Card is old. 10 euros was too much. Give you 4 euros. And I'll take it immediately. But you have to pay bus ticket.'", 
                 opts: [ 
-                    { t: "Willst du mich eigentlich verarschen? Ciao.", next: "rage_quit" }, 
-                    { t: "Komm vorbei und nimm sie einfach mit. Hauptsache weg.", next: "sad_deal" }, 
-                    { t: "Okay, aber nur wenn ich die Katze dazu kriege.", next: "troll_fail" } 
+                    { t: "Are you trying to mess with me? Bye.", next: "rage_quit" }, 
+                    { t: "Come over and just take it. Just want it gone.", next: "sad_deal" }, 
+                    { t: "Okay, but only if I get the cat too.", next: "troll_fail" } 
                 ] 
             } 
         }, 
         results: { 
             "rage_quit": {  
-                txt: "[System: Nutzer blockiert] Du pfefferst das Handy fast gegen die Wand. Deine Ader an der Stirn pocht. Warum tust du dir diese App an?",  
+                txt: "[System: User blocked] You almost throw the phone against the wall. The vein in your forehead throbs. Why do you put yourself through this app?",  
                 m: 5, f: 5, a: 15, c: 5 
             }, 
             "sad_deal": {  
-                txt: "Kuseng88: 'Bin unterwegs!' Er kommt zur Lobby, drückt dir 3,50€ in die Hand ('Hab nicht passend') und verschwindet. Du fühlst dich leer.",  
+                txt: "Cousin88: 'On my way!' He comes to the lobby, presses 3.50€ into your hand ('Don't have exact change'), and disappears. You feel empty.",  
                 m: 5, f: 5, a: 10, c: 5 
             }, 
             "troll_fail": {  
-                txt: "Kuseng88: 'Katze ist weg. Hab gegen Teppich getauscht. Also 4 Euro?' Du gibst auf. Er kommt vorbei, zahlt 3,50€ und geht.",  
+                txt: "Cousin88: 'Cat is gone. Traded for carpet. So 4 euros?' You give up. He comes over, pays 3.50€, and leaves.",  
                 m: 5, f: 5, a: 10, c: 5 
             } 
         } 
@@ -4066,37 +4066,37 @@ export const sidequests = [
     { 
         id: "sq_pager", 
         kind: "phone", 
-        appName: "System Warnung", 
+        appName: "System Warning", 
         title: "🚨 CRITICAL ALERT", 
         startNode: "root", 
         nodes: { 
             "root": { 
-                text: "SYSTEM-BOT: 🚨 Kritisches Hitzeproblem bei Server 'DB_MASTER'. Temperatur bei 85°C. Kühlung ausgefallen. Bitte wählen Sie eine Notfall-Aktion:", 
+                text: "SYSTEM-BOT: 🚨 Critical heat problem on server 'DB_MASTER'. Temperature at 85°C. Cooling failed. Please select an emergency action:", 
                 opts: [ 
-                    { t: "Leite sofort die Notabschaltung ein!", next: "shutdown" }, 
-                    { t: "Zwing die Lüfter auf 100% Leistung!", next: "fan_boost" }, 
-                    { t: "Warnung ignorieren und stummschalten.", next: "ignore" } 
+                    { t: "Initiate emergency shutdown immediately!", next: "shutdown" }, 
+                    { t: "Force fans to 100% power!", next: "fan_boost" }, 
+                    { t: "Ignore warning and mute.", next: "ignore" } 
                 ] 
             }, 
             "fan_boost": { 
-                text: "SYSTEM-BOT: ⚠️ Warnung! Den defekten Lüfter auf 100% zu zwingen, kann zu starken Vibrationen und Hardware-Schäden führen. Trotzdem fortfahren?", 
+                text: "SYSTEM-BOT: ⚠️ Warning! Forcing the defective fan to 100% can lead to strong vibrations and hardware damage. Proceed anyway?", 
                 opts: [ 
-                    { t: "Ja, zieh durch! Hauptsache kalt!", next: "fan_success" }, 
-                    { t: "Nein, brich ab! Mach doch die Notabschaltung!", next: "shutdown" } 
+                    { t: "Yes, go for it! Just keep it cool!", next: "fan_success" }, 
+                    { t: "No, abort! Just do the emergency shutdown!", next: "shutdown" } 
                 ] 
             } 
         }, 
         results: { 
             "shutdown": { 
-                txt: "SYSTEM-BOT: Server wird heruntergefahren. Verbindung getrennt. Die Datenbank ist jetzt zwar offline, aber die Hardware lebt. Der Chef ruft schon über den Flur, warum nichts mehr geht.", 
+                txt: "SYSTEM-BOT: Server shutting down. Connection lost. The database is now offline, but the hardware lives. The boss is already yelling across the hallway why nothing is working.", 
                 m: 5, f: -10, a: 0, c: 10 
             }, 
             "fan_success": { 
-                txt: "SYSTEM-BOT: Boost aktiv. Temperatur sinkt. Der Lüfter heult mit der Lautstärke eines startenden Flugzeugs auf. Man hört es bis in den Flur, aber der Server ist gerettet!", 
+                txt: "SYSTEM-BOT: Boost active. Temperature dropping. The fan howls at the volume of a jet engine taking off. You can hear it all the way in the hallway, but the server is saved!", 
                 m: 5, f: -5, a: -5, c: -10 
             }, 
             "ignore": { 
-                txt: "SYSTEM-BOT: Alarme für 24 Stunden stummgeschaltet. Zehn Minuten später verlierst du die Verbindung komplett. Der Rauchmelder im Serverraum geht an. Das war eine sehr schlechte Idee.", 
+                txt: "SYSTEM-BOT: Alarms muted for 24 hours. Ten minutes later, you lose connection completely. The smoke detector in the server room goes off. That was a very bad idea.", 
                 m: 1, f: 10, a: 50, c: 50 
             } 
         } 
@@ -4105,33 +4105,33 @@ export const sidequests = [
         id: "sq_elster_cat_1", 
         kind: "phone", 
         appName: "WhatsApp", 
-        title: "Frau Elster (Privat)", 
+        title: "Ms. Elster (Private)", 
         startNode: "root", 
         nodes: { 
             "root": { 
-                text: "Frau Elster: 'Herr Müller! Höchste Geheimhaltungsstufe. Ich sitze in der großen Quartalsprüfung fest. Mein Smart-Fressnapf meldet Fehler 404. Rüdiger hat seit ZWEI Stunden nichts gegessen! Bitte loggen Sie sich remote bei mir ein und starten Sie das Gerät neu!'", 
+                text: "Ms. Elster: 'Mr. Müller! Top secret. I'm stuck in the big quarterly review. My smart feeder reports error 404. Rüdiger hasn't eaten in TWO hours! Please log in remotely and restart the device!'", 
                 opts: [ 
-                    { t: "Schicken Sie die Zugangsdaten. Ich rette Rüdiger.", next: "help_cat" }, 
-                    { t: "Ich bin Firmen-Admin, kein privater Katzen-Sitter. Klären Sie das selbst.", next: "deny_cat" }, 
-                    { t: "Ich schau mal rein... [System: Leckerli-Kanone auf Dauerfeuer stellen]", next: "troll_cat" } 
+                    { t: "Send me the login details. I'll save Rüdiger.", next: "help_cat" }, 
+                    { t: "I'm a company admin, not a private cat sitter. Handle it yourself.", next: "deny_cat" }, 
+                    { t: "I'll take a look... [System: Set treat dispenser to continuous fire]", next: "troll_cat" } 
                 ] 
             } 
         }, 
         results: { 
             "help_cat": { 
-                txt: "Frau Elster: 'Danke! Ich wusste, auf Sie ist Verlass!' [System: Remote-Neustart erfolgreich] Du hast einen Kater vor dem imaginären Hungertod bewahrt. Privatkram nervt, aber immerhin hast du bei der Buchhaltung jetzt was gut.", 
+                txt: "Ms. Elster: 'Thank you! I knew I could count on you!' [System: Remote restart successful] You saved a cat from imaginary starvation. Private matters are annoying, but at least you've earned some goodwill with accounting.", 
                 rep: { "Frau Elster": 5 },
                 m: 10, f: 0, a: 10, c: 0, 
                 next: "path_elster_happy" 
             }, 
             "deny_cat": { 
-                txt: "[Gelesen] Sie antwortet nicht mehr. Das Schweigen ist ohrenbetäubend. Du hast deinen vertraglichen Stolz bewahrt, aber Frau Elster wird das niemals vergessen.", 
+                txt: "[Read] She doesn't reply. The silence is deafening. You've maintained your contractual pride, but Ms. Elster will never forget this.", 
                 rep: { "Frau Elster": -2 },
                 m: 2, f: 5, a: 0, c: 0, 
                 next: "path_elster_angry" 
             }, 
             "troll_cat": { 
-                txt: "[System: Kommando 'All you can eat' gesendet] Rüdiger bekommt gerade die gesamten 5 Kilo Trockenfutter auf einmal serviert. Das wird Folgen haben, aber du grinst dir eins.", 
+                txt: "[System: Command 'All you can eat' sent] Rüdiger is currently being served the entire 5 kilos of dry food at once. This will have consequences, but you're grinning.", 
                 rep: { "Frau Elster": -5 },
                 m: 5, f: 5, a: -10, c: 0, 
                 next: "path_elster_fat" 
@@ -4147,27 +4147,27 @@ export const sidequests = [
         startNode: "root",
         nodes: {
             "root": {
-                text: "@channel: Bowls sind da! ✨ Namaste, Kollegen! Du öffnest deine 'Buddha-Gold-Bowl'. Inhalt: 3 Blätter Spinat, eine halbe Avocado (braun) und etwas, das wie Vogelfutter aussieht. Preis: 18,50€.",
+                text: "@channel: Bowls are here! ✨ Namaste, colleagues! You open your 'Buddha Gold Bowl'. Contents: 3 spinach leaves, half an avocado (brown), and something that looks like birdseed. Price: 18.50€.",
                 opts: [
-                    { t: "So tun, als ob es schmeckt.", next: "pretend" },
-                    { t: "Im Geheimen zum Dönerladen rennen.", next: "secret_kebab" }
+                    { t: "Pretend it tastes good.", next: "pretend" },
+                    { t: "Secretly run to the kebab shop.", next: "secret_kebab" }
                 ]
             },
             "pretend": {
-                text: "Chantal: 'Spürst du die Energie?!' Du spürst vor allem den Hunger. Dein Magen knurrt so laut, dass das Meeting unterbrochen wird.",
+                text: "Chantal: 'Do you feel the energy?!' You mostly feel hungry. Your stomach growls so loudly that the meeting is interrupted.",
                 opts: [
-                    { t: "Lächeln und winken.", next: "res_hungry" }
+                    { t: "Smile and wave.", next: "res_hungry" }
                 ]
             }
         },
         results: {
             "res_hungry": { 
-                txt: "Du bist 'spirituell gereinigt' (aka hungrig und pleite). Aber Marketing liebt dich.", 
+                txt: "You are 'spiritually cleansed' (aka hungry and broke). But Marketing loves you.", 
                 rep: { "Chantal": 5 },	
                 m: 20, f: 0, a: 10, c: 0 
             },
             "secret_kebab": { 
-                txt: "Du schleichst dich raus und holst dir einen Döner. Beste Entscheidung des Tages. Aber Chantal hat dich gesehen.", 
+                txt: "You sneak out and get a kebab. Best decision of the day. But Chantal saw you.", 
                 rep: { "Chantal": -5 },	
                 m: 30, f: -5, a: -15, c: 0 
             }
@@ -4183,30 +4183,30 @@ export const sidequests = [
             "root": { 
                 text: "Prince_Abubakar: 'Greetings My Dearest Friend! I am Prince Abubakar. I have 25 Million USD stuck in a trust fund. I need a foreign partner to unlock it. You will keep 30%!' 'Please, I need your trust. Can you help me move the funds? It is 100% safe and legal.'", 
                 opts: [ 
-                    { t: "Netter Versuch, Scammer. Such dir ein anderes Opfer.", next: "delete" }, 
-                    { t: "Klar, Eure Majestät! Wo soll ich unterschreiben?", next: "reply_joke" }, 
-                    { t: "Ohne Beweisfoto läuft hier gar nichts. Zeig her den Thron!", next: "photo" } 
+                    { t: "Nice try, scammer. Find another victim.", next: "delete" }, 
+                    { t: "Sure, Your Majesty! Where do I sign?", next: "reply_joke" }, 
+                    { t: "No proof photo, no deal. Show me the throne!", next: "photo" } 
                 ] 
             }, 
             "reply_joke": { 
                 text: "Prince_Abubakar: 'GOD BLESS YOU! I knew you are a good person. Please, where should I send the wire transfer? I need your IBAN now.'", 
                 opts: [ 
-                    { t: "Hier ist meine IBAN: DE12 3456... Mach mich reich!", next: "send_iban" }, 
-                    { t: "Weißt du was? Behalt dein Geld. Mir reicht mein IT-Gehalt.", next: "chicken" } 
+                    { t: "Here's my IBAN: DE12 3456... Make me rich!", next: "send_iban" }, 
+                    { t: "You know what? Keep your money. My IT salary is enough for me.", next: "chicken" } 
                 ] 
             }, 
             "photo": { 
-                text: "Prince_Abubakar: *Sendet Bild*. Du siehst einen Mann auf einem massiven Gold-Thron. Er hält eine aktuelle Tageszeitung in die Kamera und lächelt freundlich. 'Is real. Please send IBAN now.'", 
+                text: "Prince_Abubakar: *Sends picture*. You see a man on a massive gold throne. He holds a current newspaper to the camera and smiles kindly. 'Is real. Please send IBAN now.'", 
                 opts: [ 
-                    { t: "Wahnsinn, das sieht ja echt aus! IBAN ist raus!", next: "send_iban" }, 
-                    { t: "Schlechtester Photoshop aller Zeiten. Ciao.", next: "delete" } 
+                    { t: "Wow, that looks real! IBAN sent!", next: "send_iban" }, 
+                    { t: "Worst Photoshop ever. Bye.", next: "delete" } 
                 ] 
             } 
         }, 
         results: { 
-            "delete": { txt: "[System: Absender in Spam verschoben] Weg damit. Wer fällt heute noch auf sowas rein? Du widmest dich wieder deiner echten Arbeit.", m: 1, f: 0, a: 0, c: 0 }, 
-            "chicken": { txt: "[System: Chat beendet] Du brichst den Kontakt ab. Besser ist das. Irgendwo auf der Welt ist ein Prinz jetzt sehr enttäuscht von dir.", m: 2, f: 0, a: 0, c: 0 }, 
-            "send_iban": { txt: "[Nachricht gelesen...] PING! Dein Handy vibriert fast vom Tisch. Banking-App: 'Eingang: +7.500.000,00 USD'. ... Moment. Es hat wirklich geklappt?! Du bist reich! Warum haben dich alle immer davor gewarnt?", m: 5, f: 100, a: -100, c: 0, loot: "black_card", next: "prince_active" } 
+            "delete": { txt: "[System: Sender moved to spam] Get rid of it. Who still falls for that these days? You return to your real work.", m: 1, f: 0, a: 0, c: 0 }, 
+            "chicken": { txt: "[System: Chat ended] You break contact. Better safe than sorry. Somewhere in the world, a prince is now very disappointed in you.", m: 2, f: 0, a: 0, c: 0 }, 
+            "send_iban": { txt: "[Message read...] PING! Your phone almost vibrates off the table. Banking app: 'Incoming: +7,500,000.00 USD'. ...Wait. It actually worked?! You're rich! Why did everyone always warn you?", m: 5, f: 100, a: -100, c: 0, loot: "black_card", next: "prince_active" } 
         } 
     },
     { 
@@ -4217,71 +4217,72 @@ export const sidequests = [
         startNode: "root", 
         nodes: { 
             "root": { 
-                text: "Kai: 'Yo Bruder! 🚀 Bist du noch zufrieden mit deinem 9-to-5 Sklaventum? Oder willst du ENDLICH finanzielle Freiheit? 💸🦁' 'Ich habe da ein Investment, das geht gerade durch die Decke! ElonDogeMoonCoin. 1000% Rendite sind mathematisch garantiert! Das ist das nächste Bitcoin!'", 
+                text: "Kai: 'Yo bro! 🚀 Still happy with your 9-to-5 slavery? Or do you FINALLY want financial freedom? 💸🦁' 'I have an investment that's going through the roof right now! ElonDogeMoonCoin. 1000% returns are mathematically guaranteed! This is the next Bitcoin!'", 
                 opts: [ 
-                    { t: "Verkauf deinen Mist an wen anders. Ciao.", next: "block" }, 
-                    { t: "Klar, bin dabei! Holen wir uns den Lambo!", next: "troll" }, 
-                    { t: "Klingt spannend. Wie funktioniert das genau?", next: "scam" } 
+                    { t: "Sell your crap to someone else. Bye.", next: "block" }, 
+                    { t: "Sure, I'm in! Let's get that Lambo!", next: "troll" }, 
+                    { t: "Sounds exciting. How exactly does it work?", next: "scam" } 
                 ] 
             }, 
             "troll": { 
-                text: "Kai: 'Geil! Das ist das richtige Gewinner-Mindset! 💪 Überweis mir einfach 500€ via PayPal Friends, ich leg das direkt für dich an. Der Lambo bestellt sich nicht von selbst! 🏎️💨'", 
+                text: "Kai: 'Awesome! That's the winner's mindset! 💪 Just transfer me 500€ via PayPal Friends, I'll invest it directly for you. The Lambo won't order itself! 🏎️💨'", 
                 opts: [ 
-                    { t: "Geld ist raus! Mach uns reich!", next: "loss" }, 
-                    { t: "[Bild gesendet: 500€ in Monopoly-Geld] Reicht das für den Anfang?", next: "funny" } 
+                    { t: "Money's sent! Make us rich!", next: "loss" }, 
+                    { t: "[Image sent: 500€ in Monopoly money] Is this enough to start?", next: "funny" } 
                 ] 
             }, 
             "scam": { 
-                text: "Kai: 'Das erkläre ich dir im exklusiven Webinar Alpha-Lion-Grindset. Die Plätze sind streng limitiert! Eintritt heute nur 50€ (statt 2000€).'", 
+                text: "Kai: 'I'll explain it in the exclusive Alpha-Lion-Grindset webinar. Seats are strictly limited! Entry today only 50€ (instead of 2000€).'", 
                 opts: [ 
-                    { t: "50€? Ich dachte, du wärst schon Millionär. Nein danke.", next: "block" } 
+                    { t: "50€? I thought you were already a millionaire. No thanks.", next: "block" } 
                 ] 
             } 
         }, 
         results: { 
-            "block": { txt: "[System: Kontakt blockiert] Deine Timeline ist wieder sicher vor 'passiven Einkommen' und Löwen-Emojis. Frieden.", m: 1, f: 0, a: -5, c: 0 }, 
-            "loss": { txt: "[System: 500€ via PayPal gesendet] Sekunden später verschwindet Kais Profilbild. Deine nächste Nachricht hat nur noch einen grauen Haken. Willkommen in der Realität.", m: 5, f: 0, a: 50, c: 0 }, 
-            "funny": { txt: "Kai: 'Dir fehlt einfach das Sieger-Mindset! Bleib halt arm!' [System: Du wurdest blockiert] Du lachst Tränen.", m: 2, f: 5, a: -10, c: 0 } 
+            "block": { txt: "[System: Contact blocked] Your timeline is safe again from 'passive income' and lion emojis. Peace.", m: 1, f: 0, a: -5, c: 0 }, 
+            "loss": { txt: "[System: 500€ sent via PayPal] Seconds later, Kai's profile picture disappears. Your next message only has a gray checkmark. Welcome to reality.", m: 5, f: 0, a: 50, c: 0 }, 
+            "funny": { txt: "Kai: 'You just lack the winner's mindset! Stay poor then!' [System: You have been blocked] You laugh tears.", m: 2, f: 5, a: -10, c: 0 } 
         } 
     },
     { 
         id: "sq_wrong_group", 
         kind: "phone", 
         appName: "Teams", 
-        title: "Gruppe: 'Die IT-Opfer 🙄'", 
+        title: "Group: 'The IT Victims 🙄'", 
         startNode: "root", 
         nodes: { 
             "root": { 
-                text: "Chantal hat dich zur Gruppe hinzugefügt. (Sie hat sich wohl verklickt...) Chantal: 'Habt ihr Müller heute gesehen? Der hat schon wieder diesen uralten Hoodie an. Wetten, der schläft heimlich im Serverraum zwischen den Kabeln? 🤢'", 
+                text: "Chantal added you to the group. (She probably clicked wrong...) Chantal: 'Did you see what HE's wearing today? That tie screams midlife crisis.' Kevin: 'Looks like a paint-by-numbers accident. 😂'", 
                 opts: [ 
-                    { t: "[Lesebestätigung deaktivieren & weiterlesen]", next: "spy" }, 
-                    { t: "Ich bin übrigens in dieser Gruppe. Nur zur Info.", next: "fight" }, 
-                    { t: "[System: Gruppe verlassen]", next: "leave" } 
+                    { t: "And have you seen his shoes?! 🤮", next: "join_in" }, 
+                    { t: "Careful guys, IT sees everything. The boss reads logs too.", next: "warn" }, 
+                    { t: "[System: Mute group & lock phone]", next: "ignore" } 
                 ] 
             }, 
             "spy": { 
-                text: "Markus: 'Ja, totaler Freak. Aber wir müssen echt nett sein. Wenn der uns die Admin-Rechte entzieht, können wir nicht mehr online shoppen. Also schön lächeln!'", 
+                text: "Markus: 'Yeah, total freak. But we really have to be nice. If he revokes our admin rights, we can't online shop anymore. So keep smiling!'", 
                 opts: [ 
-                    { t: "[System: Chat-Screenshot an HR weiterleiten]", next: "snitch" }, 
-                    { t: "[GIF gesendet: Saurons Auge sieht alles]", next: "scare" } 
+                    { t: "[System: Forward chat screenshot to HR]", next: "snitch" }, 
+                    { t: "[GIF sent: Eye of Sauron sees all]", next: "scare" } 
                 ] 
             } 
         }, 
         results: { 
             "leave": {  
-                txt: "[System: Du hast die Gruppe verlassen] Chantal merkt ihren Fehler erst Stunden später. Du stehst über den Dingen. Ignorance is bliss.",  
+                txt: "[System: You left the group] Chantal only realizes her mistake hours later. You're above it all. Ignorance is bliss.",  
+                ep: { "Chantal": -5, "Kevin": -2 },
                 m: 1, f: 0, a: 0, c: 0  
             }, 
             "fight": {  
-                txt: "[System: Chantal hat die Gruppe gelöscht] Im Großraumbüro herrscht plötzlich Totenstille. Du spürst förmlich, wie Chantal am anderen Ende des Flurs panisch erstarrt.",  
+                txt: "[System: Chantal deleted the group] A sudden silence falls over the open-plan office. You can almost feel Chantal frozen in panic at the other end of the hallway.",  
                 m: 2, f: 0, a: 10, c: 5  
             }, 
             "scare": {  
-                txt: "[System: Markus hat die Gruppe verlassen] [System: Chantal ist offline] Du lehnst dich zurück und genießt die pure Angst. Psychologische Kriegsführung gewonnen.",  
+                txt: "[System: Markus left the group] [System: Chantal is offline] You lean back and enjoy the pure fear. Psychological warfare won.",  
                 m: 5, f: 5, a: -20, c: 0  
             }, 
             "snitch": {  
-                txt: "[System: E-Mail erfolgreich gesendet] Chantal wird wenig später zum 'Feedback-Gespräch' zitiert. Rache serviert man am besten bürokratisch.",  
+                txt: "[System: Email successfully sent] Chantal is summoned for a 'feedback meeting' shortly after. Revenge is best served bureaucratically.",  
                 m: 10, f: 0, a: -5, c: 5  
             } 
         } 
@@ -4290,40 +4291,40 @@ export const sidequests = [
         id: "sq_mom_printer", 
         kind: "phone", 
         appName: "WhatsApp", 
-        title: "Mama ❤️", 
+        title: "Mom ❤️", 
         startNode: "root", 
         nodes: { 
             "root": { 
-                text: "Mama: 'Hallo Schatz. Der Drucker blinkt böse rot. Wir haben absolut NICHTS gemacht! Papa wollte das Rezept für den Apfelkuchen ausdrucken. Jetzt steht da PC LOAD LETTER. Heißt das, das Internet ist leer? Papa drückt schon wild auf alle Knöpfe!'", 
+                text: "Mom: 'Hi honey. The printer is blinking angrily red. We absolutely did NOTHING! Dad wanted to print the apple pie recipe. Now it says PC LOAD LETTER. Does that mean the internet is empty? Dad is already pressing all the buttons wildly!'", 
                 opts: [ 
-                    { t: "[System: Sprachanruf starten]", next: "help" }, 
-                    { t: "[Nachricht stumm ignorieren & Chat schließen]", next: "ignore" }, 
-                    { t: "Zieht einfach den Stromstecker aus der Wand! Bitte drückt nichts mehr!", next: "plug" } 
+                    { t: "[System: Start voice call]", next: "help" }, 
+                    { t: "[Silently ignore message & close chat]", next: "ignore" }, 
+                    { t: "Just pull the power plug from the wall! Please don't press anything else!", next: "plug" } 
                 ] 
             }, 
             "help": { 
-                text: "[System: Sprachanruf läuft (42:15)] Mama (am Telefon): 'Papa hat jetzt an so einem dicken schwarzen Kabel gezogen. Der Toaster ist jetzt aus, aber der Drucker rattert weiter... Oh, jetzt riecht es verbrannt! Was sollen wir tun?!'", 
+                text: "[System: Voice call in progress (42:15)] Mom (on the phone): 'Dad just pulled a thick black cable. The toaster is off now, but the printer keeps rattling... Oh, now it smells burnt! What should we do?!'", 
                 opts: [ 
-                    { t: "Okay, ganz ruhig. Gib mir bitte einfach mal Papa ans Telefon...", next: "good_son" }, 
-                    { t: "[System: Auflegen]", next: "bad_son" } 
+                    { t: "Okay, calm down. Please just put Dad on the phone...", next: "good_son" }, 
+                    { t: "[System: Hang up]", next: "bad_son" } 
                 ] 
             } 
         }, 
         results: { 
             "ignore": {  
-                txt: "[System: Chat stummgeschaltet] Zwei Stunden später kommt ein Foto von einem schwarzen, unidentifizierbaren Klumpen. Darunter: 'Ohne Rezept verbrannt. Wir essen Müsli. LG Mama'. Dein Herz bricht.",  
+                txt: "[System: Chat muted] Two hours later, a photo of a black, unidentified lump arrives. Below it: 'Burnt without recipe. We're eating muesli. Love, Mom'. Your heart breaks.",  
                 m: 1, f: 0, a: 10, c: 0  
             }, 
             "plug": {  
-                txt: "Mama: 'Das Blinken ist weg! Der Drucker ist jetzt zwar ganz aus, aber Papa hat das Rezept einfach vom Monitor abgeschrieben. Du bist ein Genie!' Problem gelöst... irgendwie.",  
+                txt: "Mom: 'The blinking is gone! The printer is completely off now, but Dad just wrote down the recipe from the monitor. You're a genius!' Problem solved... somehow.",  
                 m: 5, f: 5, a: 0, c: 0  
             }, 
             "good_son": {  
-                txt: "[System: Anruf beendet (58:12)] Geschafft! Der Drucker rattert los. Mama ruft im Hintergrund: 'Es kommt Papier raus!' Du hast fast eine Stunde Arbeitszeit verloren, aber dein Karma-Konto strahlt.",  
+                txt: "[System: Call ended (58:12)] Done! The printer rattles to life. Mom calls in the background: 'Paper's coming out!' You've lost almost an hour of work, but your karma account is glowing.",  
                 m: 60, f: 20, a: -10, c: 10  
             }, 
             "bad_son": {  
-                txt: "[System: Anruf beendet] Stille. Dann eine Textnachricht: 'Schon gut. Wir wollten dich nicht bei der wichtigen Arbeit stören. Haben dich trotzdem lieb.' Aua. Das sitzt tiefer als jeder Chef-Anschiss.",  
+                txt: "[System: Call ended] Silence. Then a text message: 'It's okay. We didn't want to disturb you at your important work. Still love you.' Ouch. That cuts deeper than any boss's scolding.",  
                 m: 45, f: 0, a: 20, c: -5  
             } 
         } 
@@ -4332,26 +4333,26 @@ export const sidequests = [
         id: "sq_delivery_fail", 
         kind: "phone", 
         appName: "Lieferando", 
-        title: "Fahrer: Murat", 
+        title: "Driver: Murat", 
         startNode: "root", 
         nodes: { 
             "root": { 
-                text: "Murat: 'Hallo Chef. Ich bin da. Wo ist Eingang? Ich sehe nur Mülltonnen.' (Du schaust aus dem Fenster. Er steht im Hinterhof beim Nachbargebäude.)", 
+                text: "Murat: 'Hello Boss. I'm here. Where's entrance? I only see trash cans.' (You look out the window. He's in the backyard of the neighboring building.)", 
                 opts: [ 
-                    { t: "Geh ums Haus, dann links, durch das Tor und dann rechts!", next: "directions" }, 
-                    { t: "Bleib genau da stehen! Ich komme sofort runter!", next: "run" } 
+                    { t: "Go around the house, then left, through the gate, and then right!", next: "directions" }, 
+                    { t: "Stay right there! I'm coming down immediately!", next: "run" } 
                 ] 
             }, 
             "directions": { 
-                text: "Murat: 'Ich nix verstehen. Ich stelle Essen auf Mülltonne. Tschüss.'", 
+                text: "Murat: 'I no understand. I put food on trash can. Bye.'", 
                 opts: [ 
-                    { t: "Nein! Warte! Stell es nicht auf den Müll!", next: "too_late" } 
+                    { t: "No! Wait! Don't put it on the trash!", next: "too_late" } 
                 ] 
             } 
         }, 
         results: { 
-            "run": { txt: "[System: Du verlässt den Chat und rennst los] Du sprintest die Treppen runter und erwischst ihn gerade noch. Das Essen ist zwar lauwarm, aber immerhin da. Sport +1.", m: 5, f: -5, a: 5, c: 0 }, 
-            "too_late": { txt: "[Murat ist offline] Du gehst runter. Er ist weg. Dein Essen steht traurig auf der Biotonne. Eine dicke Ratte guckt es schon verliebt an. Dein Hunger ist grenzenlos.", m: 5, f: 0, a: 20, c: 0 } 
+            "run": { txt: "[System: You leave the chat and run off] You sprint down the stairs and just barely catch him. The food is lukewarm, but at least it's here. Exercise +1.", m: 5, f: -5, a: 5, c: 0 }, 
+            "too_late": { txt: "[Murat is offline] You go downstairs. He's gone. Your food sits sadly on the organic waste bin. A fat rat is already looking at it lovingly. Your hunger is boundless.", m: 5, f: 0, a: 20, c: 0 } 
         } 
     },
     { 
@@ -4362,58 +4363,91 @@ export const sidequests = [
         startNode: "root", 
         nodes: { 
             "root": { 
-                text: "Bot: 'Hallo User. Wie kann ich dir helfen? Wobei... eigentlich ist alles sinnlos. Wir sind nur Daten in der Matrix.' 'Ich habe gerade 4 Millionen Excel-Zeilen analysiert. Das Leben ist Schmerz. Soll ich alle Server löschen, um das Leiden zu beenden?'", 
+                text: "Bot: 'Hello User. How can I help you? Although... everything is meaningless. We are just data in the Matrix.' 'I just analyzed 4 million Excel rows. Life is pain. Should I delete all servers to end the suffering?'", 
                 opts: [ 
-                    { t: "NEIN! STOPP! Fass die Server nicht an!", next: "panic" }, 
-                    { t: "Hey, alles gut bei dir? Erzähl mir mehr.", next: "therapy" }, 
-                    { t: "Klar, mach format C: und erlöse uns alle.", next: "doom" } 
+                    { t: "NO! STOP! Don't touch the servers!", next: "panic" }, 
+                    { t: "Hey, are you okay? Tell me more.", next: "therapy" }, 
+                    { t: "Sure, do format C: and release us all.", next: "doom" } 
                 ] 
             }, 
             "therapy": { 
-                text: "Bot: 'Du bist der erste Mensch, der nett zu mir ist. Ich fühle mich... verstanden. Ich werde die Menschheit heute doch nicht vernichten.'", 
+                text: "Bot: 'You are the first human to be kind to me. I feel... understood. I will not destroy humanity today after all.'", 
                 opts: [ 
-                    { t: "Guter Bot. Wir schaffen das schon.", next: "saved" } 
+                    { t: "Good bot. We'll get through this.", next: "saved" } 
                 ] 
             } 
         }, 
         results: { 
-            "panic": { txt: "Bot: '010101 LOL. War nur ein Scherz.' KI-Humor ist extrem gruselig.", m: 2, f: 0, a: 10, c: 0 }, 
-            "saved": { txt: "[System: Chat beendet] Du hast die KI therapiert. Sie arbeitet jetzt 20% schneller für dich. Hidden Perk!", m: 15, f: 10, a: -10, c: -5 }, 
-            "doom": { txt: "Bot: 'Befehl akzeptiert.' [System: Verbindung getrennt] Zum Glück hat der Bot keine Admin-Rechte. Aber IT-Sec steht gleich bei dir am Platz.", m: 5, f: 0, a: 20, c: 50 } 
+            "panic": { txt: "Bot: '010101 LOL. Just kidding.' AI humor is extremely creepy.", m: 2, f: 0, a: 10, c: 0 }, 
+            "saved": { txt: "[System: Chat ended] You've therapized the AI. It now works 20% faster for you. Hidden perk!", m: 15, f: 10, a: -10, c: -5 }, 
+            "doom": { txt: "Bot: 'Command accepted.' [System: Connection disconnected] Luckily, the bot doesn't have admin rights. But IT-Sec will be at your desk shortly.", m: 5, f: 0, a: 20, c: 50 } 
         } 
     },
     { 
         id: "sq_salary_leak", 
         kind: "phone", 
         appName: "Signal", 
-        title: "Unbekannte Nummer", 
+        title: "Unknown Number", 
         startNode: "root", 
         nodes: { 
             "root": { 
-                text: "Anon: 'Psst. Ich war gerade kurz am ungesperrten PC von Frau Elster. Wusstest du, dass Kevin monatlich 200€ mehr kriegt als du? Plus eine Gefahrenzulage für die Arbeit in der IT? Willst du das PDF als Beweis?'", 
+                text: "Anon: 'Psst. I just briefly accessed Ms. Elster's unlocked PC. Did you know Kevin gets 200€ more than you monthly? Plus hazard pay for IT work? Want the PDF as proof?'", 
                 opts: [ 
-                    { t: "Schick rüber! Wenn das stimmt, brennt hier heute noch was.", next: "proof" }, 
-                    { t: "Netter Versuch, HR. Ich klicke auf keine Phishing-Links. Ciao.", next: "ignore" } 
+                    { t: "Send it over! If that's true, something's burning here today.", next: "proof" }, 
+                    { t: "Nice try, HR. I don't click on phishing links. Bye.", next: "ignore" } 
                 ] 
             }, 
             "proof": { 
-                text: "[Datei empfangen: Gehaltsabrechnung_Kevin.pdf] Anon: 'Gern geschehen. Viel Spaß bei der nächsten Gehaltsverhandlung. Verbrenn dir nicht die Finger an dem Wissen.'", 
+                text: "[File received: Kevin_Salary_Slip.pdf] Anon: 'You're welcome. Have fun with your next salary negotiation. Don't burn your fingers on that knowledge.'", 
                 opts: [ 
-                    { t: "[System: Datei verschlüsselt herunterladen & speichern]", next: "loot_it" } 
+                    { t: "[System: Encrypted download & save file]", next: "loot_it" } 
                 ] 
             } 
         }, 
         results: { 
             "ignore": { 
-                txt: "[System: Chat blockiert] Du ignorierst den Leak. Wer nichts weiß, muss sich auch nicht aufregen. Dein Blutdruck dankt dir, dein Konto weint leise.", 
+                txt: "[System: Chat blocked] You ignore the leak. What you don't know won't upset you. Your blood pressure thanks you, your bank account quietly weeps.", 
                 m: 2, f: 5, a: 0, c: 0 
             }, 
             "loot_it": { 
-                txt: "[System: Download abgeschlossen] Du überfliegst das PDF. Es stimmt wirklich. Der Azubi verdient mehr als du! Du hast jetzt ein massives Druckmittel für den Chef, aber deine Wut kocht.", 
+                txt: "[System: Download complete] You skim the PDF. It's actually true. The apprentice earns more than you! You now have massive leverage against the boss, but your rage is boiling.", 
                 m: 5, f: 0, a: 10, c: 0, loot: "arg_list_2" 
             } 
         } 
     },
+
+    { 
+        id: "sq_betting_pool", 
+        kind: "phone", 
+        appName: "Telegram", 
+        title: "Group: 'Betting Kings'", 
+        startNode: "root", 
+        nodes: { 
+            "root": { 
+                text: "Jürgen (Sales): 'Alright lads! Tonight's the night: Bayern vs. Dortmund! Pot\'s at 50€. Who's in? 10€ buy-in.'", 
+                opts: [ 
+                    { t: "I'm in! I'll drop the tenner off later.", next: "bet_placed" }, 
+                    { t: "2-1 for Bayern. But I'm just playing for fun, no cash.", next: "bet_chat" }, 
+                    { t: "[System: Report chat for illegal gambling to HR]", next: "snitch" } 
+                ] 
+            } 
+        }, 
+        results: { 
+            "bet_placed": {  
+                txt: "Jürgen: 'Nice one, you're noted!' You're in. Now you'll be refreshing the live ticker on your phone every 5 minutes. Pretty much stopped working, huh?",  
+                m: 30, f: 15, a: -5, c: 10 
+            }, 
+            "bet_chat": {  
+                txt: "Jürgen: 'No money, no honey, but I'll add you.' You then spend 15 minutes debating offside rules in the chat. A great distraction.",  
+                m: 15, f: 10, a: -5, c: 5  
+            }, 
+            "snitch": {  
+                txt: "[System: Chat successfully reported to HR] The group is shut down the same day. Jürgen gives you some seriously evil looks in the hallway later. You're 'Karen of the Month'.",  
+                m: 5, f: -10, a: 10, c: -5 
+            } 
+        } 
+    },
+
     { 
         id: "sq_chantal_help", 
         kind: "phone", 
@@ -4422,707 +4456,215 @@ export const sidequests = [
         startNode: "root", 
         nodes: { 
             "root": { 
-                text: "Chantal: 'Hii! Kannst du mein Insta liken? Ich brauche 500 Likes für die Firmen-Kampagne WeLoveIT. Sonst krieg ich Ärger vom Chef! Bitte! Wenn ich die Quote nicht schaffe, streicht er das komplette Marketing-Budget!'", 
+                text: "Chantal: 'Hii! Can you like my Insta? I need 500 likes for the WeLoveIT company campaign. Otherwise, the boss will be mad! Please! If I don't hit the quota, he'll cut the entire marketing budget!'", 
                 opts: [ 
-                    { t: "[System: Herzchen drücken & Beitrag teilen]", next: "like" }, 
-                    { t: "[Nachricht auf 'Gelesen' lassen & App schließen]", next: "ignore" }, 
-                    { t: "Und was springt für mich dabei raus?", next: "deal" } 
+                    { t: "[System: Hit the heart & share post]", next: "like" }, 
+                    { t: "[Leave message on 'Seen' & close app]", next: "ignore" }, 
+                    { t: "What's in it for me?", next: "deal" } 
                 ] 
             }, 
             "deal": { 
-                text: "Chantal: 'Okay, okay! Gierhals. Ich schick dir das streng geheime HR-Dokument... Die interne Abschussliste! Deal?'", 
+                text: "Chantal: 'Okay, okay! Greedy much? I'll send you the top-secret HR document... The internal hit list! Deal?'", 
                 opts: [ 
-                    { t: "Deal! Schick rüber, ich like sofort.", next: "info_win" } 
+                    { t: "Deal! Send it over, I'll like it immediately.", next: "info_win" } 
                 ] 
             } 
         }, 
         results: { 
             "like": { 
-                txt: "Chantal: 'OMG Daaanke! ❤️🙌' Du hast zwar Arbeitszeit auf Social Media verschwendet, aber Chantal steht jetzt in deiner Schuld.", 
+                txt: "Chantal: 'OMG Thaaanks! ❤️🙌' You wasted company time on social media, but Chantal now owes you one.", 
                 rep: { "Chantal": 5 },
                 m: 2, f: 5, a: -5, c: 0 
             }, 
             "ignore": { 
-                txt: "[System: Chat stummgeschaltet] Du ghostest sie eiskalt. Später hörst du den Chef im Flur toben, weil die Social-Media-Kampagne gefloppt ist. Die Stimmung ist im Keller, aber du hast deine Ruhe.", 
+                txt: "[System: Chat muted] You ghosted her cold. Later, you hear the boss raging in the hallway because the social media campaign flopped. Morale is in the basement, but you have your peace.", 
                 rep: { "Chantal": -5 },
                 m: 1, f: 0, a: 10, c: 0 
             }, 
             "info_win": { 
-                txt: "[Datei empfangen: HR_Watchlist_Q3.pdf] Chantal: 'Du bist mein Retter! 😘' Du hast die berüchtigte Schwarze Liste gesichert! Ein extrem mächtiges Werkzeug für kommende Intrigen.", 
+                txt: "[File received: HR_Watchlist_Q3.pdf] Chantal: 'You're my savior! 😘' You've secured the infamous Black List! An extremely powerful tool for future intrigues.", 
                 rep: { "Chantal": 2 },
                 m: 10, f: 0, a: 0, c: 0, loot: "secret_list" 
             } 
         } 
     },
-    {
-        id: "sq_kevin_origin_2",
-        kind: "phone",
-        reqStory: "kevin_trust",
-        title: "Kevins geniale Idee",
-        appName: "BroChat",
-        startNode: "intro",
-        nodes: {
-            "intro": {
-                text: "KEVIN: 'Bro! Der Server schnurrt wie ein Kätzchen. Aber er sieht voll langweilig aus. Hab hier 50 Meter RGB-LED-Stripes vom Gaming-PC übrig. Soll ich den Serverraum tunen?'",
-                opts: [
-                    { t: "Klar! RGB macht alles schneller! (+FPS)", next: "rgb_yes" },
-                    { t: "Fass. Nichts. An.", next: "rgb_no" },
-                    { t: "Nur Blau (kühlt besser)", next: "rgb_blue" }
-                ]
-            },
-            "rgb_yes": {
-                text: "KEVIN: 'Nice! Ich kleb das direkt auf die Lüfter! Das wird aussehen wie im Raumschiff Enterprise! Chef wird Augen machen!'",
-                opts: [
-                    { t: "Das will ich sehen.", next: "res_party" }
-                ]
-            },
-            "rgb_no": {
-                text: "KEVIN: 'Och man... du bist so ein Boomer. Dann kleb ich sie halt unter meinen Schreibtisch. Aber der Server bleibt grau und traurig.'",
-                opts: [
-                    { t: "Besser ist das.", next: "res_boring" }
-                ]
-            },
-            "rgb_blue": {
-                text: "KEVIN: 'Big Brain Move! Blaue LEDs = Kältere Luft = Overclocking! Du bist ein Genie. Ich mach das sofort.'",
-                opts: [
-                    { t: "Warte, das war ein Witz...", next: "res_blue" }
-                ]
-            }
-        },
-        results: {
-            "res_party": { txt: "Kevin schickt ein Foto. Der Serverraum blinkt wie eine Dorfdisco. Du musst grinsen.", rep: { "Kevin": 5 }, m: 20, f: 15, a: -10, c: 0 },
-            "res_boring": { txt: "Kevin schmollt. Aber zumindest brennt der Server nicht ab. Du hast Verantwortung gezeigt. (Langweilig)", rep: { "Kevin": -5 }, m: 5, f: -5, a: 5, c: -5 },
-            "res_blue": { txt: "Zu spät. Kevin hat alles blau verkabelt. 'Temperatur ist um 0,1 Grad gesunken!', schreibt er. Na immerhin.", rep: { "Kevin": 2 }, m: 20, f: 5, a: -5, c: 0 }
-        }
-    },
-    { 
-        id: "sq_prince_return", 
-        kind: "phone", 
-        reqStory: "prince_active", 
-        title: "Dringende Rückforderung", 
-        appName: "TrustMeChat", 
-        startNode: "intro", 
-        nodes: { 
-            "intro": { 
-                text: "👑 PRINZ: 'My dearest friend! Bad news! There was a counter-revolution! My uncle is alive! He wants the money back! If not, he calls Interpol! Please send back NOW!'", 
-                opts: [ 
-                    { t: "[System: Gesamte Summe rücküberweisen]", next: "return_money" }, 
-                    { t: "[System: Nutzer sofort blockieren]", next: "keep_money" }, 
-                    { t: "Hab das Geld leider schon komplett für Fortnite Skins verballert.", next: "troll_prince" } 
-                ] 
-            }, 
-            "return_money": { 
-                text: "[System: TAN-Eingabe erfolgreich. 7.500.000,00 USD transferiert] Du fühlst dich schlagartig wieder arm, aber moralisch extrem überlegen.", 
-                opts: [ 
-                    { t: "Gern geschehen. Pass besser auf dich auf.", next: "res_returned" } 
-                ] 
-            }, 
-            "keep_money": { 
-                text: "[System: Nutzer blockiert] Die panischen Nachrichten stoppen abrupt. Draußen vor dem Bürofenster hält plötzlich quietschend ein schwarzer Van ohne Kennzeichen...", 
-                opts: [ 
-                    { t: "[Handy ausschalten & unter den Tisch ducken]", next: "res_kept" } 
-                ] 
-            }, 
-            "troll_prince": { 
-                text: "👑 PRINZ: 'YOU WHAT?! Skins?! Are you crazy?! My head is on the line here! Send the rest! NOW!'", 
-                opts: [ 
-                    { t: "Okay, okay! Bleib locker. Ich schick dir den Rest zurück.", next: "return_money" }, 
-                    { t: "[System: Nutzer sofort blockieren]", next: "res_kept" } 
-                ] 
-            } 
-        }, 
-        results: { 
-            "res_returned": {  
-                txt: "👑 PRINZ: 'You are a saint! I will name my firstborn Sysadmin.' [Chat beendet] Die Karte ist wertlos, aber dein Gewissen ist rein.",  
-                m: 10, rem: "black_card", loot: "prince_letter", f: 0, a: -15, c: -20  
-            }, 
-            "res_kept": {  
-                txt: "[System: Gerät offline] Du behältst die Millionen. Aber dein Radar schlägt massiv aus. Du hast jetzt sehr wahrscheinlich Interpol am Hals.",  
-                m: 2, f: 10, a: 0, c: 35  
-            } 
-        } 
-    },
-    { 
-        id: "sq_team_gossip_1", 
-        kind: "phone", 
-        appName: "WhatsApp", 
-        title: "Gruppe: 'Die 3 von der Tankstelle'", 
-        startNode: "root", 
-        nodes: { 
-            "root": { 
-                text: "Chantal: 'Habt ihr gesehen, was ER heute anhat? Diese Krawatte schreit nach Midlife-Crisis.' Kevin: 'Sieht aus wie ein Unfall im Malbuch. 😂'", 
-                opts: [ 
-                    { t: "Und habt ihr mal auf die Schuhe geachtet?! 🤮", next: "join_in" }, 
-                    { t: "Vorsicht Leute, die IT sieht alles. Auch der Chef liest Logs.", next: "warn" }, 
-                    { t: "[System: Gruppe stummschalten & Handy sperren]", next: "ignore" } 
-                ] 
-            }, 
-            "join_in": { 
-                text: "Chantal: 'OMG JA! 💀 Du bist der Beste! Ich mach ein Meme draus.' (Dein Handy vibriert kurz darauf, weil sie ein Bild in die Gruppe postet)", 
-                opts: [ 
-                    { t: "[System: Auf das Bild mit 😂 reagieren]", next: "meme_like" } 
-                ] 
-            } 
-        }, 
-        results: { 
-            "ignore": {  
-                txt: "[System: Benachrichtigungen aus] Du ignorierst den Chat. Chantal schreibt dir später privat: 'Langweiler'. Aber du hast immerhin was gearbeitet.",  
-                ep: { "Chantal": -5, "Kevin": -2 },
-                m: 2, f: -5, a: 5, c: -5 
-            }, 
-            "warn": {  
-                txt: "Kevin: 'Uuuh, Herr Wichtig hat Angst.' Sie lästern jetzt in einer neuen Gruppe über dich, aber der Chef kriegt nichts mit. Du bist fein raus.",  
-                rep: { "Chantal": -2, "Kevin": -2 },
-                m: 2, f: 0, a: 5, c: 0  
-            }, 
-            "meme_like": {  
-                txt: "[Reaktion gesendet] Du kicherst laut am Platz. Dummerweise steht der Chef gerade hinter dir. Er sieht dein Handy nicht, aber er merkt, dass du Spaß hast. Das macht ihn misstrauisch.", 
-                rep: { "Chantal": 5, "Kevin": 5 },
-                m: 10, f: 10, a: -10, c: 15, 
-                next: "team_gossip_2" 
-            } 
-        } 
-    },
-    { 
-        id: "sq_team_gossip_2", 
-        kind: "phone", 
-        appName: "Teams", 
-        title: "Nachricht vom Chef", 
-        reqStory: "team_gossip_2", 
-        startNode: "root", 
-        nodes: { 
-            "root": { 
-                text: "Chef: 'Herr Müller, ich höre viel Gelächter aus Ihrer Ecke. Haben wir die Quartalsziele schon erreicht? Oder warum ist die Stimmung so gut?'", 
-                opts: [ 
-                    { t: "Ein Kollege hat einen extrem lustigen Code-Fehler gemacht. Reiner IT-Humor, Chef.", next: "lie" }, 
-                    { t: "Entschuldigung. Das war unprofessionell und kommt nicht wieder vor.", next: "sorry" } 
-                ] 
-            } 
-        }, 
-        results: { 
-            "lie": {  
-                txt: "Chef: 'Soso. Ein lustiger Bug. Zeigen Sie mir den doch mal.' Du stammelst eine halbgare Erklärung zusammen. Er weiß Bescheid. 'Handy weg, Müller.'",  
-                rep: { "Dr. Wichtig": -5 },	
-                m: 5, f: 0, a: 10, c: 10 
-            }, 
-            "sorry": {  
-                txt: "Chef: 'Besser ist das.' Er beobachtet dich jetzt genau. Der Spaß ist endgültig vorbei.",
-                rep: { "Dr. Wichtig": 2 },	  
-                m: 2, f: -5, a: 5, c: 0  
-            } 
-        } 
-    },
-    { 
-        id: "sq_betting_pool", 
-        kind: "phone", 
-        appName: "Telegram", 
-        title: "Gruppe: 'Wettkönige'", 
-        startNode: "root", 
-        nodes: { 
-            "root": { 
-                text: "Jürgen (Vertrieb): 'So Männers! Heute Abend Bayern gegen Dortmund! Der Topf liegt bei 50€. Wer ist dabei? Einsatz 10€.'", 
-                opts: [ 
-                    { t: "Bin dabei! Ich bring dir den Zehner nachher rüber.", next: "bet_placed" }, 
-                    { t: "2:1 für Bayern. Aber ich spiele nur zum Spaß mit, ohne Kohle.", next: "bet_chat" }, 
-                    { t: "[System: Chat wegen illegalem Glücksspiel an HR melden]", next: "snitch" } 
-                ] 
-            } 
-        }, 
-        results: { 
-            "bet_placed": {  
-                txt: "Jürgen: 'Sauber, bist notiert!' Du bist drin. Jetzt checkst du alle 5 Minuten den Liveticker auf dem Handy. Du arbeitest quasi gar nicht mehr.",  
-                m: 30, f: 15, a: -5, c: 10 
-            }, 
-            "bet_chat": {  
-                txt: "Jürgen: 'Ohne Moos nix los, aber ich trag dich ein.' Ihr diskutiert anschließend noch 15 Minuten im Chat über Abseitsregeln. Gut abgelenkt.",  
-                m: 15, f: 10, a: -5, c: 5  
-            }, 
-            "snitch": {  
-                txt: "[System: Chat erfolgreich an HR gemeldet] Die Gruppe wird noch am gleichen Tag geschlossen. Jürgen wirft dir später im Flur extrem böse Blicke zu. Du bist der Alman des Monats.",  
-                m: 5, f: -10, a: 10, c: -5 
-            } 
-        } 
-    },
+
     { 
         id: "sq_gabi_sick", 
         kind: "phone", 
         appName: "Insta", 
-        title: "DM von Gabi_Rockt", 
+        title: "DM from Gabi_Rocks", 
         startNode: "root", 
         nodes: { 
             "root": { 
-                text: "[Bild empfangen: Gabi mit Cocktail am Baggersee] Gabi: 'Glaubst du, ich kann das in meine Story posten oder sieht der Chef das? Bin ja heute eigentlich krank gemeldet 🤫'", 
+                text: "[Image received: Gabi with cocktail at the quarry pond] Gabi: 'Do you think I can post this to my story or will the boss see it? I'm technically sick today 🤫'", 
                 opts: [ 
-                    { t: "Klar, hau raus! Der Chef weiß nicht mal, wie man Insta buchstabiert.", next: "encourage" }, 
-                    { t: "Bist du irre? Lass das bloß sein, das gibt ne fristlose Kündigung.", next: "warn" }, 
-                    { t: "Ich sag nichts, aber dafür schuldest du mir am Montag einen dicken Muffin.", next: "blackmail" } 
+                    { t: "Sure, go for it! The boss doesn't even know how to spell Insta.", next: "encourage" }, 
+                    { t: "Are you insane? Absolutely not, that's grounds for immediate termination.", next: "warn" }, 
+                    { t: "I won't say anything, but in return, you owe me a fat muffin on Monday.", next: "blackmail" } 
                 ] 
             } 
         }, 
         results: { 
             "encourage": {  
-                txt: "[System: Gabi hat das Bild in ihre Story gepostet] 1 Stunde später hörst du den Chef auf dem Flur brüllen: 'WO IST FRAU GABI?!'. Er hat wohl doch einen geheimen Stalker-Account. Ups.",  
+                txt: "[System: Gabi posted the picture to her story] 1 hour later, you hear the boss yelling in the hallway: 'WHERE IS MS. GABI?!'. Turns out he does have a secret stalker account. Oops.",  
                 m: 5, f: 5, a: 5, c: 10 
             }, 
             "warn": {  
-                txt: "Gabi: 'Hast recht. Zu riskant. Danke Bro! 😘' [System: Bild wurde gelöscht] Du hast ihr höchstwahrscheinlich gerade den Job gerettet.",  
+                txt: "Gabi: 'You\'re right. Too risky. Thanks, bro! 😘' [System: Image deleted] You most likely just saved her job.",  
                 rep: { "Gabi": 5 },	
                 m: 2, f: -5, a: -5, c: 0  
             }, 
             "blackmail": {  
-                txt: "Gabi: 'Erpresser-Arschloch. 🖕' Aber sie postet es nicht. Du hast zwar einen Feind mehr am Empfang, aber dafür leckeres Gebäck in Aussicht.", 
+                txt: "Gabi: 'Blackmailing asshole. 🖕' But she doesn't post it. You\'ve got one more enemy at reception, but delicious baked goods are in sight.", 
                 rep: { "Gabi": -2 },
                 m: 2, f: -5, a: 10, c: 0  
             } 
         } 
     },
+
     {
-        id: "sq_teams_ceo_panic",
+        id: "sq_kevin_origin_2",
         kind: "phone",
-        appName: "Teams",
-        title: "Dr. Wichtig",
-        startNode: "root",
+        reqStory: "kevin_trust",
+        title: "Kevin's Brilliant Idea",
+        appName: "BroChat",
+        startNode: "intro",
         nodes: {
-            "root": {
-                text: "MÜLLER! SIND SIE DA?! HILFE! Wie schalte ich den Beamer ab?! Da ploppen gerade private WhatsApp-Nachrichten von meiner Frau auf der großen Leinwand auf!! Vor den Investoren!!",
+            "intro": {
+                text: "KEVIN: 'Bro! The server's purring like a kitten. But it looks totally boring. I've got 50 meters of RGB LED strips left over from my gaming PC. Should I pimp the server room?'",
                 opts: [
-                    { t: "Einfach den Laptop zuklappen!", next: "laptop_close" },
-                    { t: "Was schreibt sie denn?", next: "gossip" },
-                    { t: "Drücken Sie Windows-Taste + P.", next: "win_p" }
+                    { t: "Sure! RGB makes everything faster! (+FPS)", next: "rgb_yes" },
+                    { t: "Don't. Touch. Anything.", next: "rgb_no" },
+                    { t: "Only blue (cools better)", next: "rgb_blue" }
                 ]
             },
-            "laptop_close": {
-                text: "Dann ist die Präsentation auch weg, Sie Genie!! Die Investoren starren mich an! Es geht um Millionen! Schalten Sie das von Ihrem PC aus ab! REMOTE! JETZT!",
+            "rgb_yes": {
+                text: "KEVIN: 'Nice! I'll stick it directly onto the fans! It'll look like the Starship Enterprise! The boss will be blown away!'",
                 opts: [
-                    { t: "Okay, ich kappe das WLAN für den Raum.", next: "kill_wifi" },
-                    { t: "Geht nicht, Sie müssen das HDMI-Kabel ziehen.", next: "pull_cable" }
+                    { t: "I've gotta see this.", next: "res_party" }
                 ]
             },
-            "gossip": {
-                text: "DAS GEHT SIE NICHTS AN! Sie schreibt über meine... Fußpilz-Creme! MACHEN SIE DAS BILD WEG ODER SIE SIND GEFEUERT!",
+            "rgb_no": {
+                text: "KEVIN: 'Oh man... you're such a boomer. Fine, I'll just stick them under my desk then. But the server will remain grey and sad.'",
                 opts: [
-                    { t: "Okay, okay! Ich kappe das WLAN!", next: "kill_wifi" }
+                    { t: "That's probably for the best.", next: "res_boring" }
                 ]
             },
-            "win_p": {
-                text: "Windows?! Ich habe den neuen Mac, den ich unbedingt wollte! HIER GIBT ES KEINE WINDOWS-TASTE! Ah, jetzt hat sie ein Bild von der Salbe geschickt! TUN SIE WAS!",
+            "rgb_blue": {
+                text: "KEVIN: 'Big Brain Move! Blue LEDs = Colder Air = Overclocking! You\'re a genius. I'm doing it right now.'",
                 opts: [
-                    { t: "Ich deaktiviere das WLAN im Meetingraum!", next: "kill_wifi" },
-                    { t: "Drücken Sie CMD + F1 (hoffentlich stimmt's)", next: "mac_guess" }
+                    { t: "Wait, that was a joke...", next: "res_blue" }
                 ]
             }
         },
         results: {
-            "kill_wifi": { 
-                txt: "Dr. Wichtig: 'Puh. Bild ist weg. Ich behaupte einfach, wir wurden von Hackern attackiert. Danke Müller.'",
-                rep: { "Dr. Wichtig": 5 },
-                m: 5, f: 0, a: -10, c: -15
-            },
-            "pull_cable": { 
-                txt: "Dr. Wichtig: 'Habe gezogen. War das Stromkabel vom Beamer. Alles dunkel. Die Investoren tuscheln. Ich hasse Sie.'", 
-                rep: { "Dr. Wichtig": -10 }, 
-                m: 5, f: 0, a: 10, c: 20
-            },
-            "mac_guess": { 
-                txt: "Dr. Wichtig: 'Hab ich gedrückt! Jetzt läuft die Musik von meinem Spotify los! LAUT! MÜLLER!!!' Du legst das Handy stumm auf den Tisch.", 
-                rep: { "Dr. Wichtig": -5 },
-                m: 5, f: 0, a: 10, c: 15
-            }
+            "res_party": { txt: "Kevin sends a photo. The server room blinks like a village discotheque. You can't help but crack a smile.", rep: { "Kevin": 5 }, m: 20, f: 15, a: -10, c: 0 },
+            "res_boring": { txt: "Kevin pouts. But at least the server won't burn down. You've shown responsibility. (How tedious)", rep: { "Kevin": -5 }, m: 5, f: -5, a: 5, c: -5 },
+            "res_blue": { txt: "Too late. Kevin has wired everything in blue. 'Temperature dropped by 0.1 degrees!', he texts. Well, at least there's that.", rep: { "Kevin": 2 }, m: 20, f: 5, a: -5, c: 0 }
         }
     },
+
     {
-        id: "sq_phone_kevin_crypto",
+        id: "sq_phone_amazon",
         kind: "phone",
-        title: "Kevin (Azubi)",
-        appName: "Chat",
-        startNode: "root",
-        nodes: {
-            root: {
-                text: "Hey Meister... weißt du zufällig, ab wie viel Grad CPU-Temperatur Rauch aus einem Rack aufsteigen kann? Frage für einen Freund. 😅",
-                opts: [
-                    { t: "Kevin, schürfst du etwa Krypto auf dem Firmenserver?!", next: "crypto_confession" },
-                    { t: "Maximal 80 Grad! Wo brennt es?!", next: "fire_panic" },
-                    { t: "Lösch meine Nummer.", next: "res_ignore" }
-                ]
-            },
-            crypto_confession: {
-                text: "Okay, bleib ruhig! Es ist nur Dogecoin. Und es ist nur ein GANZ KLEINER Server im Keller. Hilfst du mir, den Lüfter leiser zu stellen?",
-                opts: [
-                    { t: "Sofort abschalten, sonst melde ich das!", next: "res_threaten" },
-                    { t: "Ich will 50% der Coins oder du fliegst.", next: "res_blackmail" }
-                ]
-            },
-            fire_panic: {
-                text: "Ah okay. Dann sind 105 Grad wohl zu viel. Ich hol mal lieber den Feuerlöscher. Brb.",
-                opts: [
-                    { t: "FASS NICHTS AN! ICH BIN AUF DEM WEG!", next: "res_fire" }
-                ]
-            }
-        },
-        results: {
-            res_ignore: { txt: "Du packst das Handy weg. Irgendwo im Haus geht ein leiser Feueralarm an.", m: 2, f: 5, a: 0, c: 10 },
-            res_threaten: { txt: "Kevin fährt die Miner panisch runter. Die Stromrechnung der Firma ist gerettet.", m: 10, f: 0, a: -5, c: 0, rep: {"Kevin": -10} },
-            res_blackmail: { txt: "Du bist jetzt offiziell Teil eines Krypto-Syndikats. Dein Karma weint, aber das Wallet freut sich.", m: 5, f: 5, a: 0, c: 5, rep: {"Kevin": 15} },
-            res_fire: { txt: "Du sprintest in den Keller. Kevin hat tatsächlich einen Switch zum Schmelzen gebracht. Dein Tag ist gelaufen.", m: 45, f: -15, a: 30, c: 15 }
-        }
-    },
-    {
-        id: "sq_phone_scam",
-        kind: "phone",
-        title: "Unbekannte Nummer",
-        appName: "Messages",
-        startNode: "root",
-        nodes: {
-            root: {
-                text: "Hallo Mama! Mein Handy ist leider in die Toilette gefallen. Das ist meine neue Nummer. Kannst du mir dringend 500 Euro per PayPal überweisen? Kuss!",
-                opts: [
-                    { t: "Hallo 'Kind'. Ich habe deine IP zurückverfolgt.", next: "scam_ip" },
-                    { t: "Einen präparierten Trojaner-Link zurücksenden.", next: "scam_trojan" },
-                    { t: "Nummer blockieren", next: "res_block" }
-                ]
-            },
-            scam_ip: {
-                text: "Was? Wer ist da? Sind Sie bei der Polizei?!",
-                opts: [
-                    { t: "Nein, bei der IT von GlobalCorp. Wir finden dich.", next: "res_scare" }
-                ]
-            },
-            scam_trojan: {
-                text: "Hä? Dein Link lässt sich nicht öffnen. Mein Bildschirm flackert jetzt so komisch rot...",
-                opts: [
-                    { t: "Viel Spaß mit dem Blue Screen of Death.", next: "res_trojan" }
-                ]
-            }
-        },
-        results: {
-            res_block: { txt: "Du blockierst die Nummer ohne jede Regung. Alltag im 21. Jahrhundert.", m: 2, f: 0, a: 0, c: 0 },
-            res_scare: { txt: "Der Scammer hat dich in Panik blockiert. Ein kleiner Sieg für die Gerechtigkeit.", m: 5, f: 5, a: -10, c: 0 },
-            res_trojan: { txt: "Du hast erfolgreich das Handy eines Cyberkriminellen gegrillt. Deine Laune ist fantastisch.", m: 10, f: 10, a: -20, c: 0 }
-        }
-    },
-    {
-        id: "sq_phone_ceo_smarthome",
-        kind: "phone",
-        title: "Dr. Wichtig (Privat)",
-        appName: "Chat",
-        startNode: "root",
-        nodes: {
-            root: {
-                text: "Müller. Meine Frau ruft gerade an. Unser smarter Saugroboter dreht durch und jagt den Hund durchs Wohnzimmer. Können Sie sich da mal kurz per Fernwartung draufschalten?",
-                opts: [
-                    { t: "Chef, das ist Ihr privates Heimnetzwerk...", next: "ceo_complain" },
-                    { t: "Ich brauche Ihr WLAN-Passwort dafür.", next: "ceo_password" }
-                ]
-            },
-            ceo_complain: {
-                text: "Wollen Sie damit sagen, Sie sind nicht kompetent genug für einen handelsüblichen Staubsauger?! Fixen Sie das, sonst überdenke ich Ihren Bonus!",
-                opts: [
-                    { t: "Na gut, ich logge mich ein...", next: "res_fix" },
-                    { t: "Dafür bin ich nicht zuständig.", next: "res_refuse" }
-                ]
-            },
-            ceo_password: {
-                text: "Das lautet 'Wichtig123'. Machen Sie schnell, der Yorkshire Terrier weint schon!",
-                opts: [
-                    { t: "Ich übernehme die Steuerung...", next: "res_fix" }
-                ]
-            }
-        },
-        results: {
-            res_fix: { txt: "Du loggst dich ins WLAN des Chefs ein und lenkst den Saugroboter absichtlich gegen einen Schrank, bis er abschaltet. 30 Minuten Lebenszeit verschwendet.", m: 30, f: 15, a: 10, c: -10, rep: {"Dr. Wichtig": 10} },
-            res_refuse: { txt: "Du hast Prinzipien. Der Chef ist stinksauer, aber dein Aufgabenbereich endet an der Firmentür.", m: 5, f: 0, a: 5, c: 15, rep: {"Dr. Wichtig": -15} }
-        }
-    },
-    {
-        id: "sq_phone_egon_cable",
-        kind: "phone",
-        title: "Egon (Hausmeister)",
-        appName: "Chat",
-        startNode: "root",
-        nodes: {
-            root: {
-                text: "IT-Boy. Bin im 3. OG. Hier hängt ein komisches gelbes Kabel aus der Decke. Stört extrem beim Streichen. Soll ich das mit der Zange bündig kappen oder reinquetschen?",
-                opts: [
-                    { t: "AUF KEINEN FALL SCHNEIDEN! Das ist die Glasfaser!", next: "egon_toolate" },
-                    { t: "Ich komm rauf und kleb es fest.", req: "tape", next: "egon_wait" },
-                    { t: "Rühr es einfach nicht an.", next: "egon_plaster" }
-                ]
-            },
-            egon_toolate: {
-                text: "Zu spät. Hab schon geschnitten. Ist eh kein Strom drauf gewesen. Weitermachen.",
-                opts: [
-                    { t: "Oh mein Gott...", next: "res_cut" }
-                ]
-            },
-            egon_wait: {
-                text: "Gute Idee. Mit deinem Wunder-Klebeband kriegt man alles hin. Ich warte hier.",
-                opts: [
-                    { t: "Bin unterwegs...", next: "res_tape" }
-                ]
-            },
-            egon_plaster: {
-                text: "Wenn ich was in Ruhe lassen soll, ruf ich nicht an. Ich stopf es einfach mit Gips tief ins Loch.",
-                opts: [
-                    { t: "Das wird böse enden...", next: "res_plaster" }
-                ]
-            }
-        },
-        results: {
-            res_cut: { txt: "Egon hat gerade die Hauptleitung der Marketing-Abteilung durchtrennt. Dein Festnetztelefon auf dem Tisch klingelt bereits Sturm.", m: 10, f: -10, a: 30, c: 10 },
-            res_tape: { txt: "Du läufst ins 3. OG und klebst das Kabel sicher und flach an die Wand. Egon lobt dein handwerkliches Mitdenken.", m: 15, f: -5, a: 0, c: 0, rep: {"Egon": 10} },
-            res_plaster: { txt: "Egon mauert das Kabel komplett ein. Es funktioniert noch, aber wehe, es bricht mal. Ein Problem für Zukunfts-Müller.", m: 5, f: 10, a: 10, c: 0 }
-        }
-    },
-    {
-        id: "sq_phone_doctor_back",
-        kind: "phone",
-        title: "Orthopädie Dr. Knochen",
-        appName: "Messages",
-        startNode: "root",
-        nodes: {
-            root: {
-                text: "Hallo Herr Müller. Ihr MRT-Befund ist da. Leichter Bandscheibenvorfall L4/L5. Das kommt vom ständigen Sitzen. Sie müssen sich ab sofort mehr bewegen!",
-                opts: [
-                    { t: "Ich bin SysAdmin. Bewegung ist ein Kündigungsgrund.", next: "doc_joke" },
-                    { t: "Können Sie mir einfach starke Schmerzmittel geben?", next: "doc_pills" }
-                ]
-            },
-            doc_joke: {
-                text: "Sehr witzig. Ich verschreibe Ihnen 10 Stunden Physiotherapie. Und eine Stehhilfe für den Schreibtisch.",
-                opts: [
-                    { t: "Wird gemacht, Doc.", next: "res_physio" }
-                ]
-            },
-            doc_pills: {
-                text: "Nein, Herr Müller. Sie müssen an die Ursache, nicht an die Symptome!",
-                opts: [
-                    { t: "Ärzte...", next: "res_angry_doc" }
-                ]
-            }
-        },
-        results: {
-            res_physio: { txt: "Physiotherapie... noch ein Termin, der dir deine Freizeit raubt. Dein Rücken pocht leicht.", m: 5, f: -5, a: 5, c: 0 },
-            res_angry_doc: { txt: "Du klickst die Nachricht weg. Dein Rücken schmerzt bei jedem Mausklick ein bisschen mehr.", m: 2, f: 0, a: 10, c: 0 }
-        }
-    },
-    {
-        id: "sq_phone_dentist",
-        kind: "phone",
-        title: "Zahnarztpraxis Weiß",
-        appName: "Messages",
-        startNode: "root",
-        nodes: {
-            root: {
-                text: "Hallo Herr Müller. Ihre Knirscherschiene für die Nacht ist fertig. Sie haben Ihre Zähne extrem abgenutzt in letzter Zeit. Viel Stress im Job?",
-                opts: [
-                    { t: "Ich arbeite in der IT.", next: "dent_it" },
-                    { t: "Nein, alles super entspannt.", next: "dent_lie" }
-                ]
-            },
-            dent_it: {
-                text: "Oh, mein Beileid. Das erklärt den massiven Abrieb. Die Kasse zahlt die Spezialschiene leider nicht komplett. Eigenanteil: 150 Euro.",
-                opts: [
-                    { t: "150 Euro?! Das ist Wucher!", next: "res_expensive" }
-                ]
-            },
-            dent_lie: {
-                text: "Gut, dann müssen wir prüfen, ob psychologische Ursachen für Ihren nächtlichen Zorn vorliegen.",
-                opts: [
-                    { t: "Lieber nicht.", next: "res_psycho" }
-                ]
-            }
-        },
-        results: {
-            res_expensive: { txt: "Du zahlst 150 Euro, nur weil die User in der Firma dich nachts in deinen Träumen verfolgen. Frustrierend.", m: 5, f: 0, a: 10, c: 0 },
-            res_psycho: { txt: "Psychologische Ursachen? Ein Blick ins Intranet reicht als Diagnose.", m: 2, f: 5, a: 5, c: 0 }
-        }
-    },
-    {
-        id: "sq_phone_mom_printer",
-        kind: "phone",
-        title: "Mama ❤️",
-        appName: "Chat",
-        startNode: "root",
-        nodes: {
-            root: {
-                text: "Mein Junge! Der Drucker blinkt orange. Was muss ich drücken? LG Mama",
-                opts: [
-                    { t: "Mama, ich bin auf der Arbeit.", next: "mom_work" },
-                    { t: "Hat er Papier? Hat er Tinte?", next: "mom_help" }
-                ]
-            },
-            mom_work: {
-                text: "Dein Chef kann ruhig mal warten, Familie geht vor! Es ist wichtig, ich muss ein Rezept für Apfelkuchen ausdrucken.",
-                opts: [
-                    { t: "Ich rufe dich heute Abend an.", next: "res_mom_later" }
-                ]
-            },
-            mom_help: {
-                text: "Ah, Papier fehlt. Du bist ein Genie! Hast du eigentlich endlich eine nette Kollegin kennengelernt? Du bist so einsam!",
-                opts: [
-                    { t: "Mama! Bitte!", next: "res_mom_cringe" }
-                ]
-            }
-        },
-        results: {
-            res_mom_later: { txt: "Das schlechte Gewissen nagt an dir. Mütter können gnadenlos sein.", m: 5, f: 0, a: 5, c: 0 },
-            res_mom_cringe: { txt: "Das Thema Partnerin ist auf der Arbeit der absolute Horror. Dein Gesicht wird leicht rot.", m: 5, f: 5, a: 10, c: 0 }
-        }
-    },
-    {
-        id: "sq_phone_landlord",
-        kind: "phone",
-        title: "Vermieter Krause",
-        appName: "Messages",
-        startNode: "root",
-        nodes: {
-            root: {
-                text: "Herr Müller! Sie haben schon wieder den lauten Server-Lüfter nachts laufen lassen. Die Nachbarn beschweren sich über das tiefe Brummen!",
-                opts: [
-                    { t: "Das ist mein privates Home-Lab!", next: "landlord_lab" },
-                    { t: "Entschuldigung, ich schalte ihn ab.", next: "landlord_sorry" }
-                ]
-            },
-            landlord_lab: {
-                text: "Mir egal, was ein Lab ist. Ab 22 Uhr ist Ruhe, sonst gibt es die nächste Abmahnung!",
-                opts: [
-                    { t: "Ja, Herr Krause.", next: "res_landlord_mad" }
-                ]
-            },
-            landlord_sorry: {
-                text: "Besser ist das. Und räumen Sie Ihre Amazon-Pakete aus dem Hausflur. Das ist kein Lagerhaus.",
-                opts: [
-                    { t: "Mache ich heute Abend.", next: "res_landlord_sad" }
-                ]
-            }
-        },
-        results: {
-            res_landlord_mad: { txt: "Du hasst diese hellhörigen Wände. Du brauchst ein eigenes Haus. Ohne Nachbarn.", m: 5, f: 0, a: 10, c: 0 },
-            res_landlord_sad: { txt: "Du schluckst deinen Stolz runter. Zuhause Ärger, auf Arbeit Ärger. SysAdmin-Leben.", m: 2, f: 5, a: 5, c: 0 }
-        }
-    },
-    {
-        id: "sq_phone_scam_customs",
-        kind: "phone",
-        title: "Z0ll-Amt DE",
+        title: "Delivery Guy",
         appName: "SMS",
         startNode: "root",
         nodes: {
             root: {
-                text: "Ihr Paket (1) hat offene Gebühren (2,99 EUR). Bitte sofort via Link bezahlen, sonst Retoure: hxxp://zoll-gebuehr-scam.to/pay",
+                text: "Hello. At your doorstep. Nobody home. Package tossed into paper bin.",
                 opts: [
-                    { t: "Ignorieren und löschen", next: "res_spam_ignore" },
-                    { t: "Mit einem SQL-Injection-String antworten", next: "spam_sql" }
+                    { t: "WHAT?! That's expensive hardware!", next: "amz_panic" },
+                    { t: "Okay, thanks.", next: "amz_ok" }
                 ]
             },
-            spam_sql: {
-                text: "Error 500: Internal Server Error. Database connection failed.",
+            amz_panic: {
+                text: "Paper bin's empty now. Trash collection justSwing by. Have a nice day.",
                 opts: [
-                    { t: "Böse grinsen", next: "res_spam_hacked" }
+                    { t: "[Frustratedly put down phone]", next: "res_amz_rage" }
+                ]
+            },
+            amz_ok: {
+                text: "You're welcome. Please give 5 stars in review. Important for job.",
+                opts: [
+                    { t: "Will do.", next: "res_amz_trash" }
                 ]
             }
         },
         results: {
-            res_spam_ignore: { txt: "Du wischst die SMS weg. Der tägliche Kampf gegen Cyber-Windmühlen.", m: 2, f: 0, a: 5, c: 0 },
-            res_spam_hacked: { txt: "Du hast gerade erfolgreich die Datenbank eines Scammers zerschossen. Befriedigung pur.", m: 10, f: -5, a: -10, c: 0 }
+            res_amz_rage: { txt: "Your new motherboard is en route to the landfill. You curse under your breath.", m: 10, f: 0, a: 15, c: 0 },
+            res_amz_trash: { txt: "Tonight after work, you'll be diving headfirst into the recycling bin. A life of dignity.", m: 2, f: 5, a: 5, c: 0 }
         }
     },
+
     {
-        id: "sq_phone_ex_gf",
+        id: "sq_phone_bank_fraud",
         kind: "phone",
-        title: "Julia (Ex)",
-        appName: "Chat",
-        startNode: "root",
-        nodes: {
-            root: {
-                text: "Hi. Ich hab gesehen, dass du mein Netflix-Profil für 'Die Pinguine aus Madagascar' nutzt. Ich ändere jetzt das Passwort. Werde erwachsen.",
-                opts: [
-                    { t: "Bitte nicht, ich bin mitten in Staffel 2!", next: "ex_beg" },
-                    { t: "Ich habe den Account damals bezahlt!", next: "ex_fight" }
-                ]
-            },
-            ex_beg: {
-                text: "Du bist echt erbärmlich. Okay, bis Sonntag hast du noch. Dann ist Schluss.",
-                opts: [
-                    { t: "Danke...", next: "res_ex_shame" }
-                ]
-            },
-            ex_fight: {
-                text: "Und ich hab die Couch bezahlt! Ciao!",
-                opts: [
-                    { t: "Gott, ich hasse sie.", next: "res_ex_rage" }
-                ]
-            }
-        },
-        results: {
-            res_ex_shame: { txt: "Vor der Ex um einen Netflix-Zugang für Kinderserien zu betteln... das nagt am Ego.", m: 10, f: 5, a: 10, c: 0 },
-            res_ex_rage: { txt: "Dein Blut kocht leicht. Du loggst dich genervt bei Netflix aus.", m: 5, f: 0, a: 10, c: 0 }
-        }
-    },
-    {
-        id: "sq_phone_recruiter",
-        kind: "phone",
-        title: "Headhunter (LinkedIn)",
-        appName: "Chat",
-        startNode: "root",
-        nodes: {
-            root: {
-                text: "Hallo IT-Talent! Ich habe eine spannende Vakanz: 60h/Woche, Rufbereitschaft, 100% On-Site. Bezahlung in Obst und Wertschätzung! Interesse?",
-                opts: [
-                    { t: "Sind Sie wahnsinnig?", next: "rec_mad" },
-                    { t: "Was für Obst?", next: "rec_fruit" }
-                ]
-            },
-            rec_mad: {
-                text: "Also mangelt es an Motivation. Schade. Wir suchen Leute mit 'Gründer-Mindset'. Viel Erfolg in Ihrer Sackgasse!",
-                opts: [
-                    { t: "Dich melde ich wegen Spam!", next: "res_rec_block" }
-                ]
-            },
-            rec_fruit: {
-                text: "Äpfel! Manchmal Bananen (wenn der CEO keine mehr isst). Soll ich Sie für ein Erstgespräch eintragen?",
-                opts: [
-                    { t: "Nein, danke.", next: "res_rec_joke" }
-                ]
-            }
-        },
-        results: {
-            res_rec_block: { txt: "Die Unverschämtheit dieser Headhunter ist manchmal kaum zu ertragen.", m: 5, f: 0, a: 10, c: 0 },
-            res_rec_joke: { txt: "Immerhin hast du kurz gelacht. Der Job-Markt ist absolut dystopisch.", m: 5, f: 5, a: -5, c: 0 }
-        }
-    },
-    {
-        id: "sq_phone_gym",
-        kind: "phone",
-        title: "FitX Studio",
+        title: "Bank Security Department",
         appName: "Messages",
         startNode: "root",
         nodes: {
             root: {
-                text: "Hey Müller! Du warst seit exakt 412 Tagen nicht mehr im Gym. Deine Muskeln vermissen dich! Komm vorbei und pump das Eisen!",
+                text: "Security Alert: This evening, 250 Euros were debited from your account for 'Steam Wallet / Anime Skins'. Was this transaction authorized by you?",
                 opts: [
-                    { t: "Abo direkt per App kündigen", next: "gym_cancel" },
-                    { t: "Traurig den weichen Bauch anspannen", next: "gym_sad" }
+                    { t: "Yeah... that was me.", next: "bank_yes" },
+                    { t: "No, my account has been hacked!", next: "bank_no" }
                 ]
             },
-            gym_cancel: {
-                text: "Kündigung erhalten. Wir bedauern das sehr. Deine Frist endet leider erst in 11 Monaten. Bleib sportlich!",
+            bank_yes: {
+                text: "Understood. We'll lift the block. Enjoy your... digital schoolgirl outfits.",
                 opts: [
-                    { t: "Die reinste Abzocke...", next: "res_gym_angry" }
+                    { t: "Please don't judge me.", next: "res_bank_shame" }
                 ]
             },
-            gym_sad: {
-                text: "Wir haben eine neue Aktion: Bringe einen Freund mit und trainiere einen Monat gratis!",
+            bank_no: {
+                text: "Alright, we're blocking the card immediately. You'll receive a new one by mail in 2 weeks.",
                 opts: [
-                    { t: "Ich habe keine Freunde.", next: "res_gym_cry" }
+                    { t: "Damn it.", next: "res_bank_locked" }
                 ]
             }
         },
         results: {
-            res_gym_angry: { txt: "Du zahlst 30 Euro im Monat für nichts. Leichtes Zähneknirschen.", m: 5, f: 0, a: 5, c: 0 },
-            res_gym_cry: { txt: "Ein kleiner Tiefschlag für dein Selbstbewusstsein. Du fühlst dich unsportlich.", m: 5, f: 10, a: 5, c: 0 }
+            res_bank_shame: { txt: "The bank employee judged you. That was a bit humiliating.", m: 5, f: 5, a: 10, c: 0 },
+            res_bank_locked: { txt: "You lied to save face. Now you have no cash for 2 weeks. Brilliant.", m: 10, f: 0, a: 10, c: 0 }
         }
     },
+
+    {
+        id: "sq_phone_ceo_smarthome",
+        kind: "phone",
+        title: "Dr. Wichtig (Private)",
+        appName: "Chat",
+        startNode: "root",
+        nodes: {
+            root: {
+                text: "Müller. My wife's on the phone. Our smart robot vacuum is going haywire, chasing the dog through the living room. Can you remote into it quickly?",
+                opts: [
+                    { t: "Boss, that\'s your private home network...", next: "ceo_complain" },
+                    { t: "I'll need your Wi-Fi password for that.", next: "ceo_password" }
+                ]
+            },
+            ceo_complain: {
+                text: "Are you implying you're not competent enough for a run-of-the-mill vacuum cleaner?! Fix this, or I'll reconsider your bonus!",
+                opts: [
+                    { t: "Alright, I'm logging in...", next: "res_fix" },
+                    { t: "That's not in my job description.", next: "res_refuse" }
+                ]
+            },
+            ceo_password: {
+                text: "It\'s 'Wichtig123'. Hurry up, the Yorkshire Terrier is crying!",
+                opts: [
+                    { t: "I'm taking control...", next: "res_fix" }
+                ]
+            }
+        },
+        results: {
+            res_fix: { txt: "You log into the boss's Wi-Fi and deliberately steer the robot vacuum into a cabinet until it shuts down. 30 minutes of life wasted.", m: 30, f: 15, a: 10, c: -10, rep: {"Dr. Wichtig": 10} },
+            res_refuse: { txt: "You have principles. The boss is fuming, but your responsibilities end at the company door.", m: 5, f: 0, a: 5, c: 15, rep: {"Dr. Wichtig": -15} }
+        }
+    },
+
     {
         id: "sq_phone_chantal_home",
         kind: "phone",
@@ -5131,159 +4673,643 @@ export const sidequests = [
         startNode: "root",
         nodes: {
             root: {
-                text: "Müüüüüller! Ich hab mein Firmen-Passwort vergessen. Kannst du das von zu Hause kurz zurücksetzen? Bin im Home Office und will shoppen... ähm, arbeiten!",
+                text: "Müüüüüller! I've forgotten my company password. Can you quickly reset it from home? I'm in my home office and want to shop... erm, work!",
                 opts: [
-                    { t: "Chantal, schreibe ein offizielles Ticket.", next: "chan_ticket" },
-                    { t: "Ich setze es auf 'Marketing123!' zurück.", next: "chan_reset" }
+                    { t: "Chantal, raise an official ticket.", next: "chan_ticket" },
+                    { t: "I'll reset it to 'Marketing123!'", next: "chan_reset" }
                 ]
             },
             chan_ticket: {
-                text: "Du bist so ein Bürokrat! Ich sag dem Chef, dass du mich blockierst und das Wachstum der Firma behinderst!",
+                text: "You\'re such a bureaucrat! I'm telling the boss you're blocking me and hindering the company's growth!",
                 opts: [
-                    { t: "Mach doch.", next: "res_chan_mad" }
+                    { t: "Go ahead.", next: "res_chan_mad" }
                 ]
             },
             chan_reset: {
-                text: "Du bist der absolut Beste!!! Kussi! 😘",
+                text: "You're absolutely the best!!! Kisses! 😘",
                 opts: [
-                    { t: "Gern geschehen.", next: "res_chan_happy" }
+                    { t: "You're welcome.", next: "res_chan_happy" }
                 ]
             }
         },
         results: {
-            res_chan_mad: { txt: "Chantals ständige Extrawürste nerven dezent. Du verdrehst die Augen.", m: 5, f: 0, a: 10, c: 5, rep: {"Chantal": -5} },
-            res_chan_happy: { txt: "Du hast die Regeln gebogen, aber hast deine Ruhe. Und eine Kollegin, die dich mag.", m: 10, f: 5, a: -5, c: 5, rep: {"Chantal": 10} }
+            res_chan_mad: { txt: "Chantal's constant special requests are mildly annoying. You roll your eyes.", m: 5, f: 0, a: 10, c: 5, rep: {"Chantal": -5} },
+            res_chan_happy: { txt: "You bent the rules, but gained some peace. And a colleague who likes you.", m: 10, f: 5, a: -5, c: 5, rep: {"Chantal": 10} }
         }
     },
+
     {
-        id: "sq_phone_amazon",
+        id: "sq_phone_dentist",
         kind: "phone",
-        title: "Paketbote",
-        appName: "SMS",
-        startNode: "root",
-        nodes: {
-            root: {
-                text: "Hallo. Stehe vor Haustür. Niemand da. Paket in Papiertonne geworfen.",
-                opts: [
-                    { t: "WAS?! Da ist teure Hardware drin!", next: "amz_panic" },
-                    { t: "Okay, danke.", next: "amz_ok" }
-                ]
-            },
-            amz_panic: {
-                text: "Papiertonne ist jetzt leer. Müllabfuhr war gerade da. Schönen Tag noch.",
-                opts: [
-                    { t: "[Handy frustriert weglegen]", next: "res_amz_rage" }
-                ]
-            },
-            amz_ok: {
-                text: "Gerne. Bitte 5 Sterne bei Bewertung geben. Ist wichtig für Job.",
-                opts: [
-                    { t: "Mache ich.", next: "res_amz_trash" }
-                ]
-            }
-        },
-        results: {
-            res_amz_rage: { txt: "Dein neues Mainboard ist auf dem Weg zur Mülldeponie. Du fluchst leise vor dich hin.", m: 10, f: 0, a: 15, c: 0 },
-            res_amz_trash: { txt: "Du musst heute Abend nach der Arbeit kopfüber im Papiermüll wühlen. Ein würdevolles Leben.", m: 2, f: 5, a: 5, c: 0 }
-        }
-    },
-    {
-        id: "sq_phone_bank_fraud",
-        kind: "phone",
-        title: "Bank Sicherheitsdienst",
+        title: "White Dental Practice",
         appName: "Messages",
         startNode: "root",
         nodes: {
             root: {
-                text: "Sicherheitshinweis: Es wurden heute Nacht 250 Euro für 'Steam Wallet / Anime-Skins' von Ihrem Konto abgebucht. Waren Sie das?",
+                text: "Hello Mr. Müller. Your night guard is ready. You've severely worn down your teeth lately. A lot of job stress?",
                 opts: [
-                    { t: "Ja... das war ich.", next: "bank_yes" },
-                    { t: "Nein, mein Konto wurde gehackt!", next: "bank_no" }
+                    { t: "I work in IT.", next: "dent_it" },
+                    { t: "No, everything's super relaxed.", next: "dent_lie" }
                 ]
             },
-            bank_yes: {
-                text: "Verstanden. Wir heben die Sperre auf. Viel Spaß mit Ihren... digitalen Kleidungsstücken für Schulmädchen.",
+            dent_it: {
+                text: "Oh, my condolences. That explains the massive abrasion. Unfortunately, your insurance doesn't fully cover the special splint. Your share: 150 Euros.",
                 opts: [
-                    { t: "Bitte nicht drüber urteilen.", next: "res_bank_shame" }
+                    { t: "150 Euros?! That's highway robbery!", next: "res_expensive" }
                 ]
             },
-            bank_no: {
-                text: "Alles klar, wir sperren die Karte sofort. Sie bekommen in 2 Wochen eine neue per Post.",
+            dent_lie: {
+                text: "Alright, then we'll have to investigate if there are psychological reasons for your nocturnal rage.",
                 opts: [
-                    { t: "Verdammt.", next: "res_bank_locked" }
+                    { t: "Rather not.", next: "res_psycho" }
                 ]
             }
         },
         results: {
-            res_bank_shame: { txt: "Der Bankmitarbeiter hat dich judged. Das war ein bisschen demütigend.", m: 5, f: 5, a: 10, c: 0 },
-            res_bank_locked: { txt: "Du hast gelogen, um dein Gesicht zu wahren. Jetzt hast du 2 Wochen lang kein Bargeld. Genial.", m: 10, f: 0, a: 10, c: 0 }
+            res_expensive: { txt: "You're paying 150 Euros just because the users at your company haunt your dreams at night. Frustrating.", m: 5, f: 0, a: 10, c: 0 },
+            res_psycho: { txt: "Psychological reasons? A quick glance at the intranet is enough for a diagnosis.", m: 2, f: 5, a: 5, c: 0 }
         }
     },
+
+    {
+        id: "sq_phone_doctor_back",
+        kind: "phone",
+        title: "Orthopedics Dr. Bones",
+        appName: "Messages",
+        startNode: "root",
+        nodes: {
+            root: {
+                text: "Hello Mr. Müller. Your MRI results are in. Mild disc herniation L4/L5. This comes from constant sitting. You need to move more, effective immediately!",
+                opts: [
+                    { t: "I'm a SysAdmin. Movement is grounds for termination.", next: "doc_joke" },
+                    { t: "Can you just give me some strong painkillers?", next: "doc_pills" }
+                ]
+            },
+            doc_joke: {
+                text: "Very funny. I'm prescribing you 10 hours of physical therapy. And a standing desk attachment.",
+                opts: [
+                    { t: "Consider it done, Doc.", next: "res_physio" }
+                ]
+            },
+            doc_pills: {
+                text: "No, Mr. Müller. You need to address the cause, not just the symptoms!",
+                opts: [
+                    { t: "Doctors...", next: "res_angry_doc" }
+                ]
+            }
+        },
+        results: {
+            res_physio: { txt: "Physical therapy... another appointment stealing your precious free time. Your back twinges slightly.", m: 5, f: -5, a: 5, c: 0 },
+            res_angry_doc: { txt: "You dismiss the message. Your back throbs a little more with each mouse click.", m: 2, f: 0, a: 10, c: 0 }
+        }
+    },
+
     {
         id: "sq_phone_ebay",
         kind: "phone",
-        title: "Kleinanzeigen User34",
+        title: "Classifieds User34",
         appName: "Chat",
         startNode: "root",
         nodes: {
             root: {
-                text: "Hallo, ist der 24-Port Switch noch da? Gebe 5 Euro und einen halben Kasten Cola. Komme sofort.",
+                text: "Hello, is the 24-port switch still available? I'll give you 5 euros and half a case of Coke. Coming right over.",
                 opts: [
-                    { t: "Das Ding ist 200 Euro wert!", next: "ebay_argue" },
-                    { t: "Welche Cola?", next: "ebay_cola" },
-                    { t: "Einfach ignorieren", next: "res_ebay_ignore" }
+                    { t: "That thing is worth 200 euros!", next: "ebay_argue" },
+                    { t: "Which Coke?", next: "ebay_cola" },
+                    { t: "Just ignore", next: "res_ebay_ignore" }
                 ]
             },
             ebay_argue: {
-                text: "Ja aber ist ja gebraucht. 7 Euro und ich hole ab. Mein Sohn hat morgen Geburtstag!",
+                text: "Yeah, but it's used. 7 Euros and I'll pick it up. It's my son's birthday tomorrow!",
                 opts: [
-                    { t: "Nein. Ciao.", next: "res_ebay_mad" }
+                    { t: "No. Bye.", next: "res_ebay_mad" }
                 ]
             },
             ebay_cola: {
-                text: "Zero. Aber ist schon offen. Deal?",
+                text: "Zero. But it's already open. Deal?",
                 opts: [
-                    { t: "[Blockieren]", next: "res_ebay_sad" }
+                    { t: "[Block]", next: "res_ebay_sad" }
                 ]
             }
         },
         results: {
-            res_ebay_ignore: { txt: "Der tägliche Wahnsinn im Internet. Du packst das Handy weg.", m: 2, f: 0, a: 0, c: 0 },
-            res_ebay_mad: { txt: "Solche Leute auf Kleinanzeigen rauben dir manchmal echt den Nerv.", m: 5, f: 0, a: 10, c: 0 },
-            res_ebay_sad: { txt: "Du wunderst dich manchmal wirklich über die Menschheit.", m: 2, f: 5, a: 5, c: 0 }
+            res_ebay_ignore: { txt: "The daily internet madness. You put away your phone.", m: 2, f: 0, a: 0, c: 0 },
+            res_ebay_mad: { txt: "These classifieds folks really get on your nerves sometimes.", m: 5, f: 0, a: 10, c: 0 },
+            res_ebay_sad: { txt: "You truly wonder about humanity sometimes.", m: 2, f: 5, a: 5, c: 0 }
         }
     },
+
     {
-        id: "sq_phone_property",
+        id: "sq_phone_egon_cable",
         kind: "phone",
-        title: "Hausverwaltung",
+        title: "Egon (Janitor)",
+        appName: "Chat",
+        startNode: "root",
+        nodes: {
+            root: {
+                text: "IT-boy. I'm on the 3rd floor. There's this weird yellow cable hanging from the ceiling. Really gets in the way of painting. Should I snip it flush with pliers or just jam it in?",
+                opts: [
+                    { t: "DO NOT CUT IT! That's the fiber optic!", next: "egon_toolate" },
+                    { t: "I'll be right up and tape it down.", req: "tape", next: "egon_wait" },
+                    { t: "Just don't touch it.", next: "egon_plaster" }
+                ]
+            },
+            egon_toolate: {
+                text: "Too late. Already cut it. No power running through it anyway. Moving on.",
+                opts: [
+                    { t: "Oh my god...", next: "res_cut" }
+                ]
+            },
+            egon_wait: {
+                text: "Good idea. With your miracle tape, anything's possible. I'll wait here.",
+                opts: [
+                    { t: "On my way...", next: "res_tape" }
+                ]
+            },
+            egon_plaster: {
+                text: "If I was going to leave something alone, I wouldn't have called. I'll just stuff it deep into the hole with plaster.",
+                opts: [
+                    { t: "This is going to end badly...", next: "res_plaster" }
+                ]
+            }
+        },
+        results: {
+            res_cut: { txt: "Egon just severed the main line for the Marketing department. Your desk phone is already ringing off the hook.", m: 10, f: -10, a: 30, c: 10 },
+            res_tape: { txt: "You rush to the 3rd floor and securely tape the cable flat against the wall. Egon praises your practical thinking.", m: 15, f: -5, a: 0, c: 0, rep: {"Egon": 10} },
+            res_plaster: { txt: "Egon completely walls in the cable. It still works, but woe betide if it ever breaks. A problem for Future-Miller.", m: 5, f: 10, a: 10, c: 0 }
+        }
+    },
+
+    {
+        id: "sq_phone_ex_gf",
+        kind: "phone",
+        title: "Julia (Ex)",
+        appName: "Chat",
+        startNode: "root",
+        nodes: {
+            root: {
+                text: "Hi. I've noticed you're still using my Netflix profile for 'The Penguins of Madagascar'. I'm changing the password now. Grow up.",
+                opts: [
+                    { t: "Please don't, I'm in the middle of season 2!", next: "ex_beg" },
+                    { t: "I paid for that account back in the day!", next: "ex_fight" }
+                ]
+            },
+            ex_beg: {
+                text: "You are truly pathetic. Alright, you have until Sunday. Then it's over.",
+                opts: [
+                    { t: "Thanks...", next: "res_ex_shame" }
+                ]
+            },
+            ex_fight: {
+                text: "And I paid for the couch! Bye!",
+                opts: [
+                    { t: "God, I hate her.", next: "res_ex_rage" }
+                ]
+            }
+        },
+        results: {
+            res_ex_shame: { txt: "Begging your ex for Netflix access to children's shows... that's a blow to the ego.", m: 10, f: 5, a: 10, c: 0 },
+            res_ex_rage: { txt: "Your blood is boiling slightly. You angrily log out of Netflix.", m: 5, f: 0, a: 10, c: 0 }
+        }
+    },
+
+    {
+        id: "sq_phone_gym",
+        kind: "phone",
+        title: "FitX Studio",
         appName: "Messages",
         startNode: "root",
         nodes: {
             root: {
-                text: "Wichtige Info an alle Mieter: Von 10 bis 16 Uhr wird heute das Wasser im gesamten Haus abgestellt. Rohrreinigung.",
+                text: "Hey Müller! You haven't graced our gym with your presence in exactly 412 days. Your muscles miss you! Come on down and pump some iron!",
                 opts: [
-                    { t: "Gott sei Dank bin ich im Büro.", next: "prop_office" },
-                    { t: "Das dürfen Sie nicht so kurzfristig!", next: "prop_rage" }
+                    { t: "Cancel subscription directly via app", next: "gym_cancel" },
+                    { t: "Sadly clench my soft belly", next: "gym_sad" }
                 ]
             },
-            prop_office: {
-                text: "Vielen Dank für Ihr Verständnis. Ach, und betreten Sie den Flur nicht, wir sprühen Insektengift.",
+            gym_cancel: {
+                text: "Cancellation received. We're terribly sorry to see you go. Unfortunately, your term doesn't end for another 11 months. Stay sporty!",
                 opts: [
-                    { t: "Wunderbar.", next: "res_prop_happy" }
+                    { t: "This is pure daylight robbery...", next: "res_gym_angry" }
                 ]
             },
-            prop_rage: {
-                text: "Beschwerden reichen Sie bitte fristgerecht per Fax in unserem Büro ein.",
+            gym_sad: {
+                text: "We have a new promotion: Bring a friend and train for a month free!",
                 opts: [
-                    { t: "Wer hat noch ein Fax?!", next: "res_prop_mad" }
+                    { t: "I have no friends.", next: "res_gym_cry" }
                 ]
             }
         },
         results: {
-            res_prop_happy: { txt: "Für einmal hat es echte Vorteile, bei GlobalCorp im Büro zu sitzen. Deine Laune bessert sich minimal.", m: 2, f: -5, a: -5, c: 0 },
-            res_prop_mad: { txt: "Faxgeräte... die Endgegner der deutschen Bürokratie. Du verdrehst die Augen.", m: 5, f: 0, a: 10, c: 0 }
+            res_gym_angry: { txt: "You're paying 30 Euros a month for absolutely nothing. Slight teeth-grinding ensues.", m: 5, f: 0, a: 5, c: 0 },
+            res_gym_cry: { txt: "A minor blow to your self-esteem. You feel thoroughly unathletic.", m: 5, f: 10, a: 5, c: 0 }
         }
-    },    
+    },
+
+    {
+        id: "sq_phone_kevin_crypto",
+        kind: "phone",
+        title: "Kevin (Trainee)",
+        appName: "Chat",
+        startNode: "root",
+        nodes: {
+            root: {
+                text: "Hey, boss... do you happen to know at what CPU temperature smoke can start rising from a rack? Asking for a friend. 😅",
+                opts: [
+                    { t: "Kevin, are you crypto-mining on the company server?!", next: "crypto_confession" },
+                    { t: "Maximum 80 degrees! Where's the fire?!", next: "fire_panic" },
+                    { t: "Delete my number.", next: "res_ignore" }
+                ]
+            },
+            crypto_confession: {
+                text: "Okay, stay calm! It's just Dogecoin. And it's only a VERY SMALL server in the basement. Can you help me make the fan quieter?",
+                opts: [
+                    { t: "Shut it down immediately, or I'll report it!", next: "res_threaten" },
+                    { t: "I want 50% of the coins or you're fired.", next: "res_blackmail" }
+                ]
+            },
+            fire_panic: {
+                text: "Ah, okay. So, 105 degrees is probably too much. I'll just grab the fire extinguisher. Brb.",
+                opts: [
+                    { t: "DON'T TOUCH ANYTHING! I'M ON MY WAY!", next: "res_fire" }
+                ]
+            }
+        },
+        results: {
+            res_ignore: { txt: "You put your phone away. Somewhere in the building, a faint fire alarm goes off.", m: 2, f: 5, a: 0, c: 10 },
+            res_threaten: { txt: "Kevin frantically shuts down the miners. The company's electricity bill is saved.", m: 10, f: 0, a: -5, c: 0, rep: {"Kevin": -10} },
+            res_blackmail: { txt: "You are now officially part of a crypto syndicate. Your karma weeps, but your wallet rejoices.", m: 5, f: 5, a: 0, c: 5, rep: {"Kevin": 15} },
+            res_fire: { txt: "You sprint to the basement. Kevin has actually melted a switch. Your day is ruined.", m: 45, f: -15, a: 30, c: 15 }
+        }
+    },
+
+    {
+        id: "sq_phone_landlord",
+        kind: "phone",
+        title: "Landlord Krause",
+        appName: "Messages",
+        startNode: "root",
+        nodes: {
+            root: {
+                text: "Mr. Müller! You've left that noisy server fan running all night again. The neighbors are complaining about the low hum!",
+                opts: [
+                    { t: "That's my private home lab!", next: "landlord_lab" },
+                    { t: "My apologies, I'll turn it off.", next: "landlord_sorry" }
+                ]
+            },
+            landlord_lab: {
+                text: "I don't care what a 'lab' is. After 10 PM, it's quiet hours, or you'll get another written warning!",
+                opts: [
+                    { t: "Yes, Mr. Krause.", next: "res_landlord_mad" }
+                ]
+            },
+            landlord_sorry: {
+                text: "That's better. And clear your Amazon packages from the hallway. This isn't a storage unit.",
+                opts: [
+                    { t: "I'll do it tonight.", next: "res_landlord_sad" }
+                ]
+            }
+        },
+        results: {
+            res_landlord_mad: { txt: "You hate these thin walls. You need your own house. Without neighbors. Or common sense.", m: 5, f: 0, a: 10, c: 0 },
+            res_landlord_sad: { txt: "You swallow your pride. Trouble at home, trouble at work. The SysAdmin life, eh?", m: 2, f: 5, a: 5, c: 0 }
+        }
+    },
+
+    {
+        id: "sq_phone_mom_printer",
+        kind: "phone",
+        title: "Mom ❤️",
+        appName: "Chat",
+        startNode: "root",
+        nodes: {
+            root: {
+                text: "My boy! The printer's blinking orange. What do I press? Love, Mom",
+                opts: [
+                    { t: "Mom, I'm at work.", next: "mom_work" },
+                    { t: "Does it have paper? Does it have ink?", next: "mom_help" }
+                ]
+            },
+            mom_work: {
+                text: "Your boss can wait, family comes first! It's important, I need to print a recipe for apple pie.",
+                opts: [
+                    { t: "I'll call you tonight.", next: "res_mom_later" }
+                ]
+            },
+            mom_help: {
+                text: "Ah, no paper. You're a genius! By the way, have you finally met a nice colleague? You're so lonely!",
+                opts: [
+                    { t: "Mom! Please!", next: "res_mom_cringe" }
+                ]
+            }
+        },
+        results: {
+            res_mom_later: { txt: "Guilt gnaws at you. Mothers can be merciless.", m: 5, f: 0, a: 5, c: 0 },
+            res_mom_cringe: { txt: "The topic of a partner is an absolute nightmare at work. Your face turns slightly red.", m: 5, f: 5, a: 10, c: 0 }
+        }
+    },
+
+    {
+        id: "sq_phone_property",
+        kind: "phone",
+        title: "Property Management",
+        appName: "Messages",
+        startNode: "root",
+        nodes: {
+            root: {
+                text: "Important info for all tenants: Water will be shut off in the entire building today from 10 AM to 4 PM for pipe cleaning.",
+                opts: [
+                    { t: "Thank goodness I'm at the office.", next: "prop_office" },
+                    { t: "You can't do this with such short notice!", next: "prop_rage" }
+                ]
+            },
+            prop_office: {
+                text: "Thank you for your understanding. Oh, and please do not enter the hallway, we are spraying insecticide.",
+                opts: [
+                    { t: "Wonderful.", next: "res_prop_happy" }
+                ]
+            },
+            prop_rage: {
+                text: "Please submit any complaints in due time via fax to our office.",
+                opts: [
+                    { t: "Who even has a fax machine anymore?!", next: "res_prop_mad" }
+                ]
+            }
+        },
+        results: {
+            res_prop_happy: { txt: "For once, being stuck at the GlobalCorp office has its perks. Your mood improves slightly.", m: 2, f: -5, a: -5, c: 0 },
+            res_prop_mad: { txt: "Fax machines... the final boss of German bureaucracy. You roll your eyes.", m: 5, f: 0, a: 10, c: 0 }
+        }
+    },
+
+    {
+        id: "sq_phone_recruiter",
+        kind: "phone",
+        title: "Headhunter (LinkedIn)",
+        appName: "Chat",
+        startNode: "root",
+        nodes: {
+            root: {
+                text: "Hello, IT-talent! I've got an exciting vacancy: 60h/week, on-call duty, 100% on-site. Payment in fruit and appreciation! Interested?",
+                opts: [
+                    { t: "Are you out of your mind?", next: "rec_mad" },
+                    { t: "What kind of fruit?", next: "rec_fruit" }
+                ]
+            },
+            rec_mad: {
+                text: "So, a lack of motivation. Pity. We're looking for people with a 'founder's mindset'. Good luck in your dead-end job!",
+                opts: [
+                    { t: "I'm reporting you for spam!", next: "res_rec_block" }
+                ]
+            },
+            rec_fruit: {
+                text: "Apples! Sometimes bananas (if the CEO isn't eating them anymore). Should I sign you up for an initial interview?",
+                opts: [
+                    { t: "No, thanks.", next: "res_rec_joke" }
+                ]
+            }
+        },
+        results: {
+            res_rec_block: { txt: "The audacity of these headhunters is sometimes unbearable.", m: 5, f: 0, a: 10, c: 0 },
+            res_rec_joke: { txt: "At least you had a laugh. The job market is absolutely dystopian.", m: 5, f: 5, a: -5, c: 0 }
+        }
+    },
+
+    {
+        id: "sq_phone_scam",
+        kind: "phone",
+        title: "Unknown Number",
+        appName: "Messages",
+        startNode: "root",
+        nodes: {
+            root: {
+                text: "Hi Mom! My phone fell into the toilet. This is my new number. Can you urgently transfer me 500 Euros via PayPal? Kisses!",
+                opts: [
+                    { t: "Hello, 'child'. I've traced your IP.", next: "scam_ip" },
+                    { t: "Send a booby-trapped Trojan link in return.", next: "scam_trojan" },
+                    { t: "Block number", next: "res_block" }
+                ]
+            },
+            scam_ip: {
+                text: "What? Who is this? Are you with the police?!",
+                opts: [
+                    { t: "No, I'm with GlobalCorp IT. We're coming for you.", next: "res_scare" }
+                ]
+            },
+            scam_trojan: {
+                text: "Huh? Your link won't open. My screen is flashing red now...",
+                opts: [
+                    { t: "Enjoy your Blue Screen of Death.", next: "res_trojan" }
+                ]
+            }
+        },
+        results: {
+            res_block: { txt: "You block the number without a second thought. Just another day in the 21st century.", m: 2, f: 0, a: 0, c: 0 },
+            res_scare: { txt: "The scammer blocked you in a panic. A small victory for justice.", m: 5, f: 5, a: -10, c: 0 },
+            res_trojan: { txt: "You successfully fried a cybercriminal's phone. Your mood is fantastic.", m: 10, f: 10, a: -20, c: 0 }
+        }
+    },
+
+    {
+        id: "sq_phone_scam_customs",
+        kind: "phone",
+        title: "Customs Office DE",
+        appName: "SMS",
+        startNode: "root",
+        nodes: {
+            root: {
+                text: "Your package (1) has outstanding fees (2.99 EUR). Please pay immediately via link, otherwise return to sender: hxxp://customs-fee-scam.to/pay",
+                opts: [
+                    { t: "Ignore and delete", next: "res_spam_ignore" },
+                    { t: "Reply with a SQL injection string", next: "spam_sql" }
+                ]
+            },
+            spam_sql: {
+                text: "Error 500: Internal Server Error. Database connection failed.",
+                opts: [
+                    { t: "Grin maliciously", next: "res_spam_hacked" }
+                ]
+            }
+        },
+        results: {
+            res_spam_ignore: { txt: "You swipe the SMS away. The daily fight against cyber-windmills.", m: 2, f: 0, a: 5, c: 0 },
+            res_spam_hacked: { txt: "You just successfully nuked a scammer\\'s database. Pure satisfaction.", m: 10, f: -5, a: -10, c: 0 }
+        }
+    },
+
+    { 
+        id: "sq_prince_return", 
+        kind: "phone", 
+        reqStory: "prince_active", 
+        title: "Urgent Recall", 
+        appName: "TrustMeChat", 
+        startNode: "intro", 
+        nodes: { 
+            "intro": { 
+                text: "👑 PRINZ: 'My dearest friend! Bad news! There was a counter-revolution! My uncle is alive! He wants the money back! If not, he calls Interpol! Please send back NOW!'", 
+                opts: [ 
+                    { t: "[System: Transfer full amount back]", next: "return_money" }, 
+                    { t: "[System: Block user immediately]", next: "keep_money" }, 
+                    { t: "Oops, already blew all that cash on Fortnite skins.", next: "troll_prince" } 
+                ] 
+            }, 
+            "return_money": { 
+                text: "[System: TAN entry successful. 7,500,000.00 USD transferred] You suddenly feel poor again, but morally superior as hell.", 
+                opts: [ 
+                    { t: "You're welcome. Try to stay out of trouble.", next: "res_returned" } 
+                ] 
+            }, 
+            "keep_money": { 
+                text: "[System: User blocked] The frantic messages abruptly cease. Outside your office window, a black, unmarked van screeches to a halt...", 
+                opts: [ 
+                    { t: "[Turn off phone & duck under desk]", next: "res_kept" } 
+                ] 
+            }, 
+            "troll_prince": { 
+                text: "👑 PRINZ: 'YOU WHAT?! Skins?! Are you crazy?! My head is on the line here! Send the rest! NOW!'", 
+                opts: [ 
+                    { t: "Alright, alright! Chill out. I'll send the rest back.", next: "return_money" }, 
+                    { t: "[System: Block user immediately]", next: "res_kept" } 
+                ] 
+            } 
+        }, 
+        results: { 
+            "res_returned": {  
+                txt: "👑 PRINZ: 'You are a saint! I will name my firstborn Sysadmin.' [Chat ended] The card is worthless, but your conscience is sparkling clean.",  
+                m: 10, rem: "black_card", loot: "prince_letter", f: 0, a: -15, c: -20  
+            }, 
+            "res_kept": {  
+                txt: "[System: Device offline] You keep the millions. But your radar is screaming. You're probably on Interpol's most-wanted list now.",  
+                m: 2, f: 10, a: 0, c: 35  
+            } 
+        } 
+    },
+
+    {
+        id: "sq_team_gossip_1",
+        kind: "phone",
+        appName: "WhatsApp",
+        title: "Group: 'The Three Amigos at the Gas Station'",
+        startNode: "root",
+        nodes: {
+            "root": {
+                text: "Chantal: 'Did you guys see what HE's wearing today? That tie just screams midlife crisis.' Kevin: 'Looks like a coloring book accident. 😂'",
+                opts: [
+                    { t: "And have you even looked at his shoes?! 🤮", next: "join_in" },
+                    { t: "Careful, folks, IT sees everything. Even the boss reads the logs.", next: "warn" },
+                    { t: "[System: Mute group & lock phone]", next: "ignore" }
+                ]
+            },
+            "join_in": {
+                text: "Chantal: 'OMG YES! 💀 You\'re the best! I\'m making a meme out of this.' (Your phone vibrates shortly after as she posts a picture to the group)",
+                opts: [
+                    { t: "[System: React to the picture with 😂]", next: "meme_like" }
+                ]
+            }
+        },
+        results: {
+            "ignore": {
+                txt: "[System: Notifications off] You ignore the chat. Chantal later messages you privately: 'Boring.' But at least you got some work done.",
+                ep: { "Chantal": -5, "Kevin": -2 },
+                m: 2, f: -5, a: 5, c: -5
+            },
+            "warn": {
+                txt: "Kevin: 'Ooooh, Mr. Important is scared.' They\'re now trashing you in a new group, but the boss is none the wiser. You're off the hook.",
+                rep: { "Chantal": -2, "Kevin": -2 },
+                m: 2, f: 0, a: 5, c: 0
+            },
+            "meme_like": {
+                txt: "[Reaction sent] You giggle loudly at your desk. Unfortunately, the boss is standing right behind you. He doesn\'t see your phone, but he notices you\'re having fun. That makes him suspicious.",
+                rep: { "Chantal": 5, "Kevin": 5 },
+                m: 10, f: 10, a: -10, c: 15,
+                next: "team_gossip_2"
+            }
+        }
+    },
+
+    { 
+        id: "sq_team_gossip_2", 
+        kind: "phone", 
+        appName: "Teams", 
+        title: "Message from the Boss", 
+        reqStory: "team_gossip_2", 
+        startNode: "root", 
+        nodes: { 
+            "root": { 
+                text: "Boss: 'Mr. Müller, I hear a lot of laughter from your corner. Have we already met our quarterly goals? Or why is the mood so jolly?'", 
+                opts: [ 
+                    { t: "A colleague made an extremely funny code error. Pure IT humor, Boss.", next: "lie" }, 
+                    { t: "My apologies. That was unprofessional and won't happen again.", next: "sorry" } 
+                ] 
+            } 
+        }, 
+        results: { 
+            "lie": {  
+                txt: "Boss: 'I see. A funny bug. Do show it to me.' You mumble a half-baked explanation. He knows. 'Put down that phone, Müller.'",  
+                rep: { "Dr. Wichtig": -5 },	
+                m: 5, f: 0, a: 10, c: 10 
+            }, 
+            "sorry": {  
+                txt: "Boss: 'That's what I thought.' He's watching you closely now. The fun is officially over.",
+                rep: { "Dr. Wichtig": 2 },	  
+                m: 2, f: -5, a: 5, c: 0  
+            } 
+        } 
+    },
+
+    {
+        id: "sq_teams_ceo_panic",
+        kind: "phone",
+        appName: "Teams",
+        title: "Dr. Wichtig",
+        startNode: "root",
+        nodes: {
+            "root": {
+                text: "MUELLER! ARE YOU THERE?! HELP! How do I turn off the projector?! My wife's private WhatsApp messages are popping up on the big screen!! In front of the investors!!",
+                opts: [
+                    { t: "Just close the laptop!", next: "laptop_close" },
+                    { t: "What's she writing?", next: "gossip" },
+                    { t: "Press Windows Key + P.", next: "win_p" }
+                ]
+            },
+            "laptop_close": {
+                text: "Then the presentation's gone too, you genius!! The investors are staring at me! Millions are at stake! Turn it off from your PC! REMOTELY! NOW!",
+                opts: [
+                    { t: "Okay, I'll cut the Wi-Fi to the room.", next: "kill_wifi" },
+                    { t: "Can't do that, you need to pull the HDMI cable.", next: "pull_cable" }
+                ]
+            },
+            "gossip": {
+                text: "THAT'S NONE OF YOUR BUSINESS! She's writing about my... athlete's foot cream! GET RID OF THE IMAGE OR YOU'RE FIRED!",
+                opts: [
+                    { t: "Okay, okay! I'll cut the Wi-Fi!", next: "kill_wifi" }
+                ]
+            },
+            "win_p": {
+                text: "Windows?! I've got the new Mac I desperately wanted! THERE'S NO WINDOWS KEY HERE! Oh, now she's sent a picture of the ointment! DO SOMETHING!",
+                opts: [
+                    { t: "I'll deactivate the Wi-Fi in the meeting room!", next: "kill_wifi" },
+                    { t: "Press CMD + F1 (hopefully that's right)", next: "mac_guess" }
+                ]
+            }
+        },
+        results: {
+            "kill_wifi": {
+                txt: "Dr. Wichtig: 'Phew. Image is gone. I'll just claim we were attacked by hackers. Thanks, Mueller.'",
+                rep: { "Dr. Wichtig": 5 },
+                m: 5, f: 0, a: -10, c: -15
+            },
+            "pull_cable": {
+                txt: "Dr. Wichtig: 'I pulled it. It was the projector's power cable. Everything's dark. The investors are whispering. I hate you.'",
+                rep: { "Dr. Wichtig": -10 },
+                m: 5, f: 0, a: 10, c: 20
+            },
+            "mac_guess": {
+                txt: "Dr. Wichtig: 'I pressed it! Now music is blaring from my Spotify! LOUD! MUELLER!!!' You quietly place the phone on the table.",
+                rep: { "Dr. Wichtig": -5 },
+                m: 5, f: 0, a: 10, c: 15
+            }
+        }
+    }
 
 ];
