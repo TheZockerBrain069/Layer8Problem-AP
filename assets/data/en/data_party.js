@@ -515,7 +515,7 @@ export const party = [
 		opts: [
 			{ 
 				t: 'Hijack the VIP corner', 
-				action: "engine.finishParty('INSIDER', 'You quietly clear your throat in the dark. The boss freezes. "Who\'s there?" You answer extremely calmly: "Just IT, boss. Don\'t worry, my silence can be bought." A quiet laugh comes from Ms. Elster. You simply join the inner circle of power in the dark. You exchange intrigues and secrets under the cover of darkness until the power comes back on. You are now unassailable. You have achieved absolute power in the office.')"
+				action: `engine.finishParty('INSIDER', 'You quietly clear your throat in the dark. The boss freezes. "Who\\'s there?" You answer extremely calmly: "Just IT, boss. Don\\'t worry, my silence can be bought." A quiet laugh comes from Ms. Elster. You simply join the inner circle of power in the dark. You exchange intrigues and secrets under the cover of darkness until the power comes back on. You are now unassailable. You have achieved absolute power in the office.')`
 			}
 		]
 	},

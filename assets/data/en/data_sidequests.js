@@ -4410,4 +4410,11 @@ export const sidequests = [
                 m: 2, f: 5, a: 0, c: 0 
             }, 
             "loot_it": { 
-                txt: "[System:
+                txt: "[System: Download complete] You skim the PDF. It's actually true. The apprentice earns more than you! You now have massive leverage against the boss, but your rage is boiling.", 
+                m: 5, f: 0, a: 10, c: 0, loot: "arg_list_2" 
+            } 
+        } 
+    }
+
+];
+
