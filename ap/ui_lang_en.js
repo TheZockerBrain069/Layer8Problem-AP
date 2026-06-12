@@ -243,7 +243,9 @@
   // Regex patterns for dynamic strings (run AFTER exact-match MAP lookup).
   var REGEX = [
     [/^System (.+) geladen\. Warte auf User\.\.\.$/, "System $1 loaded. Waiting for user..."],
-    [/^Inventar: (.+) erhalten!$/, "Inventory: $1 received!"]
+    [/^Inventar: (.+) erhalten!$/, "Inventory: $1 received!"],
+    [/^Ausrede nutzen \((\d+) übrig\)$/, "Use excuse ($1 left)"],
+    [/^Ausrede nutzen \((\d+) übrig\.\)$/, "Use excuse ($1 left.)"]
   ];
   function txNode(node) {
     var t = node.nodeValue; if (!t) return;
