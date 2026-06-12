@@ -520,10 +520,11 @@ async function installHooks() {
 
 // ---------- boot ----------------------------------------------------------
 function boot() {
+  // Always show the connect gate on (re)load so the player can re-enter slot
+  // data or switch modes. Clear the "offline" flag — it's a per-session choice
+  // made by clicking "Play Offline", not a sticky preference.
+  try { localStorage.removeItem(LS_OFFLINE); } catch (e) {}
   buildGate();
-  if (localStorage.getItem(LS_OFFLINE) === "1") {
-    closeGate("offline");
-  }
 }
 
 if (document.readyState === "loading") {

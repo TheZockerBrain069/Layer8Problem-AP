@@ -224,13 +224,39 @@
   "Standard": "Default",
   "Fertig": "Done",
   "Code hier einfügen...": "Insert code here...",
-  "Was ist passiert? Welches Event war komisch?": "What happened? Which event was funny?"
+  "Was ist passiert? Welches Event war komisch?": "What happened? Which event was funny?",
+  // --- Morning / day-start screen (engine_events.js) ---
+  "DER MORGEN DANACH": "THE MORNING AFTER",
+  "Den Arbeitstag beginnen": "Start the workday",
+  "Startbedingungen:": "Starting conditions:",
+  "Start 08:30 Uhr & +15% Faulheit": "Start 8:30 AM & +15% Laziness",
+  "+15% Aggro": "+15% Aggro",
+  "+15% Chef-Radar": "+15% Boss-Radar",
+  "Neutral. Der ganz normale Wahnsinn beginnt.": "Neutral. The usual madness begins.",
+  // --- Difficulty / boot log lines (engine_core.js) ---
+  "Modus: FREITAG. Entspann dich.": "Mode: FRIDAY. Take it easy.",
+  "Modus: MITTWOCH. Business as usual.": "Mode: WEDNESDAY. Business as usual.",
+  "Modus: MONTAG. Viel Glück.": "Mode: MONDAY. Good luck.",
+  "Hier ist gerade nichts mehr los. Versuch einen anderen Ort.": "Nothing's going on here right now. Try a different spot.",
+  "System-Neustart initiiert...": "System reboot initiated..."
 };
+  // Regex patterns for dynamic strings (run AFTER exact-match MAP lookup).
+  var REGEX = [
+    [/^System (.+) geladen\. Warte auf User\.\.\.$/, "System $1 loaded. Waiting for user..."],
+    [/^Inventar: (.+) erhalten!$/, "Inventory: $1 received!"]
+  ];
   function txNode(node) {
     var t = node.nodeValue; if (!t) return;
     var key = t.trim(); if (!key) return;
     var en = MAP[key];
-    if (en !== undefined) node.nodeValue = t.replace(key, en);
+    if (en !== undefined) { node.nodeValue = t.replace(key, en); return; }
+    for (var i = 0; i < REGEX.length; i++) {
+      if (REGEX[i][0].test(key)) {
+        var rep = key.replace(REGEX[i][0], REGEX[i][1]);
+        node.nodeValue = t.replace(key, rep);
+        return;
+      }
+    }
   }
   function walk(root) {
     if (!root) return;
