@@ -1,17 +1,26 @@
-// Layer8Problem — Archipelago Client (Mod v0.3.1)
-// Changes vs v0.3.0:
-//  - Language toggle moved INTO connect screen (DE ⇄ EN switch, replaces floater)
-//  - Removed AP status pill (return-to-client badge) — reload page to reconnect
-//  - waitForEngine timeout 8s → 20s + clearer diagnostic
-//  - Bumps version string
+// Layer8Problem — Archipelago Client (Mod v0.4.0)
+// Changes vs v0.3.1:
+//  - Per-character Progressive Affection (6 items, was 1 generic). Tier
+//    locations (friend/ally/bestie) only fire once the player both
+//    reached the affection threshold AND received enough Progressive
+//    Affection items for that character (1/2/3).
+//  - Reads slot_data.goal + slot_data.days_to_survive from the Connected
+//    packet and ships StatusUpdate(30) when the local goal is satisfied:
+//      legendary_set    → all 9 legendaries received
+//      all_achievements → all 24 achievement locations checked
+//      survive_week     → daysSurvived >= days_to_survive
+//  - Progressive Difficulty is still client-side flavour (count exposed via
+//    window.__apItems.progressive_difficulty for the engine to pick up).
+//  - Bumps version string.
 //
 // Loaded as ES module from index.html AFTER engine.js.
 
 import {
   GAME_NAME, DEATHLINK_CAUSES,
-  ACHIEVEMENT_LOCATIONS, NORMAL_ITEMS, LEGENDARY_ITEMS, PROGRESSIVE_ITEMS,
-  AFFECTION_CHARS, AFFECTION_TIERS,
-  locationId, itemId, itemKey,
+  ACHIEVEMENT_LOCATIONS, NORMAL_ITEMS, LEGENDARY_ITEMS,
+  PROGRESSIVE_AFFECTION_ITEMS, PROGRESSIVE_ITEMS, FILLER_ITEMS,
+  AFFECTION_CHARS, AFFECTION_TIERS, AFFECTION_TIER_COST,
+  locationId, itemId, itemKey, progressiveAffectionKey,
 } from "./ap_data.js";
 
 const LS_KEY     = "l8p_ap_session";
@@ -44,6 +53,12 @@ const state = {
   // v0.3.0 runtime
   daysThisRun: 0,
   affectionPollIv: null,
+  // v0.4.0 runtime
+  slotData: {},                  // raw slot_data from Connected
+  goal: "legendary_set",         // legendary_set | all_achievements | survive_week
+  daysToSurvive: 5,
+  legendaryReceived: new Set(),
+  affectionItemCount: {},        // charKey -> number of Progressive Affection items received
 };
 
 // ---------- tiny DOM helper -----------------------------------------------
@@ -173,7 +188,7 @@ function buildGate() {
 
   const panel = el("div", { class: "panel" },
     el("h1", {}, "Layer8Problem × Archipelago"),
-    el("div", { class: "sub" }, "IT Support Sim · Multiworld Edition · v0.3.1"),
+    el("div", { class: "sub" }, "IT Support Sim · Multiworld Edition · v0.4.0"),
     el("div", { class: "row" },
       el("div", {}, el("label", {}, "Host"), inHost),
       el("div", {}, el("label", {}, "Port"), inPort),
@@ -213,8 +228,6 @@ function setHook(name, ok) {
 }
 
 function closeGate(mode) {
-  // Hide the gate fully so the game shows underneath. No floating return badge —
-  // reload the page if you want to switch slot or reconnect (see hint in panel).
   if (gateEl) gateEl.style.display = "none";
   if (mode === "connected") {
     logStatus(`Playing as ${state.slot}.`, "ok");
@@ -222,7 +235,6 @@ function closeGate(mode) {
 }
 
 function openGate() {
-  // Kept for legacy/window.AP debugging only — normal flow never reopens.
   if (gateEl) gateEl.style.display = "flex";
 }
 
@@ -280,7 +292,15 @@ function handleMsg(m) {
       state.team   = m.team;
       state.slotNo = m.slot;
       (m.checked_locations || []).forEach(id => state.checked.add(id));
-      logStatus(`Authenticated as ${state.slot} (team ${m.team}, slot ${m.slot})`, "ok");
+      // v0.4.0: pull goal config from slot_data
+      state.slotData     = m.slot_data || {};
+      state.goal         = state.slotData.goal || "legendary_set";
+      state.daysToSurvive = Number(state.slotData.days_to_survive) || 5;
+      logStatus(
+        `Authenticated as ${state.slot} (team ${m.team}, slot ${m.slot}). ` +
+        `Goal: ${state.goal}${state.goal === "survive_week" ? ` (${state.daysToSurvive}d)` : ""}.`,
+        "ok"
+      );
       installHooks().then(() => {
         flushPendingChecks();
         const ok = state.hooks.engine && state.hooks.inventory;
@@ -305,6 +325,9 @@ function handleMsg(m) {
         state.receivedItems[g] = it;
         applyItem(it.item, g);
       });
+      // re-check affection gating + goal after any batch of items
+      pollAffection();
+      checkGoal();
       break;
     }
     case "Bounced":
@@ -337,6 +360,7 @@ function checkLocation(key) {
   if (state.authed) send({ cmd: "LocationChecks", locations: [id] });
   else pendingChecks.push(id);
   console.log("[AP] ✓ location:", key);
+  checkGoal();
 }
 
 function flushPendingChecks() {
@@ -349,6 +373,28 @@ function sendGoal() {
   state.goalSent = true;
   send({ cmd: "StatusUpdate", status: 30 });
   logStatus("🏆 Goal complete!", "ok");
+}
+
+// v0.4.0 — evaluate slot goal locally
+function checkGoal() {
+  if (state.goalSent || !state.authed) return;
+  switch (state.goal) {
+    case "legendary_set":
+      if (state.legendaryReceived.size >= LEGENDARY_ITEMS.length) sendGoal();
+      break;
+    case "all_achievements": {
+      let have = 0;
+      for (const k of ACHIEVEMENT_LOCATIONS) {
+        const id = locationId(k);
+        if (id != null && state.checked.has(id)) have++;
+      }
+      if (have >= ACHIEVEMENT_LOCATIONS.length) sendGoal();
+      break;
+    }
+    case "survive_week":
+      if (state.daysThisRun >= state.daysToSurvive) sendGoal();
+      break;
+  }
 }
 
 // ---------- DeathLink -----------------------------------------------------
@@ -384,18 +430,38 @@ function applyItem(serverItemId, idx) {
   if (!key) { console.warn("[AP] unknown item", serverItemId); return; }
   console.log("[AP] received", key);
 
-  if (key === "progressive_difficulty" || key === "progressive_affection") {
+  // Track legendaries for goal logic
+  if (LEGENDARY_ITEMS.includes(key)) {
+    state.legendaryReceived.add(key);
+  }
+
+  // Per-character Progressive Affection — bump per-char counter
+  if (PROGRESSIVE_AFFECTION_ITEMS.includes(key)) {
+    const i = PROGRESSIVE_AFFECTION_ITEMS.indexOf(key);
+    const charKey = AFFECTION_CHARS[i];
+    state.affectionItemCount[charKey] = (state.affectionItemCount[charKey] || 0) + 1;
+    window.__apItems = window.__apItems || {};
+    window.__apItems[key] = state.affectionItemCount[charKey];
+    return;
+  }
+
+  // Progressive Difficulty — exposed for engine
+  if (PROGRESSIVE_ITEMS.includes(key)) {
     window.__apItems = window.__apItems || {};
     window.__apItems[key] = (window.__apItems[key] || 0) + 1;
     return;
   }
-  try {
-    const e = window.engine;
-    if (e && e.state && Array.isArray(e.state.inventory)) {
-      e.state.inventory.push({ id: key, used: false, ap: true });
-      if (e.renderInventory) e.renderInventory();
-    }
-  } catch (e) { console.warn(e); }
+
+  // Filler items — drop them in inventory too so the player sees something
+  if (FILLER_ITEMS.includes(key) || NORMAL_ITEMS.includes(key) || LEGENDARY_ITEMS.includes(key)) {
+    try {
+      const e = window.engine;
+      if (e && e.state && Array.isArray(e.state.inventory)) {
+        e.state.inventory.push({ id: key, used: false, ap: true });
+        if (e.renderInventory) e.renderInventory();
+      }
+    } catch (e) { console.warn(e); }
+  }
 }
 
 // ---------- hook installation --------------------------------------------
@@ -416,9 +482,10 @@ function waitForEngine(timeoutMs = 20000) {
   });
 }
 
-// Track which affection thresholds we've fired this slot (in addition to AP-side dedup).
+// Track which affection thresholds we've fired this slot.
 const affectionFired = new Set();
 
+// v0.4.0 — gate affection tier checks by per-char Progressive Affection items.
 function pollAffection() {
   const e = window.engine;
   if (!e || !e.state || !e.state.reputation) return;
@@ -428,14 +495,14 @@ function pollAffection() {
     if (!name) continue;
     const val = rep[name];
     if (typeof val !== "number") continue;
+    const haveItems = state.affectionItemCount[charKey] || 0;
     for (const tier of AFFECTION_TIERS) {
-      if (val >= AFFECTION_THRESHOLDS[tier]) {
-        const key = `aff_${charKey}_${tier}`;
-        if (!affectionFired.has(key)) {
-          affectionFired.add(key);
-          checkLocation(key);
-        }
-      }
+      if (val < AFFECTION_THRESHOLDS[tier]) continue;
+      if (haveItems < AFFECTION_TIER_COST[tier]) continue;
+      const key = `aff_${charKey}_${tier}`;
+      if (affectionFired.has(key)) continue;
+      affectionFired.add(key);
+      checkLocation(key);
     }
   }
 }
@@ -452,7 +519,6 @@ async function installHooks() {
       const r = orig(id, title, text);
       try {
         checkLocation(id);
-        if (e.state?.achievements?.length >= ACHIEVEMENT_LOCATIONS.length) sendGoal();
       } catch (x) { console.warn(x); }
       return r;
     };
@@ -488,6 +554,7 @@ async function installHooks() {
           state.daysThisRun += 1;
           const n = Math.min(state.daysThisRun, 5);
           checkLocation(`day_${n}`);
+          checkGoal();
         }
         return r;
       };
@@ -520,9 +587,6 @@ async function installHooks() {
 
 // ---------- boot ----------------------------------------------------------
 function boot() {
-  // Always show the connect gate on (re)load so the player can re-enter slot
-  // data or switch modes. Clear the "offline" flag — it's a per-session choice
-  // made by clicking "Play Offline", not a sticky preference.
   try { localStorage.removeItem(LS_OFFLINE); } catch (e) {}
   buildGate();
 }
@@ -534,4 +598,4 @@ if (document.readyState === "loading") {
 }
 
 // expose for debugging
-window.AP = { state, checkLocation, sendDeathLink, openGate };
+window.AP = { state, checkLocation, sendDeathLink, openGate, checkGoal };
