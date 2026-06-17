@@ -1,25 +1,20 @@
-// Layer8Problem — Archipelago Client (Mod v0.4.0)
-// Changes vs v0.3.1:
-//  - Per-character Progressive Affection (6 items, was 1 generic). Tier
-//    locations (friend/ally/bestie) only fire once the player both
-//    reached the affection threshold AND received enough Progressive
-//    Affection items for that character (1/2/3).
-//  - Reads slot_data.goal + slot_data.days_to_survive from the Connected
-//    packet and ships StatusUpdate(30) when the local goal is satisfied:
-//      legendary_set    → all 9 legendaries received
-//      all_achievements → all 24 achievement locations checked
-//      survive_week     → daysSurvived >= days_to_survive
-//  - Progressive Difficulty is still client-side flavour (count exposed via
-//    window.__apItems.progressive_difficulty for the engine to pick up).
-//  - Bumps version string.
+// Layer8Problem — Archipelago Client (Mod v0.4.0 final)
+// Changes vs v0.4.0-draft:
+//  - Progressive Difficulty REMOVED. Starting day = difficulty is fixed for
+//    the slot via slot_data.starting_day. The in-game "Choose your day"
+//    modal still appears, but the two non-allowed day cards are locked
+//    (disabled + dimmed + 🔒). The forced day is auto-highlighted.
+//  - survive_week goal REMOVED (only 3 playable days exist).
+//  - slot_data.days_to_survive no longer read.
 //
 // Loaded as ES module from index.html AFTER engine.js.
 
 import {
   GAME_NAME, DEATHLINK_CAUSES,
   ACHIEVEMENT_LOCATIONS, NORMAL_ITEMS, LEGENDARY_ITEMS,
-  PROGRESSIVE_AFFECTION_ITEMS, PROGRESSIVE_ITEMS, FILLER_ITEMS,
+  PROGRESSIVE_AFFECTION_ITEMS, FILLER_ITEMS,
   AFFECTION_CHARS, AFFECTION_TIERS, AFFECTION_TIER_COST,
+  STARTING_DAY_BY_INDEX, DAY_TO_DIFFICULTY,
   locationId, itemId, itemKey, progressiveAffectionKey,
 } from "./ap_data.js";
 
@@ -49,14 +44,14 @@ const state = {
   receivedItems: [],
   goalSent: false,
   lastDeathTime: 0,
-  hooks: { engine: false, inventory: false, deathlink: false, days: false, affection: false },
+  hooks: { engine: false, inventory: false, deathlink: false, days: false, affection: false, daylock: false },
   // v0.3.0 runtime
   daysThisRun: 0,
   affectionPollIv: null,
   // v0.4.0 runtime
   slotData: {},                  // raw slot_data from Connected
-  goal: "legendary_set",         // legendary_set | all_achievements | survive_week
-  daysToSurvive: 5,
+  goal: "legendary_set",         // legendary_set | all_achievements
+  startingDay: "wednesday",      // friday | wednesday | monday
   legendaryReceived: new Set(),
   affectionItemCount: {},        // charKey -> number of Progressive Affection items received
 };
@@ -98,175 +93,154 @@ function injectStyles() {
   #ap-gate button{flex:1;padding:10px 14px;border-radius:6px;border:1px solid #475569;background:#1e293b;
     color:#e2e8f0;font:600 13px system-ui;cursor:pointer;letter-spacing:.5px}
   #ap-gate button.primary{background:linear-gradient(180deg,#0ea5e9,#0369a1);border-color:#0ea5e9}
-  #ap-gate button.primary:hover{filter:brightness(1.1)}
-  #ap-gate button:disabled{opacity:.5;cursor:wait}
-  #ap-gate .status{margin-top:14px;padding:10px 12px;border:1px solid #334155;border-radius:6px;
-    background:#0b1224;font:11px/1.55 ui-monospace,monospace;color:#94a3b8;min-height:62px;max-height:140px;overflow-y:auto}
-  #ap-gate .status .ok{color:#86efac}
-  #ap-gate .status .err{color:#fca5a5}
-  #ap-gate .status .warn{color:#fcd34d}
-  #ap-gate .hooks{display:flex;gap:8px;margin-top:8px;font-size:11px;flex-wrap:wrap}
-  #ap-gate .hooks span{padding:2px 6px;border-radius:3px;background:#1e293b;border:1px solid #334155}
-  #ap-gate .hooks span.ok{border-color:#22c55e;color:#86efac}
-  #ap-gate .hooks span.bad{border-color:#ef4444;color:#fca5a5}
-  #ap-gate .credit{margin-top:14px;font-size:10px;color:#64748b;text-align:center;letter-spacing:.5px}
-  #ap-gate .credit a{color:#94a3b8;text-decoration:underline}
-
-  #ap-gate .lang-row{display:flex;align-items:center;justify-content:space-between;
-    gap:10px;margin:4px 0 6px;padding:8px 12px;background:#0b1224;border:1px solid #334155;
-    border-radius:8px}
-  #ap-gate .lang-row .lbl{font-size:12px;color:#94a3b8;letter-spacing:.5px;text-transform:uppercase}
-  #ap-gate .lang-row .toggle{position:relative;display:inline-flex;background:#1e293b;
-    border:1px solid #475569;border-radius:999px;padding:2px;cursor:pointer;user-select:none}
-  #ap-gate .lang-row .toggle button{flex:0 0 auto;padding:4px 14px;border:0;background:transparent;
-    color:#94a3b8;font:600 12px ui-monospace,monospace;border-radius:999px;cursor:pointer;letter-spacing:.5px}
-  #ap-gate .lang-row .toggle button.active{background:linear-gradient(180deg,#0ea5e9,#0369a1);color:#fff}
-  #ap-gate .reload-hint{margin-top:8px;font-size:10px;color:#64748b;text-align:center;font-style:italic}
+  #ap-gate .hookrow{display:flex;gap:14px;margin:14px 0 4px;font-size:12px;color:#94a3b8}
+  #ap-gate .hookrow span{display:inline-flex;align-items:center;gap:4px}
+  #ap-gate .dot{width:8px;height:8px;border-radius:50%;background:#475569;display:inline-block}
+  #ap-gate .dot.ok{background:#22c55e} #ap-gate .dot.err{background:#ef4444}
+  #ap-gate .log{margin-top:12px;max-height:120px;overflow:auto;font:11px ui-monospace,monospace;
+    background:#020617;border:1px solid #1e293b;border-radius:6px;padding:8px;color:#94a3b8;white-space:pre-wrap}
+  #ap-gate .log .ok{color:#22c55e} #ap-gate .log .err{color:#f87171} #ap-gate .log .info{color:#7dd3fc}
+  .ap-day-locked{opacity:.35 !important;cursor:not-allowed !important;pointer-events:none !important;filter:grayscale(.8)}
+  .ap-day-locked::after{content:"🔒 LOCKED BY AP";position:absolute;inset:auto 0 8px 0;text-align:center;
+    font:700 11px ui-monospace,monospace;color:#f87171;letter-spacing:1px}
+  .ap-day-forced{box-shadow:0 0 0 3px #fbbf24, 0 0 24px #fbbf2466 !important}
   `;
   document.head.appendChild(s);
 }
 
-// ---------- gate UI -------------------------------------------------------
-let gateEl, statusEl, hooksEl, btnConnect, btnOffline;
+// ---------- gate / connect UI (unchanged plumbing, condensed) -------------
+let btnConnect, btnOffline, hookEls = {}, logEl;
 
-function buildLangRow() {
-  const current = (window.l8GetLang && window.l8GetLang()) ||
-                  (localStorage.getItem("l8_lang") || "de");
-  const setLang = (lang) => {
-    if (window.l8SetLang) return window.l8SetLang(lang);
-    if (localStorage.getItem("l8_lang") === lang) return;
-    localStorage.setItem("l8_lang", lang);
-    location.reload();
-  };
-  const btnDe = el("button", { onclick: () => setLang("de") }, "DE");
-  const btnEn = el("button", { onclick: () => setLang("en") }, "EN");
-  if (current === "en") btnEn.classList.add("active"); else btnDe.classList.add("active");
-  return el("div", { class: "lang-row" },
-    el("span", { class: "lbl" }, "🌐 Language / Sprache"),
-    el("div", { class: "toggle" }, btnDe, btnEn),
-  );
+function setHook(name, ok) {
+  state.hooks[name] = ok;
+  const d = hookEls[name];
+  if (d) { d.classList.remove("ok", "err"); d.classList.add(ok ? "ok" : "err"); }
+}
+
+function logStatus(msg, cls = "info") {
+  console.log(`[AP] ${msg}`);
+  if (!logEl) return;
+  const line = document.createElement("div");
+  line.className = cls;
+  line.textContent = msg;
+  logEl.appendChild(line);
+  logEl.scrollTop = logEl.scrollHeight;
 }
 
 function buildGate() {
   injectStyles();
-  const stored = JSON.parse(localStorage.getItem(LS_KEY) || "{}");
+  const saved = (() => { try { return JSON.parse(localStorage.getItem(LS_KEY) || "{}"); } catch { return {}; } })();
 
-  const inHost = el("input", { type: "text", value: stored.host || "archipelago.gg" });
-  const inPort = el("input", { type: "number", value: stored.port || 38281 });
-  const inSlot = el("input", { type: "text", value: stored.slot || "" });
-  const inPass = el("input", { type: "password", value: "" });
-  const inDL   = el("input", { type: "checkbox" });
-  if (stored.deathlink) inDL.checked = true;
-
-  statusEl = el("div", { class: "status" }, "Enter your Archipelago slot to begin, or play offline.");
-  hooksEl  = el("div", { class: "hooks" },
-    el("span", { id: "hook-engine" },     "engine ?"),
-    el("span", { id: "hook-inventory" },  "inventory ?"),
-    el("span", { id: "hook-days" },       "days ?"),
-    el("span", { id: "hook-affection" },  "affection ?"),
-    el("span", { id: "hook-deathlink" },  "deathlink ?"),
+  const root = el("div", { id: "ap-gate" });
+  const panel = el("div", { class: "panel" });
+  panel.append(
+    el("h1", {}, "ARCHIPELAGO"),
+    el("div", { class: "sub" }, "Layer8Problem multiworld connection"),
   );
 
-  btnConnect = el("button", { class: "primary", onclick: () => {
-    state.host = inHost.value.trim();
-    state.port = parseInt(inPort.value, 10) || 38281;
-    state.slot = inSlot.value.trim();
-    state.password = inPass.value;
-    state.deathlink = inDL.checked;
-    if (!state.slot) { logStatus("Slot name is required.", "err"); return; }
-    localStorage.setItem(LS_KEY, JSON.stringify({
-      host: state.host, port: state.port, slot: state.slot, deathlink: state.deathlink,
-    }));
-    localStorage.removeItem(LS_OFFLINE);
-    connect();
-  }}, "Connect & Play");
+  const inpHost = el("input", { type: "text", value: saved.host || "archipelago.gg", placeholder: "archipelago.gg" });
+  const inpPort = el("input", { type: "number", value: saved.port || 38281 });
+  const inpSlot = el("input", { type: "text", value: saved.slot || "", placeholder: "Your slot name" });
+  const inpPass = el("input", { type: "password", value: saved.password || "", placeholder: "optional" });
+  const inpDL = el("input", { type: "checkbox" });
+  inpDL.checked = !!saved.deathlink;
 
-  btnOffline = el("button", { onclick: () => {
-    localStorage.setItem(LS_OFFLINE, "1");
-    closeGate("offline");
-  }}, "Play Offline");
-
-  const panel = el("div", { class: "panel" },
-    el("h1", {}, "Layer8Problem × Archipelago"),
-    el("div", { class: "sub" }, "IT Support Sim · Multiworld Edition · v0.4.0"),
+  panel.append(
+    el("label", {}, "Server"),
     el("div", { class: "row" },
-      el("div", {}, el("label", {}, "Host"), inHost),
-      el("div", {}, el("label", {}, "Port"), inPort),
+      el("div", {}, inpHost),
+      el("div", {}, inpPort),
     ),
-    el("label", {}, "Slot Name"), inSlot,
-    el("label", {}, "Password (optional)"), inPass,
-    el("div", { class: "cb" }, inDL, el("span", {}, "Enable DeathLink")),
-    buildLangRow(),
-    el("div", { class: "btns" }, btnConnect, btnOffline),
-    statusEl,
-    hooksEl,
-    el("div", { class: "reload-hint" }, "Tip: reload the page to reconnect / switch slot."),
-    el("div", { class: "credit", html:
-      'Original <a href="https://store.steampowered.com/app/4487580/" target="_blank">Layer8Problem</a> ' +
-      'by <a href="https://github.com/seluce/Layer8Problem" target="_blank">seluce</a> · ' +
-      'AP integration by <a href="https://github.com/TheZockerBrain069/Layer8Problem-AP" target="_blank">TheZockerBrain069</a>'
-    }),
+    el("label", {}, "Slot name"),
+    inpSlot,
+    el("label", {}, "Password"),
+    inpPass,
+    el("div", { class: "cb" }, inpDL, el("span", {}, "Enable DeathLink (must match YAML)")),
   );
 
-  gateEl = el("div", { id: "ap-gate" }, panel);
-  document.body.appendChild(gateEl);
+  const dotEngine    = el("span", { class: "dot" });
+  const dotInventory = el("span", { class: "dot" });
+  const dotDeath     = el("span", { class: "dot" });
+  const dotDays      = el("span", { class: "dot" });
+  const dotAff       = el("span", { class: "dot" });
+  const dotLock      = el("span", { class: "dot" });
+  hookEls = { engine: dotEngine, inventory: dotInventory, deathlink: dotDeath, days: dotDays, affection: dotAff, daylock: dotLock };
+
+  panel.append(
+    el("div", { class: "hookrow" },
+      el("span", {}, dotEngine, "engine"),
+      el("span", {}, dotInventory, "inventory"),
+      el("span", {}, dotDeath, "deathlink"),
+      el("span", {}, dotDays, "days"),
+      el("span", {}, dotAff, "affection"),
+      el("span", {}, dotLock, "day-lock"),
+    ),
+  );
+
+  btnConnect = el("button", { class: "primary" }, "CONNECT & PLAY");
+  btnOffline = el("button", {}, "PLAY OFFLINE");
+  panel.append(el("div", { class: "btns" }, btnConnect, btnOffline));
+
+  logEl = el("div", { class: "log" });
+  panel.append(logEl);
+
+  btnConnect.addEventListener("click", () => {
+    const host = inpHost.value.trim();
+    const port = parseInt(inpPort.value, 10) || 38281;
+    const slot = inpSlot.value.trim();
+    if (!host || !slot) { logStatus("Host and slot are required.", "err"); return; }
+    state.host = host; state.port = port; state.slot = slot;
+    state.password = inpPass.value; state.deathlink = inpDL.checked;
+    try { localStorage.setItem(LS_KEY, JSON.stringify({ host, port, slot, password: state.password, deathlink: state.deathlink })); } catch {}
+    connect();
+  });
+  btnOffline.addEventListener("click", () => {
+    try { localStorage.setItem(LS_OFFLINE, "1"); } catch {}
+    closeGate("offline");
+  });
+
+  root.appendChild(panel);
+  document.body.appendChild(root);
+  document.body.classList.add("overflow-hidden");
 }
 
-function logStatus(msg, kind) {
-  const line = el("div", { class: kind || "" }, msg);
-  statusEl.appendChild(line);
-  statusEl.scrollTop = statusEl.scrollHeight;
-  console.log("[AP]", msg);
-}
-
-function setHook(name, ok) {
-  state.hooks[name] = ok;
-  const node = document.getElementById("hook-" + name);
-  if (!node) return;
-  node.className = ok ? "ok" : "bad";
-  node.textContent = `${name} ${ok ? "✓" : "✗"}`;
-}
-
-function closeGate(mode) {
-  if (gateEl) gateEl.style.display = "none";
-  if (mode === "connected") {
-    logStatus(`Playing as ${state.slot}.`, "ok");
-  }
+function closeGate(reason) {
+  const g = document.getElementById("ap-gate");
+  if (g) g.remove();
+  document.body.classList.remove("overflow-hidden");
+  // boot the actual game shell
+  try {
+    if (window.engine && typeof window.engine.start === "function") window.engine.start();
+  } catch (e) { console.warn(e); }
+  console.log("[AP] gate closed:", reason);
 }
 
 function openGate() {
-  if (gateEl) gateEl.style.display = "flex";
+  if (!document.getElementById("ap-gate")) buildGate();
 }
 
-// ---------- WebSocket -----------------------------------------------------
+// ---------- websocket -----------------------------------------------------
 function connect() {
   btnConnect.disabled = true;
+  logStatus(`Connecting to ${state.host}:${state.port} …`);
   const url = `wss://${state.host}:${state.port}/`;
-  logStatus(`Connecting to ${url} …`);
-  try {
-    state.ws = new WebSocket(url);
-  } catch (e) {
-    logStatus("WebSocket error: " + e.message, "err");
-    btnConnect.disabled = false;
-    return;
-  }
-  state.ws.addEventListener("open", () => {
+  let ws;
+  try { ws = new WebSocket(url); } catch (e) { logStatus(e.message, "err"); btnConnect.disabled = false; return; }
+  state.ws = ws;
+  ws.addEventListener("open", () => {
     state.connected = true;
-    logStatus("Socket open, awaiting RoomInfo…", "ok");
+    logStatus("Socket open. Waiting for RoomInfo…", "ok");
   });
-  state.ws.addEventListener("message", (ev) => {
-    try {
-      const arr = JSON.parse(ev.data);
-      arr.forEach(handleMsg);
-    } catch (e) { console.warn("[AP] bad msg", e); }
+  ws.addEventListener("message", (ev) => {
+    let data; try { data = JSON.parse(ev.data); } catch { return; }
+    (Array.isArray(data) ? data : [data]).forEach(handleMsg);
   });
-  state.ws.addEventListener("close", () => {
-    state.connected = false;
-    state.authed = false;
-    logStatus("Disconnected. Reload page to reconnect.", "warn");
+  ws.addEventListener("close", () => {
+    state.connected = false; state.authed = false;
+    logStatus("Socket closed.", "err");
     btnConnect.disabled = false;
   });
-  state.ws.addEventListener("error", () => {
+  ws.addEventListener("error", () => {
     logStatus("Connection error (wrong host/port? or server offline)", "err");
     btnConnect.disabled = false;
   });
@@ -292,13 +266,18 @@ function handleMsg(m) {
       state.team   = m.team;
       state.slotNo = m.slot;
       (m.checked_locations || []).forEach(id => state.checked.add(id));
-      // v0.4.0: pull goal config from slot_data
-      state.slotData     = m.slot_data || {};
-      state.goal         = state.slotData.goal || "legendary_set";
-      state.daysToSurvive = Number(state.slotData.days_to_survive) || 5;
+      // v0.4.0 final: pull goal + starting day from slot_data
+      state.slotData    = m.slot_data || {};
+      state.goal        = state.slotData.goal === 1 || state.slotData.goal === "all_achievements"
+        ? "all_achievements" : "legendary_set";
+      {
+        const sd = state.slotData.starting_day;
+        const idx = typeof sd === "number" ? sd : STARTING_DAY_BY_INDEX.indexOf(String(sd));
+        state.startingDay = STARTING_DAY_BY_INDEX[idx] || "wednesday";
+      }
       logStatus(
         `Authenticated as ${state.slot} (team ${m.team}, slot ${m.slot}). ` +
-        `Goal: ${state.goal}${state.goal === "survive_week" ? ` (${state.daysToSurvive}d)` : ""}.`,
+        `Goal: ${state.goal}. Day: ${state.startingDay}.`,
         "ok"
       );
       installHooks().then(() => {
@@ -325,7 +304,6 @@ function handleMsg(m) {
         state.receivedItems[g] = it;
         applyItem(it.item, g);
       });
-      // re-check affection gating + goal after any batch of items
       pollAffection();
       checkGoal();
       break;
@@ -375,7 +353,7 @@ function sendGoal() {
   logStatus("🏆 Goal complete!", "ok");
 }
 
-// v0.4.0 — evaluate slot goal locally
+// v0.4.0 final — evaluate slot goal locally (survive_week removed)
 function checkGoal() {
   if (state.goalSent || !state.authed) return;
   switch (state.goal) {
@@ -391,9 +369,6 @@ function checkGoal() {
       if (have >= ACHIEVEMENT_LOCATIONS.length) sendGoal();
       break;
     }
-    case "survive_week":
-      if (state.daysThisRun >= state.daysToSurvive) sendGoal();
-      break;
   }
 }
 
@@ -445,14 +420,7 @@ function applyItem(serverItemId, idx) {
     return;
   }
 
-  // Progressive Difficulty — exposed for engine
-  if (PROGRESSIVE_ITEMS.includes(key)) {
-    window.__apItems = window.__apItems || {};
-    window.__apItems[key] = (window.__apItems[key] || 0) + 1;
-    return;
-  }
-
-  // Filler items — drop them in inventory too so the player sees something
+  // Filler / normal / legendary — drop in inventory
   if (FILLER_ITEMS.includes(key) || NORMAL_ITEMS.includes(key) || LEGENDARY_ITEMS.includes(key)) {
     try {
       const e = window.engine;
@@ -482,10 +450,8 @@ function waitForEngine(timeoutMs = 20000) {
   });
 }
 
-// Track which affection thresholds we've fired this slot.
 const affectionFired = new Set();
 
-// v0.4.0 — gate affection tier checks by per-char Progressive Affection items.
 function pollAffection() {
   const e = window.engine;
   if (!e || !e.state || !e.state.reputation) return;
@@ -507,6 +473,44 @@ function pollAffection() {
   }
 }
 
+// v0.4.0 final — lock non-allowed day cards in the difficulty modal.
+// Maps starting_day → engine difficulty level.
+function installDayLock() {
+  const forced = DAY_TO_DIFFICULTY[state.startingDay] || "normal";
+  try {
+    // Always force the difficulty modal to appear (ignore saved default).
+    try { localStorage.setItem("layer8_default_diff", "ask"); } catch {}
+
+    const modal = document.getElementById("difficulty-modal");
+    if (!modal) return false;
+
+    const apply = () => {
+      const btns = modal.querySelectorAll("button[onclick]");
+      btns.forEach(btn => {
+        const m = /setDifficulty\(['"]([^'"]+)['"]\)/.exec(btn.getAttribute("onclick") || "");
+        if (!m) return;
+        const lvl = m[1];
+        btn.classList.remove("ap-day-locked", "ap-day-forced");
+        if (lvl === forced) {
+          btn.classList.add("ap-day-forced");
+        } else {
+          btn.classList.add("ap-day-locked");
+          btn.setAttribute("disabled", "disabled");
+          // belt-and-braces: also strip the onclick so a forced click won't fire it
+          btn.setAttribute("data-ap-orig-onclick", btn.getAttribute("onclick") || "");
+          btn.setAttribute("onclick", "return false;");
+        }
+      });
+    };
+
+    // Apply now, and watch for re-renders / re-opens.
+    apply();
+    const mo = new MutationObserver(apply);
+    mo.observe(modal, { attributes: true, childList: true, subtree: true });
+    return true;
+  } catch (e) { console.warn("[AP] day-lock failed", e); return false; }
+}
+
 async function installHooks() {
   let e;
   try { e = await waitForEngine(); }
@@ -517,15 +521,13 @@ async function installHooks() {
     const orig = e.unlockAchievement.bind(e);
     e.unlockAchievement = function (id, title, text) {
       const r = orig(id, title, text);
-      try {
-        checkLocation(id);
-      } catch (x) { console.warn(x); }
+      try { checkLocation(id); } catch (x) { console.warn(x); }
       return r;
     };
     setHook("engine", true);
   } catch (x) { console.warn(x); setHook("engine", false); }
 
-  // 2) Inventory — proxy push so any item gain (engine source or AP) is observed
+  // 2) Inventory
   try {
     if (Array.isArray(e.state.inventory)) {
       const inv = e.state.inventory;
@@ -542,7 +544,7 @@ async function installHooks() {
     }
   } catch (x) { console.warn(x); setHook("inventory", false); }
 
-  // 3) Days + DeathLink — wrap incrementStat & showModal
+  // 3) Days + DeathLink
   try {
     if (typeof e.incrementStat === "function") {
       const origInc = e.incrementStat.bind(e);
@@ -576,13 +578,16 @@ async function installHooks() {
     setHook("deathlink", true);
   } catch (x) { console.warn(x); setHook("deathlink", false); }
 
-  // 4) Affection — polling every 2s (no central setter to wrap)
+  // 4) Affection
   try {
     if (state.affectionPollIv) clearInterval(state.affectionPollIv);
     state.affectionPollIv = setInterval(pollAffection, 2000);
     pollAffection();
     setHook("affection", true);
   } catch (x) { console.warn(x); setHook("affection", false); }
+
+  // 5) Day-lock — fix difficulty to slot's starting_day
+  setHook("daylock", installDayLock());
 }
 
 // ---------- boot ----------------------------------------------------------

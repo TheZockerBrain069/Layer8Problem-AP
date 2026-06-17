@@ -2,13 +2,14 @@
 // IDs are language-independent and MUST stay stable; new entries append.
 // Base offset 0xL8P0 = 0x4C385000 keeps us clear of other AP worlds.
 //
-// v0.4.0 changes:
+// v0.4.0 final changes:
 //  - Generic "progressive_affection" REMOVED.
-//  - Added 6 per-character Progressive Affection items at +1200..+1205.
-//  - Progressive Difficulty moved to +1206 (was +1200 in legacy generic order).
-//  - Filler-only items at +1300..+1302 (donut/bubble_wrap/stressball) so the
-//    apworld can keep the pool size at 47 without losing those flavours.
-//  - Old 0.3.x seeds are NOT compatible with 0.4.0.
+//  - 6 per-character Progressive Affection items at +1200..+1205.
+//  - Progressive Difficulty REMOVED — the in-game day = difficulty and the
+//    starting day is now fixed per slot via slot_data.starting_day. The
+//    +1206 slot is reserved (null) for back-compat / future use.
+//  - Filler-only items at +1300..+1302 (donut/bubble_wrap/stressball).
+//  - Old 0.3.x and 0.4.0-draft seeds are NOT compatible with 0.4.0 final.
 
 export const AP_BASE = 0x4C385000;
 
@@ -62,10 +63,8 @@ export const PROGRESSIVE_AFFECTION_ITEMS = [
   "progressive_affection_gabi",
 ];
 
-// Other progressive items (offset 1206+)
-export const PROGRESSIVE_ITEMS = [
-  "progressive_difficulty",     // Easy → Normal → Hard unlocks
-];
+// Offset 1206 is reserved (was Progressive Difficulty in 0.4.0-draft).
+// Kept as a null gap so legacy IDs resolve to null instead of the wrong item.
 
 // Filler-only items (offset 1300+) — kept so flavour items still appear in pool
 export const FILLER_ITEMS = [
@@ -78,6 +77,15 @@ export const DEATHLINK_CAUSES = {
   warning:        "received a final warning",
   let_off_steam:  "needed to let off some steam",
   rage_quit:      "rage-quit the day",
+};
+
+// --- STARTING DAY -----------------------------------------------------------
+// slot_data.starting_day is an int. Maps to the engine difficulty key.
+export const STARTING_DAY_BY_INDEX = ["friday", "wednesday", "monday"];
+export const DAY_TO_DIFFICULTY = {
+  friday:    "easy",
+  wednesday: "normal",
+  monday:    "hard",
 };
 
 // --- ID RESOLVER -------------------------------------------------------------
@@ -103,8 +111,6 @@ export function itemId(key) {
   if (i >= 0) return AP_BASE + 1100 + i;
   i = PROGRESSIVE_AFFECTION_ITEMS.indexOf(key);
   if (i >= 0) return AP_BASE + 1200 + i;
-  i = PROGRESSIVE_ITEMS.indexOf(key);
-  if (i >= 0) return AP_BASE + 1206 + i;
   i = FILLER_ITEMS.indexOf(key);
   if (i >= 0) return AP_BASE + 1300 + i;
   return null;
@@ -115,7 +121,7 @@ export function itemKey(id) {
   if (off >= 1000 && off < 1021) return NORMAL_ITEMS[off - 1000] || null;
   if (off >= 1100 && off < 1109) return LEGENDARY_ITEMS[off - 1100];
   if (off >= 1200 && off < 1206) return PROGRESSIVE_AFFECTION_ITEMS[off - 1200];
-  if (off >= 1206 && off < 1300) return PROGRESSIVE_ITEMS[off - 1206];
+  if (off === 1206) return null; // reserved gap (legacy progressive_difficulty)
   if (off >= 1300 && off < 1400) return FILLER_ITEMS[off - 1300];
   return null;
 }
