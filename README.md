@@ -67,7 +67,7 @@ multiworld receives the matching cause.
 
 ## How to play
 
-1. Open <https://layer8problem-ap.netlify.app>
+1. Open <https://ap-layer8problem.netlify.app>
 2. The **Archipelago Connection** screen blocks the game until you connect.
 3. Enter your **host**, **port**, **slot name**, optional password, optionally
    tick **Enable DeathLink**.
