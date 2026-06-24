@@ -1,5 +1,5 @@
-// Layer8Problem AP — Stable ID Map (v0.5.0 fixed)
-// Base offset 0x4C385000. IDs must match source/layer8problem/*.py.
+// Layer8Problem AP — Stable ID Map (v0.6.0)
+// Base offset 0x4C385000. IDs must match apworld/layer8problem/*.py.
 
 export const AP_BASE = 0x4C385000;
 
@@ -15,8 +15,10 @@ export const ACHIEVEMENT_LOCATIONS = [
   "ach_party",
 ];
 
-// Days survived (offset 100..104) — Mon/Tue/Wed/Thu/Fri
-export const DAY_LOCATIONS = ["day_1", "day_2", "day_3", "day_4", "day_5"];
+// Days survived (offset 100..102) — the three playable difficulty days.
+// day_1 = Monday (hard), day_2 = Wednesday (normal), day_3 = Friday (easy).
+// Offsets 103/104 are reserved (legacy day_4/day_5 from 0.3.x drafts) and must not be reused.
+export const DAY_LOCATIONS = ["day_1", "day_2", "day_3"];
 
 // Positive affection thresholds (offset 200+) — 6 chars × 3 tiers
 export const AFFECTION_CHARS = [
@@ -70,6 +72,8 @@ export const FILLER_ITEMS = [
 ];
 
 // --- DEATHLINK CAUSES --------------------------------------------------------
+// The YAML now has a single master `deathlink: true/false`. When on, all four
+// causes below fire; no per-cause toggles, no filter.
 export const DEATHLINK_CAUSES = {
   termination:    "got fired by Dr. Wichtig",
   warning:        "received a final warning",

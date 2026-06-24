@@ -1,11 +1,13 @@
-// Layer8Problem — Archipelago Client (Mod v0.5.0 fixed)
-// Changes vs v0.4.0-draft:
-//  - Progressive Difficulty REMOVED. Starting day = difficulty is fixed for
-//    the slot via slot_data.starting_day. The in-game "Choose your day"
-//    modal still appears, but the two non-allowed day cards are locked
-//    (disabled + dimmed + 🔒). The forced day is auto-highlighted.
-//  - survive_week goal REMOVED (only 3 playable days exist).
-//  - slot_data.days_to_survive no longer read.
+// Layer8Problem — Archipelago Client (Mod v0.6.0)
+// Changes vs v0.5.1:
+//  - DeathLink toggle removed from the connect screen — the YAML decides.
+//    `state.deathlink` is now derived from slot_data after Connected.
+//  - Per-cause / filter slot-data keys are gone. When deathlink is on,
+//    all four causes (termination, warning, let_off_steam, rage_quit) fire.
+//  - Language switcher (DE/EN) restored on the connect screen.
+//  - Day hook clamped to the 3 real playable days (Mon/Wed/Fri).
+//    The dead day_4/day_5 tail is gone.
+//  - Dead `item_<id>` location hook in the inventory wrapper removed.
 //
 // Loaded as ES module from index.html AFTER engine.js.
 
@@ -39,7 +41,9 @@ const state = {
   ws: null,
   connected: false,
   authed: false,
-  host: "", port: 38281, slot: "", password: "", deathlink: false,
+  host: "", port: 38281, slot: "", password: "",
+  // deathlink is set from slot_data after Connected — never user-toggled.
+  deathlink: false,
   team: 0, slotNo: 0,
   checked: new Set(),
   received: new Set(),
@@ -57,7 +61,6 @@ const state = {
   legendaryReceived: new Set(),
   affectionItemCount: {},        // charKey -> number of Progressive Affection items received
   negativeAffectionItemCount: {}, // charKey -> number of Progressive Negative Affection items received
-  deathlinkFilter: "all",        // all | only_fired | off
   sentDeathIds: new Map(),        // DeathLink echo guard: id -> expiresAt(ms)
   receiveQueue: [],               // queued incoming DeathLinks during fragile transitions
   inTransition: false,
@@ -83,7 +86,7 @@ function injectStyles() {
   #ap-gate{position:fixed;inset:0;z-index:100000;background:radial-gradient(ellipse at center,#0b1224 0%,#04060c 100%);
     display:flex;align-items:center;justify-content:center;font:14px/1.5 system-ui,sans-serif;color:#e2e8f0}
   #ap-gate .panel{width:min(520px,92vw);background:#0f172a;border:1px solid #334155;border-radius:12px;
-    padding:24px 26px;box-shadow:0 30px 80px #000c}
+    padding:24px 26px;box-shadow:0 30px 80px #000c;position:relative}
   #ap-gate h1{margin:0;font-size:22px;font-weight:700;letter-spacing:.5px;color:#fbbf24}
   #ap-gate .sub{color:#94a3b8;font-size:12px;margin:2px 0 18px;letter-spacing:1px;text-transform:uppercase}
   #ap-gate label{display:block;font-size:10px;color:#94a3b8;text-transform:uppercase;letter-spacing:1px;margin:10px 0 4px}
@@ -94,19 +97,21 @@ function injectStyles() {
   #ap-gate .row{display:flex;gap:10px}
   #ap-gate .row > div:first-child{flex:1}
   #ap-gate .row > div:last-child{flex:0 0 90px}
-  #ap-gate .cb{display:flex;align-items:center;gap:8px;margin-top:14px;font-size:13px}
-  #ap-gate .cb input{width:16px;height:16px}
   #ap-gate .btns{display:flex;gap:10px;margin-top:18px}
   #ap-gate button{flex:1;padding:10px 14px;border-radius:6px;border:1px solid #475569;background:#1e293b;
     color:#e2e8f0;font:600 13px system-ui;cursor:pointer;letter-spacing:.5px}
   #ap-gate button.primary{background:linear-gradient(180deg,#0ea5e9,#0369a1);border-color:#0ea5e9}
-  #ap-gate .hookrow{display:flex;gap:14px;margin:14px 0 4px;font-size:12px;color:#94a3b8}
+  #ap-gate .hookrow{display:flex;gap:14px;margin:14px 0 4px;font-size:12px;color:#94a3b8;flex-wrap:wrap}
   #ap-gate .hookrow span{display:inline-flex;align-items:center;gap:4px}
   #ap-gate .dot{width:8px;height:8px;border-radius:50%;background:#475569;display:inline-block}
   #ap-gate .dot.ok{background:#22c55e} #ap-gate .dot.err{background:#ef4444}
   #ap-gate .log{margin-top:12px;max-height:120px;overflow:auto;font:11px ui-monospace,monospace;
     background:#020617;border:1px solid #1e293b;border-radius:6px;padding:8px;color:#94a3b8;white-space:pre-wrap}
   #ap-gate .log .ok{color:#22c55e} #ap-gate .log .err{color:#f87171} #ap-gate .log .info{color:#7dd3fc}
+  #ap-gate .lang{position:absolute;top:16px;right:18px;display:flex;gap:4px}
+  #ap-gate .lang button{flex:0 0 auto;padding:4px 10px;font:600 11px ui-monospace,monospace;letter-spacing:1px;
+    border:1px solid #334155;background:#0b1224;color:#94a3b8;border-radius:4px;cursor:pointer}
+  #ap-gate .lang button.active{background:#fbbf24;border-color:#fbbf24;color:#0b1224}
   .ap-day-locked{opacity:.35 !important;cursor:not-allowed !important;pointer-events:none !important;filter:grayscale(.8)}
   .ap-day-locked::after{content:"🔒 LOCKED BY AP";position:absolute;inset:auto 0 8px 0;text-align:center;
     font:700 11px ui-monospace,monospace;color:#f87171;letter-spacing:1px}
@@ -115,7 +120,7 @@ function injectStyles() {
   document.head.appendChild(s);
 }
 
-// ---------- gate / connect UI (unchanged plumbing, condensed) -------------
+// ---------- gate / connect UI ---------------------------------------------
 let btnConnect, btnOffline, hookEls = {}, logEl;
 
 function setHook(name, ok) {
@@ -134,6 +139,16 @@ function logStatus(msg, cls = "info") {
   logEl.scrollTop = logEl.scrollHeight;
 }
 
+function buildLangSwitch() {
+  const current = (window.l8GetLang && window.l8GetLang()) || "de";
+  const set = (lang) => {
+    if (window.l8SetLang) window.l8SetLang(lang); // reloads the page
+  };
+  const btnDe = el("button", { class: current === "de" ? "active" : "", onclick: () => set("de") }, "DE");
+  const btnEn = el("button", { class: current === "en" ? "active" : "", onclick: () => set("en") }, "EN");
+  return el("div", { class: "lang", title: "Language / Sprache" }, btnDe, btnEn);
+}
+
 function buildGate() {
   injectStyles();
   const saved = (() => { try { return JSON.parse(localStorage.getItem(LS_KEY) || "{}"); } catch { return {}; } })();
@@ -141,6 +156,7 @@ function buildGate() {
   const root = el("div", { id: "ap-gate" });
   const panel = el("div", { class: "panel" });
   panel.append(
+    buildLangSwitch(),
     el("h1", {}, "ARCHIPELAGO"),
     el("div", { class: "sub" }, "Layer8Problem multiworld connection"),
   );
@@ -149,8 +165,6 @@ function buildGate() {
   const inpPort = el("input", { type: "number", value: saved.port || 38281 });
   const inpSlot = el("input", { type: "text", value: saved.slot || "", placeholder: "Your slot name" });
   const inpPass = el("input", { type: "password", value: saved.password || "", placeholder: "optional" });
-  const inpDL = el("input", { type: "checkbox" });
-  inpDL.checked = !!saved.deathlink;
 
   panel.append(
     el("label", {}, "Server"),
@@ -162,7 +176,6 @@ function buildGate() {
     inpSlot,
     el("label", {}, "Password"),
     inpPass,
-    el("div", { class: "cb" }, inpDL, el("span", {}, "Enable DeathLink (must match YAML)")),
   );
 
   const dotEngine    = el("span", { class: "dot" });
@@ -197,8 +210,8 @@ function buildGate() {
     const slot = inpSlot.value.trim();
     if (!host || !slot) { logStatus("Host and slot are required.", "err"); return; }
     state.host = host; state.port = port; state.slot = slot;
-    state.password = inpPass.value; state.deathlink = inpDL.checked;
-    try { localStorage.setItem(LS_KEY, JSON.stringify({ host, port, slot, password: state.password, deathlink: state.deathlink })); } catch {}
+    state.password = inpPass.value;
+    try { localStorage.setItem(LS_KEY, JSON.stringify({ host, port, slot, password: state.password })); } catch {}
     connect();
   });
   btnOffline.addEventListener("click", () => {
@@ -261,10 +274,13 @@ function send(obj) {
 function handleMsg(m) {
   switch (m.cmd) {
     case "RoomInfo":
+      // We always advertise the DeathLink tag — whether outbound DL actually
+      // fires is decided server-side by the slot's YAML and mirrored into
+      // state.deathlink on Connected. Inbound DL is filtered the same way.
       send({
         cmd: "Connect", game: GAME_NAME, name: state.slot, uuid: getUUID(),
         version: PROTO_VERSION, items_handling: 0b111,
-        tags: state.deathlink ? ["DeathLink"] : [],
+        tags: ["DeathLink"],
         password: state.password || "", slot_data: true,
       });
       break;
@@ -273,7 +289,6 @@ function handleMsg(m) {
       state.team   = m.team;
       state.slotNo = m.slot;
       (m.checked_locations || []).forEach(id => state.checked.add(id));
-      // v0.4.0 final: pull goal + starting day from slot_data
       state.slotData    = m.slot_data || {};
       state.goal        = state.slotData.goal === 1 || state.slotData.goal === "all_achievements"
         ? "all_achievements" : "legendary_set";
@@ -282,10 +297,11 @@ function handleMsg(m) {
         const idx = typeof sd === "number" ? sd : STARTING_DAY_BY_INDEX.indexOf(String(sd));
         state.startingDay = STARTING_DAY_BY_INDEX[idx] || "wednesday";
       }
-      state.deathlinkFilter = normalizeDeathlinkFilter(state.slotData.deathlink_filter);
+      // Single source of truth: YAML.
+      state.deathlink = !!state.slotData.deathlink;
       logStatus(
         `Authenticated as ${state.slot} (team ${m.team}, slot ${m.slot}). ` +
-        `Goal: ${state.goal}. Day: ${state.startingDay}.`,
+        `Goal: ${state.goal}. Day: ${state.startingDay}. DeathLink: ${state.deathlink ? "ON" : "OFF"}.`,
         "ok"
       );
       installHooks().then(() => {
@@ -361,7 +377,6 @@ function sendGoal() {
   logStatus("🏆 Goal complete!", "ok");
 }
 
-// v0.4.0 final — evaluate slot goal locally (survive_week removed)
 function checkGoal() {
   if (state.goalSent || !state.authed) return;
   switch (state.goal) {
@@ -384,23 +399,6 @@ function checkGoal() {
 const DEATH_ID_TTL_MS = 30000;
 const DEATH_QUEUE_TTL_MS = 10000;
 
-function normalizeDeathlinkFilter(value) {
-  if (value === 1) return "only_fired";
-  if (value === 2) return "off";
-  if (value === "only_fired" || value === "off") return value;
-  return "all";
-}
-
-function isDeathlinkCauseAllowed(causeKey) {
-  if (state.deathlinkFilter === "off") return false;
-  if (state.deathlinkFilter === "only_fired" && causeKey !== "termination") return false;
-  if (causeKey === "termination" && state.slotData.deathlink_termination === false) return false;
-  if (causeKey === "warning" && state.slotData.deathlink_warning === false) return false;
-  if (causeKey === "let_off_steam" && state.slotData.deathlink_steam !== true) return false;
-  if (causeKey === "rage_quit" && state.slotData.deathlink_rage_quit === false) return false;
-  return true;
-}
-
 function pruneDeathIds() {
   const now = Date.now();
   for (const [id, exp] of state.sentDeathIds) {
@@ -415,7 +413,6 @@ function makeDeathId() {
 
 function sendDeathLink(causeKey) {
   if (!state.deathlink || !state.authed) return;
-  if (!isDeathlinkCauseAllowed(causeKey)) return;
   const now = Date.now() / 1000;
   if (now - state.lastDeathTime < 5) return;
   state.lastDeathTime = now;
@@ -580,14 +577,12 @@ function installDayLock() {
         } else {
           btn.classList.add("ap-day-locked");
           btn.setAttribute("disabled", "disabled");
-          // belt-and-braces: also strip the onclick so a forced click won't fire it
           btn.setAttribute("data-ap-orig-onclick", btn.getAttribute("onclick") || "");
           btn.setAttribute("onclick", "return false;");
         }
       });
     };
 
-    // Apply now, and watch for re-renders / re-opens.
     apply();
     const mo = new MutationObserver(apply);
     mo.observe(modal, { attributes: true, childList: true, subtree: true });
@@ -611,18 +606,15 @@ async function installHooks() {
     setHook("engine", true);
   } catch (x) { console.warn(x); setHook("engine", false); }
 
-  // 2) Inventory
+  // 2) Inventory — we only wrap push so AP-injected items still flow through
+  // the engine's normal pipeline (renderInventory etc.). There is no in-game
+  // "pick up item" event that maps to an AP location, so nothing to fire here.
   try {
     if (Array.isArray(e.state.inventory)) {
       const inv = e.state.inventory;
       const origPush = inv.push.bind(inv);
       inv.push = function (...args) {
-        const r = origPush(...args);
-        for (const it of args) {
-          if (!it || !it.id || it.ap) continue;
-          try { checkLocation("item_" + it.id); } catch {}
-        }
-        return r;
+        return origPush(...args);
       };
       setHook("inventory", true);
     }
@@ -638,7 +630,8 @@ async function installHooks() {
         if (statKey === "daysRageQuit") sendDeathLink("rage_quit");
         if (statKey === "daysSurvived") {
           state.daysThisRun += 1;
-          const n = Math.min(state.daysThisRun, 5);
+          // There are exactly 3 playable days (Mon/Wed/Fri). Cap.
+          const n = Math.min(state.daysThisRun, 3);
           checkLocation(`day_${n}`);
           checkGoal();
         }
