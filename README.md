@@ -54,14 +54,11 @@ inventory.
 | | |
 |---|---|
 | **Game name (YAML)** | `Layer8Problem` |
-| **Locations (~50)** | 24 achievements + affection-tier thresholds + days survived |
-| **Items (30)** | 21 normal items + 9 legendary items + progressive difficulty / affection |
-| **Goal (configurable)** | 100% achievements · all legendary items · X days survived · affection target · difficulty clear |
-| **DeathLink causes** | `termination` · `warning` · `let-off-steam` · `rage-quit` |
-
-When you trigger a DeathLink-eligible event in-game (got fired, got a warning,
-needed to let off steam, rage-quit), every other DeathLink player in the
-multiworld receives the matching cause.
+| **Locations (63)** | 24 achievements + 3 days survived + 18 affection tiers + 18 negative affection tiers |
+| **Items (63 guaranteed)** | 9 legendary + 18 normal + 18 progressive affection + 18 progressive negative affection (+ filler) |
+| **Goal (YAML)** | `legendary_set` (default) · `all_achievements` |
+| **Days** | Monday (hard) · Wednesday (normal) · Friday (easy) — one per slot |
+| **DeathLink** | single master toggle in the YAML; fires on termination, final warning, letting off steam, rage quit |
 
 ---
 
@@ -69,15 +66,15 @@ multiworld receives the matching cause.
 
 1. Open <https://ap-layer8problem.netlify.app>
 2. The **Archipelago Connection** screen blocks the game until you connect.
-3. Enter your **host**, **port**, **slot name**, optional password, optionally
-   tick **Enable DeathLink**.
+   Use the **DE / EN** buttons in the top-right corner to switch language.
+3. Enter your **host**, **port**, **slot name**, optional password.
 4. Click **Connect & Play** — the game starts once hooks are installed.
    *(Pure single-player? Click "Play Offline" to skip AP entirely.)*
 5. Click the small **AP** pill in the top-right corner during play to
    disconnect, reconnect, or change slots.
 
-Your host / port / slot / DeathLink preference are remembered in
-`localStorage`. Your password is **never** stored.
+Your host / port / slot are remembered in `localStorage`. Your password is
+**never** stored. DeathLink is controlled by the YAML, not by the client.
 
 ## Languages
 
@@ -86,9 +83,9 @@ Your host / port / slot / DeathLink preference are remembered in
 
 ## Building the multiworld
 
-The `.apworld` for the Archipelago generator lives in `/apworld/` *(coming soon)*.
-Drop it into your Archipelago `custom_worlds/` folder and `Layer8Problem` shows
-up as a selectable game.
+The `.apworld` for the Archipelago generator is published with every
+GitHub release as `layer8problem.apworld`. Drop it into your Archipelago
+`custom_worlds/` folder and `Layer8Problem` shows up as a selectable game.
 
 ## License & credits
 
