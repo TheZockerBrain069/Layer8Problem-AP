@@ -23,7 +23,7 @@ import {
 
 const LS_KEY     = "l8p_ap_session";
 const LS_OFFLINE = "l8p_ap_play_offline";
-const PROTO_VERSION = { major: 0, minor: 5, build: 0, class: "Version" };
+const PROTO_VERSION = { major: 0, minor: 6, build: 0, class: "Version" };
 
 // Reputation character key → engine reputation map key
 const AFFECTION_NAME_MAP = {
