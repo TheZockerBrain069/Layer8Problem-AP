@@ -583,9 +583,18 @@ function installDayLock() {
       });
     };
 
-    apply();
-    const mo = new MutationObserver(apply);
-    mo.observe(modal, { attributes: true, childList: true, subtree: true });
+    let applying = false;
+    const safeApply = () => {
+      if (applying) return;
+      applying = true;
+      try { mo && mo.disconnect(); apply(); }
+      finally {
+        try { mo && mo.observe(modal, { childList: true, subtree: true }); } catch {}
+        applying = false;
+      }
+    };
+    const mo = new MutationObserver(safeApply);
+    safeApply();
     return true;
   } catch (e) { console.warn("[AP] day-lock failed", e); return false; }
 }
