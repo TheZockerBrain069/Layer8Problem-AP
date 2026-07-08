@@ -23,7 +23,7 @@ import {
 
 const LS_KEY     = "l8p_ap_session";
 const LS_OFFLINE = "l8p_ap_play_offline";
-const PROTO_VERSION = { major: 0, minor: 6, build: 0, class: "Version" };
+const PROTO_VERSION = { major: 0, minor: 7, build: 0, class: "Version" };
 
 // Reputation character key → engine reputation map key
 const AFFECTION_NAME_MAP = {
@@ -639,9 +639,13 @@ async function installHooks() {
         if (statKey === "daysRageQuit") sendDeathLink("rage_quit");
         if (statKey === "daysSurvived") {
           state.daysThisRun += 1;
-          // There are exactly 3 playable days (Mon/Wed/Fri). Cap.
-          const n = Math.min(state.daysThisRun, 3);
-          checkLocation(`day_${n}`);
+          // v0.7.0: only one day is playable per slot (day-lock).
+          // Fire the check for the slot's actual starting_day so the
+          // correct day-location resolves regardless of which day the
+          // engine's internal counter happens to index.
+          const dayKeyByStart = { monday: "day_1", wednesday: "day_2", friday: "day_3" };
+          const key = dayKeyByStart[state.startingDay] || "day_2";
+          checkLocation(key);
           checkGoal();
         }
         return r;
