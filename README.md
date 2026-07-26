@@ -1,16 +1,3 @@
-*(WIP)*
-
-| | | |
-|---|---|---|
-| Version,| Content, | Maturity Level |
-| v0.1.0, | "Current state: DE-only, 24 Achievements, Basic DeathLink", | """early alpha, playable, feedback welcome""" |
-| v0.2.0, | "Complete EN translation, Language switcher in menu", | """alpha, now internationally testable""" |
-| v0.3.0, | Affection-Tiers + Days-Survived as real Locations (→ ~50 Checks), | """feature-complete locations""" |
-| v0.4.0, | Progressive Items (Difficulty/Affection) + YAML Goal Options,| """feature-complete items""" |
-| v0.5.0, | "DeathLink-Hardening (all 4 Causes) reliable, no Echo", | """deathlink-stable""" |
-| v0.9.0, | "Fully tested, one complete run played",| """release candidate""" |
-| v1.0.0, | "Public Release, AP-Multiworld-Index Entry", | """stable""" |
-
 # Layer8Problem — Archipelago Edition
 
 > **This is a community fork** of [seluce/Layer8Problem](https://github.com/seluce/Layer8Problem)
@@ -29,10 +16,10 @@
 
 ## About the game
 
-**Layer8Problem** is a German-language *IT-support simulator* by **seluce**.
-You play first-line tech support: every "ticket" is a real conversation with a
-user whose computer just won't. Pick the right answer, keep affection with
-your team up, survive the day — and don't get fired.
+**Layer8Problem** is an *IT-support simulator* by **seluce**. You play
+first-line tech support: every "ticket" is a real conversation with a user
+whose computer just won't. Pick the right answer, keep affection with your
+team up, survive the day — and don't get fired.
 
 > The name comes from the IT joke: *"The problem is on Layer 8"* — i.e. the user.
 
@@ -40,8 +27,14 @@ your team up, survive the day — and don't get fired.
 Every IT professional will cry tears of joy during this game — or because
 they've already lived this exact situation.
 
-The game is currently only available in German. An English translation is in
-progress in this fork.
+## Languages
+
+🇩🇪 **German** (original) · 🇬🇧 **English**
+
+Both languages ship in this fork. Pick one with the **DE / EN** buttons on
+the Archipelago connect screen; the choice is remembered and applied on
+reload. English is machine-translated and human-corrected — if you spot a
+German leftover, please open an issue.
 
 ---
 
@@ -49,16 +42,34 @@ progress in this fork.
 
 Layer8Problem joins your multiworld as a regular AP game. You earn checks by
 playing normally, and items the randomizer sends you appear in your in-game
-inventory.
+inventory. The client is built into the web build — nothing to install.
 
 | | |
 |---|---|
 | **Game name (YAML)** | `Layer8Problem` |
-| **Locations (63)** | 24 achievements + 3 days survived + 18 affection tiers + 18 negative affection tiers |
-| **Items (63 guaranteed)** | 9 legendary + 18 normal + 18 progressive affection + 18 progressive negative affection (+ filler) |
+| **Locations (61 per slot)** | 24 achievements + 1 day survived + 18 affection tiers + 18 negative affection tiers |
+| **Items (61 per slot)** | 9 legendary + 18 progressive affection + 18 progressive negative affection + 16 normal (2 more start in your inventory) |
 | **Goal (YAML)** | `legendary_set` (default) · `all_achievements` |
-| **Days** | Monday (hard) · Wednesday (normal) · Friday (easy) — one per slot |
+| **Days** | Monday (hard) · Wednesday (normal) · Friday (easy) — one per slot, and it *is* the difficulty |
 | **DeathLink** | single master toggle in the YAML; fires on termination, final warning, letting off steam, rage quit |
+
+Only the `Survived <Day>` location for your slot's day is registered — the
+other two days are locked in-game, so registering them would produce
+unbeatable seeds.
+
+### YAML
+
+```yaml
+Layer8Problem:
+  goal: legendary_set              # legendary_set | all_achievements
+  starting_day: wednesday          # friday | wednesday | monday
+  deathlink: false
+```
+
+That is the whole option set. The `deathlink_termination` /
+`deathlink_warning` / `deathlink_steam` / `deathlink_rage_quit` /
+`deathlink_filter` keys from v0.5.x were removed in v0.6.0 and now break
+generation — delete them from old YAMLs.
 
 ---
 
@@ -66,9 +77,9 @@ inventory.
 
 1. Open <https://ap-layer8problem.netlify.app>
 2. The **Archipelago Connection** screen blocks the game until you connect.
-   Use the **DE / EN** buttons in the top-right corner to switch language.
+   Use the **DE / EN** buttons to switch language.
 3. Enter your **host**, **port**, **slot name**, optional password.
-4. Click **Connect & Play** — the game starts once hooks are installed.
+4. Click **Connect & Play** — the game starts once the hooks report green.
    *(Pure single-player? Click "Play Offline" to skip AP entirely.)*
 5. Click the small **AP** pill in the top-right corner during play to
    disconnect, reconnect, or change slots.
@@ -76,19 +87,64 @@ inventory.
 Your host / port / slot are remembered in `localStorage`. Your password is
 **never** stored. DeathLink is controlled by the YAML, not by the client.
 
-## Languages
+## Generating a multiworld
 
-- 🇩🇪 **German** — the original
-- 🇬🇧 **English** — auto-translated, toggleable in the in-game settings *(WIP)*
+The `.apworld` is published with every
+[GitHub release](https://github.com/TheZockerBrain069/Layer8Problem-AP/releases)
+as `layer8problem.apworld`. Drop it into your Archipelago `custom_worlds/`
+folder and `Layer8Problem` shows up as a selectable game.
 
-## Building the multiworld
+An `.apworld` is a plain zip — rename or unzip it if you want to read the
+Python source, the setup guide, or the world changelog:
 
-The `.apworld` for the Archipelago generator is published with every
-GitHub release as `layer8problem.apworld`. Drop it into your Archipelago
-`custom_worlds/` folder and `Layer8Problem` shows up as a selectable game.
+```sh
+unzip layer8problem.apworld -d /tmp/apw
+```
+
+## Repository layout
+
+| path | contents |
+|---|---|
+| `ap/` | the in-browser AP client: `ap_client.js`, the stable ID map `ap_data.js`, language bootstrap `ap_lang.js`, English UI strings |
+| `tools/` | consistency checks, see below |
+| `assets/data/` | German game data · `assets/data/en/` English |
+| `engine.js`, `assets/engine/` | the original game engine (untouched by this fork) |
+
+## Consistency checks
+
+The client and the apworld keep two copies of the same ID map, and every
+past hotfix came from those drifting apart. Two Node scripts (no
+dependencies) verify them:
+
+```sh
+unzip layer8problem.apworld -d /tmp/apw
+node tools/check_ids.mjs          /tmp/apw/layer8problem
+node tools/check_reachability.mjs /tmp/apw/layer8problem
+```
+
+- **`check_ids.mjs`** — base offset, block offsets, list lengths, reserved
+  ID gaps, a full ID round-trip for every location and item, and
+  `PROTO_VERSION` vs `required_client_version`.
+- **`check_reachability.mjs`** — all `starting_day` × `goal` combinations:
+  61 locations registered, no unplayable day, pool balances, every
+  affection tier's progressive requirement covered, goal satisfiable.
+
+Both also run in CI (`.github/workflows/ap-checks.yml`) when an unpacked
+`apworld/layer8problem/` folder is present in the tree.
+
+## Roadmap
+
+| version | what's coming |
+|---|---|
+| **v0.9.0** | sidequest and item-find locations as a second location pool · PopTracker pack |
+| **v1.0.0** | full playthrough tested, submission to the official Archipelago world index |
+
+Shipped versions are documented in the world changelog inside the
+`.apworld` (`layer8problem/CHANGELOG.md`) and in `ap/CHANGELOG.md`.
+`changelog.md` in the repo root is the original game's changelog by seluce.
 
 ## License & credits
 
 Source code: same license as the original [seluce/Layer8Problem](https://github.com/seluce/Layer8Problem)
 repository. All credit for the game itself goes to **seluce**. This fork only
-adds the `ap/` module and integration glue.
+adds the `ap/` module, the English data set, and integration glue.
