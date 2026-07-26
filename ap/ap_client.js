@@ -1,15 +1,20 @@
-// Layer8Problem — Archipelago Client (Mod v0.6.0)
-// Changes vs v0.5.1:
-//  - DeathLink toggle removed from the connect screen — the YAML decides.
-//    `state.deathlink` is now derived from slot_data after Connected.
-//  - Per-cause / filter slot-data keys are gone. When deathlink is on,
-//    all four causes (termination, warning, let_off_steam, rage_quit) fire.
-//  - Language switcher (DE/EN) restored on the connect screen.
-//  - Day hook clamped to the 3 real playable days (Mon/Wed/Fri).
-//    The dead day_4/day_5 tail is gone.
-//  - Dead `item_<id>` location hook in the inventory wrapper removed.
+// Layer8Problem — Archipelago Client (Mod v0.8.0)
+//
+// Changes vs v0.7.0:
+//  - PROTO_VERSION bumped to 0.8.0 to match the apworld's
+//    required_client_version. Both are asserted by tools/check_ids.mjs.
+//  - No behavioural changes; v0.8.0 is a consolidation release
+//    (item-pool fix in the apworld, docs, automated checks).
+//
+// Behaviour recap (unchanged since v0.6.0/v0.7.0):
+//  - DeathLink is decided by the YAML; `state.deathlink` comes from
+//    slot_data after Connected. When on, all four causes fire
+//    (termination, warning, let_off_steam, rage_quit).
+//  - Language switcher (DE/EN) lives on the connect screen.
+//  - Day hook fires the one playable day (Mon/Wed/Fri) of this slot.
 //
 // Loaded as ES module from index.html AFTER engine.js.
+
 
 import {
   GAME_NAME, DEATHLINK_CAUSES,
@@ -23,7 +28,7 @@ import {
 
 const LS_KEY     = "l8p_ap_session";
 const LS_OFFLINE = "l8p_ap_play_offline";
-const PROTO_VERSION = { major: 0, minor: 7, build: 0, class: "Version" };
+const PROTO_VERSION = { major: 0, minor: 8, build: 0, class: "Version" };
 
 // Reputation character key → engine reputation map key
 const AFFECTION_NAME_MAP = {
