@@ -1,0 +1,49 @@
+name: AP consistency checks
+
+on:
+  push:
+    paths: ["ap/**", "tools/**", "apworld/**", ".github/workflows/ap-checks.yml"]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      # The apworld source is not committed; it ships as the .apworld
+      # attached to each release (a plain zip). Pull the latest one and
+      # unpack it so the checks run against what players actually use.
+      - name: Fetch latest layer8problem.apworld
+        run: |
+          set -e
+          url=$(curl -sSL -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${GITHUB_REPOSITORY}/releases/latest" \
+            | grep -o 'https://[^"]*layer8problem\.apworld' | head -n1)
+          if [ -z "$url" ]; then
+            echo "No layer8problem.apworld on the latest release — skipping."
+            exit 0
+          fi
+          mkdir -p apworld
+          curl -sSL -o /tmp/l8.apworld "$url"
+          unzip -q -o /tmp/l8.apworld -d apworld
+
+      - name: Syntax check EN + DE data files
+        run: |
+          for f in assets/data/*.js assets/data/en/*.js ap/*.js; do
+            node --check "$f" || exit 1
+          done
+
+      - name: ID consistency
+        run: |
+          [ -d apworld/layer8problem ] || { echo "no apworld source, skipped"; exit 0; }
+          node tools/check_ids.mjs apworld/layer8problem
+
+      - name: Reachability / pool balance
+        run: |
+          [ -d apworld/layer8problem ] || { echo "no apworld source, skipped"; exit 0; }
+          node tools/check_reachability.mjs apworld/layer8problem
