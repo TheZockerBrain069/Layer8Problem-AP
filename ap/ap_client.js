@@ -1,10 +1,13 @@
-// Layer8Problem — Archipelago Client (Mod v0.8.0)
+// Layer8Problem — Archipelago Client (Mod v0.9.0)
 //
-// Changes vs v0.7.0:
-//  - PROTO_VERSION bumped to 0.8.0 to match the apworld's
-//    required_client_version. Both are asserted by tools/check_ids.mjs.
-//  - No behavioural changes; v0.8.0 is a consolidation release
-//    (item-pool fix in the apworld, docs, automated checks).
+// Changes vs v0.8.0:
+//  - Extra location pool: 30 item-find checks (first pickup of each in-game
+//    item, hooked on engine.addToArchive('items', id)) and 99 sidequest-chain
+//    checks (first resolved node of a chain, hooked on renderTerminal +
+//    resolveTerminal). Two new hook dots: "items" and "sidequests".
+//  - slot_data.extra_locations gates the new pool. When false the client
+//    behaves exactly like v0.8.0 and fires no extra checks.
+//  - PROTO_VERSION bumped to 0.9.0 to match required_client_version.
 //
 // Behaviour recap (unchanged since v0.6.0/v0.7.0):
 //  - DeathLink is decided by the YAML; `state.deathlink` comes from
@@ -24,11 +27,12 @@ import {
   NEGATIVE_AFFECTION_TIERS, NEGATIVE_AFFECTION_TIER_COST,
   STARTING_DAY_BY_INDEX, DAY_TO_DIFFICULTY,
   locationId, itemId, itemKey, progressiveAffectionKey,
+  ITEM_FIND_KEYS, SIDEQUEST_CHAINS, sidequestChainOf,
 } from "./ap_data.js";
 
 const LS_KEY     = "l8p_ap_session";
 const LS_OFFLINE = "l8p_ap_play_offline";
-const PROTO_VERSION = { major: 0, minor: 8, build: 0, class: "Version" };
+const PROTO_VERSION = { major: 0, minor: 9, build: 0, class: "Version" };
 
 // Reputation character key → engine reputation map key
 const AFFECTION_NAME_MAP = {
@@ -55,7 +59,11 @@ const state = {
   receivedItems: [],
   goalSent: false,
   lastDeathTime: 0,
-  hooks: { engine: false, inventory: false, deathlink: false, days: false, affection: false, daylock: false },
+  hooks: { engine: false, inventory: false, deathlink: false, days: false, affection: false, daylock: false, items: false, sidequests: false },
+  // v0.9.0 runtime — extra location pool
+  extraLocations: false,         // from slot_data; false = v0.8.0 behaviour
+  currentSidequestId: null,      // last sidequest rendered, used on resolve
+  extraFired: new Set(),         // local guard so a hook never spams the server
   // v0.3.0 runtime
   daysThisRun: 0,
   affectionPollIv: null,
@@ -189,7 +197,9 @@ function buildGate() {
   const dotDays      = el("span", { class: "dot" });
   const dotAff       = el("span", { class: "dot" });
   const dotLock      = el("span", { class: "dot" });
-  hookEls = { engine: dotEngine, inventory: dotInventory, deathlink: dotDeath, days: dotDays, affection: dotAff, daylock: dotLock };
+  const dotItems     = el("span", { class: "dot" });
+  const dotSq        = el("span", { class: "dot" });
+  hookEls = { engine: dotEngine, inventory: dotInventory, deathlink: dotDeath, days: dotDays, affection: dotAff, daylock: dotLock, items: dotItems, sidequests: dotSq };
 
   panel.append(
     el("div", { class: "hookrow" },
@@ -198,6 +208,8 @@ function buildGate() {
       el("span", {}, dotDeath, "deathlink"),
       el("span", {}, dotDays, "days"),
       el("span", {}, dotAff, "affection"),
+      el("span", {}, dotItems, "items"),
+      el("span", {}, dotSq, "sidequests"),
       el("span", {}, dotLock, "day-lock"),
     ),
   );
@@ -304,9 +316,13 @@ function handleMsg(m) {
       }
       // Single source of truth: YAML.
       state.deathlink = !!state.slotData.deathlink;
+      // v0.9.0: older seeds have no extra_locations key — treat as off so an
+      // old seed never sends location IDs the server does not know.
+      state.extraLocations = state.slotData.extra_locations === true;
       logStatus(
         `Authenticated as ${state.slot} (team ${m.team}, slot ${m.slot}). ` +
-        `Goal: ${state.goal}. Day: ${state.startingDay}. DeathLink: ${state.deathlink ? "ON" : "OFF"}.`,
+        `Goal: ${state.goal}. Day: ${state.startingDay}. DeathLink: ${state.deathlink ? "ON" : "OFF"}. ` +
+        `Extra locations: ${state.extraLocations ? "ON (190 checks)" : "OFF (61 checks)"}.`,
         "ok"
       );
       installHooks().then(() => {
@@ -604,6 +620,29 @@ function installDayLock() {
   } catch (e) { console.warn("[AP] day-lock failed", e); return false; }
 }
 
+// ---------- v0.9.0 extra-pool helpers ------------------------------------
+function fireItemFind(type, id) {
+  if (!state.extraLocations) return;
+  if (type !== "items" || !id) return;
+  if (!ITEM_FIND_KEYS.includes(id)) return;
+  const key = "find_" + id;
+  if (state.extraFired.has(key)) return;
+  state.extraFired.add(key);
+  checkLocation(key);
+}
+
+function fireSidequest(sqId) {
+  if (!state.extraLocations) return;
+  const chain = sidequestChainOf(sqId);
+  if (!chain) {
+    if (sqId) console.warn("[AP] unknown sidequest chain for", sqId);
+    return;
+  }
+  if (state.extraFired.has(chain)) return;
+  state.extraFired.add(chain);
+  checkLocation(chain);
+}
+
 async function installHooks() {
   let e;
   try { e = await waitForEngine(); }
@@ -621,8 +660,8 @@ async function installHooks() {
   } catch (x) { console.warn(x); setHook("engine", false); }
 
   // 2) Inventory — we only wrap push so AP-injected items still flow through
-  // the engine's normal pipeline (renderInventory etc.). There is no in-game
-  // "pick up item" event that maps to an AP location, so nothing to fire here.
+  // the engine's normal pipeline (renderInventory etc.). The AP-visible
+  // "picked this up for the first time" event is addToArchive (hook 6).
   try {
     if (Array.isArray(e.state.inventory)) {
       const inv = e.state.inventory;
@@ -683,6 +722,59 @@ async function installHooks() {
 
   // 5) Day-lock — fix difficulty to slot's starting_day
   setHook("daylock", installDayLock());
+
+  // 6) Item finds (v0.9.0) — addToArchive('items', id) is the engine's single
+  // funnel for "player obtained this item for the first time". It also fires
+  // for AP-injected items, which is fine: an injected item you never found
+  // in-game still counts as found. Grey dot when extra_locations is off.
+  try {
+    if (state.extraLocations && typeof e.addToArchive === "function") {
+      const origArchive = e.addToArchive.bind(e);
+      e.addToArchive = function (type, id) {
+        const r = origArchive(type, id);
+        try { fireItemFind(type, id); } catch (x) { console.warn(x); }
+        return r;
+      };
+      setHook("items", true);
+      // Catch up on anything already archived in a resumed save.
+      try {
+        const arch = (e.state && e.state.archive && e.state.archive.items) || [];
+        arch.forEach(id => fireItemFind("items", id));
+      } catch (x) { console.warn(x); }
+    } else {
+      setHook("items", false);
+    }
+  } catch (x) { console.warn(x); setHook("items", false); }
+
+  // 7) Sidequest chains (v0.9.0) — renderTerminal(ev, type) tells us which
+  // sidequest is on screen, resolveTerminal(...) tells us the player picked an
+  // option. The check fires on the first resolved node of a chain.
+  try {
+    if (state.extraLocations && typeof e.resolveTerminal === "function") {
+      if (typeof e.renderTerminal === "function") {
+        const origRender = e.renderTerminal.bind(e);
+        e.renderTerminal = function (ev, type, ...rest) {
+          try {
+            if (type === "sidequest" && ev && ev.id) state.currentSidequestId = ev.id;
+          } catch (x) { console.warn(x); }
+          return origRender(ev, type, ...rest);
+        };
+      }
+      const origResolve = e.resolveTerminal.bind(e);
+      e.resolveTerminal = function (...args) {
+        // signature: (res, m, f, a, c, loot, usedItem, type, next, rem, repData)
+        const type = args[7];
+        const r = origResolve(...args);
+        try {
+          if (type === "sidequest") fireSidequest(state.currentSidequestId);
+        } catch (x) { console.warn(x); }
+        return r;
+      };
+      setHook("sidequests", true);
+    } else {
+      setHook("sidequests", false);
+    }
+  } catch (x) { console.warn(x); setHook("sidequests", false); }
 }
 
 // ---------- boot ----------------------------------------------------------

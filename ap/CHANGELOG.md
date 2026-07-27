@@ -1,5 +1,54 @@
 # Layer8Problem — Changelog (apworld)
 
+## v0.9.0 — Expansion: item-find and sidequest location pools
+
+**Added (generator)**
+- Two new location pools, off-limits until now because the client had no
+  hook for them:
+  - **30 item-find checks** (`AP_BASE + 400 .. 429`) — fire the first time
+    an item enters your archive, i.e. the first time you actually obtain it.
+  - **99 sidequest-chain checks** (`AP_BASE + 500 .. 598`) — fire the first
+    time you resolve any node of a sidequest chain. One check per chain,
+    not per node, so a long chain is still a single check.
+- New YAML option `extra_locations` (default **true**). Set it to `false`
+  and the slot reproduces the exact v0.8.0 layout — same 61 locations,
+  same IDs, same pool. That is the fallback if the new pool misbehaves in
+  a live multiworld: flip one key, no rebuild.
+- Per-slot totals: **190 locations / 190 items** with `extra_locations: true`,
+  **61 / 61** with it off.
+- `FILLER_ITEMS` widened from 4 to 15 entries so a 190-check slot does not
+  hand out the same trap 127 times.
+
+**Added (client)**
+- `engine.addToArchive` is wrapped to detect item finds. It also catches up
+  on a resumed save: anything already in the archive fires on connect, so
+  reconnecting mid-run does not lose checks.
+- `engine.renderTerminal` / `engine.resolveTerminal` are wrapped to detect
+  sidequest progress. `renderTerminal` records which sidequest is on screen;
+  `resolveTerminal` with `type === "sidequest"` fires the chain's check.
+- Chain resolution uses longest-prefix matching, so `sq_fire_drill_2` maps
+  to the `sq_fire_drill` chain and not to `sq_fire`.
+- Two new hook dots in the connect overlay: **items** and **sidequests**.
+  They stay grey when the slot has `extra_locations: false` — grey there
+  means "not used by this seed", not "broken".
+- Seeds generated before v0.9.0 carry no `extra_locations` in `slot_data`.
+  The client treats a missing key as **off**, so an old seed can never send
+  a location ID the server does not know.
+
+**Tooling**
+- `check_ids.mjs` verifies the two new blocks: offsets 400 / 500, key order
+  identical between `ap_data.js` and `Locations.py`, `sidequestChainOf`
+  round-trips for every chain, and the sidequest pool stays under 100
+  entries so it cannot run into the next free block.
+- `check_reachability.mjs` now walks `starting_day` × `goal` ×
+  `extra_locations` — 12 configurations instead of 6 — and flags a slot
+  whose pool is more than 95% filler.
+
+**Versions**
+- `required_client_version` and client `PROTO_VERSION` both at 0.9.0.
+- Existing IDs are unchanged; v0.8.0 seeds keep their meaning. Regenerate
+  to pick up the new pools.
+
 ## v0.8.0 — Consolidation: pool fix, automated checks, docs
 
 **Fixed (generator, important)**

@@ -1,13 +1,15 @@
 #!/usr/bin/env node
-// Layer8Problem AP — reachability / pool-balance self test (v0.8.0)
+// Layer8Problem AP — reachability / pool-balance self test (v0.9.0)
 //
 // Re-implements the apworld's slot layout in JS and checks, for every
-// combination of `starting_day` x `goal`, that:
+// combination of `starting_day` x `goal` x `extra_locations`, that:
 //   1. exactly the locations reachable in that slot are registered
 //      (24 achievements + 1 day + 18 affection + 18 negative affection = 61)
 //   2. no day-location for a day the player cannot select is registered
 //      (this is the v0.7.0 bug: 3 days registered, 1 playable -> a
 //      MultiWorld could bury progression on an unreachable check)
+//   2b. extra_locations on adds exactly the item-find + sidequest pool
+//      (61 -> 190 checks) and off reproduces the v0.8.0 layout
 //   3. the guaranteed item pool matches the location count, with the
 //      overflow pushed to starting inventory as filler
 //   4. every access rule is satisfiable by the pool -- e.g. "Kevin -
@@ -56,6 +58,14 @@ const NORMAL_ITEMS = pyList(itemSrc, "NORMAL_ITEMS");
 const LEGENDARY_ITEMS = pyList(itemSrc, "LEGENDARY_ITEMS");
 const FILLER_ITEMS = pyList(itemSrc, "FILLER_ITEMS");
 
+function pyPairNames(src, name) {
+  const m = src.match(new RegExp(`^${name}(?:\\s*:\\s*List\\[tuple\\])?\\s*=\\s*\\[([\\s\\S]*?)\\n\\]`, "m"));
+  if (!m) throw new Error(`pair list ${name} not found`);
+  return [...m[1].matchAll(/\(\s*"[^"]+"\s*,\s*"([^"]+)"\s*\)/g)].map((x) => x[1]);
+}
+const ITEM_FIND_NAMES = pyPairNames(locSrc, "ITEM_FIND_PAIRS");
+const SIDEQUEST_NAMES = pyPairNames(locSrc, "SIDEQUEST_PAIRS");
+
 // starting_day value -> day location, read from DAY_BY_STARTING_DAY
 const dayByStartingDay = {};
 {
@@ -91,7 +101,8 @@ const rows = [];
 
 for (const day of startingDays) {
   for (const goal of goals) {
-    const label = `${day.name}/${goal.name}`;
+   for (const extra of [false, true]) {
+    const label = `${day.name}/${goal.name}/extra:${extra ? "on" : "off"}`;
     const activeDay = dayByStartingDay[day.value];
 
     // --- 1. slot location set ------------------------------------------------
@@ -100,9 +111,11 @@ for (const day of startingDays) {
       activeDay,
       ...CHARS.flatMap((c) => TIERS.map((t) => `${c} - ${t}`)),
       ...CHARS.flatMap((c) => NEG_TIERS.map((t) => `${c} - ${t}`)),
+      ...(extra ? [...ITEM_FIND_NAMES, ...SIDEQUEST_NAMES] : []),
     ];
     const expectedCount =
-      ACHIEVEMENTS.length + 1 + CHARS.length * TIERS.length + CHARS.length * NEG_TIERS.length;
+      ACHIEVEMENTS.length + 1 + CHARS.length * TIERS.length + CHARS.length * NEG_TIERS.length +
+      (extra ? ITEM_FIND_NAMES.length + SIDEQUEST_NAMES.length : 0);
     if (locations.length !== expectedCount) {
       problems.push(`${label}: ${locations.length} locations, expected ${expectedCount}`);
     }
@@ -139,7 +152,16 @@ for (const day of startingDays) {
       problems.push(`${label}: ${overflow} progression item(s) do not fit into ${locations.length} locations`);
     }
     const placed = [...progression, ...useful];
-    while (placed.length < locations.length) placed.push(FILLER_ITEMS[0] ?? "Filler");
+    while (placed.length < locations.length) {
+      placed.push(FILLER_ITEMS[placed.length % (FILLER_ITEMS.length || 1)] ?? "Filler");
+    }
+    // With the extra pool on, almost every check is filled by filler. That is
+    // fine for logic, but a pool that is >95% filler is a design smell worth
+    // surfacing rather than silently shipping.
+    const fillerCount = placed.filter((n) => FILLER_ITEMS.includes(n)).length;
+    if (locations.length && fillerCount / locations.length > 0.95) {
+      problems.push(`${label}: ${fillerCount}/${locations.length} placed items are filler`);
+    }
     const precollected = precollectedItems.length;
     if (placed.length !== locations.length) {
       problems.push(`${label}: ${placed.length} placed items for ${locations.length} locations`);
@@ -191,16 +213,17 @@ for (const day of startingDays) {
       placed: placed.length,
       precollected,
     });
+   }
   }
 }
 
 console.log("Layer8Problem — reachability / pool-balance self test");
 console.log(`  apworld source : ${pyDir}`);
 console.log("");
-console.log("  slot                          day                 locs  placed  precollected");
+console.log("  slot                                    day                 locs  placed  precollected");
 for (const r of rows) {
   console.log(
-    `  ${r.slot.padEnd(29)} ${r.day.padEnd(19)} ${String(r.locations).padStart(4)}` +
+    `  ${r.slot.padEnd(39)} ${r.day.padEnd(19)} ${String(r.locations).padStart(4)}` +
     `  ${String(r.placed).padStart(6)}  ${String(r.precollected).padStart(12)}`
   );
 }

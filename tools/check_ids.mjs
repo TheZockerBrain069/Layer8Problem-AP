@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Layer8Problem AP — ID consistency checker (v0.8.0)
+// Layer8Problem AP — ID consistency checker (v0.9.0)
 //
 // Compares the JS client's ID map (ap/ap_data.js) against the Python
 // apworld source (Locations.py / Items.py). Archipelago talks in numeric
@@ -89,6 +89,8 @@ const OFFSETS = {
   progressiveAffection: 1200,
   progressiveNegativeAffection: 1207,
   filler: 1300,
+  itemFinds: 400,
+  sidequests: 500,
 };
 const offsetProbes = [
   ["days", /AP_BASE \+ (\d+) \+ _i\b/, locSrc, "Locations.py"],
@@ -113,6 +115,27 @@ if (!/AP_BASE \+ 300 \+ _ci \* 3/.test(locSrc)) {
 }
 
 // --- 3. list lengths + derived ID ranges -------------------------------------
+// v0.9.0 extra pool: pair lists live as [(key, name)] tuples in Locations.py.
+function pyPairKeys(src, name, file) {
+  const re = new RegExp(`^${name}(?:\\s*:\\s*List\\[tuple\\])?\\s*=\\s*\\[([\\s\\S]*?)\\n\\]`, "m");
+  const m = src.match(re);
+  if (!m) { fail(`${file}: pair list ${name} not found`); return []; }
+  return [...m[1].matchAll(/\(\s*"([^"]+)"\s*,/g)].map((x) => x[1]);
+}
+const pyItemFinds = pyPairKeys(locSrc, "ITEM_FIND_PAIRS", "Locations.py");
+const pySidequests = pyPairKeys(locSrc, "SIDEQUEST_PAIRS", "Locations.py");
+
+if (!/for _i, _name in enumerate\(ITEM_FIND_NAMES\):\s*\n\s*LOCATION_TABLE\[_name\] = AP_BASE \+ 400 \+ _i/.test(locSrc)) {
+  fail("Locations.py: item-find block is no longer at offset 400");
+}
+if (!/for _i, _name in enumerate\(SIDEQUEST_NAMES\):\s*\n\s*LOCATION_TABLE\[_name\] = AP_BASE \+ 500 \+ _i/.test(locSrc)) {
+  fail("Locations.py: sidequest block is no longer at offset 500");
+}
+// The sidequest pool must stay below the next free block.
+if (pySidequests.length > 100) {
+  fail(`sidequest chains: ${pySidequests.length} entries would run past offset 599`);
+}
+
 const pairs = [
   ["achievements",   js.ACHIEVEMENT_LOCATIONS, pyList(locSrc, "ACHIEVEMENT_NAMES", "Locations.py"), OFFSETS.achievements],
   ["days",           js.DAY_LOCATIONS,         pyList(locSrc, "DAY_NAMES", "Locations.py"),         OFFSETS.days],
@@ -122,7 +145,24 @@ const pairs = [
   ["normalItems",    js.NORMAL_ITEMS,          pyList(itemSrc, "NORMAL_ITEMS", "Items.py"),         OFFSETS.normalItems],
   ["legendaryItems", js.LEGENDARY_ITEMS,       pyList(itemSrc, "LEGENDARY_ITEMS", "Items.py"),      OFFSETS.legendaryItems],
   ["itemChars",      js.AFFECTION_CHARS,       pyList(itemSrc, "AFFECTION_CHARS", "Items.py"),      null],
+  ["itemFinds",      js.ITEM_FIND_KEYS,        pyItemFinds,                                        OFFSETS.itemFinds],
+  ["sidequests",     js.SIDEQUEST_CHAINS,      pySidequests,                                       OFFSETS.sidequests],
 ];
+
+// Keys are the contract for the extra pool: the client sends "find_<key>" and
+// "<chain id>", the world derives the ID from list position. Order matters.
+if (Array.isArray(js.ITEM_FIND_KEYS) && js.ITEM_FIND_KEYS.join("|") !== pyItemFinds.join("|")) {
+  fail("ITEM_FIND_KEYS order/content differs between ap_data.js and Locations.py");
+}
+if (Array.isArray(js.SIDEQUEST_CHAINS) && js.SIDEQUEST_CHAINS.join("|") !== pySidequests.join("|")) {
+  fail("SIDEQUEST_CHAINS order/content differs between ap_data.js and Locations.py");
+}
+// Chain prefixes must resolve to themselves, and to the right chain for a
+// child node id like "<chain>_2a".
+for (const c of js.SIDEQUEST_CHAINS ?? []) {
+  if (js.sidequestChainOf(c) !== c) fail(`sidequestChainOf("${c}") = ${js.sidequestChainOf(c)}`);
+  if (js.sidequestChainOf(c + "_2a") !== c) fail(`sidequestChainOf("${c}_2a") = ${js.sidequestChainOf(c + "_2a")}`);
+}
 
 for (const [label, jsArr, pyArr] of pairs) {
   if (!Array.isArray(jsArr)) { fail(`ap_data.js: ${label} export missing`); continue; }
@@ -178,6 +218,8 @@ js.AFFECTION_CHARS.forEach((c, ci) =>
 js.AFFECTION_CHARS.forEach((c, ci) =>
   js.NEGATIVE_AFFECTION_TIERS.forEach((t, ti) =>
     expectedLocIds.set(`neg_aff_${c}_${t}`, js.AP_BASE + OFFSETS.negativeAffection + ci * 3 + ti)));
+(js.ITEM_FIND_KEYS ?? []).forEach((k, i) => expectedLocIds.set(`find_${k}`, js.AP_BASE + OFFSETS.itemFinds + i));
+(js.SIDEQUEST_CHAINS ?? []).forEach((k, i) => expectedLocIds.set(k, js.AP_BASE + OFFSETS.sidequests + i));
 
 for (const [key, id] of expectedLocIds) {
   const got = js.locationId(key);
@@ -190,6 +232,8 @@ pyList(locSrc, "ACHIEVEMENT_NAMES", "Locations.py").forEach((_, i) => pyLocIds.a
 pyList(locSrc, "DAY_NAMES", "Locations.py").forEach((_, i) => pyLocIds.add(locBase + 100 + i));
 pyLocChars.forEach((_, ci) => [0, 1, 2].forEach((ti) => pyLocIds.add(locBase + 200 + ci * 3 + ti)));
 pyLocChars.forEach((_, ci) => [0, 1, 2].forEach((ti) => pyLocIds.add(locBase + 300 + ci * 3 + ti)));
+pyItemFinds.forEach((_, i) => pyLocIds.add(locBase + 400 + i));
+pySidequests.forEach((_, i) => pyLocIds.add(locBase + 500 + i));
 
 const jsLocIds = new Set(expectedLocIds.values());
 const missingInJs = [...pyLocIds].filter((id) => !jsLocIds.has(id));
