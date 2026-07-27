@@ -47,8 +47,9 @@ inventory. The client is built into the web build — nothing to install.
 | | |
 |---|---|
 | **Game name (YAML)** | `Layer8Problem` |
-| **Locations (61 per slot)** | 24 achievements + 1 day survived + 18 affection tiers + 18 negative affection tiers |
-| **Items (61 per slot)** | 9 legendary + 18 progressive affection + 18 progressive negative affection + 16 normal (2 more start in your inventory) |
+| **Locations (190 per slot)** | 24 achievements + 1 day survived + 18 affection tiers + 18 negative affection tiers + 30 item finds + 99 sidequest chains |
+| **Items (190 per slot)** | 9 legendary + 18 progressive affection + 18 progressive negative affection + 18 normal + filler |
+| **Smaller slot** | `extra_locations: false` drops the last two pools and gives you the v0.8.0 layout: 61 locations / 61 items |
 | **Goal (YAML)** | `legendary_set` (default) · `all_achievements` |
 | **Days** | Monday (hard) · Wednesday (normal) · Friday (easy) — one per slot, and it *is* the difficulty |
 | **DeathLink** | single master toggle in the YAML; fires on termination, final warning, letting off steam, rage quit |
@@ -57,6 +58,10 @@ Only the `Survived <Day>` location for your slot's day is registered — the
 other two days are locked in-game, so registering them would produce
 unbeatable seeds.
 
+**Item finds** fire the first time an item lands in your archive.
+**Sidequest chains** fire the first time you resolve any step of a chain —
+one check per chain, so finishing a long chain does not flood the server.
+
 ### YAML
 
 ```yaml
@@ -64,6 +69,7 @@ Layer8Problem:
   goal: legendary_set              # legendary_set | all_achievements
   starting_day: wednesday          # friday | wednesday | monday
   deathlink: false
+  extra_locations: true            # false = 61-check v0.8.0 layout
 ```
 
 That is the whole option set. The `deathlink_termination` /
@@ -126,8 +132,9 @@ node tools/check_reachability.mjs /tmp/apw/layer8problem
   ID gaps, a full ID round-trip for every location and item, and
   `PROTO_VERSION` vs `required_client_version`.
 - **`check_reachability.mjs`** — all `starting_day` × `goal` combinations:
-  61 locations registered, no unplayable day, pool balances, every
-  affection tier's progressive requirement covered, goal satisfiable.
+  with `extra_locations` both on and off — 190 or 61 locations registered,
+  no unplayable day, pool balances, every affection tier's progressive
+  requirement covered, goal satisfiable, filler share sane.
 
 Both also run in CI (`.github/workflows/ap-checks.yml`) when an unpacked
 `apworld/layer8problem/` folder is present in the tree.
@@ -136,7 +143,7 @@ Both also run in CI (`.github/workflows/ap-checks.yml`) when an unpacked
 
 | version | what's coming |
 |---|---|
-| **v0.9.0** | sidequest and item-find locations as a second location pool · PopTracker pack |
+| **v0.9.1** | PopTracker pack for the 190-check layout |
 | **v1.0.0** | full playthrough tested, submission to the official Archipelago world index |
 
 Shipped versions are documented in the world changelog inside the
