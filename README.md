@@ -107,6 +107,28 @@ Python source, the setup guide, or the world changelog:
 unzip layer8problem.apworld -d /tmp/apw
 ```
 
+### Hosting
+
+Everyone who **generates** a seed needs `layer8problem.apworld` in
+`custom_worlds/`. Players do **not** — the browser client is all they need.
+
+- **archipelago.gg** — upload the generated `AP_*.zip` under *Host Game*. This
+  works for custom worlds: the room only needs the datapackage that generation
+  baked into the multidata, not the world's Python code. The room's web tracker
+  stays generic, which is what the PopTracker pack is for.
+- **Locally** — `ArchipelagoServer.exe` (or `python MultiServer.py`) with the
+  `.archipelago` file. Default port `38281`; forward it or use a tunnel
+  (playit.gg, Tailscale) if friends connect from outside your network.
+
+Enter the address in the connect screen **without** a scheme — the client picks
+`ws://` or `wss://` itself.
+
+> If archipelago.gg answers with *Internal Server Error* on upload, the seed was
+> generated with an apworld older than v0.9.1. Those declared a client version
+> (`0.9.0`) that is not a real Archipelago release, and the host rejects it.
+> Regenerate with v0.9.1 or newer.
+
+
 ## Repository layout
 
 | path | contents |
@@ -129,8 +151,9 @@ node tools/check_reachability.mjs /tmp/apw/layer8problem
 ```
 
 - **`check_ids.mjs`** — base offset, block offsets, list lengths, reserved
-  ID gaps, a full ID round-trip for every location and item, and
-  `PROTO_VERSION` vs `required_client_version`.
+  ID gaps, a full ID round-trip for every location and item, and both version
+  axes: `required_client_version` vs the client's `AP_PROTO_VERSION` (must be a
+  real Archipelago release), and `slot_data["version"]` vs `MOD_VERSION`.
 - **`check_reachability.mjs`** — all `starting_day` × `goal` combinations:
   with `extra_locations` both on and off — 190 or 61 locations registered,
   no unplayable day, pool balances, every affection tier's progressive
@@ -143,7 +166,6 @@ Both also run in CI (`.github/workflows/ap-checks.yml`) when an unpacked
 
 | version | what's coming |
 |---|---|
-| **v0.9.1** | PopTracker pack for the 190-check layout |
 | **v1.0.0** | full playthrough tested, submission to the official Archipelago world index |
 
 Shipped versions are documented in the world changelog inside the

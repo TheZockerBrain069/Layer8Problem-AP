@@ -1,13 +1,23 @@
-// Layer8Problem — Archipelago Client (Mod v0.9.0)
+// Layer8Problem — Archipelago Client (Mod v0.9.1)
 //
-// Changes vs v0.8.0:
+// v0.9.1 fix:
+//  - Version fields were conflating two different things. The `version` field
+//    in the Connect packet (and required_client_version in the apworld) is an
+//    *Archipelago* version. We were sending 0.9.0 — our mod version — which is
+//    not a real AP release. Seeds carrying that value failed to host on
+//    archipelago.gg (Internal Server Error) and the server could refuse the
+//    client. Now: AP_PROTO_VERSION = 0.5.0 (real, matches
+//    required_client_version) and MOD_VERSION = "0.9.1" is compared against
+//    slot_data.version, with a panel warning on mismatch.
+//
+// Changes in v0.9.0:
 //  - Extra location pool: 30 item-find checks (first pickup of each in-game
 //    item, hooked on engine.addToArchive('items', id)) and 99 sidequest-chain
 //    checks (first resolved node of a chain, hooked on renderTerminal +
 //    resolveTerminal). Two new hook dots: "items" and "sidequests".
 //  - slot_data.extra_locations gates the new pool. When false the client
 //    behaves exactly like v0.8.0 and fires no extra checks.
-//  - PROTO_VERSION bumped to 0.9.0 to match required_client_version.
+
 //
 // Behaviour recap (unchanged since v0.6.0/v0.7.0):
 //  - DeathLink is decided by the YAML; `state.deathlink` comes from
@@ -32,7 +42,11 @@ import {
 
 const LS_KEY     = "l8p_ap_session";
 const LS_OFFLINE = "l8p_ap_play_offline";
-const PROTO_VERSION = { major: 0, minor: 9, build: 0, class: "Version" };
+// Archipelago protocol version sent in Connect. Must be a real AP release and
+// must match required_client_version in the apworld. NOT our mod version.
+const AP_PROTO_VERSION = { major: 0, minor: 5, build: 0, class: "Version" };
+// Our mod version, compared against slot_data.version for a drift warning.
+const MOD_VERSION = "0.9.1";
 
 // Reputation character key → engine reputation map key
 const AFFECTION_NAME_MAP = {
@@ -121,6 +135,7 @@ function injectStyles() {
   #ap-gate .log{margin-top:12px;max-height:120px;overflow:auto;font:11px ui-monospace,monospace;
     background:#020617;border:1px solid #1e293b;border-radius:6px;padding:8px;color:#94a3b8;white-space:pre-wrap}
   #ap-gate .log .ok{color:#22c55e} #ap-gate .log .err{color:#f87171} #ap-gate .log .info{color:#7dd3fc}
+  #ap-gate .log .warn{color:#fbbf24}
   #ap-gate .lang{position:absolute;top:16px;right:18px;display:flex;gap:4px}
   #ap-gate .lang button{flex:0 0 auto;padding:4px 10px;font:600 11px ui-monospace,monospace;letter-spacing:1px;
     border:1px solid #334155;background:#0b1224;color:#94a3b8;border-radius:4px;cursor:pointer}
@@ -296,7 +311,7 @@ function handleMsg(m) {
       // state.deathlink on Connected. Inbound DL is filtered the same way.
       send({
         cmd: "Connect", game: GAME_NAME, name: state.slot, uuid: getUUID(),
-        version: PROTO_VERSION, items_handling: 0b111,
+        version: AP_PROTO_VERSION, items_handling: 0b111,
         tags: ["DeathLink"],
         password: state.password || "", slot_data: true,
       });
@@ -325,6 +340,22 @@ function handleMsg(m) {
         `Extra locations: ${state.extraLocations ? "ON (190 checks)" : "OFF (61 checks)"}.`,
         "ok"
       );
+      // Mod-version drift check. This compares our build against the mod
+      // version the apworld baked into the seed — it has nothing to do with
+      // the Archipelago protocol version above. A mismatch is not fatal:
+      // IDs may still line up, so we warn instead of refusing.
+      {
+        const seedMod = state.slotData.version;
+        if (typeof seedMod === "string" && seedMod !== MOD_VERSION) {
+          logStatus(
+            `Warning: seed was generated with Layer8Problem AP ${seedMod}, ` +
+            `this client is ${MOD_VERSION}. Checks may not line up — ` +
+            `use the matching release if anything looks wrong.`,
+            "warn"
+          );
+        }
+      }
+
       installHooks().then(() => {
         flushPendingChecks();
         const ok = state.hooks.engine && state.hooks.inventory;

@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Layer8Problem AP — ID consistency checker (v0.9.0)
+// Layer8Problem AP — ID consistency checker (v0.9.1)
 //
 // Compares the JS client's ID map (ap/ap_data.js) against the Python
 // apworld source (Locations.py / Items.py). Archipelago talks in numeric
@@ -242,20 +242,53 @@ if (missingInJs.length) fail(`location IDs in Python but not in ap_data.js: ${mi
 if (missingInPy.length) fail(`location IDs in ap_data.js but not in Python: ${missingInPy.join(", ")}`);
 
 // --- 6. version alignment ----------------------------------------------------
-const reqM = initSrc.match(/required_client_version\s*=\s*\((\d+),\s*(\d+),\s*(\d+)\)/);
+// Two independent version axes, previously conflated (the v0.9.0 hosting bug):
+//   a) Archipelago protocol version — required_client_version in the apworld
+//      and AP_PROTO_VERSION in the client. Must be a REAL AP release.
+//   b) our mod version — slot_data["version"] in the apworld and MOD_VERSION
+//      in the client. Must never be written into the AP version fields.
+const MAX_AP_MINOR = 6; // newest AP line as of this release (0.6.x)
+
 const clientSrc = readFileSync(join(REPO, "ap", "ap_client.js"), "utf8");
-const protoM = clientSrc.match(/PROTO_VERSION\s*=\s*\{\s*major:\s*(\d+),\s*minor:\s*(\d+),\s*build:\s*(\d+)/);
+const reqM   = initSrc.match(/required_client_version\s*=\s*\((\d+),\s*(\d+),\s*(\d+)\)/);
+const protoM = clientSrc.match(/AP_PROTO_VERSION\s*=\s*\{\s*major:\s*(\d+),\s*minor:\s*(\d+),\s*build:\s*(\d+)/);
+
 if (reqM && protoM) {
-  const req = reqM.slice(1, 4).join(".");
+  const reqParts = reqM.slice(1, 4).map(Number);
+  const req   = reqParts.join(".");
   const proto = protoM.slice(1, 4).join(".");
   if (req !== proto) {
-    fail(`version drift: __init__.py required_client_version = ${req}, ap_client.js PROTO_VERSION = ${proto}`);
-  } else {
-    notes.push(`version aligned at ${proto}`);
+    fail(`AP version drift: __init__.py required_client_version = ${req}, ap_client.js AP_PROTO_VERSION = ${proto}`);
+  }
+  const [major, minor] = reqParts;
+  if (major !== 0 || minor > MAX_AP_MINOR) {
+    fail(
+      `required_client_version = ${req} is not a real Archipelago release ` +
+      `(expected 0.0.0 - 0.${MAX_AP_MINOR}.x). Do not put the mod version here — ` +
+      `it breaks hosting on archipelago.gg. Mod version belongs in slot_data["version"].`
+    );
+  } else if (req === proto) {
+    notes.push(`AP protocol version aligned at ${proto}`);
   }
 } else {
-  notes.push("could not read required_client_version / PROTO_VERSION");
+  notes.push("could not read required_client_version / AP_PROTO_VERSION");
 }
+
+const slotVerM = initSrc.match(/"version"\s*:\s*"([^"]+)"/);
+const modVerM  = clientSrc.match(/MOD_VERSION\s*=\s*"([^"]+)"/);
+if (slotVerM && modVerM) {
+  if (slotVerM[1] !== modVerM[1]) {
+    fail(`mod version drift: slot_data["version"] = ${slotVerM[1]}, ap_client.js MOD_VERSION = ${modVerM[1]}`);
+  } else {
+    notes.push(`mod version aligned at ${modVerM[1]}`);
+  }
+  if (reqM && slotVerM[1] === reqM.slice(1, 4).join(".")) {
+    fail(`mod version ${slotVerM[1]} equals required_client_version — these must not be the same field`);
+  }
+} else {
+  notes.push('could not read slot_data["version"] / MOD_VERSION');
+}
+
 
 // --- report ------------------------------------------------------------------
 console.log("Layer8Problem — ID consistency check");

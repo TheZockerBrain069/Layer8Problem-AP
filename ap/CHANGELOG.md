@@ -1,5 +1,31 @@
 # Layer8Problem — Changelog (apworld)
 
+## v0.9.1 — Hotfix: hosting on archipelago.gg
+
+**Fixed**
+- `required_client_version` was set to `(0, 9, 0)` — our *mod* version. That
+  field is the minimum **Archipelago** version a client must run; it is written
+  into the multidata as `minimum_versions["clients"]` and validated by both
+  MultiServer and the WebHost. Archipelago 0.9.0 does not exist (current line
+  is 0.6.x), so uploading a v0.9.0 seed to archipelago.gg answered
+  *Internal Server Error*. It is now `(0, 5, 0)`, a real release.
+- The mod version now lives only in `slot_data["version"]` (`0.9.1`). The
+  client keeps `AP_PROTO_VERSION` (0.5.0) and `MOD_VERSION` (0.9.1) as separate
+  constants and shows a non-fatal panel warning when the seed's mod version
+  differs from its own.
+
+**Added**
+- `check_ids.mjs` now guards both version axes: it rejects a
+  `required_client_version` outside the real AP range, and fails if the mod
+  version and the AP version are ever the same value.
+- README gained a Hosting section (archipelago.gg vs local server) including
+  this error.
+
+**Compatibility**
+- IDs, locations, items and options are byte-for-byte unchanged from v0.9.0 —
+  this is a metadata-only fix. Seeds already generated with v0.9.0 must be
+  regenerated to be hostable, but nothing else about them changes.
+
 ## v0.9.0 — Expansion: item-find and sidequest location pools
 
 **Added (generator)**
@@ -45,7 +71,7 @@
   whose pool is more than 95% filler.
 
 **Versions**
-- `required_client_version` and client `PROTO_VERSION` both at 0.9.0.
+- `required_client_version` 0.9.0 (broken — see v0.9.1) and client `PROTO_VERSION` 0.9.0.
 - Existing IDs are unchanged; v0.8.0 seeds keep their meaning. Regenerate
   to pick up the new pools.
 

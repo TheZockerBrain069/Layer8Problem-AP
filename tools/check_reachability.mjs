@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Layer8Problem AP — reachability / pool-balance self test (v0.9.0)
+// Layer8Problem AP — reachability / pool-balance self test (v0.9.1)
 //
 // Re-implements the apworld's slot layout in JS and checks, for every
 // combination of `starting_day` x `goal` x `extra_locations`, that:
