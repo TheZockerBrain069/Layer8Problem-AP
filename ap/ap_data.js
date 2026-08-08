@@ -1,4 +1,4 @@
-// Layer8Problem AP — Stable ID Map (v0.9.1)
+// Layer8Problem AP — Stable ID Map (v0.9.2)
 // Base offset 0x4C385000. IDs must match Locations.py / Items.py inside the
 // layer8problem.apworld published with each release (it is a plain zip).
 // Verify with: node tools/check_ids.mjs <unpacked-apworld>/layer8problem

@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Layer8Problem AP — ID consistency checker (v0.9.1)
+// Layer8Problem AP — ID consistency checker (v0.9.2)
 //
 // Compares the JS client's ID map (ap/ap_data.js) against the Python
 // apworld source (Locations.py / Items.py). Archipelago talks in numeric
@@ -122,8 +122,30 @@ function pyPairKeys(src, name, file) {
   if (!m) { fail(`${file}: pair list ${name} not found`); return []; }
   return [...m[1].matchAll(/\(\s*"([^"]+)"\s*,/g)].map((x) => x[1]);
 }
+function pyPairNames(src, name, file) {
+  const re = new RegExp(`^${name}(?:\\s*:\\s*List\\[tuple\\])?\\s*=\\s*\\[([\\s\\S]*?)\\n\\]`, "m");
+  const m = src.match(re);
+  if (!m) { fail(`${file}: pair list ${name} not found`); return []; }
+  return [...m[1].matchAll(/\(\s*"[^"]+"\s*,\s*"([^"]*)"\s*\)/g)].map((x) => x[1]);
+}
 const pyItemFinds = pyPairKeys(locSrc, "ITEM_FIND_PAIRS", "Locations.py");
 const pySidequests = pyPairKeys(locSrc, "SIDEQUEST_PAIRS", "Locations.py");
+
+// archipelago.gg stores spoiler-log location names in a legacy 3-byte UTF-8
+// column. Non-BMP characters (including emoji) need 4 bytes and cause room
+// creation to fail with HTTP 500, even though local generation succeeds.
+const literalLocationNames = [
+  ...pyList(locSrc, "ACHIEVEMENT_NAMES", "Locations.py"),
+  ...pyList(locSrc, "DAY_NAMES", "Locations.py"),
+  ...pyPairNames(locSrc, "ITEM_FIND_PAIRS", "Locations.py"),
+  ...pyPairNames(locSrc, "SIDEQUEST_PAIRS", "Locations.py"),
+];
+for (const name of literalLocationNames) {
+  const nonBmp = [...name].filter((char) => char.codePointAt(0) > 0xFFFF);
+  if (nonBmp.length) {
+    fail(`Locations.py: location "${name}" contains unsupported non-BMP character(s): ${nonBmp.join(" ")}`);
+  }
+}
 
 if (!/for _i, _name in enumerate\(ITEM_FIND_NAMES\):\s*\n\s*LOCATION_TABLE\[_name\] = AP_BASE \+ 400 \+ _i/.test(locSrc)) {
   fail("Locations.py: item-find block is no longer at offset 400");
@@ -275,7 +297,7 @@ if (reqM && protoM) {
 }
 
 const slotVerM = initSrc.match(/"version"\s*:\s*"([^"]+)"/);
-const modVerM  = clientSrc.match(/MOD_VERSION\s*=\s*"([^"]+)"/);
+const modVerM  = clientSrc.match(/^const MOD_VERSION\s*=\s*"([^"]+)"/m);
 if (slotVerM && modVerM) {
   if (slotVerM[1] !== modVerM[1]) {
     fail(`mod version drift: slot_data["version"] = ${slotVerM[1]}, ap_client.js MOD_VERSION = ${modVerM[1]}`);

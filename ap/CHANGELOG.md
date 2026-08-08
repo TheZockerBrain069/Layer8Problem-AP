@@ -1,5 +1,21 @@
 # Layer8Problem — Changelog (apworld)
 
+## v0.9.2 — Hotfix: archipelago.gg location-name encoding
+
+**Fixed**
+- Removed the emoji from the AP location names `CRITICAL ALERT` and
+  `Group: 'The IT Victims'`. The archipelago.gg spoiler-log database uses a
+  legacy 3-byte UTF-8 column; emoji require 4-byte UTF-8 and caused room
+  creation to fail with HTTP 500. Local generation was unaffected.
+
+**Added**
+- `check_ids.mjs` now rejects non-BMP characters in AP location names, so this
+  hosting-only failure is caught before release.
+
+**Compatibility**
+- Numeric IDs, location order, items, logic and options are unchanged from
+  v0.9.1. Generate a new seed with v0.9.2 before uploading to archipelago.gg.
+
 ## v0.9.1 — Hotfix: hosting on archipelago.gg
 
 **Fixed**

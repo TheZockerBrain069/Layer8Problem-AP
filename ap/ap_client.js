@@ -1,4 +1,4 @@
-// Layer8Problem — Archipelago Client (Mod v0.9.1)
+// Layer8Problem — Archipelago Client (Mod v0.9.2)
 //
 // v0.9.1 fix:
 //  - Version fields were conflating two different things. The `version` field
@@ -46,7 +46,7 @@ const LS_OFFLINE = "l8p_ap_play_offline";
 // must match required_client_version in the apworld. NOT our mod version.
 const AP_PROTO_VERSION = { major: 0, minor: 5, build: 0, class: "Version" };
 // Our mod version, compared against slot_data.version for a drift warning.
-const MOD_VERSION = "0.9.1";
+const MOD_VERSION = "0.9.2";
 
 // Reputation character key → engine reputation map key
 const AFFECTION_NAME_MAP = {
