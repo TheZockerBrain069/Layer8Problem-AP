@@ -1,4 +1,20 @@
-// Layer8Problem — Archipelago Client (Mod v0.9.2)
+// Layer8Problem — Archipelago Client (Mod v0.9.3)
+//
+// v0.9.3 fixes (reported from an async run: item finds and phone/SMS
+// sidequests never sent their checks):
+//  - Phone ("SMS style") sidequests never went through renderTerminal /
+//    resolveTerminal — handleSideQuest routes ev.kind === "phone" into the
+//    smartphone UI instead. 45 of the 99 sidequest chains are phone-only, so
+//    they could never fire a check. Now openPhone and handlePhoneChoice are
+//    hooked as well.
+//  - Item finds only fired via addToArchive, which the engine skips when the
+//    backpack is full (10/10) or a permanent item is already owned — the
+//    player *did* find the item but no check was sent. Now the loot argument
+//    of resolveTerminal / the phone result is used directly, plus a periodic
+//    scan over inventory and archive as a safety net.
+//  - Mod-version drift only warns on major.minor differences, so a 0.9.2 seed
+//    played with this 0.9.3 client no longer shows a scary warning (IDs are
+//    identical).
 //
 // v0.9.1 fix:
 //  - Version fields were conflating two different things. The `version` field
@@ -46,7 +62,7 @@ const LS_OFFLINE = "l8p_ap_play_offline";
 // must match required_client_version in the apworld. NOT our mod version.
 const AP_PROTO_VERSION = { major: 0, minor: 5, build: 0, class: "Version" };
 // Our mod version, compared against slot_data.version for a drift warning.
-const MOD_VERSION = "0.9.2";
+const MOD_VERSION = "0.9.3";
 
 // Reputation character key → engine reputation map key
 const AFFECTION_NAME_MAP = {
@@ -73,7 +89,7 @@ const state = {
   receivedItems: [],
   goalSent: false,
   lastDeathTime: 0,
-  hooks: { engine: false, inventory: false, deathlink: false, days: false, affection: false, daylock: false, items: false, sidequests: false },
+  hooks: { engine: false, inventory: false, deathlink: false, days: false, affection: false, daylock: false, items: false, sidequests: false, phone: false },
   // v0.9.0 runtime — extra location pool
   extraLocations: false,         // from slot_data; false = v0.8.0 behaviour
   currentSidequestId: null,      // last sidequest rendered, used on resolve
@@ -214,7 +230,8 @@ function buildGate() {
   const dotLock      = el("span", { class: "dot" });
   const dotItems     = el("span", { class: "dot" });
   const dotSq        = el("span", { class: "dot" });
-  hookEls = { engine: dotEngine, inventory: dotInventory, deathlink: dotDeath, days: dotDays, affection: dotAff, daylock: dotLock, items: dotItems, sidequests: dotSq };
+  const dotPhone     = el("span", { class: "dot" });
+  hookEls = { engine: dotEngine, inventory: dotInventory, deathlink: dotDeath, days: dotDays, affection: dotAff, daylock: dotLock, items: dotItems, sidequests: dotSq, phone: dotPhone };
 
   panel.append(
     el("div", { class: "hookrow" },
@@ -225,6 +242,7 @@ function buildGate() {
       el("span", {}, dotAff, "affection"),
       el("span", {}, dotItems, "items"),
       el("span", {}, dotSq, "sidequests"),
+      el("span", {}, dotPhone, "phone"),
       el("span", {}, dotLock, "day-lock"),
     ),
   );
@@ -346,7 +364,8 @@ function handleMsg(m) {
       // IDs may still line up, so we warn instead of refusing.
       {
         const seedMod = state.slotData.version;
-        if (typeof seedMod === "string" && seedMod !== MOD_VERSION) {
+        const mm = (v) => String(v).split(".").slice(0, 2).join(".");
+        if (typeof seedMod === "string" && mm(seedMod) !== mm(MOD_VERSION)) {
           logStatus(
             `Warning: seed was generated with Layer8Problem AP ${seedMod}, ` +
             `this client is ${MOD_VERSION}. Checks may not line up — ` +
@@ -662,6 +681,21 @@ function fireItemFind(type, id) {
   checkLocation(key);
 }
 
+// Safety net: every path that can hand the player an item. The engine's
+// addToArchive is skipped when the backpack is full or a permanent item is
+// already owned, so relying on it alone lost checks (v0.9.2 bug).
+function scanItemFinds() {
+  if (!state.extraLocations) return;
+  try {
+    const e = window.engine;
+    if (!e || !e.state) return;
+    const arch = (e.state.archive && e.state.archive.items) || [];
+    for (const id of arch) fireItemFind("items", id);
+    const inv = e.state.inventory || [];
+    for (const it of inv) fireItemFind("items", it && it.id);
+  } catch (x) { console.warn(x); }
+}
+
 function fireSidequest(sqId) {
   if (!state.extraLocations) return;
   const chain = sidequestChainOf(sqId);
@@ -698,7 +732,11 @@ async function installHooks() {
       const inv = e.state.inventory;
       const origPush = inv.push.bind(inv);
       inv.push = function (...args) {
-        return origPush(...args);
+        const r = origPush(...args);
+        try {
+          for (const a of args) if (a && a.id && !a.ap) fireItemFind("items", a.id);
+        } catch (x) { console.warn(x); }
+        return r;
       };
       setHook("inventory", true);
     }
@@ -746,8 +784,9 @@ async function installHooks() {
   // 4) Affection
   try {
     if (state.affectionPollIv) clearInterval(state.affectionPollIv);
-    state.affectionPollIv = setInterval(pollAffection, 2000);
+    state.affectionPollIv = setInterval(() => { pollAffection(); scanItemFinds(); }, 2000);
     pollAffection();
+    scanItemFinds();
     setHook("affection", true);
   } catch (x) { console.warn(x); setHook("affection", false); }
 
@@ -795,9 +834,14 @@ async function installHooks() {
       e.resolveTerminal = function (...args) {
         // signature: (res, m, f, a, c, loot, usedItem, type, next, rem, repData)
         const type = args[7];
+        const loot = args[5];
         const r = origResolve(...args);
         try {
           if (type === "sidequest") fireSidequest(state.currentSidequestId);
+          // Fire on the loot the option promised, not on the archive write —
+          // a full backpack drops the item but the player still found it.
+          if (loot) fireItemFind("items", loot);
+          scanItemFinds();
         } catch (x) { console.warn(x); }
         return r;
       };
@@ -806,6 +850,47 @@ async function installHooks() {
       setHook("sidequests", false);
     }
   } catch (x) { console.warn(x); setHook("sidequests", false); }
+
+  // 8) Phone / SMS sidequests (v0.9.3) — handleSideQuest sends every
+  // ev.kind === "phone" event into the smartphone UI, which never touches
+  // renderTerminal/resolveTerminal. 45 of the 99 chains are phone-only, so
+  // hook 7 alone could never complete them.
+  try {
+    let phoneOk = false;
+    const firePhone = () => {
+      try {
+        const ev = e.state && e.state.currentPhoneEvent;
+        if (ev && ev.id) fireSidequest(ev.id);
+      } catch (x) { console.warn(x); }
+    };
+    if (state.extraLocations && typeof e.openPhone === "function") {
+      const origOpen = e.openPhone.bind(e);
+      e.openPhone = function (...a) {
+        const r = origOpen(...a);
+        firePhone();
+        return r;
+      };
+      phoneOk = true;
+    }
+    if (state.extraLocations && typeof e.handlePhoneChoice === "function") {
+      const origChoice = e.handlePhoneChoice.bind(e);
+      e.handlePhoneChoice = function (text, nextId, remId, ...rest) {
+        firePhone();
+        // Loot of a phone result is only archived when the item is not already
+        // owned — read it off the tree so the find check always fires.
+        try {
+          const ev = e.state && e.state.currentPhoneEvent;
+          const res = ev && ev.results && ev.results[nextId];
+          if (res && res.loot) fireItemFind("items", res.loot);
+        } catch (x) { console.warn(x); }
+        const r = origChoice(text, nextId, remId, ...rest);
+        try { scanItemFinds(); } catch (x) { console.warn(x); }
+        return r;
+      };
+      phoneOk = true;
+    }
+    setHook("phone", state.extraLocations ? phoneOk : false);
+  } catch (x) { console.warn(x); setHook("phone", false); }
 }
 
 // ---------- boot ----------------------------------------------------------
@@ -821,4 +906,4 @@ if (document.readyState === "loading") {
 }
 
 // expose for debugging
-window.AP = { state, checkLocation, sendDeathLink, openGate, checkGoal };
+window.AP = { state, checkLocation, sendDeathLink, openGate, checkGoal, installHooks, scanItemFinds, pendingChecks };

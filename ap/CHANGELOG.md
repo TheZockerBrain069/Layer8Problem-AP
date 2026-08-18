@@ -1,5 +1,26 @@
 # Layer8Problem — Changelog (apworld)
 
+## v0.9.3 — Hotfix: item-find and phone/SMS sidequest checks
+
+**Fixed**
+- Phone sidequests ("SMS style" events) never sent a check. `handleSideQuest`
+  routes every `kind: "phone"` event into the smartphone UI, which never calls
+  `renderTerminal`/`resolveTerminal` — the only place the client listened. 45 of
+  the 99 sidequest chains are phone-only, so nearly half of the sidequest pool
+  was unsendable regardless of the option chosen. The client now hooks
+  `openPhone` and `handlePhoneChoice`.
+- Item-find checks were lost whenever the engine skipped `addToArchive`: a full
+  backpack (10/10) drops the loot and an already-owned permanent item expires
+  silently, yet the player did find it. The client now fires on the loot value
+  of `resolveTerminal` / the phone result node, wraps `inventory.push`, and runs
+  a periodic scan over inventory + archive as a safety net.
+- Mod-version drift now only warns when major.minor differ, so a v0.9.2 seed
+  played with the v0.9.3 client no longer shows a warning (IDs are identical).
+
+**Compatibility**
+- Client-only release. Location and item IDs, logic, options and the apworld are
+  unchanged — existing v0.9.2 seeds keep working, no regeneration needed.
+
 ## v0.9.2 — Hotfix: archipelago.gg location-name encoding
 
 **Fixed**
